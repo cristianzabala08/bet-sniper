@@ -1,0 +1,32 @@
+<div class="modal-overlay" *ngIf="isVisible">
+  <div class="modal-content">
+    <div class="neon-line"></div>
+
+    <h3 class="modal-title">
+      {{ "PLANS.MODAL.MANUAL_VERIFY_TITLE" | translate }}
+    </h3>
+
+    <p class="modal-message">
+      {{ "PLANS.MODAL.MANUAL_VERIFY_MSG" | translate }}
+    </p>
+
+    <div class="input-group">
+      <input
+        type="text"
+        [(ngModel)]="txHash"
+        [placeholder]="'PLANS.MODAL.HASH_PLACEHOLDER' | translate"
+        class="neon-input"
+      />
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn-cancel" (click)="onCancel()">
+        {{ "PLANS.MODAL.CANCEL_BTN" | translate }}
+      </button>
+
+      <button class="btn-confirm" (click)="onVerify()" [disabled]="!txHash">
+        {{ "PLANS.MODAL.VERIFY_BTN" | translate }}
+      </button>
+    </div>
+  </div>
+</div>

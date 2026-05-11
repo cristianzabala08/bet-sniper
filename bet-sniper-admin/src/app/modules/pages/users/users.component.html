@@ -1,0 +1,316 @@
+<div class="row">
+  <div class="col-sm-12">
+    <app-card cardTitle="Users Management" [options]="false">
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Search..."
+            [(ngModel)]="search"
+            (ngModelChange)="onSearchChange()"
+            (keyup.enter)="onSearch()"
+          />
+        </div>
+        <div class="col-md-2">
+          <button class="btn btn-primary" (click)="onSearch()">Search</button>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Fullname</th>
+              <th>Sponsor</th>
+              <!-- New -->
+              <th>Plan / Expiration</th>
+              <!-- Combined or New -->
+              <th>Referrals</th>
+              <!-- Detailed -->
+              <th>Points</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users">
+              <td>
+                <div class="d-flex align-items-center">
+                  <!-- Avatar with Initials -->
+                  <div
+                    class="d-flex align-items-center justify-content-center img-radius wid-40 m-r-15 text-white fw-bold"
+                    [style.background-color]="getAvatarColor(user.fullname)"
+                    style="font-size: 14px; font-weight: 600; height: 40px; min-width: 40px"
+                  >
+                    {{ getInitials(user.fullname) }}
+                  </div>
+                  <!-- End Avatar -->
+                  <div class="d-inline-block">
+                    <h6>{{ user.fullname }}</h6>
+                    <p class="text-muted m-b-0">{{ user.email }}</p>
+                    <small class="text-muted">{{ user.username }}</small>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <span *ngIf="user.sponsor_id">{{ user.sponsor_id }}</span>
+                <span *ngIf="!user.sponsor_id" class="text-muted f-12">No Sponsor</span>
+              </td>
+              <td>
+                <div class="d-flex flex-column">
+                  <span class="badge" [ngClass]="getPlanBadgeClass(user.plan)">{{ user.plan }}</span>
+                  <small *ngIf="user.membership_expiration" class="text-muted mt-1">
+                    Exp: {{ user.membership_expiration | date: 'shortDate' }}
+                  </small>
+                </div>
+              </td>
+              <td>
+                <div class="d-flex flex-column">
+                  <span>
+                    Total:
+                    <strong>{{ user.referralsCount || 0 }}</strong>
+                  </span>
+                  <span class="text-success f-12">
+                    Active:
+                    <strong>{{ user.direct_referrals_count || 0 }}</strong>
+                  </span>
+                </div>
+              </td>
+              <td>{{ user.points }}</td>
+              <td>
+                <span class="badge" [ngClass]="user.status === 'active' ? 'bg-success' : 'bg-secondary'">{{ user.status }}</span>
+              </td>
+              <td>
+                <button
+                  class="btn btn-icon btn-rounded btn-outline-info m-r-5"
+                  title="View"
+                  type="button"
+                  [routerLink]="['/users', user._id]"
+                >
+                  <i class="feather icon-eye"></i>
+                </button>
+                <button class="btn btn-icon btn-rounded btn-outline-primary m-r-5" title="Edit" type="button" (click)="openEditModal(user)">
+                  <i class="feather icon-edit"></i>
+                </button>
+                <button
+                  class="btn btn-icon btn-rounded btn-outline-warning m-r-5"
+                  title="New Password"
+                  type="button"
+                  (click)="openPasswordModal(user)"
+                >
+                  <i class="feather icon-lock"></i>
+                </button>
+                <button
+                  class="btn btn-icon btn-rounded"
+                  [ngClass]="user.activated ? 'btn-outline-danger' : 'btn-outline-success'"
+                  type="button"
+                  (click)="openBlockModal(user)"
+                >
+                  <i class="feather" [ngClass]="user.activated ? 'icon-slash' : 'icon-check-circle'"></i>
+                </button>
+                <button
+                  class="btn btn-icon btn-rounded btn-outline-info m-r-5"
+                  title="Reset 2FA"
+                  type="button"
+                  (click)="openReset2FAModal(user)"
+                >
+                  <i class="feather icon-settings"></i>
+                </button>
+                <button
+                  class="btn btn-icon btn-rounded btn-outline-success m-r-5"
+                  title="Asignar Plan"
+                  type="button"
+                  (click)="openAssignPlanModal(user)"
+                >
+                  <i class="feather icon-package"></i>
+                </button>
+                <button
+                  class="btn btn-icon btn-rounded btn-outline-warning m-r-5"
+                  title="Forzar Activación"
+                  type="button"
+                  (click)="openForceActionModal(user, 'activate')"
+                >
+                  <i class="feather icon-play"></i>
+                </button>
+                <button
+                  class="btn btn-icon btn-rounded btn-outline-danger"
+                  title="Forzar Expiración"
+                  type="button"
+                  (click)="openForceActionModal(user, 'expire')"
+                >
+                  <i class="feather icon-x-circle"></i>
+                </button>
+              </td>
+            </tr>
+            <tr *ngIf="users.length === 0 && search" class="text-center">
+              <td colspan="7">
+                <div class="p-4">
+                  <h5>User not found</h5>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="d-flex justify-content-between align-items-center" *ngIf="total > 0">
+        <div>Showing {{ (page - 1) * limit + 1 }} to {{ min(page * limit, total) }} of {{ total }} entries</div>
+        <ngb-pagination
+          [collectionSize]="total"
+          [(page)]="page"
+          [pageSize]="limit"
+          (pageChange)="onPageChange($event)"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+        ></ngb-pagination>
+      </div>
+    </app-card>
+  </div>
+</div>
+
+<!-- Edit User Modal -->
+<ng-template #editModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Edit User</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="mb-3">
+        <label for="fullname" class="form-label">Full Name</label>
+        <input type="text" class="form-control" id="fullname" [(ngModel)]="selectedUserForEdit.fullname" name="fullname" />
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          [(ngModel)]="selectedUserForEdit.email"
+          (ngModelChange)="onEmailChange($event)"
+          name="email"
+        />
+        <small class="text-danger" *ngIf="emailUnavailable">{{ emailCheckMessage }}</small>
+      </div>
+      <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" disabled class="form-control" id="username" [(ngModel)]="selectedUserForEdit.username" name="username" />
+      </div>
+      <div class="mb-3">
+        <label for="wallet" class="form-label">Wallet</label>
+        <input type="text" class="form-control" id="wallet" [(ngModel)]="selectedUserForEdit.wallet" name="wallet" />
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Close</button>
+    <button type="button" class="btn btn-primary" (click)="saveUser()" [disabled]="emailUnavailable">Save changes</button>
+  </div>
+</ng-template>
+
+<!-- Change Password Modal -->
+<ng-template #passwordModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Change Password</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="mb-3">
+        <label for="password" class="form-label">New Password</label>
+        <input type="password" class="form-control" id="password" [(ngModel)]="passwordForm.password" name="password" />
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Close</button>
+    <button type="button" class="btn btn-primary" (click)="savePassword()">Change Password</button>
+  </div>
+</ng-template>
+
+<!-- Block/Unblock Confirmation Modal -->
+<ng-template #blockModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Confirm Action</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <p>
+      Are you sure you want to
+      <strong>{{ selectedUser?.activated ? 'Block' : 'Unblock' }}</strong>
+      {{ selectedUser?.fullname }}?
+    </p>
+    <p class="text-danger" *ngIf="selectedUser?.activated">User will not be able to login.</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Cancel</button>
+    <button type="button" class="btn" [ngClass]="selectedUser?.activated ? 'btn-danger' : 'btn-success'" (click)="confirmBlock()">
+      Confirm
+    </button>
+  </div>
+</ng-template>
+
+<!-- Reset 2FA Confirmation Modal -->
+<ng-template #reset2FAModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Confirm Action</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <p>Are you sure you want to reset 2FA for {{ selectedUser?.fullname }}?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Cancel</button>
+    <button type="button" class="btn btn-danger" (click)="confirmReset2FA(selectedUser._id)">Confirm</button>
+  </div>
+</ng-template>
+
+<!-- Assign Plan Modal -->
+<ng-template #assignPlanModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Asignar Plan</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+  </div>
+  <div class="modal-body">
+    <p>Asignar plan a <strong>{{ selectedUser?.fullname }}</strong></p>
+    <p class="text-muted">Plan actual: <span class="badge" [ngClass]="getPlanBadgeClass(selectedUser?.plan || '')">{{ selectedUser?.plan || 'NONE' }}</span></p>
+    <div class="mb-3">
+      <label for="planSelect" class="form-label">Seleccionar Plan</label>
+      <select class="form-select" id="planSelect" [(ngModel)]="selectedPlanId">
+        <option value="">-- Seleccionar --</option>
+        <option *ngFor="let plan of availablePlans" [value]="plan._id">
+          {{ plan.displayName }} ({{ plan.durationDays }} día{{ plan.durationDays > 1 ? 's' : '' }} - {{ plan.price }} {{ plan.currency }})
+        </option>
+      </select>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.close()">Cancelar</button>
+    <button type="button" class="btn btn-success" (click)="confirmAssignPlan()" [disabled]="!selectedPlanId">Asignar Plan</button>
+  </div>
+</ng-template>
+
+<!-- Force Action Modal -->
+<ng-template #forceActionModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Forzar {{ forceAction === 'activate' ? 'Activación' : 'Expiración' }}</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+  </div>
+  <div class="modal-body">
+    <p *ngIf="forceAction === 'activate'">
+      ¿Estás seguro de que deseas <strong class="text-success">forzar la activación</strong> del plan de <strong>{{ selectedUser?.fullname }}</strong>?
+    </p>
+    <p *ngIf="forceAction === 'expire'">
+      ¿Estás seguro de que deseas <strong class="text-danger">forzar la expiración</strong> del plan de <strong>{{ selectedUser?.fullname }}</strong>?
+    </p>
+    <p class="text-muted">Plan actual: {{ selectedUser?.plan || 'NONE' }} | Estado: {{ selectedUser?.status }}</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.close()">Cancelar</button>
+    <button type="button" class="btn" [ngClass]="forceAction === 'activate' ? 'btn-success' : 'btn-danger'" (click)="confirmForceAction()">
+      Confirmar {{ forceAction === 'activate' ? 'Activación' : 'Expiración' }}
+    </button>
+  </div>
+</ng-template>

@@ -1,0 +1,85 @@
+<div class="row">
+  <div class="col-sm-12">
+    <app-card cardTitle="Profile" [options]="false">
+      <!-- Profile Info Container -->
+      <div class="profile-container d-flex align-items-center">
+        <!-- Avatar and Actions -->
+        <div class="d-flex flex-column align-items-center">
+          <div class="profile-avatar">
+            <div class="avatar-circle">
+              <i class="feather icon-user"></i>
+            </div>
+          </div>
+          <button class="btn btn-primary mt-2" (click)="openActivate2FAModal()">Enable 2FA</button>
+        </div>
+
+        <!-- User Info Labels -->
+        <div class="profile-info ms-4">
+          <div class="info-item mb-3">
+            <h4 class="info-label mb-0">
+              Username:
+              <span class="info-value">{{ username }}</span>
+            </h4>
+          </div>
+          <div class="info-item mb-3">
+            <h4 class="info-label mb-0">
+              Email:
+              <span class="info-value">{{ email }}</span>
+            </h4>
+          </div>
+          <div class="info-item">
+            <h4 class="info-label mb-0">
+              Rol:
+              <span class="info-value">{{ role }}</span>
+            </h4>
+          </div>
+        </div>
+      </div>
+    </app-card>
+  </div>
+</div>
+
+<!-- Activate 2FA Modal -->
+<ng-template #activate2FAModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Activate Two-Factor Authentication (2FA)</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body text-center">
+    <p>Escanea el siguiente código QR con tu aplicación de autenticación (Google Authenticator).</p>
+
+    <div *ngIf="isLoading" class="spinner-border text-primary m-4" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+
+    <div *ngIf="!isLoading && qrCodeUrl" class="qr-container mb-4">
+      <img [src]="qrCodeUrl" alt="QR Code" class="img-fluid border p-2 bg-white" />
+      <div class="mt-2">
+        <small class="text-muted">Secret: {{ secret }}</small>
+      </div>
+    </div>
+
+    <div *ngIf="errorMessage" class="alert alert-danger">
+      {{ errorMessage }}
+    </div>
+
+    <div class="mt-4">
+      <label for="code" class="form-label">Ingresa el código de 6 dígitos:</label>
+      <input
+        type="text"
+        class="form-control form-control-lg text-center mx-auto"
+        style="max-width: 200px; letter-spacing: 5px"
+        id="code"
+        [(ngModel)]="verificationCode"
+        maxlength="6"
+        placeholder="000000"
+      />
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Cancelar</button>
+    <button type="button" class="btn btn-primary" [disabled]="isLoading || verificationCode.length !== 6" (click)="onActivate2FA()">
+      {{ isLoading ? 'Activando...' : 'Activar 2FA' }}
+    </button>
+  </div>
+</ng-template>

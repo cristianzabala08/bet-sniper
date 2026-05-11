@@ -1,0 +1,70 @@
+<div class="row">
+  <div class="col-sm-12">
+    <app-card cardTitle="Audit Logs" [options]="false">
+      <!-- Optional: Refresh Button -->
+      <div class="row mb-3 justify-content-end">
+        <div class="col-auto">
+          <button class="btn btn-icon btn-outline-primary" (click)="loadLogs()" title="Refresh">
+            <i class="feather icon-refresh-cw"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Operation</th>
+              <th>User ID</th>
+              <th>IP Address</th>
+              <th>Details</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let log of logs">
+              <td>{{ log.createdAt | date: 'medium' }}</td>
+              <td>
+                <span class="badge bg-light text-dark border">{{ log.operation }}</span>
+              </td>
+              <td>
+                <small class="text-muted">{{ log.user_id }}</small>
+              </td>
+              <td>{{ log.ip_address || 'N/A' }}</td>
+              <td>
+                <!-- Simple JSON display or truncated text -->
+                <pre
+                  *ngIf="log.details"
+                  class="mb-0"
+                  style="font-size: 10px; max-height: 50px; overflow: hidden"
+                  [title]="log.details | json"
+                  >{{ log.details | json }}</pre
+                >
+                <span *ngIf="!log.details">-</span>
+              </td>
+            </tr>
+            <tr *ngIf="logs.length === 0 && !loading">
+              <td colspan="5" class="text-center">No logs found.</td>
+            </tr>
+            <tr *ngIf="loading">
+              <td colspan="5" class="text-center">Loading...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="d-flex justify-content-between align-items-center" *ngIf="total > 0">
+        <div>Showing {{ (page - 1) * limit + 1 }} to {{ page * limit > total ? total : page * limit }} of {{ total }} entries</div>
+        <ngb-pagination
+          [collectionSize]="total"
+          [(page)]="page"
+          [pageSize]="limit"
+          (pageChange)="onPageChange($event)"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+        ></ngb-pagination>
+      </div>
+    </app-card>
+  </div>
+</div>

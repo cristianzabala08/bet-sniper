@@ -1,0 +1,106 @@
+// =======================================
+//     List of variables for layout
+//     Luxury Dark Gold Theme - Bet Sniper
+// =======================================
+
+$header-height: 70px;
+$Menu-width: 264px;
+$Menu-collapsed-width: 80px;
+
+// Luxury Dark Gold color palette
+$gold-primary: #c9a84c;
+$gold-light: #ffd700;
+$gold-dark: #8b6914;
+$gold-accent: #d4af37;
+$bronze: #cd7f32;
+
+// color list for build layouts
+$theme-color: linear-gradient(135deg, $gold-dark 0%, $gold-primary 50%, $gold-light 100%);
+$theme-color2: linear-gradient(135deg, $gold-accent 0%, $bronze 100%);
+$primary-color: $gold-primary;
+$warning-color: $gold-light;
+$danger-color: #e74c3c;
+$success-color: #2ecc71;
+$purple-color: $gold-accent;
+$info-color: #3498db;
+$secondary-color: #8a7e6b;
+$default-color: #3a3a3a;
+$light-color: #1a1a18;
+$dark-color: #0a0a0a;
+$inverse-color: $dark-color;
+$theme-border: #2a2520;
+$white: #f5f0e1;
+
+// header
+$brand-background: #0d0d0b;
+$header-dark-background: #0d0d0b;
+$header-dark-text-color: #f5f0e1;
+$header-light-background: #0d0d0b;
+$header-light-text-color: $gold-primary;
+
+// Menu
+$menu-caption-color: $gold-primary;
+$menu-dark-background: #0a0a08;
+$menu-dark-text-color: #b0a48a;
+$menu-light-background: #0a0a08;
+$menu-light-text-color: #b0a48a;
+$menu-active-color: $gold-primary;
+
+// dark layout colors
+$dark-layout: #0a0a0a;
+$dark-layout-font: #b0a48a;
+
+// Menu icon
+$menu-icon-color: $gold-primary, $gold-accent, $bronze, $gold-light, $gold-dark, $gold-primary;
+// Header background
+$color-header-name: blue, red, purple, lightblue, dark;
+$color-header-color: $gold-primary, $danger-color, $gold-accent, $info-color, #0d0d0b;
+// Menu background
+$color-menu-name: blue, red, purple, lightblue, dark;
+$color-menu-color: $gold-primary, $danger-color, $gold-accent, $info-color, #0d0d0b;
+// Active background color
+$color-active-name: blue, red, purple, lightblue, dark;
+$color-active-color: $gold-primary, $danger-color, $gold-accent, $info-color, #0d0d0b;
+// Menu title color
+$color-title-name: blue, red, purple, lightblue, dark;
+$color-title-color: $gold-primary, $danger-color, $gold-accent, $info-color, #0d0d0b;
+
+$theme-font-family: 'Montserrat', 'Open Sans', sans-serif;
+$theme-font-size: 14px;
+$theme-background: #0a0a0a;
+$theme-font-color: #b0a48a;
+$theme-heading-color: #f5f0e1;
+
+$layout-6-bg-color: $gold-primary;
+
+$color-name: c-blue, c-red, c-green, c-yellow, c-purple;
+$color-color: $gold-primary, $danger-color, $success-color, $gold-light, $gold-accent;
+$color-bt-name: primary, danger, success, warning, info;
+$color-bt-color: $gold-primary, $danger-color, $success-color, $gold-light, $info-color;
+// form-control variables
+$form-bg: #121210;
+
+$theme-colors: () !default;
+
+$theme-colors: map-merge(
+  (
+    'primary': $gold-primary,
+    'secondary': $secondary-color,
+    'success': $success-color,
+    'info': $info-color,
+    'warning': $gold-light,
+    'danger': $danger-color,
+    'light': $light-color,
+    'dark': $dark-color
+  ),
+  $theme-colors
+); // Color contrast
+$yiq-contrasted-threshold: 200 !default;
+$yiq-dark-color: #0a0a0a;
+$yiq-light-color: #f5f0e1;
+$theme-color-interval: 8% !default;
+$alert-bg-level: -10 !default;
+$alert-border-level: -9 !default;
+$alert-color-level: 6 !default;
+
+$soft-bg-level: -80%;

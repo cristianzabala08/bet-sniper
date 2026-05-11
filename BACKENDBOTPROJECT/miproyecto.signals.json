@@ -1,0 +1,1835 @@
+[{
+  "_id": {
+    "$oid": "6971379ac48c8ae82c8f02bd"
+  },
+  "mesa": "Baccarat 7",
+  "data": {
+    "signal": {
+      "nombre_mesa": "Baccarat 7",
+      "vector_forecast": [
+        "B",
+        "B",
+        "P",
+        "B",
+        "P",
+        "P"
+      ],
+      "nombre_algoritmo": "SIMETRIA_AUTOREPEAT",
+      "pattern": [
+        "B",
+        "P",
+        "B",
+        "B",
+        "P",
+        "P",
+        "P",
+        "B",
+        "P",
+        "B",
+        "B"
+      ],
+      "ronda_actual": 66,
+      "victorias": {
+        "player": 25,
+        "banker": 35,
+        "tie": 6
+      }
+    }
+  },
+  "tipo": "SIGNAL",
+  "win": null,
+  "ronda": 66,
+  "createdAt": {
+    "$date": "2026-01-21T20:31:22.134Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-21T20:31:22.134Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6971383dc48c8ae82c8f02dc"
+  },
+  "mesa": "Baccarat 7",
+  "data": {
+    "signal": {
+      "nombre_mesa": "Baccarat 7",
+      "vector_forecast": [
+        "P",
+        "P",
+        "P",
+        "B",
+        "B",
+        "P"
+      ],
+      "nombre_algoritmo": "SIMETRIA_AUTOREPEAT",
+      "pattern": [
+        "P",
+        "B",
+        "B",
+        "P",
+        "P",
+        "P",
+        "B",
+        "P",
+        "B",
+        "B",
+        "P",
+        "P",
+        "P"
+      ],
+      "ronda_actual": 71,
+      "victorias": {
+        "player": 29,
+        "banker": 36,
+        "tie": 6
+      }
+    }
+  },
+  "tipo": "SIGNAL",
+  "win": null,
+  "ronda": 71,
+  "createdAt": {
+    "$date": "2026-01-21T20:34:05.605Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-21T20:34:05.605Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "697138c9c48c8ae82c8f0333"
+  },
+  "mesa": "Baccarat 3",
+  "data": {
+    "signal": {
+      "nombre_mesa": "Baccarat 3",
+      "vector_forecast": [
+        "B",
+        "P",
+        "P",
+        "B",
+        "B",
+        "B"
+      ],
+      "nombre_algoritmo": "SIMETRIA_AUTOREPEAT_OPUESTO",
+      "pattern": [
+        "B",
+        "B",
+        "P",
+        "B",
+        "B",
+        "B",
+        "B",
+        "B",
+        "B",
+        "B",
+        "P",
+        "P",
+        "B"
+      ],
+      "ronda_actual": 62,
+      "victorias": {
+        "player": 28,
+        "banker": 30,
+        "tie": 4
+      }
+    }
+  },
+  "tipo": "SIGNAL",
+  "win": null,
+  "ronda": 62,
+  "createdAt": {
+    "$date": "2026-01-21T20:36:25.051Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-21T20:36:25.051Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "697138eec48c8ae82c8f034c"
+  },
+  "mesa": "Baccarat 3",
+  "data": {
+    "signal": {
+      "nombre_mesa": "Baccarat 3",
+      "vector_forecast": [
+        "B",
+        "P",
+        "P",
+        "B",
+        "B",
+        "B"
+      ],
+      "nombre_algoritmo": "SIMETRIA_AUTOREPEAT_OPUESTO",
+      "pattern": [
+        "B",
+        "B",
+        "P",
+        "B",
+        "B",
+        "B",
+        "B",
+        "B",
+        "B",
+        "B",
+        "P",
+        "P",
+        "B"
+      ],
+      "ronda_actual": 63,
+      "victorias": {
+        "player": 28,
+        "banker": 31,
+        "tie": 4
+      }
+    }
+  },
+  "tipo": "SIGNAL",
+  "win": null,
+  "ronda": 63,
+  "createdAt": {
+    "$date": "2026-01-21T20:37:02.732Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-21T20:37:02.732Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "697139bdc48c8ae82c8f0386"
+  },
+  "mesa": "Baccarat 2",
+  "data": {
+    "signal": {
+      "nombre_mesa": "Baccarat 2",
+      "vector_forecast": [
+        "B",
+        "B",
+        "P",
+        "B",
+        "P",
+        "B"
+      ],
+      "nombre_algoritmo": "SIMETRIA_AUTOREPEAT_OPUESTO",
+      "pattern": [
+        "B",
+        "P",
+        "B",
+        "P",
+        "P",
+        "B",
+        "B",
+        "P",
+        "B",
+        "P",
+        "B",
+        "B"
+      ],
+      "ronda_actual": 29,
+      "victorias": {
+        "player": 13,
+        "banker": 15,
+        "tie": 1
+      }
+    }
+  },
+  "tipo": "SIGNAL",
+  "win": null,
+  "ronda": 29,
+  "createdAt": {
+    "$date": "2026-01-21T20:40:29.540Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-21T20:40:29.540Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "697139dec48c8ae82c8f038d"
+  },
+  "mesa": "Baccarat 3",
+  "data": {
+    "signal": {
+      "nombre_mesa": "Baccarat 3",
+      "vector_forecast": [
+        "P",
+        "P",
+        "P",
+        "P",
+        "P",
+        "P"
+      ],
+      "nombre_algoritmo": "SIMETRIA_DIRECTA",
+      "pattern": [
+        "B",
+        "P",
+        "P",
+        "B",
+        "B",
+        "P",
+        "B",
+        "B",
+        "P",
+        "P",
+        "B"
+      ],
+      "ronda_actual": 71,
+      "victorias": {
+        "player": 31,
+        "banker": 35,
+        "tie": 5
+      }
+    }
+  },
+  "tipo": "SIGNAL",
+  "win": null,
+  "ronda": 71,
+  "createdAt": {
+    "$date": "2026-01-21T20:41:02.785Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-21T20:41:02.785Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69713a42c48c8ae82c8f03b1"
+  },
+  "mesa": "Baccarat 6",
+  "data": {
+    "signal": {
+      "nombre_mesa": "Baccarat 6",
+      "vector_forecast": [
+        "B",
+        "P",
+        "B",
+        "P",
+        "P",
+        "B"
+      ],
+      "nombre_algoritmo": "SIMETRIA_AUTOREPEAT_OPUESTO",
+      "pattern": [
+        "B",
+        "B",
+        "P",
+        "B",
+        "P",
+        "B",
+        "P",
+        "P",
+        "B",
+        "P",
+        "B"
+      ],
+      "ronda_actual": 28,
+      "victorias": {
+        "player": 14,
+        "banker": 12,
+        "tie": 2
+      }
+    }
+  },
+  "tipo": "SIGNAL",
+  "win": null,
+  "ronda": 28,
+  "createdAt": {
+    "$date": "2026-01-21T20:42:42.679Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-21T20:42:42.679Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69713b6ec48c8ae82c8f0409"
+  },
+  "mesa": "Baccarat 5",
+  "data": {
+    "signal": {
+      "nombre_mesa": "Baccarat 5",
+      "vector_forecast": [
+        "B",
+        "P",
+        "P",
+        "B",
+        "B",
+        "P"
+      ],
+      "nombre_algoritmo": "SIMETRIA_DIRECTA",
+      "pattern": [
+        "P",
+        "B",
+        "P",
+        "B",
+        "P",
+        "B",
+        "P",
+        "B",
+        "P",
+        "B",
+        "P"
+      ],
+      "ronda_actual": 36,
+      "victorias": {
+        "player": 17,
+        "banker": 15,
+        "tie": 4
+      }
+    }
+  },
+  "tipo": "SIGNAL",
+  "win": null,
+  "ronda": 36,
+  "createdAt": {
+    "$date": "2026-01-21T20:47:42.996Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-21T20:47:42.996Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69713b8ec48c8ae82c8f0411"
+  },
+  "mesa": "Baccarat 5",
+  "data": {
+    "signal": {
+      "nombre_mesa": "Baccarat 5",
+      "vector_forecast": [
+        "B",
+        "B",
+        "P",
+        "P",
+        "B",
+        "B"
+      ],
+      "nombre_algoritmo": "SIMETRIA_DIRECTA",
+      "pattern": [
+        "B",
+        "P",
+        "B",
+        "P",
+        "B",
+        "P",
+        "B",
+        "P",
+        "B",
+        "P",
+        "B"
+      ],
+      "ronda_actual": 37,
+      "victorias": {
+        "player": 17,
+        "banker": 16,
+        "tie": 4
+      }
+    }
+  },
+  "tipo": "SIGNAL",
+  "win": null,
+  "ronda": 37,
+  "createdAt": {
+    "$date": "2026-01-21T20:48:14.066Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-21T20:48:14.066Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69713ba7c48c8ae82c8f0419"
+  },
+  "mesa": "Baccarat 5",
+  "data": {
+    "signal": {
+      "nombre_mesa": "Baccarat 5",
+      "vector_forecast": [
+        "B",
+        "B",
+        "P",
+        "P",
+        "B",
+        "P"
+      ],
+      "nombre_algoritmo": "SIMETRIA_INVERSA",
+      "pattern": [
+        "P",
+        "P",
+        "B",
+        "P",
+        "B",
+        "P",
+        "B",
+        "P",
+        "B",
+        "P",
+        "B",
+        "P",
+        "B",
+        "B"
+      ],
+      "ronda_actual": 38,
+      "victorias": {
+        "player": 17,
+        "banker": 17,
+        "tie": 4
+      }
+    }
+  },
+  "tipo": "SIGNAL",
+  "win": null,
+  "ronda": 38,
+  "createdAt": {
+    "$date": "2026-01-21T20:48:39.154Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-21T20:48:39.154Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69713bc1c48c8ae82c8f0420"
+  },
+  "mesa": "Baccarat 2",
+  "data": {
+    "signal": {
+      "nombre_mesa": "Baccarat 2",
+      "vector_forecast": [
+        "B",
+        "B",
+        "B",
+        "B",
+        "P",
+        "B"
+      ],
+      "nombre_algoritmo": "SIMETRIA_AUTOREPEAT_OPUESTO",
+      "pattern": [
+        "B",
+        "B",
+        "P",
+        "B",
+        "P",
+        "P",
+        "P",
+        "P",
+        "B",
+        "P",
+        "P",
+        "B",
+        "P",
+        "B",
+        "B",
+        "B",
+        "B"
+      ],
+      "ronda_actual": 46,
+      "victorias": {
+        "player": 21,
+        "banker": 23,
+        "tie": 2
+      }
+    }
+  },
+  "tipo": "SIGNAL",
+  "win": null,
+  "ronda": 46,
+  "createdAt": {
+    "$date": "2026-01-21T20:49:05.487Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-21T20:49:05.487Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69713c16c48c8ae82c8f042b"
+  },
+  "mesa": "Baccarat 2",
+  "data": {
+    "signal": {
+      "nombre_mesa": "Baccarat 2",
+      "vector_forecast": [
+        "B",
+        "B",
+        "P",
+        "B",
+        "B",
+        "B"
+      ],
+      "nombre_algoritmo": "SIMETRIA_AUTOREPEAT_OPUESTO",
+      "pattern": [
+        "B",
+        "P",
+        "P",
+        "P",
+        "P",
+        "B",
+        "P",
+        "P",
+        "B",
+        "P",
+        "B",
+        "B",
+        "B",
+        "B",
+        "P",
+        "B",
+        "B"
+      ],
+      "ronda_actual": 49,
+      "victorias": {
+        "player": 22,
+        "banker": 25,
+        "tie": 2
+      }
+    }
+  },
+  "tipo": "SIGNAL",
+  "win": null,
+  "ronda": 49,
+  "createdAt": {
+    "$date": "2026-01-21T20:50:30.030Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-21T20:50:30.030Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69713c23c48c8ae82c8f0432"
+  },
+  "mesa": "Baccarat 6",
+  "data": {
+    "signal": {
+      "nombre_mesa": "Baccarat 6",
+      "vector_forecast": [
+        "B",
+        "B",
+        "B",
+        "P",
+        "P",
+        "P"
+      ],
+      "nombre_algoritmo": "SIMETRIA_DIRECTA",
+      "pattern": [
+        "B",
+        "P",
+        "P",
+        "B",
+        "P",
+        "B",
+        "B",
+        "P",
+        "B",
+        "P",
+        "P",
+        "B"
+      ],
+      "ronda_actual": 45,
+      "victorias": {
+        "player": 23,
+        "banker": 20,
+        "tie": 2
+      }
+    }
+  },
+  "tipo": "SIGNAL",
+  "win": null,
+  "ronda": 45,
+  "createdAt": {
+    "$date": "2026-01-21T20:50:43.496Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-21T20:50:43.496Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69713c32c48c8ae82c8f043b"
+  },
+  "mesa": "Baccarat 7",
+  "data": {
+    "signal": {
+      "nombre_mesa": "Baccarat 7",
+      "vector_forecast": [
+        "P",
+        "B",
+        "P",
+        "B",
+        "P",
+        "P"
+      ],
+      "nombre_algoritmo": "SIMETRIA_DIRECTA",
+      "pattern": [
+        "B",
+        "P",
+        "P",
+        "P",
+        "P",
+        "P",
+        "P",
+        "P",
+        "P",
+        "P",
+        "P",
+        "B"
+      ],
+      "ronda_actual": 26,
+      "victorias": {
+        "player": 17,
+        "banker": 6,
+        "tie": 3
+      }
+    }
+  },
+  "tipo": "SIGNAL",
+  "win": null,
+  "ronda": 26,
+  "createdAt": {
+    "$date": "2026-01-21T20:50:58.329Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-21T20:50:58.329Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69713c4dc48c8ae82c8f045b"
+  },
+  "mesa": "Baccarat 1",
+  "data": {
+    "signal": {
+      "nombre_mesa": "Baccarat 1",
+      "vector_forecast": [
+        "B",
+        "P",
+        "B",
+        "P",
+        "P",
+        "B"
+      ],
+      "nombre_algoritmo": "SIMETRIA_AUTOREPEAT_OPUESTO",
+      "pattern": [
+        "B",
+        "B",
+        "P",
+        "B",
+        "P",
+        "B",
+        "P",
+        "P",
+        "B",
+        "P",
+        "B"
+      ],
+      "ronda_actual": 40,
+      "victorias": {
+        "player": 16,
+        "banker": 16,
+        "tie": 8
+      }
+    }
+  },
+  "tipo": "SIGNAL",
+  "win": null,
+  "ronda": 40,
+  "createdAt": {
+    "$date": "2026-01-21T20:51:25.481Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-21T20:51:25.481Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69713c73c48c8ae82c8f0465"
+  },
+  "mesa": "Baccarat 7",
+  "data": {
+    "signal": {
+      "nombre_mesa": "Baccarat 7",
+      "vector_forecast": [
+        "P",
+        "P",
+        "B",
+        "P",
+        "P",
+        "P"
+      ],
+      "nombre_algoritmo": "SIMETRIA_AUTOREPEAT_OPUESTO",
+      "pattern": [
+        "P",
+        "B",
+        "B",
+        "P",
+        "P",
+        "P",
+        "P",
+        "P",
+        "P",
+        "P",
+        "P",
+        "P",
+        "P",
+        "B",
+        "P",
+        "P"
+      ],
+      "ronda_actual": 28,
+      "victorias": {
+        "player": 19,
+        "banker": 6,
+        "tie": 3
+      }
+    }
+  },
+  "tipo": "SIGNAL",
+  "win": null,
+  "ronda": 28,
+  "createdAt": {
+    "$date": "2026-01-21T20:52:03.865Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-21T20:52:03.865Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69713ddbd4a4ab24e63c0114"
+  },
+  "mesa": "Baccarat 1",
+  "data": {
+    "signal": {
+      "nombre_mesa": "Baccarat 1",
+      "vector_forecast": [
+        "P",
+        "B",
+        "P",
+        "P",
+        "B",
+        "B"
+      ],
+      "nombre_algoritmo": "SIMETRIA_AUTOREPEAT",
+      "pattern": [
+        "P",
+        "P",
+        "B",
+        "P",
+        "B",
+        "B",
+        "B",
+        "B",
+        "B",
+        "P",
+        "P",
+        "B",
+        "P"
+      ],
+      "ronda_actual": 52,
+      "victorias": {
+        "player": 19,
+        "banker": 23,
+        "tie": 10
+      }
+    }
+  },
+  "tipo": "SIGNAL",
+  "win": null,
+  "ronda": 52,
+  "createdAt": {
+    "$date": "2026-01-21T20:58:03.906Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-21T20:58:03.906Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6971411dd4a4ab24e63c023f"
+  },
+  "mesa": "Baccarat 2",
+  "data": {
+    "signal": {
+      "nombre_mesa": "Baccarat 2",
+      "vector_forecast": [
+        "B",
+        "B",
+        "B",
+        "P",
+        "B",
+        "B"
+      ],
+      "nombre_algoritmo": "SIMETRIA_AUTOREPEAT_OPUESTO_INVERTIDO",
+      "pattern": [
+        "B",
+        "P",
+        "B",
+        "B",
+        "B",
+        "B",
+        "B",
+        "P",
+        "B",
+        "B",
+        "B"
+      ],
+      "ronda_actual": 18,
+      "victorias": {
+        "player": 4,
+        "banker": 14,
+        "tie": 0
+      }
+    }
+  },
+  "tipo": "SIGNAL",
+  "win": null,
+  "ronda": 18,
+  "createdAt": {
+    "$date": "2026-01-21T21:11:57.720Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-21T21:11:57.720Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6971413dd4a4ab24e63c0251"
+  },
+  "mesa": "Baccarat 2",
+  "data": {
+    "results": {
+      "nombre_mesa": "Baccarat 2",
+      "mesa_info": {
+        "id_mesa": "12475908715",
+        "ronda_actual": 19,
+        "puntaje_player": "7",
+        "puntaje_banker": "0",
+        "cartas_player": [
+          "3",
+          "4"
+        ],
+        "cartas_banker": [
+          "K",
+          "3",
+          "7"
+        ],
+        "apostar_pendiente": false,
+        "lado_objetivo": "1",
+        "ronda_objetivo": 19,
+        "sesion": false,
+        "pairs_bet": false,
+        "apuesta_activa": true,
+        "lado_apostado": "1",
+        "saldo_antes_apuesta": 64123.7,
+        "monto_apostado": 100,
+        "data_evento": {
+          "mesa": "Baccarat 2",
+          "tiempo_actual": "2026-01-21 17:12:28.915384-04:00",
+          "Ronda": 19,
+          "Apuesta": "BANKER"
+        },
+        "cantidad_clics": 2,
+        "valor_moneda": 100,
+        "tablero": [
+          "B",
+          "B",
+          "P",
+          "B",
+          "B",
+          "B",
+          "B",
+          "B",
+          "P",
+          "B",
+          "B",
+          "B",
+          "P"
+        ],
+        "Accion": "ORDEN DE FUEGO 1",
+        "martingala": {
+          "active": true,
+          "vector_forecast": [
+            "B",
+            "B",
+            "B",
+            "P",
+            "B",
+            "B"
+          ],
+          "contador_martingala": 1,
+          "vector_win": [
+            "L"
+          ],
+          "vector_resultado": [
+            "P"
+          ]
+        },
+        "ganador": "PLAYER",
+        "victorias": {
+          "player": 5,
+          "banker": 14,
+          "tie": 0
+        }
+      }
+    }
+  },
+  "tipo": "RESULT",
+  "win": null,
+  "createdAt": {
+    "$date": "2026-01-21T21:12:29.289Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-21T21:12:29.289Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6971415cd4a4ab24e63c0263"
+  },
+  "mesa": "Baccarat 2",
+  "data": {
+    "results": {
+      "nombre_mesa": "Baccarat 2",
+      "mesa_info": {
+        "id_mesa": "12475914715",
+        "ronda_actual": 20,
+        "puntaje_player": "4",
+        "puntaje_banker": "6",
+        "cartas_player": [
+          "2",
+          "2",
+          "10"
+        ],
+        "cartas_banker": [
+          "Q",
+          "2",
+          "4"
+        ],
+        "apostar_pendiente": false,
+        "lado_objetivo": "1",
+        "ronda_objetivo": 19,
+        "sesion": false,
+        "pairs_bet": false,
+        "apuesta_activa": false,
+        "lado_apostado": null,
+        "saldo_antes_apuesta": 0,
+        "monto_apostado": 100,
+        "cantidad_clics": 2,
+        "valor_moneda": 100,
+        "tablero": [
+          "B",
+          "B",
+          "P",
+          "B",
+          "B",
+          "B",
+          "B",
+          "B",
+          "P",
+          "B",
+          "B",
+          "B",
+          "P",
+          "B"
+        ],
+        "Accion": "ORDEN DE FUEGO 1",
+        "martingala": {
+          "active": false,
+          "vector_forecast": [
+            "B",
+            "B",
+            "B",
+            "P",
+            "B",
+            "B"
+          ],
+          "contador_martingala": 1,
+          "vector_win": [
+            "L",
+            "W"
+          ],
+          "vector_resultado": [
+            "P",
+            "B"
+          ]
+        },
+        "ganador": "BANKER",
+        "victorias": {
+          "player": 5,
+          "banker": 15,
+          "tie": 0
+        }
+      }
+    }
+  },
+  "tipo": "RESULT",
+  "win": null,
+  "createdAt": {
+    "$date": "2026-01-21T21:13:00.218Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-21T21:13:00.218Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69714201d4a4ab24e63c0275"
+  },
+  "mesa": "Baccarat 3",
+  "data": {
+    "signal": {
+      "nombre_mesa": "Baccarat 3",
+      "vector_forecast": [
+        "B",
+        "B",
+        "P",
+        "B",
+        "P",
+        "P"
+      ],
+      "nombre_algoritmo": "SIMETRIA_DIRECTA",
+      "pattern": [
+        "P",
+        "P",
+        "B",
+        "P",
+        "B",
+        "P",
+        "P",
+        "B",
+        "P",
+        "B",
+        "P",
+        "P"
+      ],
+      "ronda_actual": 63,
+      "victorias": {
+        "player": 29,
+        "banker": 30,
+        "tie": 4
+      }
+    }
+  },
+  "tipo": "SIGNAL",
+  "win": null,
+  "ronda": 63,
+  "createdAt": {
+    "$date": "2026-01-21T21:15:45.023Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-21T21:15:45.023Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69714223d4a4ab24e63c0287"
+  },
+  "mesa": "Baccarat 3",
+  "data": {
+    "results": {
+      "nombre_mesa": "Baccarat 3",
+      "mesa_info": {
+        "id_mesa": "12475959315",
+        "ronda_actual": 64,
+        "puntaje_player": "0",
+        "puntaje_banker": "0",
+        "cartas_player": [],
+        "cartas_banker": [],
+        "apostar_pendiente": false,
+        "lado_objetivo": "1",
+        "ronda_objetivo": 63,
+        "sesion": false,
+        "pairs_bet": false,
+        "apuesta_activa": true,
+        "lado_apostado": "1",
+        "saldo_antes_apuesta": 64013.7,
+        "monto_apostado": 100,
+        "data_evento": {
+          "mesa": "Baccarat 3",
+          "tiempo_actual": "2026-01-21 17:15:44.618944-04:00",
+          "Ronda": 63,
+          "Apuesta": "BANKER"
+        },
+        "cantidad_clics": 1,
+        "valor_moneda": 100,
+        "tablero": [
+          "B",
+          "B",
+          "B",
+          "P",
+          "B",
+          "P",
+          "E",
+          "P",
+          "P",
+          "P",
+          "B",
+          "P",
+          "B",
+          "P",
+          "P",
+          "B",
+          "P",
+          "B",
+          "P",
+          "P"
+        ],
+        "Accion": "ORDEN DE FUEGO 1",
+        "martingala": {
+          "active": false,
+          "vector_forecast": [
+            "B",
+            "B",
+            "P",
+            "B",
+            "P",
+            "P"
+          ],
+          "contador_martingala": 0,
+          "vector_win": [
+            "W"
+          ],
+          "vector_resultado": [
+            "B"
+          ]
+        },
+        "ganador": "En juego",
+        "victorias": {
+          "player": 29,
+          "banker": 30,
+          "tie": 5
+        }
+      }
+    }
+  },
+  "tipo": "RESULT",
+  "win": null,
+  "createdAt": {
+    "$date": "2026-01-21T21:16:19.119Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-21T21:16:19.119Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69714223d4a4ab24e63c0299"
+  },
+  "mesa": "Baccarat 3",
+  "data": {
+    "signal": {
+      "nombre_mesa": "Baccarat 3",
+      "vector_forecast": [
+        "B",
+        "B",
+        "P",
+        "B",
+        "P",
+        "P"
+      ],
+      "nombre_algoritmo": "SIMETRIA_DIRECTA",
+      "pattern": [
+        "P",
+        "P",
+        "B",
+        "P",
+        "B",
+        "P",
+        "P",
+        "B",
+        "P",
+        "B",
+        "P",
+        "P"
+      ],
+      "ronda_actual": 64,
+      "victorias": {
+        "player": 29,
+        "banker": 30,
+        "tie": 5
+      }
+    }
+  },
+  "tipo": "SIGNAL",
+  "win": null,
+  "ronda": 64,
+  "createdAt": {
+    "$date": "2026-01-21T21:16:19.840Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-21T21:16:19.840Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69714239d4a4ab24e63c02ab"
+  },
+  "mesa": "Baccarat 3",
+  "data": {
+    "results": {
+      "nombre_mesa": "Baccarat 3",
+      "mesa_info": {
+        "id_mesa": "12475959315",
+        "ronda_actual": 65,
+        "puntaje_player": "8",
+        "puntaje_banker": "8",
+        "cartas_player": [
+          "A",
+          "7"
+        ],
+        "cartas_banker": [
+          "8",
+          "10"
+        ],
+        "apostar_pendiente": false,
+        "lado_objetivo": "1",
+        "ronda_objetivo": 65,
+        "sesion": false,
+        "pairs_bet": false,
+        "apuesta_activa": true,
+        "lado_apostado": "1",
+        "saldo_antes_apuesta": 64213.7,
+        "monto_apostado": 100,
+        "data_evento": {
+          "mesa": "Baccarat 3",
+          "tiempo_actual": "2026-01-21 17:16:41.574136-04:00",
+          "Ronda": 65,
+          "Apuesta": "BANKER",
+          "monto_apostado": 100
+        },
+        "cantidad_clics": 1,
+        "valor_moneda": 100,
+        "tablero": [
+          "B",
+          "B",
+          "B",
+          "P",
+          "B",
+          "P",
+          "E",
+          "P",
+          "P",
+          "P",
+          "B",
+          "P",
+          "B",
+          "P",
+          "P",
+          "B",
+          "P",
+          "B",
+          "P",
+          "P",
+          "E"
+        ],
+        "Accion": "ORDEN DE FUEGO 1",
+        "martingala": {
+          "active": true,
+          "vector_forecast": [
+            "B",
+            "B",
+            "P",
+            "B",
+            "P",
+            "P"
+          ],
+          "contador_martingala": 0,
+          "vector_win": [],
+          "vector_resultado": [
+            "E"
+          ]
+        },
+        "ganador": "TIE",
+        "victorias": {
+          "player": 29,
+          "banker": 30,
+          "tie": 6
+        }
+      }
+    }
+  },
+  "tipo": "RESULT",
+  "win": null,
+  "createdAt": {
+    "$date": "2026-01-21T21:16:41.967Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-21T21:16:41.967Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69714256d4a4ab24e63c02d6"
+  },
+  "mesa": "Baccarat 3",
+  "data": {
+    "results": {
+      "nombre_mesa": "Baccarat 3",
+      "mesa_info": {
+        "id_mesa": "12475965015",
+        "ronda_actual": 66,
+        "puntaje_player": "2",
+        "puntaje_banker": "5",
+        "cartas_player": [
+          "8",
+          "4",
+          "10"
+        ],
+        "cartas_banker": [
+          "3",
+          "8",
+          "4"
+        ],
+        "apostar_pendiente": false,
+        "lado_objetivo": "1",
+        "ronda_objetivo": 65,
+        "sesion": false,
+        "pairs_bet": false,
+        "apuesta_activa": false,
+        "lado_apostado": null,
+        "saldo_antes_apuesta": 0,
+        "monto_apostado": 100,
+        "cantidad_clics": 1,
+        "valor_moneda": 100,
+        "tablero": [
+          "B",
+          "B",
+          "B",
+          "P",
+          "B",
+          "P",
+          "E",
+          "P",
+          "P",
+          "P",
+          "B",
+          "P",
+          "B",
+          "P",
+          "P",
+          "B",
+          "P",
+          "B",
+          "P",
+          "P",
+          "E",
+          "B"
+        ],
+        "Accion": "ORDEN DE FUEGO 1",
+        "martingala": {
+          "active": false,
+          "vector_forecast": [
+            "B",
+            "B",
+            "P",
+            "B",
+            "P",
+            "P"
+          ],
+          "contador_martingala": 0,
+          "vector_win": [
+            "W"
+          ],
+          "vector_resultado": [
+            "E",
+            "B"
+          ]
+        },
+        "ganador": "BANKER",
+        "victorias": {
+          "player": 29,
+          "banker": 31,
+          "tie": 6
+        }
+      }
+    }
+  },
+  "tipo": "RESULT",
+  "win": null,
+  "createdAt": {
+    "$date": "2026-01-21T21:17:10.467Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-21T21:17:10.467Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6971426dd4a4ab24e63c0301"
+  },
+  "mesa": "Baccarat 1",
+  "data": {
+    "signal": {
+      "nombre_mesa": "Baccarat 1",
+      "vector_forecast": [
+        "P",
+        "B",
+        "P",
+        "P",
+        "B",
+        "B"
+      ],
+      "nombre_algoritmo": "SIMETRIA_DIRECTA",
+      "pattern": [
+        "B",
+        "B",
+        "P",
+        "B",
+        "P",
+        "P",
+        "P",
+        "B",
+        "P",
+        "B",
+        "B"
+      ],
+      "ronda_actual": 19,
+      "victorias": {
+        "player": 8,
+        "banker": 10,
+        "tie": 1
+      }
+    }
+  },
+  "tipo": "SIGNAL",
+  "win": null,
+  "ronda": 19,
+  "createdAt": {
+    "$date": "2026-01-21T21:17:33.635Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-21T21:17:33.635Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69714289d4a4ab24e63c0313"
+  },
+  "mesa": "Baccarat 1",
+  "data": {
+    "results": {
+      "nombre_mesa": "Baccarat 1",
+      "mesa_info": {
+        "id_mesa": "12475975815",
+        "ronda_actual": 20,
+        "puntaje_player": "9",
+        "puntaje_banker": "5",
+        "cartas_player": [
+          "2",
+          "7"
+        ],
+        "cartas_banker": [
+          "9",
+          "6"
+        ],
+        "apostar_pendiente": false,
+        "lado_objetivo": "0",
+        "ronda_objetivo": 19,
+        "sesion": false,
+        "pairs_bet": false,
+        "apuesta_activa": true,
+        "lado_apostado": "0",
+        "saldo_antes_apuesta": 64498.7,
+        "monto_apostado": 100,
+        "data_evento": {
+          "monto_apostado": 100,
+          "mesa": "Baccarat 1",
+          "tiempo_actual": "2026-01-21 17:17:33.250780-04:00",
+          "Ronda": 19,
+          "Apuesta": "PLAYER"
+        },
+        "cantidad_clics": 1,
+        "valor_moneda": 100,
+        "tablero": [
+          "E",
+          "B",
+          "P",
+          "P",
+          "B",
+          "B",
+          "P",
+          "B",
+          "B",
+          "B",
+          "P",
+          "B",
+          "P",
+          "P",
+          "P",
+          "B",
+          "P",
+          "B",
+          "B",
+          "P"
+        ],
+        "Accion": "ORDEN DE FUEGO 1",
+        "martingala": {
+          "active": false,
+          "vector_forecast": [
+            "P",
+            "B",
+            "P",
+            "P",
+            "B",
+            "B"
+          ],
+          "contador_martingala": 0,
+          "vector_win": [
+            "W"
+          ],
+          "vector_resultado": [
+            "P"
+          ]
+        },
+        "ganador": "PLAYER",
+        "victorias": {
+          "player": 9,
+          "banker": 10,
+          "tie": 1
+        }
+      }
+    }
+  },
+  "tipo": "RESULT",
+  "win": null,
+  "createdAt": {
+    "$date": "2026-01-21T21:18:01.260Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-21T21:18:01.260Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "697142b3d4a4ab24e63c0325"
+  },
+  "mesa": "Baccarat 2",
+  "data": {
+    "signal": {
+      "nombre_mesa": "Baccarat 2",
+      "vector_forecast": [
+        "P",
+        "P",
+        "P",
+        "B",
+        "P",
+        "P"
+      ],
+      "nombre_algoritmo": "SIMETRIA_DIRECTA",
+      "pattern": [
+        "P",
+        "B",
+        "P",
+        "B",
+        "P",
+        "P",
+        "P",
+        "P",
+        "B",
+        "P",
+        "B",
+        "P"
+      ],
+      "ronda_actual": 31,
+      "victorias": {
+        "player": 12,
+        "banker": 18,
+        "tie": 1
+      }
+    }
+  },
+  "tipo": "SIGNAL",
+  "win": null,
+  "ronda": 31,
+  "createdAt": {
+    "$date": "2026-01-21T21:18:43.614Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-21T21:18:43.614Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "697142ccd4a4ab24e63c0337"
+  },
+  "mesa": "Baccarat 3",
+  "data": {
+    "signal": {
+      "nombre_mesa": "Baccarat 3",
+      "vector_forecast": [
+        "P",
+        "B",
+        "P",
+        "B",
+        "B",
+        "P"
+      ],
+      "nombre_algoritmo": "SIMETRIA_AUTOREPEAT_OPUESTO",
+      "pattern": [
+        "P",
+        "P",
+        "B",
+        "P",
+        "B",
+        "P",
+        "P",
+        "B",
+        "B",
+        "P",
+        "B",
+        "P"
+      ],
+      "ronda_actual": 70,
+      "victorias": {
+        "player": 31,
+        "banker": 33,
+        "tie": 6
+      }
+    }
+  },
+  "tipo": "SIGNAL",
+  "win": null,
+  "ronda": 70,
+  "createdAt": {
+    "$date": "2026-01-21T21:19:08.153Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-21T21:19:08.153Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "697142d3d4a4ab24e63c0349"
+  },
+  "mesa": "Baccarat 2",
+  "data": {
+    "results": {
+      "nombre_mesa": "Baccarat 2",
+      "mesa_info": {
+        "id_mesa": "12475990115",
+        "ronda_actual": 32,
+        "puntaje_player": "0",
+        "puntaje_banker": "4",
+        "cartas_player": [
+          "10",
+          "J",
+          "J"
+        ],
+        "cartas_banker": [
+          "6",
+          "8"
+        ],
+        "apostar_pendiente": false,
+        "lado_objetivo": "0",
+        "ronda_objetivo": 32,
+        "sesion": false,
+        "pairs_bet": false,
+        "apuesta_activa": true,
+        "lado_apostado": "0",
+        "saldo_antes_apuesta": 64388.7,
+        "monto_apostado": 100,
+        "data_evento": {
+          "mesa": "Baccarat 2",
+          "tiempo_actual": "2026-01-21 17:19:14.897211-04:00",
+          "Ronda": 32,
+          "Apuesta": "PLAYER"
+        },
+        "cantidad_clics": 2,
+        "valor_moneda": 100,
+        "tablero": [
+          "B",
+          "B",
+          "P",
+          "B",
+          "B",
+          "B",
+          "B",
+          "B",
+          "P",
+          "B",
+          "B",
+          "B",
+          "P",
+          "B",
+          "P",
+          "B",
+          "E",
+          "P",
+          "P",
+          "P",
+          "P",
+          "B",
+          "P",
+          "B",
+          "P",
+          "B"
+        ],
+        "Accion": "ORDEN DE FUEGO 1",
+        "martingala": {
+          "active": true,
+          "vector_forecast": [
+            "P",
+            "P",
+            "P",
+            "B",
+            "P",
+            "P"
+          ],
+          "contador_martingala": 1,
+          "vector_win": [
+            "L"
+          ],
+          "vector_resultado": [
+            "B"
+          ]
+        },
+        "ganador": "BANKER",
+        "victorias": {
+          "player": 12,
+          "banker": 19,
+          "tie": 1
+        }
+      }
+    }
+  },
+  "tipo": "RESULT",
+  "win": null,
+  "createdAt": {
+    "$date": "2026-01-21T21:19:15.263Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-21T21:19:15.263Z"
+  },
+  "__v": 0
+}]

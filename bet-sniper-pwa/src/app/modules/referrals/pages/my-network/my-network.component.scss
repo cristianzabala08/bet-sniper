@@ -1,0 +1,655 @@
+/* --- VARIABLES - Luxury Dark Gold Theme --- */
+$gold-primary: #c9a84c;
+$gold-light: #ffd700;
+$gold-dark: #8b6914;
+$gold-accent: #d4af37;
+$gold-mid: #c9a84c;
+$bronze: #cd7f32;
+$neon-green: #c9a84c;
+$neon-purple: #c9a84c;
+$neon-blue: #8b6914;
+$neon-pink: #d4af37;
+$neon-orange: #cd7f32;
+$neon-teal: #ffd700;
+$bg-panel: rgba(18, 18, 16, 0.9);
+$text-white: #f5f0e1;
+$gold-glow: rgba(201, 168, 76, 0.15);
+
+.referrals-container {
+  display: grid;
+  grid-template-columns: 3fr 1fr; /* Árbol ancho, sidebar estrecho */
+  gap: 20px;
+  width: 100%;
+  height: 100%;
+  font-family: "Rajdhani", sans-serif;
+
+  @media (max-width: 1100px) {
+    grid-template-columns: 1fr; /* Apilado en pantallas medianas */
+  }
+}
+
+.text-neon-green {
+  color: $gold-light;
+}
+
+/* --- ÁRBOL DE REFERIDOS --- */
+.referral-tree-panel {
+  background: $bg-panel;
+  border: 1px solid $gold-dark;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 0 20px rgba(201, 168, 76, 0.1);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto; /* Habilita el scroll vertical */
+  max-height: 800px; /* Altura máxima con scroll */
+  padding-right: 10px;
+
+  padding-right: 15px;
+
+  // 1. Define el ancho de la barra de desplazamiento completa
+  &::-webkit-scrollbar {
+    width: 15px; /* Ancho deseado del cilindro */
+  }
+
+  // 2. Define el riel (track) de la barra
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3); /* Fondo oscuro transparente para el riel */
+    border-radius: 10px; // Forma de cilindro
+  }
+
+  // 3. Define el "pulgar" (thumb) que se mueve
+  &::-webkit-scrollbar-thumb {
+    // Gradiente que simula la luz y el color futurista
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.4) 0%,
+      /* Blanco/Claro en la parte superior */ $gold-mid 15%,
+      /* Morado neón */ #3d3520 85%,
+      /* Azul oscuro en el medio/bajo */ rgba(255, 255, 255, 0.2) 100%
+        /* Blanco/Claro sutil en el fondo */
+    );
+    border-radius: 10px; // Hace el pulgar también con forma de cilindro
+    border: 3px solid rgba(10, 10, 8, 0.5); /* Borde que separa el thumb del track */
+    box-shadow: 0 0 10px rgba($gold-mid, 0.5); /* Resplandor sutil */
+  }
+
+  // 4. Estilo del pulgar al pasar el ratón (Hover)
+  &::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.6) 0%,
+      $gold-accent 20%,
+      /* Cambia a rosa/magenta al pasar el ratón */ #0069d9 80%,
+      rgba(255, 255, 255, 0.4) 100%
+    );
+  }
+
+  /* --- ESTRUCTURA DEL ÁRBOL --- */
+  .tree-node {
+    position: relative;
+    padding-left: 20px;
+  }
+
+  /* Estilo de las tarjetas de usuario */
+  .user-card {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border-radius: 5px; /* Borde con esquina cortada */
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+    margin-bottom: 15px;
+    width: 280px;
+    position: relative;
+    transition: transform 0.2s;
+
+    &:hover {
+      transform: translateX(5px);
+    }
+
+    .icon-box {
+      font-size: 1.2rem;
+      margin-right: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .username {
+      font-weight: 700;
+      font-size: 0.8rem;
+      color: white;
+      text-transform: uppercase;
+      flex: 1;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.9rem;
+      i {
+        cursor: pointer;
+        &:hover {
+          color: white;
+        }
+      }
+    }
+
+    /* --- COLORES POR NIVEL --- */
+
+    /* Raíz (Tú) */
+    &.root {
+      background: linear-gradient(90deg, $neon-green 0%, #8b6914 100%);
+      color: black;
+      width: 320px; /* Más ancho */
+      .username {
+        color: black;
+        font-size: 0.9rem;
+      }
+      .referral-code {
+        display: block;
+        font-size: 0.7rem;
+      }
+      .expand-icon {
+        color: $gold-light;
+        margin-left: auto; /* Push to the right */
+      }
+      .icon-box {
+        color: black;
+        border: 2px solid black;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+      }
+    }
+
+    /* Nivel 1 (Morado) */
+    &.lvl-1 {
+      background: linear-gradient(135deg, rgba(201, 168, 76, 0.6), rgba(139, 105, 20, 0.8));
+      border-left: 4px solid $neon-purple;
+    }
+
+    /* Nivel 2 (Verde) */
+    &.lvl-2 {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.5), rgba(139, 105, 20, 0.7));
+      border-left: 4px solid $neon-green;
+    }
+
+    /* Nivel 3 (Violeta oscuro) */
+    &.lvl-3 {
+      background: linear-gradient(135deg, rgba(205, 127, 50, 0.6), rgba(139, 105, 20, 0.7));
+      border-left: 4px solid #c9a84c;
+    }
+
+    /* Nivel 4 (Rosa) */
+    &.lvl-4 {
+      background: linear-gradient(135deg, rgba(201, 168, 76, 0.4), rgba(139, 105, 20, 0.6));
+      border-left: 4px solid $neon-pink;
+    }
+
+    /* Nivel 5 (Naranja) */
+    &.lvl-5 {
+      background: linear-gradient(135deg, rgba(205, 127, 50, 0.5), rgba(139, 105, 20, 0.6));
+      border-left: 4px solid $neon-orange;
+    }
+
+    /* Nivel 6 (Cobre) */
+    &.lvl-6 {
+      background: linear-gradient(135deg, rgba(201, 168, 76, 0.3), rgba(139, 105, 20, 0.5));
+      border-left: 4px solid #d4af37;
+    }
+
+    /* Nivel 7 (Teal) */
+    &.lvl-7 {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.4), rgba(139, 105, 20, 0.6));
+      border-left: 4px solid $neon-teal;
+    }
+
+    /* Nivel 8 (Cyan) */
+    &.lvl-8 {
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.3), rgba(139, 105, 20, 0.5));
+      border-left: 4px solid #d4af37;
+    }
+
+    /* Slot Vacío */
+    &.slot-empty {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px dashed rgba(255, 255, 255, 0.3);
+      .username {
+        color: #888;
+      }
+    }
+  }
+
+  /* --- LÍNEAS CONECTORAS --- */
+  .tree-branch {
+    margin-left: 20px; /* Indentación */
+    padding-left: 20px;
+    border-left: 2px solid rgba(255, 255, 255, 0.1); /* Línea vertical larga */
+    position: relative;
+  }
+
+  .branch-group {
+    position: relative;
+    padding-left: 20px; /* Espacio para la línea horizontal */
+
+    /* Conector horizontal */
+    .connector {
+      position: absolute;
+      left: 0;
+      top: 25px; /* Alinear con el centro de la tarjeta */
+      width: 20px;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  .sub-branch {
+    margin-left: 40px; /* Indentación anidada */
+    position: relative;
+
+    /* Línea conectora vertical para hijos */
+    .connector-vertical {
+      position: absolute;
+      left: -20px; /* Hacia atrás */
+      top: -20px; /* Desde el padre */
+      bottom: 25px; /* Hasta el centro de este hijo */
+      width: 2px;
+      border-left: 2px solid;
+
+      /* Colores de líneas según nivel (Opcional, se ve genial) */
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Línea horizontal hacia la tarjeta */
+    &::before {
+      content: "";
+      position: absolute;
+      left: -20px;
+      top: 25px;
+      width: 20px;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
+}
+
+/* --- SIDEBAR DERECHO --- */
+.referral-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .stats-card {
+    position: relative;
+    z-index: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    /* Capa de Borde (Color definido por variante) */
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      clip-path: polygon(
+        0 0,
+        calc(100% - 10px) 0,
+        100% 10px,
+        100% 100%,
+        10px 100%,
+        0 calc(100% - 10px)
+      );
+    }
+
+    /* Capa de Fondo (Oscuro) */
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 1px; /* Grosor del borde simulado */
+      background: rgba(18, 18, 16, 0.9);
+      z-index: -1;
+      clip-path: polygon(
+        0 0,
+        calc(100% - 10px) 0,
+        100% 10px,
+        100% 100%,
+        10px 100%,
+        0 calc(100% - 10px)
+      );
+    }
+
+    &.purple-card {
+      &::before {
+        background: $gold-mid;
+      }
+      &::after {
+        background: linear-gradient(
+          135deg,
+          rgba(201, 168, 76, 0.2) 0%,
+          rgba(5, 5, 15, 1) 100%
+        ); /* Degradado diagonal de superior-izquierda a inferior-derecha más oscuro */
+      }
+      filter: drop-shadow(0 0 15px rgba(201, 168, 76, 0.1));
+    }
+
+    &.blue-card {
+      min-height: 250px;
+      &::before {
+        background: $gold-dark; // Borde exterior (bien)
+      }
+      // **MODIFICACIÓN: Gradiente de Fondo a Azul Eléctrico Oscuro**
+      &::after {
+        background: linear-gradient(
+          to bottom right,
+          // Dirección: Superior Izquierda a Inferior Derecha
+          #0a0a06,
+          // Color inicial: Azul muy oscuro (casi negro)
+          #1a1408 // Color final: Azul medianoche más intenso y saturado
+        );
+      }
+      filter: drop-shadow(0 0 15px rgba(201, 168, 76, 0.1));
+    }
+
+    .card-header {
+      margin-top: 35px;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: white;
+      text-transform: uppercase;
+    }
+
+    .card-body {
+      .main-stat {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 15px;
+        .big-num {
+          font-size: 4rem;
+          font-weight: 800;
+          color: $gold-light;
+          line-height: 1;
+        }
+        .vertical-divider {
+          width: 2px;
+          height: 60px;
+          background: $gold-mid;
+          margin: 0 10px;
+        }
+        .subtitle {
+          font-size: 1rem;
+          font-weight: 700;
+          color: white;
+          text-align: left;
+          line-height: 1.2;
+        }
+      }
+
+      .secondary-stats {
+        .stat-row {
+          display: flex;
+          align-items: center;
+          gap: 15px;
+          margin-bottom: 5px;
+
+          .stat-label {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+
+            small {
+              font-size: 0.6rem;
+              color: $gold-mid;
+              font-weight: 700;
+            }
+
+            .network-label {
+              font-size: 0.7rem;
+              color: $gold-mid;
+              font-weight: 700;
+            }
+          }
+
+          .vertical-divider {
+            width: 2px;
+            height: 40px;
+            background: $gold-mid;
+          }
+
+          .stat-value {
+            font-size: 1.5rem;
+            color: white;
+            font-weight: 700;
+            letter-spacing: 1px;
+          }
+
+          // Mantener estilos para filas sin divisor
+          small:not(.stat-label small) {
+            font-size: 0.6rem;
+            color: $gold-mid;
+            font-weight: 700;
+          }
+
+          span:not(.stat-value):not(.network-label) {
+            font-size: 1.5rem;
+            color: white;
+            font-weight: 700;
+            letter-spacing: 1px;
+          }
+        }
+      }
+
+      .money-value {
+        display: block;
+        margin-top: 20px;
+        font-size: 2.2rem;
+        font-weight: 800;
+        color: $gold-light;
+        small {
+          font-size: 1rem;
+          color: white;
+          margin-right: 5px;
+        }
+      }
+    }
+
+    .btn-copy,
+    .btn-profile {
+      margin-top: 50px;
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: filter 0.2s;
+      &:hover {
+        filter: brightness(1.1);
+      }
+      clip-path: polygon(
+        0 0,
+        calc(100% - 10px) 0,
+        100% 10px,
+        100% 100%,
+        10px 100%,
+        0 calc(100% - 10px)
+      );
+    }
+
+    .btn-copy {
+      background: linear-gradient(135deg, #8b6914, #c9a84c);
+      color: white;
+    }
+    .btn-profile {
+      background: $gold-dark;
+      color: white;
+    }
+
+    /* Icono flotante decorativo */
+    .card-icon-floating {
+      position: absolute;
+      top: -30px;
+      left: 10px;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(
+        300deg,
+        #ffd700 0%,
+        #8b6914 100%
+      ); /* Degradado invertido: cyan claro a azul oscuro */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      color: #0a0a0a; /* Color oscuro para contraste */
+      clip-path: polygon(
+        0 0,
+        calc(100% - 10px) 0,
+        100% 10px,
+        100% 100%,
+        10px 100%,
+        0 calc(100% - 10px)
+      );
+      box-shadow: 0 4px 10px rgba(201, 168, 76, 0.3);
+      z-index: 10;
+    }
+  }
+}
+
+/* --- RESPONSIVE MOBILE --- */
+
+/* --- RESPONSIVE MOBILE --- */
+@media (max-width: 768px) {
+  .referrals-container {
+    padding: 0 10px; /* Un poco más de margen lateral */
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 80px; /* Espacio para el bottom nav si existe */
+  }
+
+  .referral-tree-panel {
+    padding: 20px;
+    background: rgba(18, 18, 16, 0.95); /* Más opaco para mejor contraste */
+    border: 1px solid $neon-blue;
+    min-height: 300px; /* Altura mínima asegurada */
+    
+    .panel-title {
+      font-size: 1.4rem;
+      margin-bottom: 20px;
+      color: $text-white; /* Asegurar blanco */
+      text-shadow: 0 0 10px rgba(201, 168, 76, 0.3); /* Glow para visibilidad */
+      text-align: center;
+    }
+
+    .user-card {
+      width: 200px; /* Mucho más compacto */
+      padding: 8px 10px;
+      margin-bottom: 10px;
+      min-height: 40px; /* Altura reducida */
+
+      &.root {
+        width: 100%; 
+        max-width: 280px; /* Root un poco más grande pero contenido */
+        margin: 0 auto 15px auto;
+      }
+      
+      .username {
+        font-size: 0.7rem; /* Texto más pequeño como pidieron */
+        line-height: 1.1;
+      }
+      
+      .icon-box {
+        font-size: 0.9rem; /* Icono más pequeño */
+        width: 28px;
+        height: 28px;
+        margin-right: 8px;
+      }
+
+      .actions {
+        font-size: 0.75rem;
+        gap: 5px;
+      }
+    }
+    
+    /* Adjust branches indentations for smaller cards */
+    .tree-branch {
+        margin-left: 10px;
+        padding-left: 10px;
+    }
+    
+    .sub-branch {
+        margin-left: 20px;
+    }
+  }
+
+  /* Adjust Sidebar Stats */
+  .referral-sidebar {
+    gap: 15px;
+
+    .stats-card {
+      padding: 20px;
+      border-radius: 15px; /* Bordes más redondeados en móvil */
+      
+      .card-header {
+        font-size: 1.2rem;
+        margin-top: 10px; /* Reducir espacio superior */
+        margin-bottom: 10px;
+        text-align: center;
+      }
+      
+      .card-body {
+        .main-stat {
+          justify-content: center;
+          margin-bottom: 20px;
+
+          .big-num {
+            font-size: 3.5rem; /* Un poco más grande que antes */
+          }
+           .subtitle {
+             font-size: 0.9rem;
+           }
+        }
+        
+        .secondary-stats {
+            justify-content: space-around; /* Distribuir mejor */
+            .stat-row {
+                .stat-value {
+                    font-size: 1.3rem;
+                }
+            }
+        }
+        
+        .money-value {
+             font-size: 2rem;
+             text-align: center;
+        }
+      }
+      
+      .btn-copy, .btn-profile {
+          margin-top: 20px;
+          padding: 14px;
+          font-size: 0.9rem;
+      }
+
+      /* Ocultar el icono flotante grande en móvil si molesta, o ajustarlo */
+      .card-icon-floating {
+          width: 40px;
+          height: 40px;
+          font-size: 1.2rem;
+          top: -20px;
+          left: 50%;
+          transform: translateX(-50%); /* Centrado arriba */
+      }
+    }
+  }
+}

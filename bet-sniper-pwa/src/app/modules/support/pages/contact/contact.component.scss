@@ -1,0 +1,397 @@
+/* --- VARIABLES - Luxury Dark Gold Theme --- */
+$gold-primary: #c9a84c;
+$gold-light: #ffd700;
+$gold-dark: #8b6914;
+$gold-accent: #d4af37;
+$gold-mid: #c9a84c;
+$bronze: #cd7f32;
+$bg-panel: rgba(18, 18, 16, 0.9);
+$neon-blue: #c9a84c;
+$neon-green: #c9a84c;
+$neon-purple: #c9a84c;
+$text-white: #f5f0e1;
+$input-bg: rgba(10, 10, 8, 0.6);
+$border-color: #2a2520;
+$gold-glow: rgba(201, 168, 76, 0.15);
+
+.support-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  font-family: "Rajdhani", sans-serif;
+}
+
+.validation-errors {
+  color: red;
+}
+
+.panel-card {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 30px;
+  box-shadow: none;
+  filter: drop-shadow(0 0 20px rgba(201, 168, 76, 0.1));
+  position: relative;
+  z-index: 0;
+
+  /* Borde (Forma Exterior) */
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: $gold-dark;
+    z-index: -2;
+    clip-path: polygon(
+      0 0,
+      calc(100% - 20px) 0,
+      100% 20px,
+      100% 100%,
+      20px 100%,
+      0 calc(100% - 20px)
+    );
+  }
+
+  /* Fondo (Forma Interior) */
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    background: $bg-panel;
+    z-index: -1;
+    clip-path: polygon(
+      0 0,
+      calc(100% - 21px) 0,
+      100% 21px,
+      100% 100%,
+      21px 100%,
+      0 calc(100% - 21px)
+    );
+  }
+
+  .section-title {
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin: 0 0 20px 0;
+    letter-spacing: 1px;
+  }
+}
+
+/* --- 1. SECCIÓN CONTACTO --- */
+.contact-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 50% Form - 50% Ilustración */
+  gap: 40px;
+  min-height: 300px;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr; /* Apilar en móvil */
+  }
+
+  .form-column {
+    display: flex;
+    flex-direction: column;
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+
+      .input-field,
+      .textarea-field {
+        width: 100%;
+        background: $input-bg;
+        border: 1px solid $border-color;
+        border-radius: 5px;
+        padding: 15px;
+        color: white;
+        font-size: 0.9rem;
+        outline: none;
+
+        &:focus {
+          border-color: $gold-dark;
+        }
+      }
+
+      .textarea-field {
+        height: 100px;
+        resize: none;
+      }
+
+      .btn-send {
+        background: linear-gradient(135deg, #8b6914, #c9a84c, #ffd700);
+        border: none;
+        padding: 15px;
+        font-weight: 800;
+        color: black;
+        text-transform: uppercase;
+        cursor: pointer;
+        /* Forma trapezoidal invertida */
+        clip-path: polygon(
+          0 0,
+          calc(100% - 10px) 0,
+          100% 10px,
+          100% 100%,
+          10px 100%,
+          0 calc(100% - 10px)
+        );
+        width: 100%;
+        margin-top: 10px;
+
+        &:hover {
+          filter: brightness(1.1);
+        }
+      }
+    }
+  }
+
+  .illustration-column {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    /* Simulación de la ilustración neón si no tienes la imagen */
+    .neon-illustration {
+      font-size: 5rem;
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .wizard-icon {
+        color: $gold-mid;
+        filter: drop-shadow(0 0 10px $gold-mid);
+        z-index: 2;
+      }
+      .chat-bubble-1 {
+        position: absolute;
+        top: 20%;
+        left: 20%;
+        font-size: 3rem;
+        color: $gold-light;
+        transform: rotate(-10deg);
+      }
+      .chat-bubble-2 {
+        position: absolute;
+        top: 30%;
+        right: 20%;
+        font-size: 3rem;
+        color: $gold-dark;
+        transform: rotate(10deg);
+      }
+      .book-icon {
+        position: absolute;
+        bottom: 10%;
+        left: 10%;
+        font-size: 4rem;
+        color: $gold-dark;
+        opacity: 0.5;
+      }
+
+      .illustration-column {
+        width: 100%;
+        height: auto;
+        max-width: 800px;
+      }
+    }
+  }
+}
+
+/* --- 2. SECCIÓN REDES SOCIALES --- */
+.social-section {
+  .social-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+
+    @media (max-width: 1000px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media (max-width: 600px) {
+      grid-template-columns: 1fr;
+    }
+
+    .social-card {
+      --card-border-color: rgba(255, 255, 255, 0.1);
+      background: transparent;
+      border: none;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 180px;
+      position: relative;
+      z-index: 0;
+
+      /* Borde (Forma Exterior) */
+      &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: var(--card-border-color);
+        z-index: -2;
+        clip-path: polygon(
+          0 0,
+          calc(100% - 10px) 0,
+          100% 10px,
+          100% 100%,
+          10px 100%,
+          0 calc(100% - 10px)
+        );
+      }
+
+      /* Fondo (Forma Interior) */
+      &::after {
+        content: "";
+        position: absolute;
+        inset: 1px;
+        background: $bg-panel;
+        z-index: -1;
+        clip-path: polygon(
+          0 0,
+          calc(100% - 11px) 0,
+          100% 11px,
+          100% 100%,
+          11px 100%,
+          0 calc(100% - 11px)
+        );
+      }
+
+      .icon-wrapper {
+        width: 60px;
+        height: 60px;
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        margin-bottom: 20px;
+        color: white;
+      }
+
+      .btn-share {
+        // width: 100%;
+        width: 80%;
+        height: 40px;
+        border: none;
+        padding: 10px;
+        color: white;
+        font-weight: 800;
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        cursor: pointer;
+        /* Forma botón */
+        clip-path: polygon(
+          0 0,
+          calc(100% - 10px) 0,
+          100% 10px,
+          100% 100%,
+          10px 100%,
+          0 calc(100% - 10px)
+        );
+
+        &:hover {
+          filter: brightness(1.2);
+        }
+      }
+
+      /* --- COLORES ESPECÍFICOS --- */
+
+      /* WhatsApp (Verde) */
+      &.whatsapp {
+        --card-border-color: #{$neon-green};
+        box-shadow: inset 0 0 20px rgba(201, 168, 76, 0.1);
+
+        &::after {
+          background: linear-gradient(
+            135deg,
+            rgba(201, 168, 76, 0.4) 0%,
+            $bg-panel 100%
+          );
+        }
+
+        .icon-wrapper {
+          background: $gold-light;
+          box-shadow: 0 0 15px $gold-light;
+        }
+        .btn-share {
+          background: linear-gradient(135deg, #8b6914, #c9a84c, #ffd700);
+          color: white;
+        }
+      }
+
+      /* Telegram (Cian/Azul) */
+      &.telegram {
+        --card-border-color: #c9a84c;
+        box-shadow: inset 0 0 20px rgba(201, 168, 76, 0.1);
+
+        &::after {
+          background: linear-gradient(
+            135deg,
+            rgba(201, 168, 76, 0.3) 0%,
+            $bg-panel 100%
+          );
+        }
+
+        .icon-wrapper {
+          background: #c9a84c;
+          box-shadow: 0 0 15px #c9a84c;
+        }
+        .btn-share {
+          background: linear-gradient(135deg, #8b6914, #c9a84c);
+        }
+      }
+
+      /* Facebook (Azul Oscuro) */
+      &.facebook {
+        --card-border-color: #8b6914;
+        box-shadow: inset 0 0 20px rgba(201, 168, 76, 0.1);
+
+        &::after {
+          background: linear-gradient(
+            135deg,
+            rgba(201, 168, 76, 0.25) 0%,
+            $bg-panel 100%
+          );
+        }
+
+        .icon-wrapper {
+          background: #8b6914;
+          box-shadow: 0 0 15px #8b6914;
+        }
+        .btn-share {
+          background: linear-gradient(135deg, #8b6914, #c9a84c);
+        }
+      }
+
+      /* Instagram (Violeta/Rosa) */
+      &.instagram {
+        --card-border-color: #d4af37;
+        box-shadow: inset 0 0 20px rgba(201, 168, 76, 0.1);
+
+        &::after {
+          background: linear-gradient(
+            135deg,
+            rgba(201, 168, 76, 0.3) 0%,
+            $bg-panel 100%
+          );
+        }
+
+        .icon-wrapper {
+          background: #d4af37;
+          box-shadow: 0 0 15px #d4af37;
+        }
+        .btn-share {
+          background: linear-gradient(135deg, #cd7f32, #c9a84c);
+        }
+      }
+    }
+  }
+}

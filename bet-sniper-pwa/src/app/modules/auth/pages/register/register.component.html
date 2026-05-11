@@ -1,0 +1,247 @@
+<section class="login-container">
+  <div class="login-box register-box">
+    <div class="left-section">
+      <img src="assets/logo_principal.png" alt="Bet Sniper Logo" class="logo-img" />
+      <p class="copyright">2025 all rights reserved.</p>
+    </div>
+    <div class="divider"></div>
+
+    <div class="right-section">
+      <h2 class="welcome-title">
+        {{ "REGISTER.TITLE" | translate }}
+      </h2>
+
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="form-group full-width">
+          <label>{{ "REGISTER.SPONSOR_OPTION" | translate }}</label>
+          <div class="input-wrapper">
+            <input
+              type="text"
+              formControlName="sponsorUsername"
+              placeholder="{{ 'REGISTER.USER_LEADER' | translate }}"
+            />
+            <span class="password-icon">🆔</span>
+          </div>
+        </div>
+
+        <div class="form-group full-width">
+          <!-- <label>Tu Usuario</label> -->
+          <div
+            class="input-wrapper"
+            [class.is-invalid]="f['username'].invalid && f['username'].touched"
+          >
+            <input
+              type="text"
+              formControlName="username"
+              placeholder="{{ 'REGISTER.USER_NAME' | translate }}"
+            />
+            <span class="password-icon">👤</span>
+          </div>
+          <div
+            *ngIf="f['username'].invalid && f['username'].touched"
+            class="validation-errors"
+          >
+            <small *ngIf="f['username'].errors?.['required']">{{
+              "REGISTER.USER_NAME_ERROR" | translate
+            }}</small>
+            <small *ngIf="f['username'].errors?.['minlength']">{{
+              "REGISTER.USER_NAME_MIN_LENGTH" | translate
+            }}</small>
+            <small *ngIf="f['username'].errors?.['pattern']">{{
+              "REGISTER.USER_NAME_PATTERN_STRING" | translate
+            }}</small>
+          </div>
+        </div>
+
+        <div class="form-group full-width">
+          <!-- <label>Nombre Completo</label> -->
+          <div
+            class="input-wrapper"
+            [class.is-invalid]="f['fullName'].invalid && f['fullName'].touched"
+          >
+            <input
+              type="text"
+              formControlName="fullName"
+              placeholder="{{ 'REGISTER.USER_FULL_NAME' | translate }}"
+            />
+            <span class="password-icon">✍️</span>
+          </div>
+          <div
+            *ngIf="f['fullName'].invalid && f['fullName'].touched"
+            class="validation-errors"
+          >
+            <small *ngIf="f['fullName'].errors?.['required']">{{
+              "REGISTER.USER_NAME_ERROR" | translate
+            }}</small>
+            <small *ngIf="f['fullName'].errors?.['minlength']">{{
+              "REGISTER.USER_NAME_MIN_LENGTH" | translate
+            }}</small>
+            <small *ngIf="f['fullName'].errors?.['pattern']">{{
+              "REGISTER.USER_NAME_PATTERN_SPACE" | translate
+            }}</small>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <!-- <label>Contraseña</label> -->
+            <div
+              class="input-wrapper"
+              [class.is-invalid]="
+                f['password'].invalid && f['password'].touched
+              "
+            >
+              <input
+                type="password"
+                formControlName="password"
+                placeholder="Password..."
+              />
+              <span class="password-icon">🔒</span>
+            </div>
+            <div
+              *ngIf="f['password'].invalid && f['password'].touched"
+              class="validation-errors"
+            >
+              <small *ngIf="f['password'].errors?.['required']">{{
+                "REGISTER.CONTRASE_A_OBLIGATOR" | translate
+              }}</small>
+              <small *ngIf="f['password'].errors?.['minlength']">{{
+                "REGISTER.PASSWORD_MIN_LENGTH" | translate
+              }}</small>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <!-- <label>Repetir Contraseña</label> -->
+            <div
+              class="input-wrapper"
+              [class.is-invalid]="
+                (f['repeatPassword'].invalid && f['repeatPassword'].touched) ||
+                passwordMatchError
+              "
+            >
+              <input
+                type="password"
+                formControlName="repeatPassword"
+                placeholder="{{ 'REGISTER.PASSWORD_REPEAT' | translate }}"
+              />
+              <span class="password-icon">🔑</span>
+            </div>
+            <div
+              *ngIf="
+                (f['repeatPassword'].invalid && f['repeatPassword'].touched) ||
+                passwordMatchError
+              "
+              class="validation-errors"
+            >
+              <small *ngIf="f['repeatPassword'].errors?.['required']">{{
+                "REGISTER.CONTRASE_A_OBLIGATOR" | translate
+              }}</small>
+              <small *ngIf="passwordMatchError">{{
+                "REGISTER.PASSWORD_MATCH" | translate
+              }}</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group full-width">
+          <!-- <label>Email</label> -->
+          <div
+            class="input-wrapper"
+            [class.is-invalid]="f['email'].invalid && f['email'].touched"
+          >
+            <input
+              type="email"
+              formControlName="email"
+              placeholder="Email..."
+            />
+            <span class="password-icon">📧</span>
+          </div>
+          <div
+            *ngIf="f['email'].invalid && f['email'].touched"
+            class="validation-errors"
+          >
+            <small *ngIf="f['email'].errors?.['required']">{{
+              "REGISTER.EMAIL_REQUIRED" | translate
+            }}</small>
+            <small *ngIf="f['email'].errors?.['email']">{{
+              "REGISTER.EMAIL_PATTERN" | translate
+            }}</small>
+          </div>
+        </div>
+
+        <div class="form-group full-width">
+          <!-- <label>Email verificar</label> -->
+          <div
+            class="input-wrapper"
+            [class.is-invalid]="
+              (f['emailVerify'].invalid && f['emailVerify'].touched) ||
+              emailMatchError
+            "
+          >
+            <input
+              type="email"
+              formControlName="emailVerify"
+              placeholder="{{ 'REGISTER.EMAIL_VERIFY' | translate }}"
+            />
+            <span class="password-icon">📧</span>
+          </div>
+          <div
+            *ngIf="
+              (f['emailVerify'].invalid && f['emailVerify'].touched) ||
+              emailMatchError
+            "
+            class="validation-errors"
+          >
+            <small *ngIf="f['emailVerify'].errors?.['required']">{{
+              "REGISTER.EMAIL_REQUIRED" | translate
+            }}</small>
+            <small *ngIf="f['emailVerify'].errors?.['email']">{{
+              "REGISTER.EMAIL_PATTERN" | translate
+            }}</small>
+            <small *ngIf="emailMatchError">{{
+              "REGISTER.EMAIL_MATCH" | translate
+            }}</small>
+          </div>
+        </div>
+
+        <div class="bottom-links terms-container">
+          <label class="remember">
+            <input type="checkbox" formControlName="acceptTerms" />
+            <span
+              [class.error-text]="
+                f['acceptTerms'].invalid && f['acceptTerms'].touched
+              "
+            >
+              <!-- Acepto los -->
+              <a routerLink="/terms">{{
+                "REGISTER.TERMS_AND_CONDITIONS" | translate
+              }}</a>
+            </span>
+          </label>
+          <div
+            *ngIf="f['acceptTerms'].invalid && f['acceptTerms'].touched"
+            class="validation-errors"
+            style="margin-top: 5px"
+          >
+            <small>{{ "REGISTER.ACCEPT_TERMS_REQUIRED" | translate }}</small>
+          </div>
+        </div>
+
+        <div class="buttons">
+          <button type="submit" class="btn-login" [disabled]="isLoading">
+            {{
+              isLoading
+                ? ("REGISTER.CREATING" | translate)
+                : ("REGISTER.CREATE_ACCOUNT" | translate)
+            }}
+          </button>
+
+          <button type="button" class="btn-register" routerLink="/auth/login">
+            {{ "REGISTER.BACK_TO_LOGIN" | translate }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

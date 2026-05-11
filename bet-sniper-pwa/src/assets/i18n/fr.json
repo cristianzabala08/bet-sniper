@@ -1,0 +1,276 @@
+{
+  "LOGIN": {
+    "WELCOME": "Bonjour, bienvenue",
+    "COPYRIGHT": "2025 tous droits réservés.",
+    "USER_PLACEHOLDER": "Nom d'utilisateur ou Email...",
+    "PASS_PLACEHOLDER": "Mot de passe...",
+    "SHOW": "Afficher",
+    "HIDE": "Masquer",
+    "2FA_MSG": "Veuillez entrer votre code Google Authenticator.",
+    "2FA_PLACEHOLDER": "Code 2FA (6 chiffres)",
+    "BTN_LOADING": "Chargement...",
+    "BTN_VERIFY": "VÉRIFIER LE CODE",
+    "BTN_ENTER": "CONNEXION",
+    "BTN_CANCEL": "ANNULER",
+    "BTN_REGISTER": "CRÉER UN COMPTE",
+    "REMEMBER_ME": "Se souvenir de moi ?",
+    "FORGOT_PASS": "Mot de passe oublié ?"
+  },
+  "REGISTER": {
+    "USER_LEADER": "Nom d'utilisateur du Leader",
+    "USER_NAME": "Nom d'utilisateur",
+    "USER_FULL_NAME": "Nom complet",
+    "PASSWORD": "Mot de passe...",
+    "PASSWORD_REPEAT": "Répéter le mot de passe...",
+    "EMAIL": "Email...",
+    "EMAIL_VERIFY": "Vérifier l'email...",
+    "TITLE": "SUPER, CRÉEZ VOTRE COMPTE",
+    "SPONSOR_OPTION": "Parrain (Optionnel)",
+    "USER_NAME_YOU": "Votre nom d'utilisateur",
+    "USER_NAME_ERROR": "Le nom d'utilisateur est requis.",
+    "USER_NAME_MIN_LENGTH": "Minimum 3 caractères.",
+    "USER_NAME_PATTERN_STRING": "Lettres et chiffres uniquement (pas d'espaces).",
+    "USER_NAME_REQUIRED": "Le nom est requis.",
+    "USER_NAME_PATTERN_SPACE": "Lettres et espaces uniquement.",
+    "CONTRASE_A": "Mot de passe",
+    "CONTRASE_A_OBLIGATOR": "Le mot de passe est requis.",
+    "PASSWORD_MIN_LENGTH": "Doit contenir au moins 8 caractères.",
+    "PASSWORD_MATCH": "Les mots de passe ne correspondent pas.",
+    "EMAIL_REQUIRED": "L'email est requis.",
+    "EMAIL_PATTERN": "Format d'email invalide.",
+    "EMAIL_MATCH": "Les emails ne correspondent pas.",
+    "ACCEPT_TERMS": "J'accepte les",
+    "TERMS_AND_CONDITIONS": "Termes et Conditions",
+    "BACK_TO_LOGIN": "RETOUR À LA CONNEXION",
+    "CREATING": "Création en cours...",
+    "CREATE_ACCOUNT": "CRÉER UN COMPTE"
+  },
+  "FORGOT_PASSWORD": {
+    "WRITE_EMAIL": "Écrivez votre email...",
+    "RECOVER_ACCESS": "Récupérer l'accès",
+    "RECOVER_NEW": "Nouveau mot de passe",
+    "WRITE_NEW_PASS": "Écrivez votre nouveau mot de passe...",
+    "RECOVER_LINK": "Créer nouveau mot de passe",
+    "WRITE_EMAIL_PASS": "Écrivez votre email pour réinitialiser votre mot de passe",
+    "SEND_RECOVERY_LINK": "ENVOYER LE LIEN",
+    "BACK_TO_LOGIN": "RETOUR À LA CONNEXION",
+    "CREATE_ACCOUNT": "CRÉER UN COMPTE"
+  },
+  "DASHBOARD": {
+    "TOP_BAR": {
+      "TITLE": "STATISTIQUES DE SESSION",
+      "TIME_ACTIVE": "TEMPS ACTIF :",
+      "BALANCE_OPERATIVE": "SOLDE OPÉRATIONNEL :",
+      "SIGNAL_STATISTICS": "STATISTIQUES DES SIGNAUX :",
+      "SIGNALS_TAKEN": "SIGNAUX PRIS :",
+      "WIN_RATE": "TAUX DE RÉUSSITE :",
+      "PROFIT_TOTAL_TODAY": "PROFIT TOTAL AUJOURD'HUI",
+      "OF": "de"
+    },
+    "ACTIVE_SIGNALS": {
+      "PLAN_REQUIRED_TITLE": "ACTIVE PLAN REQUIRED",
+      "PLAN_REQUIRED_DESC": "To access live signals, you need an active membership. Please purchase or renew your plan."
+    },
+    "HERO": {
+      "SIGNALS_LIST": "LISTE DES SIGNAUX",
+      "BTN_SIGNALS_LABEL": "CHARGER PLUS DE SIGNAUX",
+      "OPERATIVE_PANEL": "PANNEAU OPÉRATIONNEL",
+      "BTN_START_SESSION": "DÉMARRER LA SESSION",
+      "BTN_PAUSE_SESSION": "PAUSE SESSION",
+      "SIGNALS_CONTROL": "CONTRÔLE DES SIGNAUX",
+      "MODE_AUTOMATIC": "MODE AUTOMATIQUE",
+      "MODE_MANUAL": "MODE MANUEL",
+      "MODE_STATUS": "ACTIVÉ",
+      "TAKE_SIGNAL": "PRENDRE CE SIGNAL",
+      "MARTIN_LABEL": "CONTRÔLE MARTINGALE",
+      "AMOUNT_ASIGNED": "MONTANT ASSIGNÉ"
+    },
+    "CARDBAR": {
+      "PLANS": {
+        "WEEKLY": "1 Semaine",
+        "MONTHLY": "1 Mois",
+        "3MONTHS": "3 Mois",
+        "6MONTHS": "6 Mois",
+        "9MONTHS": "9 Mois",
+        "12MONTHS": "12 Mois"
+      },
+      "ACTIVE_MEMBERSHIP": "ABONNEMENT ACTIF",
+      "MONTHS": "Mois",
+      "REMAINING_TIME": "Temps restant",
+      "DAYS": "Jours",
+      "HOURS": "Heures",
+      "RENEW_MEMBERSHIP": "RENOUVELER L'ABONNEMENT",
+      "REFERRALS_IN_YOUR_NETWORK": "FILLEULS DANS VOTRE RÉSEAU",
+      "REFERRALS": "FILLEULS",
+      "DIRECT": "DIRECTS",
+      "TOTAL_IN_YOUR_NETWORK": "TOTAL DANS VOTRE RÉSEAU",
+      "NETWORK": "RÉSEAU",
+      "NEW_REFERRALS": "NOUVEAUX FILLEULS",
+      "COPY_YOUR_REFERRAL_LINK": "COPIER VOTRE LIEN DE PARRAINAGE",
+      "NETWORK_COMMISSIONS": "COMMISSIONS RÉSEAU",
+      "USDT": "USDT",
+      "GO_TO_YOUR_USER_PROFILE": "ALLER À VOTRE PROFIL"
+    },
+    "NOTIFICATIONS": {
+      "LAST_NOTIFICATIONS": "DERNIÈRES NOTIFICATIONS",
+      "PUBLISHED": "PUBLIÉ",
+      "DETEAIL_OPERATIONS": "DÉTAIL DES OPÉRATIONS"
+    }
+  },
+  "ORACLE": {
+    "WELCOME": "Bonjour, je suis votre oracle",
+    "SUB_TITLE": "Je suis ici pour répondre à vos questions"
+  },
+  "MENU": {
+    "DASHBOARD": "TABLEAU DE BORD",
+    "SIGNALS": "SIGNAUX",
+    "PLANS": "ABONNEMENTS",
+    "HISTORY": "HISTORIQUE",
+    "REFERRALS": "PARRAINAGE",
+    "SUPPORT": "SUPPORT"
+  },
+  "DETAIL_OPERATIONS": {
+    "TITLE": "DÉTAIL DES OPÉRATIONS",
+    "CARD": {
+      "TITLE": "DÉTAIL DES OPÉRATIONS",
+      "ACTIVE_MEMBERSHIP": "ABONNEMENT ACTIF",
+      "MONTHS": "mois",
+      "REMAINING_TIME": "Temps restant",
+      "DAYS": "jours",
+      "HOURS": "heures",
+      "DATE": "SÉLECTIONNER UNE DATE",
+      "BUTTON_DOWNLOAD": "TÉLÉCHARGER PDF",
+      "BALANCE": "SOLDE TOTAL",
+      "RENEW_MEMBERSHIP": "RENOUVELER L'ABONNEMENT",
+      "REFERRALS_IN_YOUR_NETWORK": "FILLEULS DANS VOTRE RÉSEAU",
+      "REFERRALS": "FILLEULS",
+      "DIRECT": "DIRECTS",
+      "TOTAL_IN_YOUR_NETWORK": "TOTAL DANS VOTRE RÉSEAU",
+      "NETWORK": "RÉSEAU",
+      "NEW_REFERRALS": "NOUVEAUX FILLEULS",
+      "COPY_YOUR_REFERRAL_LINK": "COPIER VOTRE LIEN",
+      "NETWORK_COMMISSIONS": "COMMISSIONS RÉSEAU",
+      "USDT": "USDT",
+      "GO_TO_YOUR_USER_PROFILE": "ALLER À VOTRE PROFIL"
+    }
+  },
+  "PLANS": {
+    "TITLE": "SÉLECTIONNEZ VOTRE ABONNEMENT",
+    "SUB_TITLE": "Obtenez un accès exclusif à nos outils et",
+    "SUB_TITLE_2": "commencez à recevoir nos signaux dès aujourd'hui.",
+    "CARD": {
+      "TITLE": "ABONNEMENT",
+      "BASIC": "ABONNEMENT BASIQUE",
+      "AMATEUR": "ABONNEMENT AMATEUR",
+      "PRO": "ABONNEMENT PRO",
+      "ELITE": "ABONNEMENT ÉLITE",
+      "SIGNALS_24_7": "Signaux 24/7",
+      "BOT_MANUAL": "Bot Manuel configurable",
+      "BOT_AUTOMATIC": "Bot automatique",
+      "SUPPORT_24": "Support 24/7",
+      "BTN_BUY": "ACHETER",
+      "TIME_RESTANTE": "Temps restant",
+      "MONTHS": "mois",
+      "ACTIVE_MEMBERSHIP": "ACTIF",
+      "DAYS": "jours",
+      "HOURS": "heures",
+      "RENEW_MEMBERSHIP": "RENOUVELER L'ABONNEMENT",
+      "ACTIVE_BY": "Actif par",
+      "PAY_UP_TO_6_LEVELS": "Pays up to 6th level"
+    },
+    "PURCHASE_MODAL": {
+      "TITLE_STEP_1": "Connect Wallet",
+      "TITLE_STEP_2": "Approve USDT",
+      "TITLE_STEP_3": "Confirm Purchase",
+      "STEP_1_DESC": "To continue with the purchase, you must first connect your wallet.",
+      "STEP_2_DESC_PREFIX": "Authorize the use of",
+      "STEP_2_DESC_SUFFIX": "to complete the purchase.",
+      "STEP_2_SUBTEXT": "This is a one-time security transaction.",
+      "STEP_3_DESC_PREFIX": "You are about to purchase the plan",
+      "CANCEL_BTN": "Cancel",
+      "CONNECT_WALLET_BTN": "Connect Wallet",
+      "CONNECTING_BTN": "Connecting...",
+      "APPROVE_BTN": "Approve USDT",
+      "APPROVING_BTN": "Approving...",
+      "BUY_BTN": "Buy Now",
+      "PROCESSING_BTN": "Processing..."
+    }
+  },
+  "HISTORY": {
+    "BTN_SEARCH": "RECHERCHER",
+    "ID_NUMBER": "NUMÉRO ID",
+    "DETAILS": "DÉTAILS",
+    "DATE": "DATE",
+    "AMOUNT": "MONTANT",
+    "STATUS": "STATUT"
+  },
+  "REFERRALS": {
+    "TITLE": "VOTRE RÉSEAU DE PARRAINAGE",
+    "CARDS": {
+      "TITLE": "FILLEULS DANS VOTRE RÉSEAU",
+      "SUB_TITLE": "FILLEULS DIRECTS",
+      "TORAL_NETWORK": "TOTAL DANS VOTRE RÉSEAU",
+      "REFERRALS_NEW": "NOUVEAUX FILLEULS",
+      "BTN_LINK_REFERRALS": "COPIER VOTRE LIEN",
+      "COMISSION_NETWORD": "COMMISSIONS RÉSEAU",
+      "SHOW_PROFILE": "ALLER À VOTRE PROFIL"
+    }
+  },
+  "SUPPORT": {
+    "TITLE": "ENVOYER UN MESSAGE",
+    "PLACEHOLDER_1": "Sujet...",
+    "PLACEHOLDER_2": "Message...",
+    "BTN_SEND_SUPPORT": "ENVOYER AU SUPPORT",
+    "CHANNEL_OFFICIAL": "SUIVEZ-NOUS SUR NOS CANAUX OFFICIELS",
+    "BTN_ON_WHATSAPP": "PARTAGER SUR WHATSAPP",
+    "BTN_ON_TELEGRAM": "PARTAGER SUR TELEGRAM",
+    "BTN_ON_FACEBOOK": "PARTAGER SUR FACEBOOK",
+    "BTN_ON_INSTAGRAM": "PARTAGER SUR INSTAGRAM"
+  },
+  "PROFILE": {
+    "USER": {
+      "HELLO": "Bonjour",
+      "BTN_CHANGE_PHOTO": "CHANGER LA PHOTO",
+      "BTN_COPY_LINK": "COPIER LE LIEN"
+    },
+    "DATA_PERSON": {
+      "INFORMATION_PERSON": "INFORMATIONS DU PROFIL",
+      "CONTROL_CONFIG": "Contrôle et configuration du compte",
+      "PLACEHOLDER_1": "Nom complet...",
+      "PLACEHOLDER_2": "Email...",
+      "CHANGE_PASS": "CHANGER LE MOT DE PASSE",
+      "PLACEHOLDER_3": "Nouveau mot de passe...",
+      "PLACEHOLDER_4": "Confirmer le mot de passe...",
+      "CONNECT_APP": "CONNECTER DES APPS",
+      "BTN_GOOGLE_AUTH": "ACTIVER GOOGLE AUTH",
+      "BTN_WALLET3": "CONNECTER WALLET WEB 3",
+      "BTN_SAVE": "SAUVEGARDER"
+    }
+  },
+  "FINNACE": {
+    "USER": {
+      "HELLO": "Bonjour",
+      "BTN_CHANGE_PHOTO": "CHANGER LA PHOTO",
+      "BTN_COPY_LINK": "COPIER LE LIEN"
+    },
+    "DATA_FINNACE": {
+      "TITLE": "RETRAITS ET TRANSFERTS DE FONDS",
+      "WALLET_BALANCE": "SOLDE DU WALLET",
+      "COMISIONS_WITHDRAW": "RETIRER LES COMMISSIONS",
+      "PLACEHOLDER_1": "Montant des commissions à retirer...",
+      "PLACEHOLDER_2": "Code Google Authentication",
+      "PLACEHOLDER_3": "Montant à transférer...",
+      "PLACEHOLDER_4": "ID utilisateur destinataire...",
+      "PLACEHOLDER_5": "Code Google Authentication",
+      "DO_WITHDRAW": "EFFECTUER LE RETRAIT",
+      "TRANSFER_FUNDS": "TRANSFÉRER DES FONDS",
+      "BTN_TRANSFER_USER": "TRANSFÉRER À UN UTILISATEUR",
+      "ERROR_2FA_REQUIRED": "2FA est requis pour effectuer cette opération."
+    }
+  },
+  "NOTIFICATIONS": {
+    "DATE": "DATE",
+    "SUBJECT": "SUJET",
+    "BTN_READ": "OUVRIR LA NOTIFICATION"
+  }
+}

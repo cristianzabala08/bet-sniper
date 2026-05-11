@@ -1,0 +1,89 @@
+<div class="row">
+  <div class="col-sm-12">
+    <app-card cardTitle="Staff Management" [options]="false">
+      <!-- Actions -->
+      <div class="row mb-3 justify-content-end">
+        <div class="col-auto">
+          <button class="btn btn-primary" (click)="openCreateModal()">
+            <i class="feather icon-plus m-r-5"></i>
+            Add Staff
+          </button>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>2FA Enabled</th>
+              <th>Created At</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let staff of staffList">
+              <td>
+                <div class="d-flex align-items-center">
+                  <span class="badge bg-light text-dark border m-r-10">{{ staff.username.charAt(0).toUpperCase() }}</span>
+                  {{ staff.username }}
+                </div>
+              </td>
+              <td>{{ staff.email }}</td>
+              <td>
+                <span class="badge bg-primary">{{ staff.role }}</span>
+              </td>
+              <td>
+                <span class="badge" [ngClass]="staff.twoFactorEnabled ? 'bg-success' : 'bg-danger'">
+                  {{ staff.twoFactorEnabled ? 'Yes' : 'No' }}
+                </span>
+              </td>
+              <td>{{ staff.createdAt | date: 'medium' }}</td>
+            </tr>
+            <tr *ngIf="staffList.length === 0 && !loading">
+              <td colspan="5" class="text-center">No staff found.</td>
+            </tr>
+            <tr *ngIf="loading">
+              <td colspan="5" class="text-center">Loading...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </app-card>
+  </div>
+</div>
+
+<!-- Create Staff Modal -->
+<ng-template #createStaffModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Add New Staff</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" class="form-control" id="username" [(ngModel)]="createForm.username" name="username" />
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" [(ngModel)]="createForm.email" name="email" />
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password" [(ngModel)]="createForm.password" name="password" />
+      </div>
+      <div class="mb-3">
+        <label for="role" class="form-label">Role</label>
+        <select class="form-select" id="role" [(ngModel)]="createForm.role" name="role">
+          <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
+        </select>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Cancel</button>
+    <button type="button" class="btn btn-primary" (click)="createStaff()">Create Staff</button>
+  </div>
+</ng-template>

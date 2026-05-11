@@ -1,0 +1,61 @@
+<div class="blog-page">
+  <!-- Header -->
+  <header class="blog-header">
+    <div class="header-container">
+      <a routerLink="/landing" class="logo-link">
+        <img src="assets/logo_principal.png" alt="Bet Sniper" class="header-logo" />
+      </a>
+      <nav class="header-nav">
+        <a routerLink="/landing" class="nav-link">Inicio</a>
+        <a routerLink="/blog" class="nav-link active">Blog</a>
+        <a routerLink="/auth/login" class="nav-link">Iniciar Sesión</a>
+      </nav>
+      <button class="mobile-menu-btn" (click)="mobileOpen = !mobileOpen">
+        <i class="fa fa-bars"></i>
+      </button>
+    </div>
+    <div class="mobile-menu" *ngIf="mobileOpen">
+      <a routerLink="/landing" class="mobile-link" (click)="mobileOpen = false">Inicio</a>
+      <a routerLink="/blog" class="mobile-link" (click)="mobileOpen = false">Blog</a>
+      <a routerLink="/auth/login" class="mobile-link" (click)="mobileOpen = false">Iniciar Sesión</a>
+    </div>
+  </header>
+
+  <div class="blog-content">
+    <h1 class="blog-title gold-gradient-text">Blog de Bet Sniper</h1>
+    <p class="blog-subtitle">Noticias, análisis y estrategias de trading</p>
+
+    <div class="blog-loading" *ngIf="loading">
+      <i class="fa fa-spinner fa-spin"></i> Cargando artículos...
+    </div>
+
+    <div class="blog-empty" *ngIf="!loading && posts.length === 0">
+      <i class="fa fa-newspaper"></i>
+      <p>No hay artículos publicados aún.</p>
+      <a routerLink="/landing" class="btn-back">Volver al Inicio</a>
+    </div>
+
+    <div class="blog-grid" *ngIf="!loading && posts.length > 0">
+      <article class="blog-card" *ngFor="let post of posts" [routerLink]="['/blog', post.slug]">
+        <div class="card-image" *ngIf="post.coverImage">
+          <img [src]="post.coverImage" [alt]="post.title" />
+        </div>
+        <div class="card-image placeholder" *ngIf="!post.coverImage">
+          <i class="fa fa-image"></i>
+        </div>
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="tag" *ngFor="let tag of post.tags">{{ tag }}</span>
+          </div>
+          <h2 class="card-title">{{ post.title }}</h2>
+          <p class="card-excerpt">{{ post.excerpt }}</p>
+          <div class="card-meta">
+            <span class="meta-author" *ngIf="post.author"><i class="fa fa-user"></i> {{ post.author }}</span>
+            <span class="meta-date"><i class="fa fa-calendar"></i> {{ formatDate(post.publishedAt) }}</span>
+            <span class="meta-views"><i class="fa fa-eye"></i> {{ post.views }}</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,366 @@
+/* --- VARIABLES - Luxury Dark Gold Theme --- */
+$gold-primary: #c9a84c;
+$gold-light: #ffd700;
+$gold-dark: #8b6914;
+$gold-accent: #d4af37;
+$gold-mid: #c9a84c;
+$gold-grad: linear-gradient(135deg, $gold-dark 0%, $gold-primary 100%);
+$bronze: #cd7f32;
+$neon-blue: $gold-primary;
+$neon-purple-grad: linear-gradient(
+  135deg,
+  $gold-dark 0%,
+  $gold-primary 100%
+);
+$neon-green: $gold-light;
+$neon-red: #ff1744;
+$text-white: #f5f0e1;
+$text-muted: #8a7e6b;
+$bg-dark: #0a0a0a;
+$bg-table-row: rgba(201, 168, 76, 0.03);
+$gold-glow: rgba(201, 168, 76, 0.15);
+$gold-glow-strong: rgba(201, 168, 76, 0.3);
+$border-gold: #2a2520;
+
+.history-table-container {
+  position: relative;
+  z-index: 0;
+  padding: 30px;
+  font-family: "Rajdhani", sans-serif;
+  color: $text-white;
+  width: 100%;
+  filter: drop-shadow(0 0 20px $gold-glow);
+
+  /* Capa de Borde (Fondo Azul) */
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: $gold-mid;
+    z-index: -2;
+    clip-path: polygon(
+      0 0,
+      calc(100% - 10px) 0,
+      100% 10px,
+      100% 100%,
+      10px 100%,
+      0 calc(100% - 10px)
+    );
+  }
+
+  /* Capa de Fondo (Oscuro) */
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 2px; /* Grosor del borde simulado */
+    background: rgba(10, 10, 8, 0.95);
+    z-index: -1;
+    clip-path: polygon(
+      0 0,
+      calc(100% - 10px) 0,
+      100% 10px,
+      100% 100%,
+      10px 100%,
+      0 calc(100% - 10px)
+    );
+  }
+}
+
+/* --- TOOLBAR (BUSCADOR Y DESCARGA) --- */
+.table-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  .search-box {
+    display: flex;
+    align-items: center;
+
+    .search-input {
+      min-width: 350px;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid #333;
+      border-radius: 5px 0 0 5px;
+      padding: 10px 15px;
+      color: white;
+      width: 250px;
+      font-size: 0.9rem;
+      outline: none;
+      &:focus {
+        border-color: $gold-mid;
+      }
+    }
+
+    .btn-search {
+      margin-left: 30px;
+      background: $gold-grad;
+      border: none;
+      padding: 11px 20px;
+      border-radius: 0 5px 5px 0;
+      color: white;
+      font-weight: 800;
+      font-size: 0.85rem;
+      cursor: pointer;
+      text-transform: uppercase;
+      &:hover {
+        filter: brightness(1.2);
+      }
+      clip-path: polygon(
+        0 0,
+        calc(100% - 10px) 0,
+        100% 10px,
+        100% 100%,
+        10px 100%,
+        0 calc(100% - 10px)
+      );
+    }
+  }
+
+  .btn-download {
+    background: $gold-grad;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px; /* Corte angular */
+    clip-path: polygon(10px 0, 100% 0, 100% 100%, 0 100%, 0 10px);
+    color: white;
+    font-weight: 800;
+    font-size: 0.85rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    &:hover {
+      filter: brightness(1.2);
+    }
+    clip-path: polygon(
+      0 0,
+      calc(100% - 10px) 0,
+      100% 10px,
+      100% 100%,
+      10px 100%,
+      0 calc(100% - 10px)
+    );
+  }
+}
+
+/* --- TABLA DE DATOS --- */
+.data-table {
+  width: 100%;
+  margin-bottom: 20px;
+
+  /* Grid Layout para Columnas */
+  .table-header,
+  .table-row {
+    display: grid;
+    grid-template-columns: 50px 1fr 1.5fr 1.5fr 1.5fr 1fr 1fr; /* 7 columnas: N, ID, Detalles, Tipo, Fecha, Monto, Estado */
+    align-items: center;
+    padding: 15px 10px;
+    gap: 10px;
+  }
+
+  .table-header {
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    font-weight: 800;
+    font-size: 0.85rem;
+    color: $text-white;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .table-row {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: background 0.2s;
+
+    &:nth-child(even) {
+      background: linear-gradient(
+        90deg,
+        rgba(139, 105, 20, 0.15) 0%,
+        rgba(201, 168, 76, 0.05) 100%
+      );
+    }
+
+    &:hover {
+      background: rgba(
+        255,
+        255,
+        255,
+        0.1
+      ) !important; /* Hover más brillante para resaltar */
+    }
+
+    /* Estilos de Columnas */
+    .col-no {
+      color: $text-muted;
+    }
+    .col-id {
+      color: $gold-primary;
+    }
+    .col-details {
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .col-date {
+      color: $text-muted;
+    }
+
+    .col-amount {
+      font-family: "Courier New", monospace; /* Fuente técnica para números */
+      font-weight: 700;
+      &.text-red {
+        color: $bronze;
+      } /* Montos negativos */
+    }
+
+    .col-status {
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+
+      &.status-active {
+        color: $gold-light;
+      }
+      &.status-approved {
+        color: white;
+      }
+      &.status-rejected {
+        color: $bronze;
+      }
+    }
+  }
+}
+
+/* --- FOOTER PAGINACIÓN --- */
+.table-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  font-size: 0.8rem;
+  color: $text-muted;
+
+  .pagination-controls {
+    display: flex;
+    gap: 5px;
+
+    .page-btn {
+      background: transparent;
+      border: none;
+      color: $text-white;
+      padding: 5px 10px;
+      cursor: pointer;
+      font-weight: 700;
+      border-radius: 3px;
+
+      &:hover {
+        color: $gold-light;
+      }
+
+      &.active {
+        background: rgba(255, 255, 255, 0.1);
+        color: $gold-light;
+      }
+
+      &.prev,
+      &.next {
+        text-transform: capitalize; /* "Anterior" no todo mayúsculas */
+      }
+    }
+  }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .data-table {
+    display: block; /* Remove grid/overflow horizontal logic if moving to cards */
+    overflow-x: unset;
+
+    .table-header {
+      display: none; /* Hide header on mobile */
+    }
+
+    .table-row {
+      display: flex;
+      flex-direction: column;
+      background: rgba(201, 168, 76, 0.05);
+      margin-bottom: 20px;
+      border-radius: 10px;
+      padding: 15px;
+      border: 1px solid $border-gold;
+      
+      min-width: unset; /* Override min-width from previous snippet if any */
+      
+      &:nth-child(even) {
+        background: rgba(201, 168, 76, 0.08);
+      }
+
+      .col {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 8px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        .mobile-label {
+          display: inline-block;
+          font-weight: 800;
+          color: $text-muted;
+          font-size: 0.8rem;
+          text-transform: uppercase;
+        }
+      }
+
+      /* Adjust specific columns */
+      .col-id {
+         text-align: right;
+      }
+      
+      .col-status {
+        flex-wrap: wrap; 
+        .status-actions {
+            margin-left: auto; /* Push icons to right */
+        }
+      }
+    }
+  }
+
+  .table-toolbar {
+    flex-direction: column;
+    gap: 15px;
+    align-items: stretch;
+    
+    .search-box,
+    .btn-download {
+      width: 100%;
+    }
+
+    .search-box {
+      flex-direction: column; 
+      gap: 10px;
+      
+      .search-input {
+        width: 100%;
+        min-width: 0; 
+        border-radius: 5px; 
+      }
+      
+      .btn-search {
+        margin-left: 0; 
+        width: 100%; 
+        border-radius: 5px;
+      }
+    }
+  }
+}
+
+/* Default state for mobile-label is hidden on desktop */
+.mobile-label {
+  display: none;
+}

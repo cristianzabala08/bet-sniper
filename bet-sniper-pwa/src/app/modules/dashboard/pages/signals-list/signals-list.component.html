@@ -1,0 +1,197 @@
+<app-logo></app-logo>
+<div class="dashboard-container-signals-list">
+  <app-active-signals class="mt-2"></app-active-signals>
+
+  <section class="operations-detail panel-card">
+    <div class="panel-header">
+      <h3 class="title text-neon-blue">
+        {{ "DETAIL_OPERATIONS.TITLE" | translate }}
+      </h3>
+      <div class="header-right">
+        <span class="date-label">Operaciones del 15/11/2025</span>
+        <button
+          class="btn-refresh"
+          (click)="refreshData()"
+          [disabled]="isLoading"
+        >
+          <i class="fa-solid fa-arrows-rotate" [class.fa-spin]="isLoading"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="operations-and-sidebar-content">
+      <div class="operations-list-wrapper">
+        <div class="operations-grid">
+          <div
+            class="op-row"
+            *ngFor="let signal of dailySignals"
+            [ngClass]="{
+              win: signal.win === true,
+              loss: signal.win === false,
+              pending: signal.win === null,
+            }"
+          >
+            <div class="icon-col">
+              <i
+                class="fa-regular"
+                [ngClass]="{
+                  'fa-circle-check': signal.win === true,
+                  'fa-circle-xmark': signal.win === false,
+                  'fa-clock': signal.win === null,
+                }"
+              ></i>
+            </div>
+            <div class="info-col">
+              <span
+                class="type"
+                [ngClass]="{
+                  'text-neon-purple': signal.win === true,
+                  'text-neon-pink': signal.win === false,
+                  'text-white': signal.win === null,
+                }"
+              >
+                {{
+                  (signal.data?.signal?.nombre_algoritmo || "BACCARAT").replace(
+                    "_",
+                    " "
+                  )
+                }}
+              </span>
+              <span class="game">{{ signal.mesa }}</span>
+
+              <!-- Forecast Visual -->
+              <div
+                class="forecast-visual"
+                *ngIf="getForecastItems(signal).length > 0"
+              >
+                <div
+                  class="forecast-dot"
+                  *ngFor="let item of getForecastItems(signal)"
+                  [ngClass]="[item.colorClass, item.isActive ? 'active' : '']"
+                  [title]="item.label"
+                >
+                  <span
+                    class="dot-number"
+                    *ngIf="item.winLabel || item.isActive"
+                    >{{ item.winLabel || item.index }}</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="result-col">
+              <span
+                class="label"
+                [ngClass]="{
+                  'text-neon-green': signal.win === true,
+                  'text-neon-pink': signal.win === false,
+                  'text-white': signal.win === null,
+                }"
+              >
+                {{
+                  signal.win === true
+                    ? "WIN"
+                    : signal.win === false
+                      ? "LOSS"
+                      : "PENDING"
+                }}
+              </span>
+              <!-- Amount is not available in API response sample, hiding or using placeholder -->
+              <!-- <span class="amount" [ngClass]="... ">...</span> -->
+            </div>
+            <div class="time-col">
+              <span class="label">HORA</span>
+              <span class="time">{{
+                signal.createdAt | date: "HH:mm:ss"
+              }}</span>
+            </div>
+          </div>
+
+          <div
+            *ngIf="dailySignals.length === 0"
+            class="no-data p-4 text-center"
+          >
+            No active operations found for today.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <aside class="history-sidebar-in-panel">
+      <div class="sidebar-header">
+        <h3 class="title text-neon-pink">
+          {{ "DETAIL_OPERATIONS.CARD.TITLE" | translate }}
+        </h3>
+      </div>
+
+      <div class="date-selector">
+        <span>{{ "DETAIL_OPERATIONS.CARD.DATE" | translate }}</span>
+        <div class="date-input">
+          15/11/2025 <i class="fa-regular fa-calendar"></i>
+        </div>
+      </div>
+
+      <button class="btn-download">
+        {{ "DETAIL_OPERATIONS.CARD.BUTTON_DOWNLOAD" | translate }}
+      </button>
+
+      <div class="balance-card">
+        <i class="fa-solid fa-bookmark icon"></i>
+        <div class="balance-info">
+          <span class="label"
+            >{{ "DETAIL_OPERATIONS.CARD.BUTTON_DOWNLOAD" | translate }}:</span
+          >
+          <span class="amount text-neon-green">USDT: 99,000,000.00</span>
+        </div>
+      </div>
+
+      <div class="membership-card">
+        <div class="card-header">
+          <div class="icon-box">
+            <i class="fa-regular fa-calendar-check"></i>
+          </div>
+          <span class="card-title">{{
+            "DETAIL_OPERATIONS.CARD.ACTIVE_MEMBERSHIP" | translate
+          }}</span>
+        </div>
+        <div class="card-body">
+          <div class="membership-duration">
+            <span class="months-number">12</span>
+            <span class="months-label">{{
+              "DETAIL_OPERATIONS.CARD.MONTHS" | translate
+            }}</span>
+          </div>
+          <div class="time-remaining">
+            <span class="time-label">{{
+              "DETAIL_OPERATIONS.CARD.REMAINING_TIME" | translate
+            }}</span>
+            <div class="time-countdown">
+              <div class="time-unit">
+                <span class="time-number">11</span>
+                <span class="time-text">{{
+                  "DETAIL_OPERATIONS.CARD.MONTHS" | translate
+                }}</span>
+              </div>
+              <!-- Divider removed -->
+              <div class="time-unit">
+                <span class="time-number">29</span>
+                <span class="time-text">{{
+                  "DETAIL_OPERATIONS.CARD.DAYS" | translate
+                }}</span>
+              </div>
+              <!-- Divider removed -->
+              <div class="time-unit">
+                <span class="time-number">23</span>
+                <span class="time-text">{{
+                  "DETAIL_OPERATIONS.CARD.HOURS" | translate
+                }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="btn-renew">
+          <i class="fa-solid fa-rotate"></i> RENOVAR MEMBRESÍA
+        </button>
+      </div>
+    </aside>
+  </section>
+</div>

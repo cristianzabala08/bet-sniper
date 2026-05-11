@@ -1,0 +1,214 @@
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  background: rgba(18, 18, 16, 0.85);
+  backdrop-filter: blur(10px);
+  padding: 2.5rem;
+  border-radius: 20px;
+  border: 1px solid rgba(201, 168, 76, 0.3);
+  box-shadow: 0 0 30px rgba(201, 168, 76, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  .header {
+    text-align: center;
+    margin-bottom: 1rem;
+
+    .brand-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--primary);
+      text-shadow: 0 0 10px var(--primary);
+      margin: 0;
+      
+      .subtitle {
+        display: block;
+        font-size: 0.9rem;
+        color: var(--text-main);
+        letter-spacing: 2px;
+        text-shadow: none;
+        font-weight: 400;
+        margin-top: -5px;
+      }
+    }
+
+    .welcome-text {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-top: 10px;
+    }
+  }
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  
+  .form-group {
+    flex: 1;
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 1rem;
+  
+  &.full-width {
+    width: 100%;
+  }
+
+  label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .input-wrapper {
+    position: relative;
+    
+    input {
+      width: 100%;
+      background: var(--input-bg);
+      border: 1px solid var(--border-color);
+      padding: 12px 40px 12px 15px; /* Espacio para el icono a la derecha */
+      border-radius: 8px;
+      color: var(--text-main);
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      box-sizing: border-box;
+
+      &:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 10px rgba(201, 168, 76, 0.3);
+      }
+      
+      &::placeholder {
+        color: rgba(255,255,255,0.2);
+      }
+    }
+
+    .icon {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 0.5;
+    }
+  }
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+
+  .remember-me {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--text-muted);
+    cursor: pointer;
+  }
+
+  .forgot-link {
+    color: var(--primary);
+    text-decoration: none;
+    transition: 0.3s;
+    
+    &:hover {
+      text-shadow: 0 0 5px var(--primary);
+    }
+  }
+}
+
+/* Botones */
+button {
+  width: 100%;
+  padding: 14px;
+  border-radius: 50px; /* Bordes redondos como el PDF */
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #8b6914, #c9a84c, #ffd700);
+  border: none;
+  color: #0a0a0a;
+  box-shadow: 0 0 15px rgba(201, 168, 76, 0.4);
+  margin-bottom: 1rem;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 25px rgba(201, 168, 76, 0.6);
+  }
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--text-muted);
+  color: var(--text-muted);
+
+  &:hover {
+    border-color: var(--text-main);
+    color: var(--text-main);
+    background: rgba(255,255,255,0.05);
+  }
+}
+
+.footer {
+  text-align: center;
+  margin-top: 1rem;
+  p {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.2);
+  }
+}
+
+
+// ... tus estilos existentes ...
+
+// Clase dinámica que agregamos en el HTML
+.input-wrapper.is-invalid {
+   border:  1px solid #ff4d4f !important; 
+  input {
+      color: #ff4d4f;
+  }
+  
+  .password-icon {
+      filter: grayscale(100%) brightness(80%) sepia(100%) hue-rotate(-50deg) saturate(600%); // Truco para poner el icono rojo
+  }
+}
+
+// Contenedor de mensajes de error
+.validation-errors {
+  margin-top: 4px;
+  display: flex;
+  flex-direction: column;
+  
+  small {
+    color: #ff4d4f;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+}
+
+// Ajuste para el checkbox de términos
+.remember span.error-text {
+    color: #ff4d4f;
+}

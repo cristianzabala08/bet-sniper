@@ -1,0 +1,298 @@
+<div class="landing-page" *ngIf="config">
+  <!-- Header -->
+  <header class="landing-header">
+    <div class="header-container">
+      <a routerLink="/" class="logo-link">
+        <img src="assets/logo_principal.png" alt="Bet Sniper" class="header-logo" />
+      </a>
+      <nav class="header-nav">
+        <a routerLink="/landing" fragment="stats" class="nav-link">Estadísticas</a>
+        <a routerLink="/landing" fragment="martingala" class="nav-link">Algoritmo</a>
+        <a routerLink="/landing" fragment="pricing" class="nav-link">Planes</a>
+        <a routerLink="/blog" class="nav-link">Blog</a>
+      </nav>
+      <div class="header-actions">
+        <a routerLink="/auth/login" class="btn-outline-gold">Iniciar Sesión</a>
+        <a routerLink="/auth/register" class="btn-gold">Registro</a>
+      </div>
+      <button class="mobile-menu-btn" (click)="mobileMenuOpen = !mobileMenuOpen">
+        <i class="fa fa-bars"></i>
+      </button>
+    </div>
+    <!-- Mobile menu -->
+    <div class="mobile-menu" *ngIf="mobileMenuOpen">
+      <a routerLink="/landing" fragment="stats" class="mobile-link" (click)="mobileMenuOpen = false">Estadísticas</a>
+      <a routerLink="/landing" fragment="martingala" class="mobile-link" (click)="mobileMenuOpen = false">Algoritmo</a>
+      <a routerLink="/landing" fragment="pricing" class="mobile-link" (click)="mobileMenuOpen = false">Planes</a>
+      <a routerLink="/blog" class="mobile-link" (click)="mobileMenuOpen = false">Blog</a>
+      <a routerLink="/auth/login" class="mobile-link" (click)="mobileMenuOpen = false">Iniciar Sesión</a>
+      <a routerLink="/auth/register" class="mobile-link gold" (click)="mobileMenuOpen = false">Registro</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-particles">
+      <div class="particle" *ngFor="let p of [1,2,3,4,5,6,7,8]"></div>
+    </div>
+    <div class="hero-glow"></div>
+    <div class="hero-content">
+      <img src="assets/logo_principal.png" alt="Bet Sniper" class="hero-mascot" />
+      <h1 class="hero-title gold-gradient-text">{{ config.heroTitle }}</h1>
+      <p class="hero-subtitle">{{ config.heroSubtitle }}</p>
+      <a [routerLink]="config.heroCtaLink" class="btn-hero-cta">
+        <i class="fa fa-rocket"></i> {{ config.heroCtaText }}
+      </a>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="stats-section" id="stats">
+    <h2 class="section-title gold-gradient-text">Estadísticas en Vivo</h2>
+    <p class="section-subtitle">Resultados reales de nuestras señales hoy</p>
+    <div class="stats-grid">
+      <div class="stat-card wins">
+        <div class="stat-icon"><i class="fa fa-check-circle"></i></div>
+        <div class="stat-value">{{ config.statsWinsToday }}</div>
+        <div class="stat-label">Victorias Hoy</div>
+      </div>
+      <div class="stat-card losses">
+        <div class="stat-icon"><i class="fa fa-times-circle"></i></div>
+        <div class="stat-value">{{ config.statsLossesToday }}</div>
+        <div class="stat-label">Pérdidas Hoy</div>
+      </div>
+      <div class="stat-card profit">
+        <div class="stat-icon"><i class="fa fa-dollar-sign"></i></div>
+        <div class="stat-value">{{ config.statsProfitToday }}</div>
+        <div class="stat-label">Profit Total</div>
+      </div>
+      <div class="stat-card winrate">
+        <div class="stat-icon"><i class="fa fa-chart-line"></i></div>
+        <div class="stat-value">{{ config.statsWinRate }}</div>
+        <div class="stat-label">Índice de Victoria</div>
+      </div>
+      <div class="stat-card users">
+        <div class="stat-icon"><i class="fa fa-users"></i></div>
+        <div class="stat-value">{{ config.statsActiveUsers }}</div>
+        <div class="stat-label">Usuarios Activos</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Martingala Section -->
+  <section class="martingala-section" id="martingala">
+    <div class="martingala-container">
+      <div class="martingala-visual">
+        <div class="algo-diagram">
+          <div class="algo-step loss">
+            <div class="step-icon"><i class="fa fa-arrow-down"></i></div>
+            <span>Pérdida</span>
+          </div>
+          <div class="algo-arrow"><i class="fa fa-arrow-right"></i></div>
+          <div class="algo-step calc">
+            <div class="step-icon"><i class="fa fa-calculator"></i></div>
+            <span>Cálculo</span>
+          </div>
+          <div class="algo-arrow"><i class="fa fa-arrow-right"></i></div>
+          <div class="algo-step win">
+            <div class="step-icon"><i class="fa fa-arrow-up"></i></div>
+            <span>Recuperación</span>
+          </div>
+        </div>
+      </div>
+      <div class="martingala-info">
+        <h2 class="section-title gold-gradient-text">Algoritmo Martingala</h2>
+        <p class="martingala-desc">{{ config.martingalaDescription }}</p>
+        <ul class="feature-list">
+          <li *ngFor="let feature of config.martingalaFeatures">
+            <i class="fa fa-shield-alt gold-icon"></i>
+            <span>{{ feature }}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="pricing-section" id="pricing">
+    <h2 class="section-title gold-gradient-text">Planes de Membresía</h2>
+    <p class="section-subtitle">Elige el plan que mejor se adapte a tu estilo de trading</p>
+    <div class="pricing-grid">
+      <!-- Weekly -->
+      <div class="pricing-card">
+        <div class="pricing-header">
+          <div class="plan-name">Membresía <strong>WEEKLY</strong></div>
+          <div class="plan-duration">
+            <span class="dur-number">1</span>
+            <span class="dur-text">Semana</span>
+          </div>
+          <div class="plan-price-box">
+            <span class="price-label">Activa por</span>
+            <span class="price-value">50.00</span>
+            <span class="price-unit">USDT</span>
+          </div>
+        </div>
+        <ul class="pricing-features">
+          <li><i class="fa fa-users gold-icon"></i> Paga hasta el 6to nivel</li>
+          <li><i class="fa fa-bolt gold-icon"></i> Señales 24/7</li>
+          <li><i class="fa fa-robot gold-icon"></i> Bot automático</li>
+          <li><i class="fa fa-headset gold-icon"></i> Soporte 24/4</li>
+        </ul>
+        <a routerLink="/auth/register" class="btn-pricing">Comprar</a>
+      </div>
+
+      <!-- Basic -->
+      <div class="pricing-card featured">
+        <div class="pricing-header">
+          <div class="plan-name">Membresía <strong>BASIC</strong></div>
+          <div class="plan-duration">
+            <span class="dur-number">1</span>
+            <span class="dur-text">Meses</span>
+          </div>
+          <div class="plan-price-box">
+            <span class="price-label">Activa por</span>
+            <span class="price-value">100.00</span>
+            <span class="price-unit">USDT</span>
+          </div>
+        </div>
+        <ul class="pricing-features">
+          <li><i class="fa fa-bolt gold-icon"></i> Señales 24/7</li>
+          <li><i class="fa fa-cog gold-icon"></i> Bot Manual configurable</li>
+          <li><i class="fa fa-robot gold-icon"></i> Bot automático</li>
+          <li><i class="fa fa-headset gold-icon"></i> Soporte 24/4</li>
+        </ul>
+        <a routerLink="/auth/register" class="btn-pricing featured">Comprar</a>
+      </div>
+
+      <!-- Amateur -->
+      <div class="pricing-card">
+        <div class="pricing-header">
+          <div class="plan-name">Membresía <strong>AMATEUR</strong></div>
+          <div class="plan-duration">
+            <span class="dur-number">3</span>
+            <span class="dur-text">Meses</span>
+          </div>
+          <div class="plan-price-box">
+            <span class="price-label">Activalo por</span>
+            <span class="price-value">250.00</span>
+            <span class="price-unit">USDT</span>
+          </div>
+        </div>
+        <ul class="pricing-features">
+          <li><i class="fa fa-bolt gold-icon"></i> Señales 24/7</li>
+          <li><i class="fa fa-cog gold-icon"></i> Bot Manual configurable</li>
+          <li><i class="fa fa-robot gold-icon"></i> Bot automático</li>
+          <li><i class="fa fa-headset gold-icon"></i> Soporte 24/4</li>
+        </ul>
+        <a routerLink="/auth/register" class="btn-pricing">Comprar</a>
+      </div>
+
+      <!-- Pro -->
+      <div class="pricing-card">
+        <div class="pricing-header">
+          <div class="plan-name">Membresía <strong>PRO</strong></div>
+          <div class="plan-duration">
+            <span class="dur-number">6</span>
+            <span class="dur-text">Meses</span>
+          </div>
+          <div class="plan-price-box">
+            <span class="price-label">Activalo por</span>
+            <span class="price-value">500.00</span>
+            <span class="price-unit">USDT</span>
+          </div>
+        </div>
+        <ul class="pricing-features">
+          <li><i class="fa fa-bolt gold-icon"></i> Señales 24/7</li>
+          <li><i class="fa fa-cog gold-icon"></i> Bot Manual configurable</li>
+          <li><i class="fa fa-robot gold-icon"></i> Bot automático</li>
+          <li><i class="fa fa-headset gold-icon"></i> Soporte 24/4</li>
+        </ul>
+        <a routerLink="/auth/register" class="btn-pricing">Comprar</a>
+      </div>
+
+      <!-- Expert -->
+      <div class="pricing-card">
+        <div class="pricing-header">
+          <div class="plan-name">Membresía <strong>EXPERT</strong></div>
+          <div class="plan-duration">
+            <span class="dur-number">9</span>
+            <span class="dur-text">Meses</span>
+          </div>
+          <div class="plan-price-box">
+            <span class="price-label">Activalo por</span>
+            <span class="price-value">750.00</span>
+            <span class="price-unit">USDT</span>
+          </div>
+        </div>
+        <ul class="pricing-features">
+          <li><i class="fa fa-bolt gold-icon"></i> Señales 24/7</li>
+          <li><i class="fa fa-cog gold-icon"></i> Bot Manual configurable</li>
+          <li><i class="fa fa-robot gold-icon"></i> Bot automático</li>
+          <li><i class="fa fa-headset gold-icon"></i> Soporte 24/4</li>
+        </ul>
+        <a routerLink="/auth/register" class="btn-pricing">Comprar</a>
+      </div>
+
+      <!-- Elite -->
+      <div class="pricing-card">
+        <div class="pricing-header">
+          <div class="plan-name">Membresía <strong>ELITE</strong></div>
+          <div class="plan-duration">
+            <span class="dur-number">12</span>
+            <span class="dur-text">Meses</span>
+          </div>
+          <div class="plan-price-box">
+            <span class="price-label">Activalo por</span>
+            <span class="price-value">1,000.00</span>
+            <span class="price-unit">USDT</span>
+          </div>
+        </div>
+        <ul class="pricing-features">
+          <li><i class="fa fa-bolt gold-icon"></i> Señales 24/7</li>
+          <li><i class="fa fa-cog gold-icon"></i> Bot Manual configurable</li>
+          <li><i class="fa fa-robot gold-icon"></i> Bot automático</li>
+          <li><i class="fa fa-headset gold-icon"></i> Soporte 24/4</li>
+        </ul>
+        <a routerLink="/auth/register" class="btn-pricing">Comprar</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="cta-glow"></div>
+    <h2 class="cta-title gold-gradient-text">{{ config.ctaSectionTitle }}</h2>
+    <p class="cta-subtitle">{{ config.ctaSectionSubtitle }}</p>
+    <a [routerLink]="config.ctaSectionButtonLink" class="btn-hero-cta">
+      <i class="fa fa-bolt"></i> {{ config.ctaSectionButtonText }}
+    </a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="landing-footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <img src="assets/logo_principal.png" alt="Bet Sniper" class="footer-logo" />
+        <p class="footer-text">{{ config.footerText }}</p>
+      </div>
+      <div class="footer-links">
+        <h4>Enlaces</h4>
+        <a routerLink="/auth/login">Iniciar Sesión</a>
+        <a routerLink="/auth/register">Registro</a>
+        <a routerLink="/blog">Blog</a>
+      </div>
+      <div class="footer-social" *ngIf="config.socialLinks">
+        <h4>Redes Sociales</h4>
+        <div class="social-icons">
+          <a *ngIf="config.socialLinks['telegram']" [href]="config.socialLinks['telegram']" target="_blank"><i class="fab fa-telegram"></i></a>
+          <a *ngIf="config.socialLinks['twitter']" [href]="config.socialLinks['twitter']" target="_blank"><i class="fab fa-twitter"></i></a>
+          <a *ngIf="config.socialLinks['instagram']" [href]="config.socialLinks['instagram']" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a *ngIf="config.socialLinks['discord']" [href]="config.socialLinks['discord']" target="_blank"><i class="fab fa-discord"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-disclaimer" *ngIf="config.footerDisclaimer">
+      {{ config.footerDisclaimer }}
+    </div>
+  </footer>
+</div>

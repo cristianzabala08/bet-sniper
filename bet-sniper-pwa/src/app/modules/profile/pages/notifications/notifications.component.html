@@ -1,0 +1,49 @@
+<app-logo></app-logo>
+<div class="notifications-page-container">
+  <div class="notifications-panel glass-panel">
+    <!-- Si quieres un título opcional -->
+    <!-- <h2 class="panel-title">CENTRO DE MENSAJES</h2> -->
+
+    <div class="notifications-scroll-list">
+      <div class="notification-row" *ngFor="let item of notifications">
+        <!-- Icono Izquierdo -->
+        <div class="icon-col">
+          <div class="icon-wrapper">
+            <i class="fa-regular fa-envelope"></i>
+            <i class="fa-solid fa-plus badge-plus"></i>
+          </div>
+        </div>
+
+        <!-- Fecha -->
+        <div class="date-col">
+          <span class="label">{{ "NOTIFICATIONS.DATE" | translate }}</span>
+          <span class="value">{{ item.date | date : "dd/MM/yyyy" }}</span>
+        </div>
+
+        <!-- Asunto -->
+        <div class="subject-col">
+          <span class="label">{{ "NOTIFICATIONS.SUBJECT" | translate }}</span>
+          <span class="value">{{ item.description }}</span>
+        </div>
+
+        <!-- Botón de Acción (Clase dinámica según tipo) -->
+        <div class="action-col">
+          <button
+            (click)="openNotification(item)"
+            class="btn-open"
+            [ngClass]="item.type === 'new' ? 'btn-green' : 'btn-purple'"
+          >
+            {{ "NOTIFICATIONS.BTN_READ" | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <app-notificacions-modal
+    *ngIf="showModal"
+    [notification]="selectedNotification"
+    (close)="closeModal()"
+  >
+  </app-notificacions-modal>
+</div>

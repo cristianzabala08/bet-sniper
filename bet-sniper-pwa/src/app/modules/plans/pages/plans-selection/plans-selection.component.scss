@@ -1,0 +1,582 @@
+/* --- VARIABLES - Luxury Dark Gold Theme --- */
+$gold-primary: #c9a84c;
+$gold-light: #ffd700;
+$gold-dark: #8b6914;
+$gold-accent: #d4af37;
+$bronze: #cd7f32;
+$neon-green: #c9a84c;
+$neon-blue: #8b6914;
+$neon-purple: #d4af37;
+$text-white: #f5f0e1;
+$bg-dark: #0a0a0a;
+$card-bg: rgba(18, 18, 16, 0.85);
+$gold-mid: #c9a84c;
+
+.plans-container {
+  width: 100%;
+  padding: 20px;
+
+  font-family: "Rajdhani", sans-serif;
+  color: $text-white;
+
+  /* Ajuste para Web: eliminar padding horizontal ya que el layout principal ya da márgenes */
+  @media (min-width: 768px) {
+    padding: 20px 0;
+  }
+}
+
+/* --- HEADER BANNER --- */
+.plans-header-banner {
+  // background: rgba(20, 20, 50, 0.6);
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(201, 168, 76, 0.15) 0%,
+    rgba(139, 105, 20, 0.1) 15%,
+    rgba(18, 18, 16, 0.7) 40%,
+    rgba(10, 10, 8, 1) 100%
+  );
+  // border: 1px solid $gold-mid;
+  // border-radius: 15px;
+  padding: 30px;
+  min-height: 300px;
+  margin-bottom: 40px;
+  position: relative;
+  // overflow: hidden;
+  clip-path: polygon(
+    0 0,
+    calc(100% - 10px) 0,
+    100% 10px,
+    100% 100%,
+    10px 100%,
+    0 calc(100% - 10px)
+  );
+  /* Efecto de brillo en esquinas similar a la imagen */
+  // box-shadow: 0 0 20px rgba(201, 168, 76, 0.1);
+  /* Capa de borde */
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: $gold-mid;
+    clip-path: polygon(
+      0 0,
+      calc(100% - 20px) 0,
+      100% 20px,
+      100% 100%,
+      20px 100%,
+      0 calc(100% - 20px)
+    );
+    z-index: -2;
+  }
+
+  /* Capa de fondo top bar */
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 2px;
+    background: radial-gradient(
+      circle at 50% 50%,
+      rgba(201, 168, 76, 0.15) 0%,
+      rgba(139, 105, 20, 0.1) 15%,
+      rgba(18, 18, 16, 0.7) 40%,
+      rgba(10, 10, 8, 1) 100%
+    );
+    // backdrop-filter: blur(10px);
+    clip-path: polygon(
+      0 0,
+      calc(100% - 20px) 0,
+      100% 20px,
+      100% 100%,
+      20px 100%,
+      0 calc(100% - 20px)
+    );
+    z-index: -1;
+  }
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .header-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px;
+    place-items: center;
+    width: 100%;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      gap: 15px;
+    }
+
+    .title {
+      font-size: 1.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin: 0;
+      text-align: center;
+    }
+
+    .banner-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .icon-graphic {
+        font-size: 4rem;
+        color: $gold-light;
+        filter: drop-shadow(0 0 10px $gold-light);
+      }
+
+      .celular-img {
+        max-width: 100%;
+        height: 280px;
+
+        @media (max-width: 768px) {
+          max-width: 120px; /* Imagen más pequeña en móvil */
+        }
+      }
+    }
+
+      .banner-text {
+      display: flex;
+      flex-direction: column; /* Changed to column to stack text and button */
+      align-items: flex-start; /* Left align items */
+      justify-content: center;
+      text-align: left; /* Left align text */
+
+      .text-graphic {
+        font-size: 0.9rem;
+        line-height: 1.4;
+        margin: 0;
+        max-width: 380px; /* Constrain width to force ~3 lines */
+
+        .text-green {
+          color: $gold-light;
+          font-size: 1.2rem;
+          font-weight: 700;
+        }
+      }
+
+      .btn-verify {
+        background: transparent;
+        border: 1px solid $gold-light;
+        color: $gold-light;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        &:hover {
+          background: rgba(201, 168, 76, 0.1);
+          box-shadow: 0 0 10px rgba(201, 168, 76, 0.2);
+          transform: translateY(-2px);
+        }
+        
+        i {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}
+
+/* --- GRID DE TARJETAS --- */
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px; /* Reducido de 20px para que quepan mejor */
+
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- ESTILO DE TARJETA INDIVIDUAL --- */
+.plan-card {
+  background: linear-gradient(
+    180deg,
+    rgba(18, 18, 16, 0.9) 0%,
+    rgba(10, 10, 8, 0.95) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.3s;
+
+  /* Optimización para Web: reducir padding interno para ganar espacio */
+  @media (min-width: 1024px) {
+    padding: 20px 10px;
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  /* Ajuste para móviles: borde más visible */
+  @media (max-width: 768px) {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  /* Badge flotante en la parte superior */
+  .card-badge {
+    position: absolute;
+    top: -25px;
+    left: 20px;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    color: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(24, 24, 26, 0.301);
+    z-index: 10;
+
+    /* Forma personalizada si se desea, por ahora redondeado */
+    clip-path: polygon(
+      0 0,
+      calc(100% - 10px) 0,
+      100% 10px,
+      100% 100%,
+      10px 100%,
+      0 calc(100% - 10px)
+    );
+  }
+
+  /* Títulos */
+  /* Títulos */
+  .plan-name {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 40px 0 20px 0; /* Margen superior para el badge */
+    text-transform: uppercase;
+    font-weight: 700;
+
+    strong {
+      color: white;
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-left: 5px;
+    }
+  }
+
+  /* Precio y Duración */
+  .price-row {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Reducido de 20px */
+    margin-bottom: 25px;
+    padding-bottom: 0;
+    border-bottom: none;
+
+    @media (max-width: 768px) {
+      gap: 5px; /* Reducir espacio entre elementos en móvil */
+    }
+
+    .duration {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      .num {
+        font-size: 3.2rem; /* Reducido de 4rem para evitar desbordamiento */
+        font-weight: 800;
+        line-height: 0.8;
+        color: white;
+      }
+
+      .unit {
+        font-size: 1.1rem;
+        font-weight: 800;
+        color: white;
+        text-transform: uppercase;
+      }
+    }
+
+    .vertical-divider {
+      margin-left: auto;
+      width: 2px;
+      height: 50px;
+      background-color: rgba(255, 255, 255, 0.8);
+    }
+
+    .cost {
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      margin-right: 15px; /* Reducido drásticamente de 50px */
+
+      @media (max-width: 768px) {
+        margin-right: 0; /* Eliminar margen derecho en móvil para evitar desbordamiento */
+      }
+
+      small {
+        display: block;
+        font-size: 0.7rem;
+        color: rgba(255, 255, 255, 0.5);
+        font-weight: 600;
+        margin-bottom: 2px;
+        text-transform: uppercase;
+      }
+
+      .amount {
+        font-size: 1.4rem;
+        font-weight: 800;
+        color: white;
+        line-height: 1.1;
+      }
+
+      .currency {
+        font-size: 0.7rem;
+        color: rgba(255, 255, 255, 0.5);
+        font-weight: 700;
+      }
+    }
+
+    /* Caja de tiempo para Elite */
+    .countdown-box {
+      text-align: right;
+      small {
+        display: block;
+        font-size: 0.7rem;
+        color: #ccc;
+        margin-bottom: 2px;
+      }
+      .time {
+        display: flex;
+        gap: 3px;
+        // font-size: 0.9rem;
+        font-size: 1.5rem;
+        font-weight: 700;
+        small {
+          display: inline;
+          font-size: 0.6rem;
+          margin-left: 2px;
+        }
+      }
+    }
+  }
+
+  /* Lista de Características */
+  .features-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+    flex: 1;
+    li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-size: 0.85rem;
+      color: #ddd;
+      i {
+        font-size: 1rem;
+      }
+    }
+  }
+
+  /* Botón */
+  .btn-buy {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    font-weight: 800;
+    text-transform: uppercase;
+    cursor: pointer;
+    clip-path: polygon(
+      0 0,
+      calc(100% - 20px) 0,
+      100% 20px,
+      100% 100%,
+      20px 100%,
+      0 calc(100% - 20px)
+    );
+    transition: filter 0.2s;
+    &:hover {
+      filter: brightness(1.2);
+    }
+  }
+
+  /* --- VARIANTES DE COLOR --- */
+
+  /* 0. WEEKLY (Gold/Orange - New) */
+  &.card-weekly {
+    border-top: 2px solid #ffd700;
+    box-shadow: 0 -5px 20px rgba(201, 168, 76, 0.15);
+    background: linear-gradient(180deg, rgba(201, 168, 76, 0.3) 0%, rgba(10, 10, 8, 0.95) 100%);
+
+    .card-badge {
+      background: linear-gradient(135deg, #c9a84c, #ffd700);
+      color: white;
+    }
+    .plan-name strong {
+      color: #ffd700;
+    }
+    .features-list li i {
+      color: #ffd700;
+    }
+    .btn-buy {
+      background: linear-gradient(135deg, #c9a84c, #ffd700);
+      color: white;
+      box-shadow: 0 0 15px rgba(201, 168, 76, 0.3);
+    }
+
+    @media (max-width: 768px) {
+      border: 2px solid #ffd700 !important;
+    }
+  }
+
+  /* 1. BASIC (Gris) */
+  &.card-basic {
+    border-top: 2px solid #666;
+    .card-badge {
+      background: linear-gradient(
+        180deg,
+        rgba(42, 37, 32, 0.9) 0%,
+        rgba(10, 10, 8, 0.95) 100%
+      );
+    }
+    .features-list li i {
+      color: white;
+    }
+    .btn-buy {
+      background: linear-gradient(
+        90deg,
+        rgba(42, 37, 32, 0.9) 0%,
+        rgba(18, 18, 16, 0.95) 100%
+      );
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      border: 2px solid rgba(255, 255, 255, 0.5) !important;
+    }
+  }
+  
+  /* 4. EXPERT (Red - New) */
+  &.card-expert {
+    border-top: 2px solid #cd7f32;
+    box-shadow: 0 -5px 20px rgba(201, 168, 76, 0.1);
+    background: linear-gradient(180deg, rgba(205, 127, 50, 0.3) 0%, rgba(10, 10, 8, 0.95) 100%);
+
+    .card-badge {
+      background: linear-gradient(135deg, #cd7f32, #8b6914);
+      color: white;
+    }
+    .plan-name strong {
+      color: #cd7f32;
+    }
+    .features-list li i {
+      color: #cd7f32;
+    }
+    .btn-buy {
+      background: linear-gradient(135deg, #cd7f32, #8b6914);
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      border: 2px solid #cd7f32 !important;
+    }
+  }
+
+  /* 2. AMATEUR (Azul) */
+  &.card-amateur {
+    border-top: 2px solid $neon-blue;
+    box-shadow: 0 -5px 20px rgba(201, 168, 76, 0.1);
+    background: linear-gradient(180deg, rgba(139, 105, 20, 0.4) 0%, rgba(10, 10, 8, 0.95) 100%);
+
+    .card-badge {
+      background: linear-gradient(180deg, rgba(139, 105, 20, 0.4) 0%, rgba(10, 10, 8, 0.95) 100%);
+    }
+    .plan-name strong {
+      color: $gold-dark;
+    }
+    .features-list li i {
+      color: $gold-dark;
+    }
+    .btn-buy {
+      background: linear-gradient(135deg, #8b6914, #c9a84c);
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      border: 2px solid $gold-dark !important;
+    }
+  }
+
+  /* 3. PRO (Violeta/Rosa) */
+  &.card-pro {
+    border-top: 2px solid $neon-purple;
+    box-shadow: 0 -5px 20px rgba(201, 168, 76, 0.1);
+    background: linear-gradient(180deg, rgba(212, 175, 55, 0.3) 0%, rgba(10, 10, 8, 0.95) 100%);
+
+    .card-badge {
+      background: linear-gradient(180deg, rgba(212, 175, 55, 0.3) 0%, rgba(10, 10, 8, 0.95) 100%);
+    }
+    .plan-name strong {
+      color: $gold-mid;
+    }
+    .features-list li i {
+      color: $gold-mid;
+    }
+    .btn-buy {
+      background: linear-gradient(135deg, #cd7f32, #c9a84c);
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      border: 2px solid $gold-mid !important;
+    }
+  }
+
+  /* 4. ELITE (Verde) */
+  &.card-elite {
+    border: 1px solid $neon-green; /* Borde completo verde */
+    box-shadow: 0 0 20px rgba(201, 168, 76, 0.15);
+    background: linear-gradient(180deg, rgba(201, 168, 76, 0.5) 0%, rgba(10, 10, 8, 0.95) 100%);
+
+    .card-badge {
+      background: linear-gradient(180deg, rgba(201, 168, 76, 0.5) 0%, rgba(10, 10, 8, 0.95) 100%);
+      color: white;
+    }
+    .plan-name strong {
+      color: white;
+    }
+    .features-list li i {
+      color: $gold-light;
+    }
+    .btn-buy {
+      background: linear-gradient(135deg, #8b6914, #c9a84c, #ffd700);
+      color: white; /* Changed to white */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      position: relative; /* For absolute icon positioning */
+
+      i {
+        position: absolute;
+        left: 20px;
+        font-size: 1.2rem;
+        color: black; /* Changed icon color to black */
+      }
+    }
+  }
+}

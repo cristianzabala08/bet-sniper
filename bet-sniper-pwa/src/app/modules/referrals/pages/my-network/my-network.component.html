@@ -1,0 +1,170 @@
+<app-logo></app-logo>
+<div class="referrals-container">
+  <!-- 1. ÁRBOL DE REFERIDOS (Izquierda) -->
+  <section class="referral-tree-panel panel-card">
+    <h3 class="panel-title text-white">{{ "REFERRALS.TITLE" | translate }}</h3>
+
+    <!-- USUARIO PRINCIPAL (Raíz) -->
+    <div class="tree-node root-node">
+      <div
+        class="user-card root"
+        (click)="toggleRoot()"
+        style="cursor: pointer"
+      >
+        <div class="icon-box"><i class="fa-regular fa-user"></i></div>
+        <div class="user-info">
+          <span class="username">{{ fullName }}</span>
+          <span class="referral-code"
+            >Referidos directos:
+            <strong class="text-neon-green">{{ referralsCount }}</strong></span
+          >
+        </div>
+        <i
+          class="fa-solid expand-icon"
+          [ngClass]="{
+            'fa-chevron-up': isRootExpanded,
+            'fa-chevron-down': !isRootExpanded,
+          }"
+        ></i>
+      </div>
+
+      <!-- CONEXIÓN PRINCIPAL (Línea Vertical) -->
+      <div class="tree-branch" *ngIf="isRootExpanded">
+        <ng-container
+          *ngTemplateOutlet="nodeTemplate; context: { $implicit: referrals }"
+        ></ng-container>
+      </div>
+
+      <!-- Recursive Template -->
+      <ng-template #nodeTemplate let-nodes>
+        <div class="branch-group" *ngIf="nodes && nodes.length > 0">
+          <div class="connector" *ngIf="nodes[0].level === 1"></div>
+          <div class="connector-vertical" *ngIf="nodes[0].level > 1"></div>
+
+          <ng-container *ngFor="let node of nodes">
+            <div
+              class="user-card"
+              [ngClass]="'lvl-' + node.level"
+              [class.expanded]="node.expanded"
+            >
+              <div class="icon-box">
+                <i
+                  class="fa-regular fa-user"
+                  [ngClass]="{ 'text-neon-green': node.isActive }"
+                ></i>
+              </div>
+              <span class="username">{{ node.username }}</span>
+              <div class="actions">
+                <i class="fa-solid fa-circle-info"></i>
+                <!-- Expand/Collapse Button -->
+                <i
+                  class="fa-solid"
+                  *ngIf="
+                    node.children && node.children.length > 0;
+                    else emptySpace
+                  "
+                  [ngClass]="{
+                    'fa-chevron-down': !node.expanded,
+                    'fa-chevron-up': node.expanded,
+                  }"
+                  (click)="toggleNode(node)"
+                  style="cursor: pointer"
+                ></i>
+                <ng-template #emptySpace
+                  ><span style="width: 1rem"></span
+                ></ng-template>
+
+                <span
+                  *ngIf="node.children && node.children.length > 0"
+                  class="text-neon-teal"
+                  style="font-size: 0.7rem; font-weight: bold; margin-left: 5px"
+                >
+                  ({{ node.children.length }})
+                </span>
+              </div>
+            </div>
+
+            <!-- Children Container -->
+            <div
+              class="sub-branch"
+              *ngIf="node.expanded && node.children && node.children.length > 0"
+            >
+              <ng-container
+                *ngTemplateOutlet="
+                  nodeTemplate;
+                  context: { $implicit: node.children }
+                "
+              ></ng-container>
+            </div>
+          </ng-container>
+        </div>
+      </ng-template>
+    </div>
+  </section>
+
+  <!-- 2. SIDEBAR DERECHO (Estadísticas) -->
+  <aside class="referral-sidebar">
+    <!-- Tarjeta Referidos (Morada) -->
+    <div class="stats-card purple-card">
+      <div class="card-header">
+        <span>{{ "REFERRALS.CARDS.TITLE" | translate }}</span>
+      </div>
+      <div class="card-body">
+        <div class="main-stat">
+          <span class="big-num">{{ referralsCount }}</span>
+          <!-- <span class="subtitle">REFERIDOS<br />DIRECTOS</span> -->
+          <span class="subtitle">{{
+            "REFERRALS.CARDS.SUB_TITLE" | translate
+          }}</span>
+        </div>
+
+        <div class="secondary-stats">
+          <div class="stat-row">
+            <div class="vertical-divider"></div>
+            <div class="stat-label">
+              <small>{{ "REFERRALS.CARDS.TORAL_NETWORK" | translate }}</small>
+              <span class="stat-value">{{ referralsNetwork }}</span>
+            </div>
+          </div>
+          <div class="stat-row">
+            <div class="vertical-divider"></div>
+            <div class="stat-label">
+              <small>NETWORK ACTIVO</small>
+              <span class="stat-value text-neon-green">{{
+                referralsNetworkActive
+              }}</span>
+            </div>
+          </div>
+          <div class="stat-row">
+            <div class="vertical-divider"></div>
+            <div class="stat-label">
+              <small>{{ "REFERRALS.CARDS.REFERRALS_NEW" | translate }}</small>
+              <span class="stat-value">{{ monthlyReferralsCount }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="btn-copy" (click)="copyReferralLink()">
+        <i class="fa-solid fa-link"></i>
+        {{ "REFERRALS.CARDS.BTN_LINK_REFERRALS" | translate }}
+      </button>
+    </div>
+
+    <!-- Tarjeta Comisiones (Azul) -->
+    <div class="stats-card blue-card mt-4">
+      <div class="card-icon-floating"><i class="fa-solid fa-tag"></i></div>
+      <div class="card-header">
+        <span>{{ "REFERRALS.CARDS.COMISSION_NETWORD" | translate }}</span>
+      </div>
+      <div class="card-body">
+        <span class="money-value">
+          <small>USDT</small> {{ pointsBalance | number: "1.2-2" }}
+        </span>
+      </div>
+      <button class="btn-profile" routerLink="/app/profile/finances">
+        <i class="fa-solid fa-user"></i>
+        {{ "REFERRALS.CARDS.SHOW_PROFILE" | translate }}
+      </button>
+    </div>
+  </aside>
+</div>

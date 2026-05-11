@@ -1,0 +1,367 @@
+/* --- VARIABLES --- */
+$bg-overlay: rgba(0, 0, 0, 0.85);
+$bg-modal-gradient: linear-gradient(160deg, #2a0050 0%, #0d0018 90%);
+$neon-purple: #c9a84c;
+$neon-purple-glow: rgba(189, 0, 255, 0.45);
+$neon-pink: #d4af37;
+$text-white: #ffffff;
+$text-gray: #c9c9c9;
+$gold-mid: #c9a84c;
+$gold-accent: #d4af37;
+$gold-glow: rgba(201, 168, 76, 0.45);
+
+/* --- OVERLAY --- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: $bg-overlay;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(8px);
+  animation: fadeIn 0.25s ease-out;
+}
+
+/* --- CONTENEDOR DEL MODAL --- */
+.modal-wrapper {
+  position: relative;
+  width: 90%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-container {
+  position: relative;
+  width: 100%;
+  padding: 50px 40px;
+  background: radial-gradient(
+    circle at center,
+    rgba(201, 168, 76, 0.25) 0%,
+    #0a0a06 70%
+  );
+  border: none;
+  box-shadow: 0 0 20px $neon-purple-glow, 0 0 45px rgba(201, 168, 76, 0.15);
+  animation: modalPop 0.25s ease-out;
+  overflow: hidden;
+
+  /* Bisel en esquinas Superior-Derecha e Inferior-Izquierda */
+  clip-path: polygon(
+    0 0,
+    calc(100% - 30px) 0,
+    100% 30px,
+    100% 100%,
+    30px 100%,
+    0 calc(100% - 30px)
+  );
+
+  /* Borde simulado que sigue el clip-path */
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: $gold-mid;
+    pointer-events: none;
+    z-index: 2;
+
+    /* Doble polígono para crear el borde hueco */
+    clip-path: polygon(
+      /* Exterior */ 0 0,
+      calc(100% - 30px) 0,
+      100% 30px,
+      100% 100%,
+      30px 100%,
+      0 calc(100% - 30px),
+      0 0,
+      /* Interior (2px de grosor) */ 2px 2px,
+      2px calc(100% - 30px - 1px),
+      30px calc(100% - 2px),
+      calc(100% - 2px) calc(100% - 2px),
+      calc(100% - 2px) 30px,
+      calc(100% - 30px - 1px) 2px,
+      2px 2px
+    );
+  }
+}
+
+/* --- BOTÓN CERRAR --- */
+.btn-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: $gold-accent;
+  border: none;
+  color: black;
+  font-size: 1.3rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 18px rgba(255, 215, 0, 0.7);
+  transition: 0.2s ease;
+  z-index: 10;
+
+  &:hover {
+    transform: scale(1.12) rotate(90deg);
+  }
+}
+
+/* --- CONTENIDO DEL MODAL --- */
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  position: relative;
+  z-index: 3;
+}
+
+/* --- QR SECTION --- */
+.qr-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.qr-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: $text-white;
+  margin-bottom: 10px;
+}
+
+.qr-image {
+  width: 200px;
+  height: 200px;
+  border: 3px solid $gold-mid;
+  border-radius: 10px;
+  padding: 10px;
+  background: white;
+  box-shadow: 0 0 20px $gold-glow;
+}
+
+.secret-label {
+  font-size: 0.85rem;
+  color: $text-gray;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.secret-text {
+  font-family: monospace;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: $gold-mid;
+  word-break: break-all;
+  text-align: center;
+  max-width: 300px;
+  background: rgba(201, 168, 76, 0.1);
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid $gold-mid;
+}
+
+/* --- LOADER SECTION --- */
+.loader-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  color: $gold-mid;
+  padding: 40px 0;
+
+  i {
+    font-size: 3rem;
+  }
+
+  p {
+    font-size: 1rem;
+    color: $text-gray;
+  }
+}
+
+/* --- ERROR MESSAGE --- */
+.error-message {
+  background: rgba(255, 0, 0, 0.1);
+  border: 1px solid #ff0000;
+  border-radius: 8px;
+  padding: 12px;
+  color: #ff6b6b;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  width: 100%;
+  max-width: 350px;
+
+  i {
+    font-size: 1.2rem;
+  }
+}
+
+/* --- AVATAR SECTION (Mantenido para compatibilidad) --- */
+.avatar-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatar-box {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, $gold-mid 0%, $gold-accent 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 25px $gold-glow, 0 0 50px rgba(255, 215, 0, 0.3);
+  animation: pulse 2s ease-in-out infinite;
+
+  i {
+    font-size: 3.5rem;
+    color: $text-white;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  }
+}
+
+/* --- INPUT SECTION --- */
+.input-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.verification-input {
+  width: 100%;
+  max-width: 350px;
+  padding: 15px 20px;
+  font-size: 1.1rem;
+  text-align: center;
+  letter-spacing: 3px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid $gold-mid;
+  border-radius: 10px;
+  color: $text-white;
+  outline: none;
+  transition: all 0.3s ease;
+  font-family: monospace;
+
+  &::placeholder {
+    color: $text-gray;
+    letter-spacing: normal;
+  }
+
+  &:focus {
+    border-color: $gold-accent;
+    box-shadow: 0 0 15px $gold-glow;
+    background: rgba(255, 255, 255, 0.08);
+  }
+}
+
+/* --- BUTTON SECTION --- */
+.button-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-activate {
+  padding: 15px 50px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, $gold-mid 0%, $gold-accent 100%);
+  border: none;
+  border-radius: 10px;
+  color: $text-white;
+  cursor: pointer;
+  box-shadow: 0 0 20px $gold-glow;
+  transition: all 0.3s ease;
+  letter-spacing: 1px;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px $gold-glow, 0 0 50px rgba(255, 215, 0, 0.4);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+/* --- DISABLED STATE --- */
+button:disabled,
+input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* --- ANIMACIONES --- */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalPop {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 25px $gold-glow, 0 0 50px rgba(255, 215, 0, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 35px $gold-glow, 0 0 70px rgba(255, 215, 0, 0.5);
+  }
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+  .modal-container {
+    width: 95%;
+    padding: 40px 25px;
+  }
+
+  .avatar-box {
+    width: 100px;
+    height: 100px;
+
+    i {
+      font-size: 3rem;
+    }
+  }
+
+  .verification-input {
+    font-size: 1rem;
+    padding: 12px 15px;
+  }
+
+  .btn-activate {
+    padding: 12px 40px;
+    font-size: 1rem;
+  }
+
+  .btn-close {
+    right: 10px;
+    top: 10px;
+    width: 34px;
+    height: 34px;
+  }
+}

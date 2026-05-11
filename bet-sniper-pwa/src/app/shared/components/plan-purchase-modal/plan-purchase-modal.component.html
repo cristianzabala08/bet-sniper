@@ -1,0 +1,132 @@
+<div class="modal-overlay" *ngIf="isVisible">
+  <div class="modal-container">
+    <div class="modal-header">
+      <h3 class="modal-title">
+        <ng-container [ngSwitch]="currentStep()">
+          <span *ngSwitchCase="1">{{
+            "PLANS.PURCHASE_MODAL.TITLE_STEP_1" | translate
+          }}</span>
+          <span *ngSwitchCase="2">{{
+            "PLANS.PURCHASE_MODAL.TITLE_STEP_2" | translate
+          }}</span>
+          <span *ngSwitchCase="3">{{
+            "PLANS.PURCHASE_MODAL.TITLE_STEP_3" | translate
+          }}</span>
+        </ng-container>
+      </h3>
+      <button class="close-btn" (click)="onClose()">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <!-- Steps Indicator -->
+      <div class="steps-indicator">
+        <div
+          class="step"
+          [class.active]="currentStep() >= 1"
+          [class.completed]="currentStep() > 1"
+        >
+          1
+        </div>
+        <div class="line" [class.active]="currentStep() > 1"></div>
+        <div
+          class="step"
+          [class.active]="currentStep() >= 2"
+          [class.completed]="currentStep() > 2"
+        >
+          2
+        </div>
+        <div class="line" [class.active]="currentStep() > 2"></div>
+        <div class="step" [class.active]="currentStep() >= 3">3</div>
+      </div>
+
+      <div class="step-content" [ngSwitch]="currentStep()">
+        <!-- Step 1: Connect -->
+        <div *ngSwitchCase="1" class="text-center">
+          <p class="description">
+            {{ "PLANS.PURCHASE_MODAL.STEP_1_DESC" | translate }}
+          </p>
+        </div>
+
+        <!-- Step 2: Approve -->
+        <div *ngSwitchCase="2" class="text-center">
+          <p class="description">
+            {{ "PLANS.PURCHASE_MODAL.STEP_2_DESC_PREFIX" | translate }}
+            <strong>{{ plan?.price }} USDT</strong>
+            {{ "PLANS.PURCHASE_MODAL.STEP_2_DESC_SUFFIX" | translate }}
+            <br />
+            <span class="sub-text">{{
+              "PLANS.PURCHASE_MODAL.STEP_2_SUBTEXT" | translate
+            }}</span>
+          </p>
+        </div>
+
+        <!-- Step 3: Purchase -->
+        <div *ngSwitchCase="3" class="text-center">
+          <p class="description">
+            {{ "PLANS.PURCHASE_MODAL.STEP_3_DESC_PREFIX" | translate }}
+            <strong>{{ plan?.name }}</strong
+            >.
+            <br />
+            <span class="price-highlight">{{ plan?.price }} USDT</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn-cancel" (click)="onClose()" [disabled]="isLoading()">
+        {{ "PLANS.PURCHASE_MODAL.CANCEL_BTN" | translate }}
+      </button>
+
+      <!-- Action Buttons -->
+      <ng-container [ngSwitch]="currentStep()">
+        <button
+          *ngSwitchCase="1"
+          class="btn-confirm"
+          (click)="connectWallet()"
+          [disabled]="isLoading()"
+        >
+          <span *ngIf="!isLoading()">{{
+            "PLANS.PURCHASE_MODAL.CONNECT_WALLET_BTN" | translate
+          }}</span>
+          <span *ngIf="isLoading()"
+            ><i class="fa fa-spinner fa-spin"></i>
+            {{ "PLANS.PURCHASE_MODAL.CONNECTING_BTN" | translate }}</span
+          >
+        </button>
+
+        <button
+          *ngSwitchCase="2"
+          class="btn-confirm"
+          (click)="approveToken()"
+          [disabled]="isLoading()"
+        >
+          <span *ngIf="!isLoading()">{{
+            "PLANS.PURCHASE_MODAL.APPROVE_BTN" | translate
+          }}</span>
+          <span *ngIf="isLoading()"
+            ><i class="fa fa-spinner fa-spin"></i>
+            {{ "PLANS.PURCHASE_MODAL.APPROVING_BTN" | translate }}</span
+          >
+        </button>
+
+        <button
+          *ngSwitchCase="3"
+          class="btn-confirm"
+          (click)="purchasePlan()"
+          [disabled]="isLoading()"
+        >
+          <span *ngIf="!isLoading()">{{
+            "PLANS.PURCHASE_MODAL.BUY_BTN" | translate
+          }}</span>
+          <span *ngIf="isLoading()"
+            ><i class="fa fa-spinner fa-spin"></i>
+            {{ "PLANS.PURCHASE_MODAL.PROCESSING_BTN" | translate }}</span
+          >
+        </button>
+      </ng-container>
+    </div>
+  </div>
+</div>

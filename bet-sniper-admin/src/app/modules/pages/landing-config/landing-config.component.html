@@ -1,0 +1,163 @@
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h5><i class="feather icon-globe me-2"></i>Configuración del Landing Page</h5>
+        <button class="btn btn-gold" (click)="saveConfig()" [disabled]="saving || !config">
+          <i class="feather" [ngClass]="saving ? 'icon-loader' : 'icon-save'"></i>
+          {{ saving ? 'Guardando...' : 'Guardar Cambios' }}
+        </button>
+      </div>
+      <div class="card-body" *ngIf="config">
+        <div class="alert alert-success" *ngIf="saveSuccess">
+          <i class="feather icon-check-circle me-2"></i>Configuración guardada exitosamente.
+        </div>
+
+        <!-- Hero Section -->
+        <h6 class="section-label"><i class="feather icon-star me-2"></i>Hero Section</h6>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label class="form-label">Título Principal</label>
+            <input type="text" class="form-control" [(ngModel)]="config.heroTitle" />
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Texto del Botón CTA</label>
+            <input type="text" class="form-control" [(ngModel)]="config.heroCtaText" />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-8">
+            <label class="form-label">Subtítulo</label>
+            <textarea class="form-control" rows="2" [(ngModel)]="config.heroSubtitle"></textarea>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Enlace del Botón CTA</label>
+            <input type="text" class="form-control" [(ngModel)]="config.heroCtaLink" />
+          </div>
+        </div>
+
+        <hr class="gold-divider" />
+
+        <!-- Stats Section -->
+        <h6 class="section-label"><i class="feather icon-bar-chart-2 me-2"></i>Estadísticas en Vivo</h6>
+        <div class="row mb-3">
+          <div class="col-md-4">
+            <label class="form-label">Victorias Hoy</label>
+            <input type="number" class="form-control" [(ngModel)]="config.statsWinsToday" />
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Pérdidas Hoy</label>
+            <input type="number" class="form-control" [(ngModel)]="config.statsLossesToday" />
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Profit Total</label>
+            <input type="text" class="form-control" [(ngModel)]="config.statsProfitToday" />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label class="form-label">Índice de Victoria</label>
+            <input type="text" class="form-control" [(ngModel)]="config.statsWinRate" />
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Usuarios Activos</label>
+            <input type="text" class="form-control" [(ngModel)]="config.statsActiveUsers" />
+          </div>
+        </div>
+
+        <hr class="gold-divider" />
+
+        <!-- Martingala Section -->
+        <h6 class="section-label"><i class="feather icon-cpu me-2"></i>Sección Martingala</h6>
+        <div class="mb-3">
+          <label class="form-label">Descripción del Algoritmo</label>
+          <textarea class="form-control" rows="3" [(ngModel)]="config.martingalaDescription"></textarea>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Características</label>
+          <div class="feature-list-edit">
+            <div class="feature-item" *ngFor="let feature of config.martingalaFeatures; let i = index">
+              <span>{{ feature }}</span>
+              <button class="btn btn-sm btn-outline-danger" (click)="removeFeature(i)">
+                <i class="feather icon-x"></i>
+              </button>
+            </div>
+          </div>
+          <div class="input-group mt-2">
+            <input type="text" class="form-control" placeholder="Nueva característica..." [(ngModel)]="featureInput" (keyup.enter)="addFeature()" />
+            <button class="btn btn-outline-gold" (click)="addFeature()">
+              <i class="feather icon-plus"></i> Agregar
+            </button>
+          </div>
+        </div>
+
+        <hr class="gold-divider" />
+
+        <!-- CTA Section -->
+        <h6 class="section-label"><i class="feather icon-zap me-2"></i>Sección CTA Final</h6>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label class="form-label">Título CTA</label>
+            <input type="text" class="form-control" [(ngModel)]="config.ctaSectionTitle" />
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Subtítulo CTA</label>
+            <input type="text" class="form-control" [(ngModel)]="config.ctaSectionSubtitle" />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label class="form-label">Texto del Botón</label>
+            <input type="text" class="form-control" [(ngModel)]="config.ctaSectionButtonText" />
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Enlace del Botón</label>
+            <input type="text" class="form-control" [(ngModel)]="config.ctaSectionButtonLink" />
+          </div>
+        </div>
+
+        <hr class="gold-divider" />
+
+        <!-- Footer Section -->
+        <h6 class="section-label"><i class="feather icon-layout me-2"></i>Footer</h6>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label class="form-label">Texto del Footer</label>
+            <input type="text" class="form-control" [(ngModel)]="config.footerText" />
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Disclaimer</label>
+            <input type="text" class="form-control" [(ngModel)]="config.footerDisclaimer" />
+          </div>
+        </div>
+
+        <hr class="gold-divider" />
+
+        <!-- Social Links -->
+        <h6 class="section-label"><i class="feather icon-share-2 me-2"></i>Redes Sociales</h6>
+        <div class="row mb-3">
+          <div class="col-md-3">
+            <label class="form-label"><i class="fab fa-telegram me-1"></i> Telegram</label>
+            <input type="text" class="form-control" placeholder="https://t.me/..." [(ngModel)]="socialTelegram" />
+          </div>
+          <div class="col-md-3">
+            <label class="form-label"><i class="fab fa-twitter me-1"></i> Twitter</label>
+            <input type="text" class="form-control" placeholder="https://twitter.com/..." [(ngModel)]="socialTwitter" />
+          </div>
+          <div class="col-md-3">
+            <label class="form-label"><i class="fab fa-instagram me-1"></i> Instagram</label>
+            <input type="text" class="form-control" placeholder="https://instagram.com/..." [(ngModel)]="socialInstagram" />
+          </div>
+          <div class="col-md-3">
+            <label class="form-label"><i class="fab fa-discord me-1"></i> Discord</label>
+            <input type="text" class="form-control" placeholder="https://discord.gg/..." [(ngModel)]="socialDiscord" />
+          </div>
+        </div>
+      </div>
+
+      <div class="card-body text-center" *ngIf="loading">
+        <i class="feather icon-loader spin me-2"></i>Cargando configuración...
+      </div>
+    </div>
+  </div>
+</div>

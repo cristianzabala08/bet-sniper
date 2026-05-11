@@ -1,0 +1,132 @@
+$gold-primary: #c9a84c;
+$gold-dark: #8b6914;
+$bg-dark: #0a0a0a;
+$text-main: #f5f0e1;
+$text-muted: #b0a48a;
+
+.blog-detail-page {
+  background: $bg-dark;
+  color: $text-main;
+  font-family: 'Montserrat', 'Rajdhani', sans-serif;
+  min-height: 100vh;
+}
+
+.blog-header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba($gold-primary, 0.2); padding: 0 20px;
+}
+
+.header-container {
+  max-width: 1200px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between; height: 70px;
+}
+
+.header-logo { height: 50px; width: auto; background: transparent; }
+
+.header-nav {
+  display: flex; gap: 30px;
+  .nav-link {
+    color: $text-muted; text-decoration: none; font-weight: 500; font-size: 0.95rem;
+    transition: color 0.3s;
+    &:hover { color: $gold-primary; }
+  }
+}
+
+.detail-content {
+  max-width: 800px; margin: 0 auto; padding: 100px 20px 60px;
+}
+
+.detail-loading, .detail-error {
+  text-align: center; padding: 80px 20px; color: $text-muted;
+  i { font-size: 2rem; color: rgba($gold-primary, 0.4); margin-bottom: 15px; display: block; }
+}
+
+.btn-back {
+  display: inline-block; padding: 10px 25px;
+  border: 1px solid $gold-primary; color: $gold-primary; border-radius: 25px;
+  text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: all 0.3s;
+  i { margin-right: 6px; }
+  &:hover { background: rgba($gold-primary, 0.1); }
+}
+
+.back-link {
+  display: inline-block; color: $gold-primary; text-decoration: none;
+  font-size: 0.9rem; margin-bottom: 30px; transition: opacity 0.3s;
+  i { margin-right: 6px; }
+  &:hover { opacity: 0.7; }
+}
+
+.article-cover {
+  border-radius: 16px; overflow: hidden; margin-bottom: 30px;
+  border: 1px solid rgba($gold-primary, 0.15);
+  img { width: 100%; height: auto; display: block; }
+}
+
+.article-tags {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 15px;
+  .tag {
+    padding: 4px 12px; background: rgba($gold-primary, 0.1);
+    border: 1px solid rgba($gold-primary, 0.2); border-radius: 12px;
+    font-size: 0.8rem; color: $gold-primary; font-weight: 600;
+  }
+}
+
+.article-title {
+  font-size: 2.2rem; font-weight: 800; margin-bottom: 15px; line-height: 1.3;
+  background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+
+.article-meta {
+  display: flex; gap: 20px; font-size: 0.85rem; color: $text-muted;
+  margin-bottom: 40px; padding-bottom: 20px;
+  border-bottom: 1px solid rgba($gold-primary, 0.1);
+  i { margin-right: 5px; color: rgba($gold-primary, 0.5); }
+}
+
+.article-body {
+  font-size: 1.05rem; line-height: 1.8; color: $text-main;
+  h2, h3 { color: $gold-primary; margin: 30px 0 15px; }
+  p { margin-bottom: 18px; }
+  a { color: $gold-primary; text-decoration: underline; }
+  ul, ol { margin-bottom: 18px; padding-left: 25px; }
+  li { margin-bottom: 8px; }
+  blockquote {
+    border-left: 3px solid $gold-primary; padding: 15px 20px;
+    margin: 20px 0; background: rgba($gold-primary, 0.05);
+    border-radius: 0 10px 10px 0; font-style: italic; color: $text-muted;
+  }
+  img { max-width: 100%; border-radius: 12px; margin: 20px 0; }
+  code {
+    background: rgba($gold-primary, 0.1); padding: 2px 6px;
+    border-radius: 4px; font-size: 0.9rem;
+  }
+  pre {
+    background: rgba(18, 18, 16, 0.8); border: 1px solid rgba($gold-primary, 0.15);
+    border-radius: 10px; padding: 20px; overflow-x: auto; margin: 20px 0;
+    code { background: none; padding: 0; }
+  }
+}
+
+.article-footer {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 50px; padding-top: 30px;
+  border-top: 1px solid rgba($gold-primary, 0.1);
+}
+
+.btn-cta {
+  display: inline-block; padding: 12px 30px;
+  background: linear-gradient(135deg, $gold-primary, $gold-dark);
+  color: #000; border-radius: 25px; text-decoration: none;
+  font-weight: 700; font-size: 0.9rem; transition: all 0.3s;
+  i { margin-right: 6px; }
+  &:hover { box-shadow: 0 0 20px rgba($gold-primary, 0.5); transform: translateY(-2px); }
+}
+
+@media (max-width: 600px) {
+  .article-title { font-size: 1.6rem; }
+  .article-meta { flex-wrap: wrap; gap: 10px; }
+  .article-footer { flex-direction: column; gap: 15px; }
+  .header-nav { display: none; }
+}

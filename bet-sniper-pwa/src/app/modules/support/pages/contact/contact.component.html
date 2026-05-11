@@ -1,0 +1,117 @@
+<app-logo></app-logo>
+<div class="support-container">
+  <!-- 1. SECCIÓN DE CONTACTO (Formulario + Ilustración) -->
+  <div class="contact-section panel-card">
+    <!-- Columna Izquierda: Formulario -->
+    <div class="form-column">
+      <h3 class="section-title">{{ "SUPPORT.TITLE" | translate }}</h3>
+
+      <form
+        class="contact-form"
+        [formGroup]="supportForm"
+        (ngSubmit)="sendMessageSupport()"
+      >
+        <div class="input-group">
+          <input
+            type="text"
+            name="subject"
+            formControlName="subject"
+            placeholder="{{ 'SUPPORT.PLACEHOLDER_1' | translate }}"
+            class="input-field"
+          />
+        </div>
+
+        <div
+          *ngIf="f['subject'].invalid && f['subject'].touched"
+          class="validation-errors"
+        >
+          <small *ngIf="f['subject'].errors?.['required']"
+            >Campo obligatorio</small
+          >
+        </div>
+
+        <div class="input-group">
+          <textarea
+            name="message"
+            formControlName="message"
+            placeholder="{{ 'SUPPORT.PLACEHOLDER_2' | translate }}"
+            class="textarea-field"
+          ></textarea>
+        </div>
+
+        <div
+          *ngIf="f['message'].invalid && f['message'].touched"
+          class="validation-errors"
+        >
+          <small *ngIf="f['message'].errors?.['required']"
+            >Campo obligatorio</small
+          >
+        </div>
+
+        <button type="submit" class="btn-send">
+          {{ "SUPPORT.BTN_SEND_SUPPORT" | translate }}
+        </button>
+      </form>
+    </div>
+
+    <!-- Columna Derecha: Ilustración Neón -->
+    <div class="illustration-column">
+      <!-- Aquí iría tu imagen SVG o PNG del mago/chat -->
+      <!-- He puesto un placeholder visual con iconos para simularlo -->
+      <div class="neon-illustration">
+        <img
+          src="assets/santa-cloud.png"
+          alt="sata-cloud"
+          class="illustration-column"
+        />
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. SECCIÓN DE REDES SOCIALES -->
+  <div class="social-section panel-card">
+    <h3 class="section-title">{{ "SUPPORT.CHANNEL_OFFICIAL" | translate }}</h3>
+
+    <div class="social-grid">
+      <!-- WhatsApp -->
+      <div class="social-card whatsapp">
+        <div class="icon-wrapper">
+          <i class="fa-brands fa-whatsapp"></i>
+        </div>
+        <button class="btn-share">
+          {{ "SUPPORT.BTN_ON_WHATSAPP" | translate }}
+        </button>
+      </div>
+
+      <!-- Telegram -->
+      <div class="social-card telegram">
+        <div class="icon-wrapper">
+          <i class="fa-brands fa-telegram"></i>
+        </div>
+        <button class="btn-share">
+          {{ "SUPPORT.BTN_ON_TELEGRAM" | translate }}
+        </button>
+      </div>
+
+      <!-- Facebook -->
+      <div class="social-card facebook">
+        <div class="icon-wrapper">
+          <i class="fa-brands fa-facebook-f"></i>
+        </div>
+        <button class="btn-share">
+          {{ "SUPPORT.BTN_ON_FACEBOOK" | translate }}
+        </button>
+      </div>
+
+      <!-- Instagram -->
+      <div class="social-card instagram">
+        <div class="icon-wrapper">
+          <i class="fa-brands fa-instagram"></i>
+        </div>
+        <button class="btn-share">
+          {{ "SUPPORT.BTN_ON_INSTAGRAM" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

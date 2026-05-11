@@ -1,0 +1,626 @@
+/* --- VARIABLES - Luxury Dark Gold Theme --- */
+$gold-primary: #c9a84c;
+$gold-light: #ffd700;
+$gold-dark: #8b6914;
+$gold-accent: #d4af37;
+$gold-mid: #c9a84c;
+$bronze: #cd7f32;
+$bg-panel: rgba(18, 18, 16, 0.95);
+$neon-blue: #c9a84c;
+$neon-green: #c9a84c;
+$neon-purple: #c9a84c;
+$text-white: #f5f0e1;
+$input-bg: rgba(10, 10, 8, 0.6);
+$border-color: #2a2520;
+$gold-glow: rgba(201, 168, 76, 0.15);
+
+.profile-container {
+  display: grid;
+  grid-template-columns: 300px 1fr; /* Panel Izquierdo fijo, Derecho flexible */
+  gap: 30px;
+  width: 100%;
+  font-family: "Rajdhani", sans-serif;
+  color: $text-white;
+
+  @media (max-width: 1000px) {
+    grid-template-columns: 1fr; /* Apilar en móvil */
+  }
+}
+
+/* Estilo Base de los Paneles */
+.panel-card {
+  background: $bg-panel;
+  padding: 30px;
+  position: relative;
+
+  /* Corte en esquinas */
+  clip-path: polygon(
+    0 0,
+    calc(100% - 10px) 0,
+    100% 10px,
+    100% 100%,
+    10px 100%,
+    0 calc(100% - 10px)
+  );
+}
+
+/* --- 1. TARJETA DE PERFIL (Izquierda) --- */
+.profile-card {
+  border: none;
+  box-shadow: none;
+  position: relative;
+
+  /* Borde que sigue el clip-path usando pseudo-elemento */
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: $gold-mid;
+    clip-path: polygon(
+      /* Borde exterior */ 0 0,
+      calc(100% - 20px) 0,
+      100% 20px,
+      100% 100%,
+      20px 100%,
+      0 calc(100% - 20px),
+      0 0,
+      /* Borde interior (1px hacia adentro) */ 1px 1px,
+      1px calc(100% - 20px - 1px),
+      20px calc(100% - 1px),
+      calc(100% - 1px) calc(100% - 1px),
+      calc(100% - 1px) 20px,
+      calc(100% - 20px - 1px) 1px,
+      1px 1px
+    );
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  background: linear-gradient(
+    135deg,
+    rgba(201, 168, 76, 0.3) 0%,
+    $bg-panel 100%
+  );
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  height: fit-content;
+
+  /* Corte en esquinas más pronunciado (20px) */
+  clip-path: polygon(
+    0 0,
+    calc(100% - 20px) 0,
+    100% 20px,
+    100% 100%,
+    20px 100%,
+    0 calc(100% - 20px)
+  );
+
+  .avatar-section {
+    margin-bottom: 30px;
+
+    .avatar-box {
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(135deg, #8b6914, #c9a84c);
+      border-radius: 15px; /* Cuadrado redondeado */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      margin: 0 auto 15px auto;
+      box-shadow: 0 0 20px rgba(201, 168, 76, 0.3);
+      position: relative;
+
+      /* Efecto "papel doblado" en la esquina superior derecha */
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 20px;
+        height: 20px;
+        background: rgba(255, 255, 255, 0.2);
+        border-bottom-left-radius: 10px;
+      }
+    }
+
+    .greeting {
+      font-size: 0.9rem;
+      font-weight: 400;
+      margin: 0;
+      .username {
+        font-weight: 700;
+        text-transform: uppercase;
+        display: block;
+        font-size: 1.1rem;
+        margin-top: 5px;
+      }
+    }
+  }
+
+  .profile-actions {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    .btn-action {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      cursor: pointer;
+      clip-path: polygon(
+        0 0,
+        calc(100% - 10px) 0,
+        100% 10px,
+        100% 100%,
+        10px 100%,
+        0 calc(100% - 10px)
+      );
+      transition: filter 0.2s;
+      &:hover {
+        filter: brightness(1.2);
+      }
+
+      &.btn-photo {
+        background: linear-gradient(135deg, #8b6914, #c9a84c);
+        color: white;
+      } /* Gris Azulado */
+      &.btn-link {
+        background: linear-gradient(135deg, #c9a84c, #ffd700);
+        color: white;
+      }
+    }
+  }
+}
+
+/* --- 2. PANEL DE FINANZAS (Derecha) --- */
+.finance-panel {
+  border: none;
+  box-shadow: none;
+  position: relative;
+
+  /* Borde que sigue el clip-path usando pseudo-elemento */
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: $gold-dark;
+    clip-path: polygon(
+      /* Borde exterior */ 0 0,
+      calc(100% - 20px) 0,
+      100% 20px,
+      100% 100%,
+      20px 100%,
+      0 calc(100% - 20px),
+      0 0,
+      /* Borde interior (1px hacia adentro) */ 1px 1px,
+      1px calc(100% - 20px - 1px),
+      20px calc(100% - 1px),
+      calc(100% - 1px) calc(100% - 1px),
+      calc(100% - 1px) 20px,
+      calc(100% - 20px - 1px) 1px,
+      1px 1px
+    );
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* Corte en esquinas más pronunciado (20px) */
+  clip-path: polygon(
+    0 0,
+    calc(100% - 20px) 0,
+    100% 20px,
+    100% 100%,
+    20px 100%,
+    0 calc(100% - 20px)
+  );
+
+  .panel-title {
+    margin: 0 0 25px 0;
+    font-size: 1rem;
+    font-weight: 800;
+    color: #ccc;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* Tarjeta de Wallet Balance */
+  .wallet-balance-card {
+    background: linear-gradient(
+      90deg,
+      #1a1508 0%,
+      #0a0a0a 100%
+    ); /* Morado degradado - púrpura a oscuro */
+    border: none;
+    box-shadow: none;
+    padding: 20px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    position: relative;
+
+    /* Bisel en Superior-Derecha e Inferior-Izquierda */
+    clip-path: polygon(
+      0 0,
+      calc(100% - 20px) 0,
+      100% 20px,
+      100% 100%,
+      20px 100%,
+      0 calc(100% - 20px)
+    );
+
+    /* Borde púrpura que sigue el clip-path */
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: $gold-mid;
+      clip-path: polygon(
+        /* Borde exterior */ 0 0,
+        calc(100% - 20px) 0,
+        100% 20px,
+        100% 100%,
+        20px 100%,
+        0 calc(100% - 20px),
+        0 0,
+        /* Borde interior (1px hacia adentro) */ 1px 1px,
+        1px calc(100% - 20px - 1px),
+        20px calc(100% - 1px),
+        calc(100% - 1px) calc(100% - 1px),
+        calc(100% - 1px) 20px,
+        calc(100% - 20px - 1px) 1px,
+        1px 1px
+      );
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Líneas decorativas internas */
+    &::after {
+      content: "";
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      right: 5px;
+      bottom: 5px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      clip-path: polygon(
+        0 0,
+        calc(100% - 18px) 0,
+        100% 18px,
+        100% 100%,
+        18px 100%,
+        0 calc(100% - 18px)
+      );
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .wallet-section {
+      display: flex;
+      align-items: center; // Alinea verticalmente al centro
+      gap: 10px; // Espacio entre el ícono y el label
+    }
+
+    .wallet-icon {
+      width: 50px;
+      height: 40px;
+      background: linear-gradient(135deg, #8b6914, #c9a84c);
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: white;
+      box-shadow: 0 0 15px rgba(201, 168, 76, 0.2);
+    }
+
+    .label {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: white; // O el color que prefieras para el texto
+    }
+
+    .balance-info {
+      position: relative;
+      z-index: 2;
+
+      .amount {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: $gold-light;
+        small {
+          font-size: 1.2rem;
+          color: #aaa;
+          margin-left: 5px;
+        }
+      }
+
+      .btn-connect {
+        background: linear-gradient(135deg, #cd7f32, #c9a84c);
+        border: none;
+        padding: 10px 20px;
+        color: white;
+        font-weight: 700;
+        font-family: inherit;
+        text-transform: uppercase;
+        cursor: pointer;
+        clip-path: polygon(
+          0 0,
+          calc(100% - 10px) 0,
+          100% 10px,
+          100% 100%,
+          10px 100%,
+          0 calc(100% - 10px)
+        );
+        transition: filter 0.2s;
+
+        &:hover {
+          filter: brightness(1.2);
+        }
+      }
+    }
+
+    @media (max-width: 600px) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 15px;
+      .balance-info {
+        text-align: left;
+      }
+    }
+  }
+
+  /* --- FORMULARIOS --- */
+  .form-section {
+    margin-bottom: 30px;
+
+    /* Separador con Texto */
+    .section-divider {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+
+      &::before,
+      &::after {
+        content: "";
+        flex: 1; // Esto hace que las líneas ocupen el espacio disponible a cada lado
+        height: 1px;
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      span {
+        font-size: 0.7rem;
+        font-weight: 700;
+        color: #888;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        white-space: nowrap;
+        margin: 0 15px; // Margen horizontal para separar el texto de las líneas
+      }
+    }
+
+    .form-row {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 15px;
+
+      &.split-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        @media (max-width: 768px) {
+          grid-template-columns: 1fr;
+        }
+      }
+    }
+
+    /* Fila especial para input de autenticación con ícono separado */
+    .auth-input-row {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      width: 100%;
+
+      .icon-standalone {
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+
+        .color-multi {
+          /* Icono asterisco colorido */
+          background: linear-gradient(to bottom, #ffd700, #c9a84c, #8b6914);
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+          font-weight: 900;
+          font-size: 1.5rem;
+        }
+      }
+
+      .input-group {
+        flex: 1;
+      }
+    }
+
+    /* Inputs Estilizados */
+    .input-group {
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: 100%;
+
+      &.full-width {
+        width: 100%;
+      }
+
+      .input-field {
+        width: 100%;
+        background: $input-bg;
+        border: 1px solid $border-color;
+        padding: 12px 15px;
+        color: white;
+        border-radius: 5px;
+        font-size: 0.9rem;
+        outline: none;
+        transition: border 0.2s;
+
+        &.pl-icon {
+          padding-left: 35px;
+        } /* Espacio para icono izq */
+
+        &.rounded {
+          border-radius: 25px;
+          padding: 12px 45px 12px 20px;
+        } /* Input completamente redondeado */
+
+        &:focus {
+          border-color: $gold-light;
+        }
+
+        &.is-invalid {
+          border-color: #ff0055 !important;
+          box-shadow: 0 0 10px rgba(255, 0, 85, 0.3);
+        }
+      }
+
+      /* Iconos dentro del input */
+      .input-addon {
+        position: absolute;
+        right: 15px;
+        color: #666;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        font-size: 0.8rem;
+      }
+
+      .input-icon-left {
+        position: absolute;
+        left: 12px;
+        font-size: 0.8rem;
+        .color-multi {
+          /* Icono asterisco colorido */
+          background: linear-gradient(to bottom, #ffd700, #c9a84c, #8b6914);
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+          font-weight: 900;
+          font-size: 1.2rem;
+        }
+      }
+    }
+
+    /* Fila especial para wallet address con ícono separado */
+    .wallet-row {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      width: 100%;
+
+      .icon-standalone.wallet-icon {
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: $gold-dark;
+      }
+
+      .wallet-address-display {
+        flex: 1;
+      }
+    }
+
+    /* Display de Dirección de Wallet (Read only visual) */
+    .wallet-address-display {
+      background: linear-gradient(135deg, #8b6914, #c9a84c);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+
+      /* Bisel en Superior-Derecha e Inferior-Izquierda */
+      clip-path: polygon(
+        0 0,
+        calc(100% - 15px) 0,
+        100% 15px,
+        100% 100%,
+        15px 100%,
+        0 calc(100% - 15px)
+      );
+
+      .address-text {
+        font-family: monospace;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: white;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+
+    /* Botón Submit */
+    .btn-submit {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      font-weight: 800;
+      text-transform: uppercase;
+      cursor: pointer;
+      margin-top: 10px;
+      color: white;
+
+      /* Bisel en Superior-Derecha e Inferior-Izquierda */
+      clip-path: polygon(
+        0 0,
+        calc(100% - 15px) 0,
+        100% 15px,
+        100% 100%,
+        15px 100%,
+        0 calc(100% - 15px)
+      );
+
+      &.green-grad {
+        background: linear-gradient(135deg, #8b6914, #c9a84c, #ffd700);
+        &:hover {
+          filter: brightness(1.1);
+        }
+      }
+    }
+
+    // Contenedor de mensajes de error (Copiado de register)
+    .validation-errors {
+      margin-top: 4px;
+      display: flex;
+      flex-direction: column;
+
+      small {
+        color: #ff0055; // Using the error color from .is-invalid
+        font-size: 11px;
+        font-weight: 500;
+        line-height: 1.2;
+      }
+    }
+  }
+}

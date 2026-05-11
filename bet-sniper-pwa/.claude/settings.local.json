@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run:*)",
+      "Bash(node -e \"const pkg = require\\('./node_modules/@angular/material/package.json'\\); console.log\\(Object.keys\\(pkg.exports || {}\\).filter\\(k => k.includes\\('snack'\\)\\).join\\('\\\\n'\\)\\)\")"
+    ]
+  }
+}

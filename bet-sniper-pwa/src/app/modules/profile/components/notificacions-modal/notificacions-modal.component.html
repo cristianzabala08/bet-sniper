@@ -1,0 +1,39 @@
+<div class="modal-overlay" (click)="closeModal()">
+  <!-- Wrapper para posicionamiento relativo (permite botón flotante fuera del recorte) -->
+  <div class="modal-wrapper" (click)="$event.stopPropagation()">
+    <!-- Contenedor principal con el diseño recortado -->
+    <div class="modal-container cyber-border">
+      <!-- Contenido Interno -->
+      <div class="modal-content">
+        <!-- Cabecera: Título y Fecha -->
+        <div class="modal-header">
+          <h2 class="notification-title">
+            {{
+              notification?.subject ||
+                "Notificación"
+            }}
+          </h2>
+          <span class="notification-date">
+            {{ notification?.date || "16/04/2025" }}
+          </span>
+          <div class="divider-line"></div>
+        </div>
+
+        <!-- Cuerpo: Texto con Scroll -->
+        <div class="modal-body custom-scroll">
+          <p class="text-highlight">
+            {{
+              notification?.description ||
+                "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat."
+            }}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Botón Cerrar (Flotante sobre la esquina biselada) -->
+    <button class="btn-close" (click)="closeModal()">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+</div>

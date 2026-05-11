@@ -1,0 +1,23 @@
+<div class="modal-overlay" (click)="closeModal()">
+  <div class="modal-wrapper" (click)="$event.stopPropagation()">
+    <div class="modal-container cyber-border">
+      <div class="modal-content">
+        <h3 class="modal-title">Selecciona tu Avatar</h3>
+
+        <div class="icons-grid">
+          <div
+            class="icon-item"
+            *ngFor="let icon of icons"
+            (click)="selectIcon(icon)"
+          >
+            <i [class]="'fa-solid ' + icon"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn-close" (click)="closeModal()">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+</div>

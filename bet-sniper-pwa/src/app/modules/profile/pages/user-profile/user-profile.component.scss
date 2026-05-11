@@ -1,0 +1,471 @@
+/* --- VARIABLES - Luxury Dark Gold Theme --- */
+$gold-primary: #c9a84c;
+$gold-light: #ffd700;
+$gold-dark: #8b6914;
+$gold-accent: #d4af37;
+$gold-mid: #c9a84c;
+$bronze: #cd7f32;
+$bg-panel: rgba(18, 18, 16, 0.95);
+$neon-blue: #c9a84c;
+$neon-green: #c9a84c;
+$neon-purple: #c9a84c;
+$neon-pink: #d4af37;
+$text-white: #f5f0e1;
+$text-muted: #8a7e6b;
+$input-bg: rgba(10, 10, 8, 0.6);
+$border-color: #2a2520;
+$gold-glow: rgba(201, 168, 76, 0.15);
+$gold-glow-strong: rgba(201, 168, 76, 0.3);
+
+.profile-settings-container {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 30px;
+  width: 100%;
+  font-family: "Rajdhani", sans-serif;
+  color: $text-white;
+
+  @media (max-width: 1000px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Estilo Base Paneles */
+.panel-card {
+  background: $bg-panel;
+  padding: 30px;
+  position: relative;
+  /* Corte en esquinas */
+  clip-path: polygon(
+    0 0,
+    calc(100% - 10px) 0,
+    100% 10px,
+    100% 100%,
+    10px 100%,
+    0 calc(100% - 10px)
+  );
+}
+
+/* --- 1. TARJETA DE PERFIL (Izquierda - Estilo compartido) --- */
+.profile-card {
+  border: none;
+  box-shadow: none;
+  position: relative;
+
+  /* Borde que sigue el clip-path usando pseudo-elemento */
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: $gold-mid;
+    clip-path: polygon(
+      /* Borde exterior */ 0 0,
+      calc(100% - 20px) 0,
+      100% 20px,
+      100% 100%,
+      20px 100%,
+      0 calc(100% - 20px),
+      0 0,
+      /* Borde interior (1px hacia adentro) */ 1px 1px,
+      1px calc(100% - 20px - 1px),
+      20px calc(100% - 1px),
+      calc(100% - 1px) calc(100% - 1px),
+      calc(100% - 1px) 20px,
+      calc(100% - 20px - 1px) 1px,
+      1px 1px
+    );
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  background: linear-gradient(
+    135deg,
+    rgba(201, 168, 76, 0.2) 0%,
+    $bg-panel 100%
+  );
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  height: fit-content;
+
+  /* Corte en esquinas más pronunciado (20px) */
+  clip-path: polygon(
+    0 0,
+    calc(100% - 20px) 0,
+    100% 20px,
+    100% 100%,
+    20px 100%,
+    0 calc(100% - 20px)
+  );
+
+  .avatar-section {
+    margin-bottom: 30px;
+    .avatar-box {
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(135deg, $gold-dark, $gold-primary);
+      clip-path: polygon(
+        0 0,
+        calc(100% - 10px) 0,
+        100% 10px,
+        100% 100%,
+        10px 100%,
+        0 calc(100% - 10px)
+      );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      margin: 0 auto 15px auto;
+      box-shadow: 0 0 20px $gold-glow-strong;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      position: relative;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 20px;
+        height: 20px;
+        background: rgba(255, 255, 255, 0.2);
+        border-bottom-left-radius: 10px;
+      }
+    }
+    .greeting {
+      font-size: 0.9rem;
+      font-weight: 400;
+      margin: 0;
+      .username {
+        font-weight: 700;
+        text-transform: uppercase;
+        display: block;
+        font-size: 1.1rem;
+        margin-top: 5px;
+      }
+    }
+  }
+
+  .profile-actions {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    .btn-action {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      cursor: pointer;
+      clip-path: polygon(
+        0 0,
+        calc(100% - 10px) 0,
+        100% 10px,
+        100% 100%,
+        10px 100%,
+        0 calc(100% - 10px)
+      );
+      transition: filter 0.2s;
+      &:hover {
+        filter: brightness(1.2);
+      }
+
+      &.btn-photo {
+        background: linear-gradient(135deg, $gold-dark 0%, $gold-primary 100%);
+        color: #0a0a0a;
+      }
+      &.btn-link {
+        background: linear-gradient(135deg, $gold-primary 0%, $gold-light 100%);
+        color: #0a0a0a;
+      }
+    }
+  }
+}
+
+/* --- 2. PANEL DE SETTINGS (Derecha) --- */
+.settings-panel {
+  border: none;
+  box-shadow: none;
+  position: relative;
+
+  /* Borde que sigue el clip-path usando pseudo-elemento */
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: $gold-dark;
+    clip-path: polygon(
+      /* Borde exterior */ 0 0,
+      calc(100% - 20px) 0,
+      100% 20px,
+      100% 100%,
+      20px 100%,
+      0 calc(100% - 20px),
+      0 0,
+      /* Borde interior (1px hacia adentro) */ 1px 1px,
+      1px calc(100% - 20px - 1px),
+      20px calc(100% - 1px),
+      calc(100% - 1px) calc(100% - 1px),
+      calc(100% - 1px) 20px,
+      calc(100% - 20px - 1px) 1px,
+      1px 1px
+    );
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* Corte en esquinas más pronunciado (20px) */
+  clip-path: polygon(
+    0 0,
+    calc(100% - 20px) 0,
+    100% 20px,
+    100% 100%,
+    20px 100%,
+    0 calc(100% - 20px)
+  );
+
+  /* Fondo del panel */
+  background: $bg-panel;
+  .panel-header {
+    margin-bottom: 30px;
+    .title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      margin: 0 0 5px 0;
+      text-transform: uppercase;
+    }
+    .subtitle {
+      font-size: 0.85rem;
+      color: $text-muted;
+      margin: 0;
+    }
+  }
+
+  .settings-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .form-group {
+      position: relative;
+      width: 100%;
+
+      .input-field {
+        width: 100%;
+        background: $input-bg;
+        &.input-id-user {
+          background: linear-gradient(90deg, rgba(139, 105, 20, 0.2) 0%, rgba(201, 168, 76, 0.1) 100%);
+          border: transparent;
+          border-bottom: none;
+        }
+        border: none;
+        padding: 15px;
+        color: white;
+        border-radius: 5px;
+        font-size: 0.9rem;
+        outline: none;
+        border-bottom: 1px solid transparent;
+        transition: border 0.3s;
+
+        &:focus {
+          border-bottom-color: $gold-primary;
+          box-shadow: 0 0 8px $gold-glow;
+        }
+        &::placeholder {
+          color: rgba(255, 255, 255, 0.3);
+        }
+      }
+
+      /* Icono dentro del input a la derecha */
+      &.icon-right {
+        .input-icon {
+          position: absolute;
+          right: 15px;
+          top: 50%;
+          transform: translateY(-50%);
+          color: #555;
+          font-size: 1.2rem;
+        }
+      }
+    }
+
+    /* DIVIDER CON TEXTO CENTRAL */
+    .section-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      margin: 10px 0;
+
+      span {
+        background: transparent;
+        padding: 0 10px;
+        z-index: 2;
+        font-size: 0.7rem;
+        font-weight: 700;
+        color: $text-muted;
+        text-transform: uppercase;
+      }
+      &::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.1);
+        top: 50%;
+        z-index: 1;
+      }
+    }
+
+    .row-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* BOTONES DE APPS */
+    .apps-buttons {
+      .app-item {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+
+        .icon-colored {
+          /* Simular el logo de colores de google o asterisk colorido */
+          background: linear-gradient(
+            135deg,
+            #ea4335,
+            #fbbc05,
+            #34a853,
+            #4285f4
+          );
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+          font-size: 2rem;
+          flex-shrink: 0;
+        }
+
+        .fa-wallet {
+          color: #b4b1b4;
+          font-size: 2rem;
+          flex-shrink: 0;
+        }
+      }
+
+      .btn-app {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 15px;
+        border: none;
+        border-radius: 5px;
+        font-weight: 800;
+        font-size: 0.8rem;
+        color: white;
+        text-transform: uppercase;
+        cursor: pointer;
+        flex: 1;
+        clip-path: polygon(
+          0 0,
+          calc(100% - 10px) 0,
+          100% 10px,
+          100% 100%,
+          10px 100%,
+          0 calc(100% - 10px)
+        );
+        transition: filter 0.2s;
+
+        &:hover {
+          filter: brightness(1.2);
+        }
+
+        &.google-btn {
+          background: linear-gradient(
+            315deg,
+            rgba(18, 18, 16, 0.8) 0%,
+            rgba(42, 37, 32, 0.6) 40%,
+            rgba(139, 105, 20, 0.3) 70%,
+            rgba(201, 168, 76, 0.2) 100%
+          );
+
+          &.activated {
+            background: linear-gradient(135deg, $gold-dark 0%, $gold-primary 100%);
+            opacity: 1;
+            cursor: not-allowed;
+          }
+        }
+
+        &.web3-btn {
+          background: linear-gradient(135deg, $bronze 0%, $gold-primary 100%);
+        }
+      }
+    }
+
+    /* BOTÓN GUARDAR (Verde/Azul Gradiente Ancho) */
+    .btn-save {
+      width: 100%;
+      padding: 15px;
+      margin-top: 10px;
+      border: none;
+      font-weight: 800;
+      text-transform: uppercase;
+      cursor: pointer;
+      background: linear-gradient(135deg, $gold-dark, $gold-primary, $gold-light);
+      color: white;
+      clip-path: polygon(
+        0 0,
+        calc(100% - 10px) 0,
+        100% 10px,
+        100% 100%,
+        10px 100%,
+        0 calc(100% - 10px)
+      );
+      &:hover {
+        filter: brightness(1.1);
+      }
+    }
+
+    /* ESTILOS DE VALIDACIÓN (Copiados de Register) */
+    .input-wrapper.is-invalid {
+      .input-field {
+        border-bottom: 1px solid #ff4d4f !important;
+        color: #ff4d4f;
+      }
+      .input-icon {
+        color: #ff4d4f !important;
+      }
+    }
+
+    .validation-errors {
+      margin-top: 4px;
+      display: flex;
+      flex-direction: column;
+
+      small {
+        color: #ff4d4f;
+        font-size: 11px;
+        font-weight: 500;
+        line-height: 1.2;
+      }
+    }
+  }
+}

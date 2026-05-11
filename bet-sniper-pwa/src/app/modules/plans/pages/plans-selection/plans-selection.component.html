@@ -1,0 +1,94 @@
+<div class="plans-container">
+  <app-logo></app-logo>
+  <!-- HEADER DE LA SECCIÓN -->
+  <div class="plans-header-banner">
+    <div class="header-content">
+      <h2 class="title">{{ "PLANS.TITLE" | translate }}</h2>
+      <div class="banner-icon">
+        <img src="assets/celular.png" alt="Bet Sniper Logo" class="celular-img" />
+      </div>
+      <div class="banner-text">
+        <p class="text-graphic">
+          {{ "PLANS.SUB_TITLE" | translate }}
+          <span class="text-green">{{ "PLANS.SUB_TITLE_2" | translate }}</span>
+        </p>
+
+        <!-- Manual Verify Button -->
+        <div style="margin-top: 15px">
+          <button class="btn-verify" (click)="openVerifyModal()">
+            <i class="fa-solid fa-file-invoice-dollar"></i>
+            {{ "PLANS.MODAL.MANUAL_VERIFY_BTN" | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GRID DE TARJETAS -->
+  <div class="plans-grid">
+    @for (plan of planViewModels; track plan.id; let i = $index) {
+      <div class="plan-card mt-5" [ngClass]="plan.cssClassType">
+        <div class="card-badge"><i [class]="plan.iconClass"></i></div>
+        <h3 class="plan-name">
+          {{ "PLANS.CARD.TITLE" | translate }} <strong>{{ plan.name }}</strong>
+        </h3>
+
+        <div class="price-row">
+          <div class="duration">
+            <span class="num">{{ plan.durationNum }}</span>
+            <span class="unit">{{ plan.durationUnitKey | translate }}</span>
+          </div>
+          <div class="vertical-divider"></div>
+          <div class="cost">
+            <small>{{ plan.costLabelKey | translate }}</small>
+            <span class="amount">{{ plan.price | number: "1.2-2" }}</span>
+            <span class="currency">USDT</span>
+          </div>
+        </div>
+
+        <ul class="features-list">
+          @for (feature of plan.features; track feature.key) {
+            <li>
+              <i [class]="feature.icon"></i>
+              @if (feature.bold) {
+                <strong>{{ feature.key | translate }}</strong>
+              } @else {
+                {{ feature.key | translate }}
+              }
+            </li>
+          }
+        </ul>
+
+        <button class="btn-buy" (click)="buyPlan(i)">
+          {{ "PLANS.CARD.BTN_BUY" | translate }}
+        </button>
+      </div>
+    }
+  </div>
+
+  <app-info-cards></app-info-cards>
+
+  <!-- Confirmation Modal -->
+  <app-confirmation-modal
+    [isVisible]="isModalVisible"
+    [title]="modalTitle"
+    [message]="modalMessage"
+    [confirmText]="modalConfirmText"
+    [cancelText]="modalCancelText"
+    (confirm)="onModalConfirm()"
+    (cancel)="onModalCancel()"
+  >
+  </app-confirmation-modal>
+
+  <app-manual-verify-modal
+    [isVisible]="isVerifyModalVisible"
+    (verify)="onVerifyTransaction($event)"
+    (cancel)="closeVerifyModal()"
+  ></app-manual-verify-modal>
+
+  <app-plan-purchase-modal
+    [isVisible]="isPurchaseModalVisible"
+    [plan]="selectedPlanForPurchase"
+    (close)="closePurchaseModal()"
+  ></app-plan-purchase-modal>
+</div>

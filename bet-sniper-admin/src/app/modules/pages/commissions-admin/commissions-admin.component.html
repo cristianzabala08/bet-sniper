@@ -1,0 +1,110 @@
+<div class="row">
+  <div class="col-sm-12">
+    <app-card cardTitle="All Commissions" [options]="false">
+      <!-- Optional: Refresh/Filter Buttons could go here -->
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <input type="text" class="form-control" placeholder="Search..." [(ngModel)]="search" (keyup)="onSearchChange()" />
+        </div>
+        <div class="col-md-2">
+          <button class="btn btn-primary" (click)="onSearch()">Search</button>
+        </div>
+        <div class="col-md-3">
+          <select class="form-select" [(ngModel)]="statusFilter" (change)="applyFilter()">
+            <option value="">All Status</option>
+            <option value="pending">Pending</option>
+            <option value="approved">Approved</option>
+            <option value="rejected">Rejected</option>
+            <option value="skipped">Skipped</option>
+          </select>
+        </div>
+        <div class="col-auto ms-auto">
+          <button class="btn btn-icon btn-outline-primary" (click)="loadCommissions()" title="Refresh">
+            <i class="feather icon-refresh-cw"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Receiver</th>
+              <th>Level</th>
+              <th>Amount</th>
+              <th>Percentage</th>
+              <th>Status</th>
+              <th>Transaction ID</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let com of paginatedCommissions">
+              <td>{{ com.createdAt | date: 'medium' }}</td>
+              <div class="d-flex align-items-center" *ngIf="com.receiver_id && com.receiver_id['username']">
+                <span class="badge bg-light text-dark border m-r-10">{{ com.receiver_id['username'].charAt(0).toUpperCase() }}</span>
+                <div>
+                  <div class="fw-bold">{{ com.receiver_id['username'] }}</div>
+                  <small class="text-muted">{{ com.receiver_id['email'] }}</small>
+                </div>
+              </div>
+              <div *ngIf="!com.receiver_id || !com.receiver_id['username']">
+                <small class="text-muted">{{ com.receiver_id || 'N/A' }}</small>
+              </div>
+              <td>Level {{ com.level }}</td>
+              <td>{{ com.amount | currency: 'USD' }}</td>
+              <td>{{ com.percentage }}%</td>
+              <td>
+                <span
+                  class="badge"
+                  [ngClass]="{
+                    'bg-success': com.validation_status === 'approved',
+                    'bg-warning': com.validation_status === 'skipped',
+                    'bg-danger': com.validation_status === 'rejected'
+                  }"
+                >
+                  {{ com.validation_status }}
+                </span>
+              </td>
+              <td>
+                <small class="text-muted text-truncate d-inline-block" style="max-width: 150px" [title]="com.transaction_id">
+                  {{ com.transaction_id }}
+                </small>
+              </td>
+              <td>
+                <button
+                  class="btn btn-icon btn-rounded btn-outline-info"
+                  type="button"
+                  [routerLink]="['/users', com.receiver_id['_id'] || com.receiver_id]"
+                  title="View User"
+                >
+                  <i class="feather icon-eye"></i>
+                </button>
+              </td>
+            </tr>
+            <tr *ngIf="filteredCommissions.length === 0 && !loading">
+              <td colspan="8" class="text-center">No commissions found.</td>
+            </tr>
+            <tr *ngIf="loading">
+              <td colspan="8" class="text-center">Loading...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="d-flex justify-content-between align-items-center" *ngIf="total > 0">
+        <div>Showing {{ (page - 1) * limit + 1 }} to {{ min(page * limit, total) }} of {{ total }} entries</div>
+        <ngb-pagination
+          [collectionSize]="total"
+          [(page)]="page"
+          [pageSize]="limit"
+          (pageChange)="onPageChange($event)"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+        ></ngb-pagination>
+      </div>
+    </app-card>
+  </div>
+</div>

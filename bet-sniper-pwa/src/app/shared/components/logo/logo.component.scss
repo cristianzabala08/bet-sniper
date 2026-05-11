@@ -1,0 +1,124 @@
+$gold-primary: #c9a84c;
+$gold-light: #ffd700;
+$gold-dark: #8b6914;
+
+.betsniper-header {
+  position: relative;
+  margin: 10px 15px 0 15px;
+  padding: 0;
+
+  .hex-border-top, .hex-border-bottom {
+    height: 3px;
+    background: linear-gradient(90deg, transparent 0%, $gold-dark 15%, $gold-primary 50%, $gold-dark 85%, transparent 100%);
+    position: relative;
+
+    &::before, &::after {
+      content: '';
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: $gold-primary;
+      transform: rotate(45deg);
+      top: -2.5px;
+    }
+    &::before { left: 12%; }
+    &::after { right: 12%; }
+  }
+
+  .header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(201, 168, 76, 0.08) 0%, transparent 60%),
+      rgba(10, 10, 8, 0.9);
+    border-left: 1px solid rgba(201, 168, 76, 0.15);
+    border-right: 1px solid rgba(201, 168, 76, 0.15);
+    /* Hexagonal SVG background */
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpath d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100' fill='none' stroke='rgba(201,168,76,0.06)' stroke-width='0.5'/%3E%3C/svg%3E"),
+      radial-gradient(ellipse at 50% 0%, rgba(201, 168, 76, 0.08) 0%, transparent 60%),
+      rgba(10, 10, 8, 0.9);
+  }
+
+  .logo-side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+
+    .brand-text {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: 4px;
+      color: $gold-primary;
+      text-shadow: 0 0 10px rgba(201, 168, 76, 0.3);
+    }
+
+    .brand-sub {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 3px;
+      color: rgba(201, 168, 76, 0.5);
+      margin-top: 2px;
+    }
+  }
+
+  .logo-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 2;
+
+    .main-logo {
+      width: 80px;
+      height: auto;
+      filter: drop-shadow(0 0 15px rgba(201, 168, 76, 0.4))
+              drop-shadow(0 0 30px rgba(255, 215, 0, 0.15));
+      margin-bottom: 5px;
+    }
+
+    .brand-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2rem;
+      font-weight: 900;
+      letter-spacing: 8px;
+      background: linear-gradient(135deg, $gold-light, $gold-primary, $gold-light);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin: 0;
+      line-height: 1.1;
+      text-shadow: none;
+
+      .i-accent {
+        -webkit-text-fill-color: $gold-light;
+        font-style: italic;
+      }
+    }
+
+    .brand-tagline {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 6px;
+      color: rgba(201, 168, 76, 0.6);
+      margin: 3px 0 0 0;
+      text-transform: uppercase;
+    }
+  }
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .betsniper-header {
+    .logo-side { display: none; }
+    .logo-center {
+      flex: 1;
+      .main-logo { width: 60px; }
+      .brand-title { font-size: 1.5rem; letter-spacing: 5px; }
+      .brand-tagline { font-size: 0.6rem; letter-spacing: 4px; }
+    }
+  }
+}

@@ -1,0 +1,153 @@
+<section class="info-cards-zone mt-3 mb-5">
+  <div class="green-card-container mt-5">
+    <div class="icon-corner">
+      <i class="fa-regular fa-calendar-check"></i>
+    </div>
+
+    <div class="border-wrapper">
+      <div class="info-card green-card">
+        <div class="card-content">
+          <h3 class="card-title">
+            {{ "DASHBOARD.CARDBAR.ACTIVE_MEMBERSHIP" | translate }}
+          </h3>
+
+          <div class="membership-info">
+            <div *ngIf="currentPlan && membershipExpiration; else noPlan">
+              <div class="months-display">
+                <span class="big-number" style="font-size: 1.5rem">
+                  {{ planLabel | translate }}
+                </span>
+                <span class="label" style="display: block">
+                  Exp: {{ dateFormateWithTime(membershipExpiration) }}
+                </span>
+              </div>
+
+              <div class="time-remaining">
+                <span class="label">{{
+                  "DASHBOARD.CARDBAR.REMAINING_TIME" | translate
+                }}</span>
+                <div class="time-values">
+                  <div class="time-item" *ngIf="timeLeft.months > 0">
+                    <span class="value">{{ timeLeft.months }}</span>
+                    <span class="unit">{{
+                      "DASHBOARD.CARDBAR.MONTHS" | translate
+                    }}</span>
+                  </div>
+                  <div class="time-item">
+                    <span class="value">{{ timeLeft.days }}</span>
+                    <span class="unit">{{
+                      "DASHBOARD.CARDBAR.DAYS" | translate
+                    }}</span>
+                  </div>
+                  <div class="time-item">
+                    <span class="value">{{ timeLeft.hours }}</span>
+                    <span class="unit">{{
+                      "DASHBOARD.CARDBAR.HOURS" | translate
+                    }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <ng-template #noPlan>
+              <div class="months-display">
+                <span class="label" style="font-size: 1rem; color: #aaa">
+                  {{ "DASHBOARD.CARDBAR.NO_ACTIVE_PLAN" | translate }}
+                </span>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+
+        <button class="btn-card green" (click)="renewMembership()">
+          <i class="fa-solid fa-rotate"></i>
+          {{ "DASHBOARD.CARDBAR.RENEW_MEMBERSHIP" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="purple-card-container mt-5">
+    <div class="icon-corner">
+      <i class="fa-solid fa-users"></i>
+    </div>
+
+    <div class="border-wrapper">
+      <div class="info-card purple-card">
+        <div class="card-content">
+          <h3 class="card-title">
+            {{ "DASHBOARD.CARDBAR.REFERRALS_IN_YOUR_NETWORK" | translate }}
+          </h3>
+
+          <div class="referral-info">
+            <div class="main-stat">
+              <span class="big-number">{{ referralsCount }}</span>
+              <div class="label-group">
+                <span class="label">{{
+                  "DASHBOARD.CARDBAR.REFERRALS" | translate
+                }}</span>
+                <span class="label">{{
+                  "DASHBOARD.CARDBAR.DIRECT" | translate
+                }}</span>
+              </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="secondary-stats">
+              <div class="stat-item">
+                <span class="label">{{
+                  "DASHBOARD.CARDBAR.TOTAL_IN_YOUR_NETWORK" | translate
+                }}</span>
+                <span class="value">{{ referralsNetwork }}</span>
+                <span class="sub-label">NETWORK</span>
+              </div>
+
+              <div class="divider-small"></div>
+
+              <div class="stat-item">
+                <span class="label">{{
+                  "DASHBOARD.CARDBAR.NEW_REFERRALS" | translate
+                }}</span>
+                <span class="value">{{ newReferralsCount }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn-card purple btn-purple" (click)="copyReferralLink()">
+          <i class="fa-solid fa-link"></i>
+          {{ "PROFILE.USER.BTN_COPY_LINK" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="green-card-container mt-5">
+    <div class="icon-corner">
+      <i class="fa-solid fa-tag"></i>
+    </div>
+
+    <div class="border-wrapper">
+      <div class="info-card blue-card">
+        <div class="card-content">
+          <h3 class="card-title">
+            {{ "DASHBOARD.CARDBAR.NETWORK_COMMISSIONS" | translate }}
+          </h3>
+
+          <div class="commissions-info">
+            <div class="money-number">
+              <small>USDT</small>
+              <span>{{ pointsBalance | number: "1.2-4" }}</span>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn-card blue" routerLink="/app/profile/finances">
+          <i class="fa-solid fa-info"></i>
+          {{ "DASHBOARD.CARDBAR.GO_TO_YOUR_USER_PROFILE" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

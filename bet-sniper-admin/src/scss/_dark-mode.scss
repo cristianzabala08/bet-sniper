@@ -1,0 +1,396 @@
+// =======================================
+//   Luxury Dark Gold Theme - Always Active
+//   Bet Sniper Admin Panel
+// =======================================
+
+$gold-bg: #0a0a0a;
+$gold-card-bg: #121210;
+$gold-border: #2a2520;
+$gold-text: #b0a48a;
+$gold-text-light: #f5f0e1;
+$gold-header-bg: #0d0d0b;
+$gold-accent: #c9a84c;
+$gold-glow: rgba(201, 168, 76, 0.15);
+$gold-glow-strong: rgba(201, 168, 76, 0.3);
+
+// Apply dark gold theme globally (not just dark-mode class)
+body {
+  background: $gold-bg !important;
+  color: $gold-text;
+
+  // General Layout
+  .pcoded-main-container {
+    background: $gold-bg;
+  }
+
+  // Cards - Dark with gold accents
+  .card {
+    background-color: $gold-card-bg;
+    color: $gold-text;
+    border: 1px solid $gold-border;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
+    border-radius: 8px;
+
+    .card-header {
+      border-bottom-color: $gold-border;
+      background-color: rgba(201, 168, 76, 0.03);
+
+      h5 {
+        color: $gold-accent;
+        font-weight: 600;
+
+        &:after {
+          background-color: $gold-accent;
+        }
+      }
+
+      .card-header-right .btn.dropdown-toggle {
+        color: $gold-text;
+      }
+    }
+
+    .card-footer {
+      border-top-color: $gold-border;
+      background-color: rgba(201, 168, 76, 0.03);
+    }
+
+    .card-body {
+      background-color: $gold-card-bg;
+    }
+  }
+
+  // Header & Navbar
+  app-nav-bar {
+    .header-navbar {
+      background: $gold-header-bg;
+      color: $gold-text-light;
+      border-bottom: 1px solid $gold-border;
+    }
+  }
+
+  .pcoded-navbar {
+    background: #0a0a08;
+    border-right: 1px solid $gold-border;
+
+    .pcoded-inner-navbar > li > a {
+      color: $gold-text;
+
+      &:hover {
+        color: $gold-accent;
+      }
+    }
+
+    .pcoded-inner-navbar li.active > a,
+    .pcoded-inner-navbar li.pcoded-trigger > a {
+      color: $gold-accent;
+      background: $gold-glow;
+    }
+
+    .pcoded-inner-navbar > app-nav-group > app-nav-item > li.active > a {
+      color: $gold-accent;
+      background: $gold-glow;
+    }
+
+    // Menu group title
+    .pcoded-inner-navbar li.pcoded-menu-caption {
+      > label {
+        color: $gold-accent;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+    }
+
+    // Navigation brand
+    .navbar-brand {
+      background: $gold-header-bg;
+      border-bottom: 1px solid $gold-border;
+    }
+  }
+
+  .header-navbar {
+    background: $gold-header-bg;
+    .navbar-content {
+      color: $gold-text-light;
+    }
+    .b-brand .b-title {
+      color: $gold-accent;
+      font-weight: 700;
+    }
+  }
+
+  // Dropdowns
+  .dropdown-menu {
+    background-color: $gold-card-bg;
+    color: $gold-text;
+    border: 1px solid $gold-border;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+
+    > li > a {
+      color: $gold-text;
+      &:hover {
+        background: $gold-glow;
+        color: $gold-accent;
+      }
+    }
+
+    &.show:before {
+      color: $gold-card-bg;
+      text-shadow: none;
+    }
+  }
+
+  // Breadcrumbs
+  .page-header-title + .breadcrumb {
+    > .breadcrumb-item {
+      a {
+        color: $gold-text;
+      }
+      &:last-child a {
+        color: $gold-accent;
+        font-weight: 600;
+      }
+    }
+  }
+
+  // Tables
+  .table {
+    color: $gold-text;
+
+    thead th {
+      color: $gold-accent;
+      border-bottom-color: $gold-border;
+      background-color: rgba(201, 168, 76, 0.05);
+      font-weight: 600;
+    }
+
+    td {
+      border-color: $gold-border;
+    }
+
+    tbody tr:hover {
+      background-color: $gold-glow;
+      color: $gold-text-light;
+    }
+
+    &.table-hover tbody tr:hover {
+      background-color: $gold-glow;
+    }
+
+    .table-secondary {
+      background-color: rgba(0, 0, 0, 0.3) !important;
+    }
+  }
+
+  // Form Controls
+  .form-control,
+  .form-select {
+    background: #1a1a18;
+    border-color: $gold-border;
+    color: $gold-text-light;
+
+    &:focus {
+      background: #1e1e1a;
+      color: $gold-text-light;
+      border-color: $gold-accent;
+      box-shadow: 0 0 0 0.2rem $gold-glow;
+    }
+
+    &::placeholder {
+      color: rgba(176, 164, 138, 0.5);
+    }
+
+    &:disabled {
+      background: #0d0d0b;
+      color: rgba(176, 164, 138, 0.5);
+    }
+  }
+
+  .form-check-input {
+    background-color: #1a1a18;
+    border-color: $gold-border;
+
+    &:checked {
+      background-color: $gold-accent;
+      border-color: $gold-accent;
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 0.2rem $gold-glow;
+    }
+  }
+
+  .form-label {
+    color: $gold-text-light;
+    font-weight: 500;
+  }
+
+  // Buttons
+  .btn-primary {
+    background: linear-gradient(135deg, #8b6914, #c9a84c, #ffd700);
+    border: none;
+    color: #0a0a0a;
+    font-weight: 600;
+
+    &:hover {
+      background: linear-gradient(135deg, #c9a84c, #ffd700);
+      box-shadow: 0 0 15px $gold-glow-strong;
+    }
+  }
+
+  .btn-outline-primary {
+    border-color: $gold-accent;
+    color: $gold-accent;
+
+    &:hover {
+      background: $gold-accent;
+      color: #0a0a0a;
+      box-shadow: 0 0 10px $gold-glow;
+    }
+  }
+
+  .btn-secondary {
+    background: #2a2520;
+    border-color: $gold-border;
+    color: $gold-text;
+
+    &:hover {
+      background: #3a3530;
+      color: $gold-text-light;
+    }
+  }
+
+  .btn-outline-info,
+  .btn-outline-success,
+  .btn-outline-warning,
+  .btn-outline-danger {
+    border-width: 1px;
+
+    &:hover {
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  // Badges
+  .badge {
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+
+  .badge.bg-light {
+    background-color: #2a2520 !important;
+    color: $gold-text !important;
+  }
+
+  // Modals
+  .modal-content {
+    background-color: $gold-card-bg;
+    border: 1px solid $gold-border;
+    color: $gold-text;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.6);
+
+    .modal-header {
+      border-bottom-color: $gold-border;
+      background: rgba(201, 168, 76, 0.05);
+
+      .modal-title {
+        color: $gold-accent;
+        font-weight: 600;
+      }
+
+      .btn-close {
+        filter: invert(0.7) sepia(1) hue-rotate(10deg);
+      }
+    }
+
+    .modal-footer {
+      border-top-color: $gold-border;
+      background: rgba(201, 168, 76, 0.03);
+    }
+  }
+
+  // Pagination
+  .page-item {
+    .page-link {
+      background-color: $gold-card-bg;
+      border-color: $gold-border;
+      color: $gold-text;
+
+      &:hover {
+        background-color: $gold-glow-strong;
+        color: $gold-accent;
+      }
+    }
+
+    &.active .page-link {
+      background: linear-gradient(135deg, #8b6914, #c9a84c);
+      border-color: $gold-accent;
+      color: #0a0a0a;
+    }
+
+    &.disabled .page-link {
+      background-color: #0d0d0b;
+      border-color: $gold-border;
+      color: rgba(176, 164, 138, 0.3);
+    }
+  }
+
+  // Links
+  a {
+    color: $gold-accent;
+
+    &:hover {
+      color: #ffd700;
+    }
+  }
+
+  // Headings
+  h1, h2, h3, h4, h5, h6 {
+    color: $gold-text-light;
+  }
+
+  // Text utilities
+  .text-muted {
+    color: rgba(176, 164, 138, 0.6) !important;
+  }
+
+  .text-dark {
+    color: $gold-text !important;
+  }
+
+  // Spinner
+  .spinner-border {
+    color: $gold-accent !important;
+  }
+
+  // Scrollbar
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0a0a0a;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: $gold-border;
+    border-radius: 4px;
+
+    &:hover {
+      background: $gold-accent;
+    }
+  }
+
+  // Selection
+  ::selection {
+    background: $gold-glow-strong;
+    color: $gold-text-light;
+  }
+}
+
+// Keep dark-mode class for backward compatibility
+body.dark-mode {
+  background: $gold-bg;
+  color: $gold-text;
+}

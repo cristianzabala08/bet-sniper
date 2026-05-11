@@ -1,0 +1,45 @@
+<button mat-button [matMenuTriggerFor]="menu" class="lang-btn">
+  <div class="content-wrapper">
+    <i class="fas fa-globe icon-globe"></i>
+    <span class="lang-text">{{ chosenLanguage }}</span>
+    <i class="fas fa-chevron-down icon-arrow"></i>
+  </div>
+</button>
+
+<mat-menu #menu="matMenu" xPosition="before" class="betsniper-lang-menu">
+  <button mat-menu-item (click)="selectLanguage('es')">
+    <span class="flag">🇪🇸</span> <span>Español</span>
+  </button>
+  <button mat-menu-item (click)="selectLanguage('en')">
+    <span class="flag">🇺🇸</span> <span>English</span>
+  </button>
+  <button mat-menu-item (click)="selectLanguage('pt')">
+    <span class="flag">🇧🇷</span> <span>Português</span>
+  </button>
+
+  <button mat-menu-item (click)="selectLanguage('zh')">
+    <span class="flag">🇨🇳</span> <span>中文 (Chinese)</span>
+  </button>
+  <button mat-menu-item (click)="selectLanguage('ja')">
+    <span class="flag">🇯🇵</span> <span>日本語 (Japanese)</span>
+  </button>
+  <button mat-menu-item (click)="selectLanguage('th')">
+    <span class="flag">🇹🇭</span> <span>ไทย (Thai)</span>
+  </button>
+  <button mat-menu-item (click)="selectLanguage('vi')">
+    <span class="flag">🇻🇳</span> <span>Tiếng Việt (Vietnamese)</span>
+  </button>
+
+  <button mat-menu-item (click)="selectLanguage('fr')">
+    <span class="flag">🇫🇷</span> <span>Français</span>
+  </button>
+  <button mat-menu-item (click)="selectLanguage('de')">
+    <span class="flag">🇩🇪</span> <span>Deutsch</span>
+  </button>
+  <button mat-menu-item (click)="selectLanguage('ru')">
+    <span class="flag">🇷🇺</span> <span>Русский (Russian)</span>
+  </button>
+  <button mat-menu-item (click)="selectLanguage('ar')">
+    <span class="flag">🇸🇦</span> <span>العربية (Arabic)</span>
+  </button>
+</mat-menu>

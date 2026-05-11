@@ -1,0 +1,297 @@
+{
+  "LOGIN": {
+    "WELCOME": "مرحبًا، أهلاً بك",
+    "COPYRIGHT": "2025 جميع الحقوق محفوظة.",
+    "USER_PLACEHOLDER": "اسم المستخدم أو البريد الإلكتروني...",
+    "PASS_PLACEHOLDER": "كلمة المرور...",
+    "SHOW": "إظهار",
+    "HIDE": "إخفاء",
+    "2FA_MSG": "يرجى إدخال رمز Google Authenticator.",
+    "2FA_PLACEHOLDER": "رمز المصادقة الثنائية (6 أرقام)",
+    "BTN_LOADING": "جاري التحميل...",
+    "BTN_VERIFY": "التحقق من الرمز",
+    "BTN_ENTER": "تسجيل الدخول",
+    "BTN_CANCEL": "إلغاء",
+    "BTN_REGISTER": "إنشاء حساب",
+    "REMEMBER_ME": "تذكرني؟",
+    "FORGOT_PASS": "نسيت كلمة المرور؟"
+  },
+  "REGISTER": {
+    "USER_LEADER": "اسم مستخدم القائد",
+    "USER_NAME": "اسم المستخدم",
+    "USER_FULL_NAME": "الاسم الكامل",
+    "PASSWORD": "كلمة المرور...",
+    "PASSWORD_REPEAT": "تكرار كلمة المرور...",
+    "EMAIL": "البريد الإلكتروني...",
+    "EMAIL_VERIFY": "التحقق من البريد...",
+    "TITLE": "رائع، أنشئ حسابك",
+    "SPONSOR_OPTION": "الراعي (اختياري)",
+    "USER_NAME_YOU": "اسم المستخدم الخاص بك",
+    "USER_NAME_ERROR": "اسم المستخدم مطلوب.",
+    "USER_NAME_MIN_LENGTH": "الحد الأدنى 3 أحرف.",
+    "USER_NAME_PATTERN_STRING": "أحرف وأرقام فقط (بدون مسافات).",
+    "USER_NAME_REQUIRED": "الاسم مطلوب.",
+    "USER_NAME_PATTERN_SPACE": "الأحرف والمسافات فقط مسموحة.",
+    "CONTRASE_A": "كلمة المرور",
+    "CONTRASE_A_OBLIGATOR": "كلمة المرور مطلوبة.",
+    "PASSWORD_MIN_LENGTH": "يجب أن تكون 8 أحرف على الأقل.",
+    "PASSWORD_MATCH": "كلمات المرور غير متطابقة.",
+    "EMAIL_REQUIRED": "البريد الإلكتروني مطلوب.",
+    "EMAIL_PATTERN": "تنسيق البريد غير صالح.",
+    "EMAIL_MATCH": "رسائل البريد الإلكتروني غير متطابقة.",
+    "ACCEPT_TERMS": "أنا أوافق على",
+    "TERMS_AND_CONDITIONS": "الشروط والأحكام",
+    "BACK_TO_LOGIN": "العودة لتسجيل الدخول",
+    "CREATING": "جاري الإنشاء...",
+    "CREATE_ACCOUNT": "إنشاء حساب"
+  },
+  "FORGOT_PASSWORD": {
+    "WRITE_EMAIL": "اكتب بريدك الإلكتروني...",
+    "RECOVER_ACCESS": "استعادة الوصول",
+    "RECOVER_NEW": "كلمة مرور جديدة",
+    "WRITE_NEW_PASS": "اكتب كلمة المرور الجديدة...",
+    "RECOVER_LINK": "إنشاء كلمة مرور جديدة",
+    "WRITE_EMAIL_PASS": "اكتب بريدك الإلكتروني لإعادة تعيين كلمة المرور",
+    "SEND_RECOVERY_LINK": "إرسال رابط الاستعادة",
+    "BACK_TO_LOGIN": "العودة لتسجيل الدخول",
+    "CREATE_ACCOUNT": "إنشاء حساب"
+  },
+  "DASHBOARD": {
+    "TOP_BAR": {
+      "TITLE": "إحصائيات الجلسة",
+      "TIME_ACTIVE": "الوقت النشط:",
+      "BALANCE_OPERATIVE": "رصيد التشغيل:",
+      "SIGNAL_STATISTICS": "إحصائيات الإشارات:",
+      "SIGNALS_TAKEN": "الإشارات المأخوذة:",
+      "WIN_RATE": "معدل الفوز:",
+      "PROFIT_TOTAL_TODAY": "إجمالي الربح اليوم",
+      "OF": "من"
+    },
+    "ACTIVE_SIGNALS": {
+      "PLAN_REQUIRED_TITLE": "ACTIVE PLAN REQUIRED",
+      "PLAN_REQUIRED_DESC": "To access live signals, you need an active membership. Please purchase or renew your plan."
+    },
+    "HERO": {
+      "SIGNALS_LIST": "قائمة الإشارات",
+      "BTN_SIGNALS_LABEL": "تحميل المزيد من الإشارات",
+      "OPERATIVE_PANEL": "لوحة تشغيل الإشارات",
+      "BTN_START_SESSION": "بدء الجلسة",
+      "BTN_PAUSE_SESSION": "إيقاف الجلسة مؤقتًا",
+      "SIGNALS_CONTROL": "التحكم في الإشارات",
+      "MODE_AUTOMATIC": "الوضع التلقائي",
+      "MODE_MANUAL": "الوضع اليدوي",
+      "MODE_STATUS": "مفعل",
+      "TAKE_SIGNAL": "أخذ هذه الإشارة",
+      "MARTIN_LABEL": "تحكم مارتينجال",
+      "AMOUNT_ASIGNED": "المبلغ المخصص"
+    },
+    "CARDBAR": {
+      "PLANS": {
+        "WEEKLY": "1 أسبوع",
+        "MONTHLY": "1 شهر",
+        "3MONTHS": "3 أشهر",
+        "6MONTHS": "6 أشهر",
+        "9MONTHS": "9 أشهر",
+        "12MONTHS": "12 شهرًا"
+      },
+      "ACTIVE_MEMBERSHIP": "العضوية النشطة",
+      "MONTHS": "أشهر",
+      "REMAINING_TIME": "الوقت المتبقي",
+      "DAYS": "أيام",
+      "HOURS": "ساعات",
+      "RENEW_MEMBERSHIP": "تجديد العضوية",
+      "REFERRALS_IN_YOUR_NETWORK": "الإحالات في شبكتك",
+      "REFERRALS": "الإحالات",
+      "DIRECT": "مباشرة",
+      "TOTAL_IN_YOUR_NETWORK": "الإجمالي في شبكتك",
+      "NETWORK": "الشبكة",
+      "NEW_REFERRALS": "إحالات جديدة",
+      "COPY_YOUR_REFERRAL_LINK": "نسخ رابط الإحالة الخاص بك",
+      "NETWORK_COMMISSIONS": "عمولات الشبكة",
+      "USDT": "USDT",
+      "GO_TO_YOUR_USER_PROFILE": "الذهاب إلى ملفك الشخصي"
+    },
+    "NOTIFICATIONS": {
+      "LAST_NOTIFICATIONS": "آخر الإشعارات",
+      "PUBLISHED": "منشور",
+      "DETEAIL_OPERATIONS": "تفاصيل العمليات"
+    }
+  },
+  "ORACLE": {
+    "WELCOME": "مرحبًا، أنا العراف الخاص بك",
+    "SUB_TITLE": "أنا هنا للإجابة على أسئلتك"
+  },
+  "MENU": {
+    "DASHBOARD": "لوحة القيادة",
+    "SIGNALS": "الإشارات",
+    "PLANS": "الخطط",
+    "HISTORY": "السجل",
+    "REFERRALS": "الإحالات",
+    "SUPPORT": "الدعم"
+  },
+  "DETAIL_OPERATIONS": {
+    "TITLE": "تفاصيل العمليات",
+    "CARD": {
+      "TITLE": "تفاصيل العمليات",
+      "ACTIVE_MEMBERSHIP": "العضوية النشطة",
+      "MONTHS": "أشهر",
+      "REMAINING_TIME": "الوقت المتبقي",
+      "DAYS": "أيام",
+      "HOURS": "ساعات",
+      "DATE": "اختر التاريخ",
+      "BUTTON_DOWNLOAD": "تحميل PDF",
+      "BALANCE": "إجمالي الرصيد",
+      "RENEW_MEMBERSHIP": "تجديد العضوية",
+      "REFERRALS_IN_YOUR_NETWORK": "الإحالات في شبكتك",
+      "REFERRALS": "الإحالات",
+      "DIRECT": "مباشرة",
+      "TOTAL_IN_YOUR_NETWORK": "الإجمالي في شبكتك",
+      "NETWORK": "الشبكة",
+      "NEW_REFERRALS": "إحالات جديدة",
+      "COPY_YOUR_REFERRAL_LINK": "نسخ الرابط",
+      "NETWORK_COMMISSIONS": "عمولات الشبكة",
+      "USDT": "USDT",
+      "GO_TO_YOUR_USER_PROFILE": "الذهاب إلى ملفك الشخصي"
+    }
+  },
+  "PLANS": {
+    "TITLE": "اختر عضويتك",
+    "SUB_TITLE": "احصل على وصول حصري لأدواتنا و",
+    "SUB_TITLE_2": "ابدأ في تلقي إشاراتنا اليوم.",
+    "CARD": {
+      "TITLE": "العضوية",
+      "BASIC": "عضوية أساسية",
+      "AMATEUR": "عضوية هواة",
+      "PRO": "عضوية محترفة",
+      "ELITE": "عضوية النخبة",
+      "SIGNALS_24_7": "إشارات 24/7",
+      "BOT_MANUAL": "بوت يدوي قابل للتكوين",
+      "BOT_AUTOMATIC": "بوت تلقائي",
+      "SUPPORT_24": "دعم 24/7",
+      "BTN_BUY": "شراء",
+      "TIME_RESTANTE": "الوقت المتبقي",
+      "MONTHS": "أشهر",
+      "ACTIVE_MEMBERSHIP": "نشط",
+      "DAYS": "أيام",
+      "HOURS": "ساعات",
+      "RENEW_MEMBERSHIP": "تجديد",
+      "ACTIVE_BY": "مفعل بواسطة",
+      "PAY_UP_TO_6_LEVELS": "Pays up to 6th level"
+    },
+    "PURCHASE_MODAL": {
+      "TITLE_STEP_1": "Connect Wallet",
+      "TITLE_STEP_2": "Approve USDT",
+      "TITLE_STEP_3": "Confirm Purchase",
+      "STEP_1_DESC": "To continue with the purchase, you must first connect your wallet.",
+      "STEP_2_DESC_PREFIX": "Authorize the use of",
+      "STEP_2_DESC_SUFFIX": "to complete the purchase.",
+      "STEP_2_SUBTEXT": "This is a one-time security transaction.",
+      "STEP_3_DESC_PREFIX": "You are about to purchase the plan",
+      "CANCEL_BTN": "Cancel",
+      "CONNECT_WALLET_BTN": "Connect Wallet",
+      "CONNECTING_BTN": "Connecting...",
+      "APPROVE_BTN": "Approve USDT",
+      "APPROVING_BTN": "Approving...",
+      "BUY_BTN": "Buy Now",
+      "PROCESSING_BTN": "Processing..."
+    }
+  },
+  "HISTORY": {
+    "BTN_SEARCH": "بحث",
+    "ID_NUMBER": "رقم المعرف",
+    "DETAILS": "التفاصيل",
+    "DATE": "التاريخ",
+    "AMOUNT": "المبلغ",
+    "STATUS": "الحالة"
+  },
+  "REFERRALS": {
+    "TITLE": "شبكة الإحالة الخاصة بك",
+    "CARDS": {
+      "TITLE": "الإحالات في شبكتك",
+      "SUB_TITLE": "إحالات مباشرة",
+      "TORAL_NETWORK": "الإجمالي في شبكتك",
+      "REFERRALS_NEW": "إحالات جديدة",
+      "BTN_LINK_REFERRALS": "نسخ رابط الإحالة",
+      "COMISSION_NETWORD": "عمولات الشبكة",
+      "SHOW_PROFILE": "الذهاب إلى ملفك الشخصي"
+    }
+  },
+  "SUPPORT": {
+    "TITLE": "إرسال رسالة",
+    "PLACEHOLDER_1": "الموضوع...",
+    "PLACEHOLDER_2": "الرسالة...",
+    "BTN_SEND_SUPPORT": "إرسال للدعم",
+    "CHANNEL_OFFICIAL": "تابعنا على قنواتنا الرسمية",
+    "BTN_ON_WHATSAPP": "مشاركة على واتساب",
+    "BTN_ON_TELEGRAM": "مشاركة على تيليجرام",
+    "BTN_ON_FACEBOOK": "مشاركة على فيسبوك",
+    "BTN_ON_INSTAGRAM": "مشاركة على انستجرام"
+  },
+  "PROFILE": {
+    "USER": {
+      "HELLO": "مرحبًا",
+      "BTN_CHANGE_PHOTO": "تغيير صورة الملف الشخصي",
+      "BTN_COPY_LINK": "نسخ رابط الإحالة"
+    },
+    "DATA_PERSON": {
+      "INFORMATION_PERSON": "معلومات الملف الشخصي",
+      "CONTROL_CONFIG": "التحكم في الحساب والتكوين",
+      "PLACEHOLDER_1": "الاسم الكامل...",
+      "PLACEHOLDER_2": "البريد الإلكتروني...",
+      "CHANGE_PASS": "تغيير كلمة المرور",
+      "PLACEHOLDER_3": "كلمة المرور الجديدة...",
+      "PLACEHOLDER_4": "تأكيد كلمة المرور...",
+      "CONNECT_APP": "ربط التطبيقات",
+      "BTN_GOOGLE_AUTH": "تفعيل مصادقة جوجل",
+      "BTN_WALLET3": "ربط محفظة ويب 3",
+      "BTN_SAVE": "حفظ التغييرات"
+    }
+  },
+  "FINNACE": {
+    "USER": {
+      "HELLO": "مرحبًا",
+      "BTN_CHANGE_PHOTO": "تغيير الصورة",
+      "BTN_COPY_LINK": "نسخ الرابط"
+    },
+    "DATA_FINNACE": {
+      "TITLE": "السحوبات وتحويلات الأموال",
+      "WALLET_BALANCE": "رصيد المحفظة",
+      "COMISIONS_WITHDRAW": "سحب العمولات",
+      "PLACEHOLDER_1": "مبلغ العمولات المراد سحبه...",
+      "PLACEHOLDER_2": "رمز مصادقة جوجل",
+      "PLACEHOLDER_3": "المبلغ المراد تحويله...",
+      "PLACEHOLDER_4": "معرف المستخدم للتحويل إليه...",
+      "PLACEHOLDER_5": "رمز مصادقة جوجل",
+      "DO_WITHDRAW": "إجراء السحب",
+      "TRANSFER_FUNDS": "تحويل الأموال",
+      "BTN_TRANSFER_USER": "تحويل الأموال لمستخدم",
+      "ERROR_2FA_REQUIRED": "التحقق بخطوتين مطلوب لإكمال هذه العملية."
+    }
+  },
+  "NOTIFICATIONS": {
+    "DATE": "التاريخ",
+    "SUBJECT": "الموضوع",
+    "BTN_READ": "فتح الإشعار"
+  },
+  "TRANSACTION": {
+    "STATUS": {
+      "PENDING": "Pending",
+      "APPROVED": "Approved",
+      "REJECTED": "Rejected",
+      "ACTIVE": "Active"
+    },
+    "DETAIL": {
+      "MEMBERSHIP_WEEKLY": "Membership Purchase WEEKLY",
+      "MEMBERSHIP_BASIC": "Membership Purchase BASIC",
+      "MEMBERSHIP_AMATEUR": "Membership Purchase AMATEUR",
+      "MEMBERSHIP_PRO": "Membership Purchase PRO",
+      "MEMBERSHIP_EXPERT": "Membership Purchase EXPERT",
+      "MEMBERSHIP_ELITE": "Membership Purchase ELITE",
+      "WITHDRAW": "Withdraw",
+      "DEPOSIT": "Deposit",
+      "NETWORK_COMMISSION": "Network Commission",
+      "NETWORK_COMMISSION_RENEWAL": "Network Commission (Renewal)",
+      "USER_TRANSFER": "Funds Transfer"
+    }
+  }
+}

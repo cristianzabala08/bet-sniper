@@ -1,0 +1,297 @@
+{
+  "LOGIN": {
+    "WELCOME": "สวัสดี ยินดีต้อนรับ",
+    "COPYRIGHT": "2025 สงวนลิขสิทธิ์",
+    "USER_PLACEHOLDER": "ชื่อผู้ใช้ หรือ อีเมล...",
+    "PASS_PLACEHOLDER": "รหัสผ่าน...",
+    "SHOW": "แสดง",
+    "HIDE": "ซ่อน",
+    "2FA_MSG": "กรุณากรอกรหัส Google Authenticator ของคุณ",
+    "2FA_PLACEHOLDER": "รหัส 2FA (6 หลัก)",
+    "BTN_LOADING": "กำลังโหลด...",
+    "BTN_VERIFY": "ยืนยันรหัส",
+    "BTN_ENTER": "เข้าสู่ระบบ",
+    "BTN_CANCEL": "ยกเลิก",
+    "BTN_REGISTER": "สร้างบัญชี",
+    "REMEMBER_ME": "จดจำฉัน?",
+    "FORGOT_PASS": "ลืมรหัสผ่าน?"
+  },
+  "REGISTER": {
+    "USER_LEADER": "ชื่อผู้ใช้ผู้นำ",
+    "USER_NAME": "ชื่อผู้ใช้",
+    "USER_FULL_NAME": "ชื่อ-นามสกุล",
+    "PASSWORD": "รหัสผ่าน...",
+    "PASSWORD_REPEAT": "ยืนยันรหัสผ่าน...",
+    "EMAIL": "อีเมล...",
+    "EMAIL_VERIFY": "ยืนยันอีเมล...",
+    "TITLE": "เยี่ยมมาก, สร้างบัญชีของคุณ",
+    "SPONSOR_OPTION": "ผู้แนะนำ (ไม่บังคับ)",
+    "USER_NAME_YOU": "ชื่อผู้ใช้ของคุณ",
+    "USER_NAME_ERROR": "จำเป็นต้องมีชื่อผู้ใช้",
+    "USER_NAME_MIN_LENGTH": "อย่างน้อย 3 ตัวอักษร",
+    "USER_NAME_PATTERN_STRING": "ตัวอักษรและตัวเลขเท่านั้น (ห้ามเว้นวรรค)",
+    "USER_NAME_REQUIRED": "จำเป็นต้องระบุชื่อ",
+    "USER_NAME_PATTERN_SPACE": "อนุญาตเฉพาะตัวอักษรและช่องว่าง",
+    "CONTRASE_A": "รหัสผ่าน",
+    "CONTRASE_A_OBLIGATOR": "จำเป็นต้องมีรหัสผ่าน",
+    "PASSWORD_MIN_LENGTH": "ต้องมีอย่างน้อย 8 ตัวอักษร",
+    "PASSWORD_MATCH": "รหัสผ่านไม่ตรงกัน",
+    "EMAIL_REQUIRED": "จำเป็นต้องมีอีเมล",
+    "EMAIL_PATTERN": "รูปแบบอีเมลไม่ถูกต้อง",
+    "EMAIL_MATCH": "อีเมลไม่ตรงกัน",
+    "ACCEPT_TERMS": "ฉันยอมรับ",
+    "TERMS_AND_CONDITIONS": "ข้อกำหนดและเงื่อนไข",
+    "BACK_TO_LOGIN": "กลับไปหน้าเข้าสู่ระบบ",
+    "CREATING": "กำลังสร้าง...",
+    "CREATE_ACCOUNT": "สร้างบัญชี"
+  },
+  "FORGOT_PASSWORD": {
+    "WRITE_EMAIL": "กรอกอีเมลของคุณ...",
+    "RECOVER_ACCESS": "กู้คืนการเข้าถึง",
+    "WRITE_EMAIL_PASS": "กรอกอีเมลของคุณเพื่อรีเซ็ตรหัสผ่าน",
+    "RECOVER_NEW": "รหัสผ่านใหม่",
+    "WRITE_NEW_PASS": "กรอกรหัสผ่านใหม่...",
+    "RECOVER_LINK": "สร้างรหัสผ่านใหม่",
+    "SEND_RECOVERY_LINK": "ส่งลิงก์กู้คืน",
+    "BACK_TO_LOGIN": "กลับไปหน้าเข้าสู่ระบบ",
+    "CREATE_ACCOUNT": "สร้างบัญชี"
+  },
+  "DASHBOARD": {
+    "TOP_BAR": {
+      "TITLE": "สถิติเซสชัน",
+      "TIME_ACTIVE": "เวลาที่ใช้งาน:",
+      "BALANCE_OPERATIVE": "ยอดคงเหลือดำเนินงาน:",
+      "SIGNAL_STATISTICS": "สถิติสัญญาณ:",
+      "SIGNALS_TAKEN": "สัญญาณที่รับ:",
+      "WIN_RATE": "อัตราการชนะ:",
+      "PROFIT_TOTAL_TODAY": "กำไรรวมวันนี้",
+      "OF": "จาก"
+    },
+    "ACTIVE_SIGNALS": {
+      "PLAN_REQUIRED_TITLE": "ACTIVE PLAN REQUIRED",
+      "PLAN_REQUIRED_DESC": "To access live signals, you need an active membership. Please purchase or renew your plan."
+    },
+    "HERO": {
+      "SIGNALS_LIST": "รายการสัญญาณ",
+      "BTN_SIGNALS_LABEL": "โหลดสัญญาณเพิ่มเติม",
+      "OPERATIVE_PANEL": "แผงควบคุมสัญญาณ",
+      "BTN_START_SESSION": "เริ่มเซสชัน",
+      "BTN_PAUSE_SESSION": "หยุดชั่วคราว",
+      "SIGNALS_CONTROL": "การควบคุมสัญญาณ",
+      "MODE_AUTOMATIC": "โหมดอัตโนมัติ",
+      "MODE_MANUAL": "โหมดกำหนดเอง",
+      "MODE_STATUS": "เปิดใช้งาน",
+      "TAKE_SIGNAL": "รับสัญญาณนี้",
+      "MARTIN_LABEL": "การควบคุม Martingale",
+      "AMOUNT_ASIGNED": "จำนวนเงินที่กำหนด"
+    },
+    "CARDBAR": {
+      "PLANS": {
+        "WEEKLY": "1 สัปดาห์",
+        "MONTHLY": "1 เดือน",
+        "3MONTHS": "3 เดือน",
+        "6MONTHS": "6 เดือน",
+        "9MONTHS": "9 เดือน",
+        "12MONTHS": "12 เดือน"
+      },
+      "ACTIVE_MEMBERSHIP": "สมาชิกที่ใช้งานอยู่",
+      "MONTHS": "เดือน",
+      "REMAINING_TIME": "เวลาที่เหลือ",
+      "DAYS": "วัน",
+      "HOURS": "ชั่วโมง",
+      "RENEW_MEMBERSHIP": "ต่ออายุสมาชิก",
+      "REFERRALS_IN_YOUR_NETWORK": "การอ้างอิงในเครือข่ายของคุณ",
+      "REFERRALS": "การอ้างอิง",
+      "DIRECT": "โดยตรง",
+      "TOTAL_IN_YOUR_NETWORK": "รวมในเครือข่าย",
+      "NETWORK": "เครือข่าย",
+      "NEW_REFERRALS": "การอ้างอิงใหม่",
+      "COPY_YOUR_REFERRAL_LINK": "คัดลอกลิงก์อ้างอิง",
+      "NETWORK_COMMISSIONS": "ค่าคอมมิชชั่นเครือข่าย",
+      "USDT": "USDT",
+      "GO_TO_YOUR_USER_PROFILE": "ไปที่โปรไฟล์ผู้ใช้"
+    },
+    "NOTIFICATIONS": {
+      "LAST_NOTIFICATIONS": "การแจ้งเตือนล่าสุด",
+      "PUBLISHED": "เผยแพร่แล้ว",
+      "DETEAIL_OPERATIONS": "รายละเอียดการดำเนินงาน"
+    }
+  },
+  "ORACLE": {
+    "WELCOME": "สวัสดี ฉันคือ Oracle ของคุณ",
+    "SUB_TITLE": "ฉันอยู่ที่นี่เพื่อตอบคำถามของคุณ"
+  },
+  "MENU": {
+    "DASHBOARD": "แดชบอร์ด",
+    "SIGNALS": "สัญญาณ",
+    "PLANS": "แผนสมาชิก",
+    "HISTORY": "ประวัติ",
+    "REFERRALS": "การอ้างอิง",
+    "SUPPORT": "ช่วยเหลือ"
+  },
+  "DETAIL_OPERATIONS": {
+    "TITLE": "รายละเอียดการดำเนินงาน",
+    "CARD": {
+      "TITLE": "รายละเอียดการดำเนินงาน",
+      "ACTIVE_MEMBERSHIP": "สมาชิกที่ใช้งานอยู่",
+      "MONTHS": "เดือน",
+      "REMAINING_TIME": "เวลาที่เหลือ",
+      "DAYS": "วัน",
+      "HOURS": "ชั่วโมง",
+      "DATE": "เลือกวันที่",
+      "BUTTON_DOWNLOAD": "ดาวน์โหลด PDF",
+      "BALANCE": "ยอดคงเหลือรวม",
+      "RENEW_MEMBERSHIP": "ต่ออายุสมาชิก",
+      "REFERRALS_IN_YOUR_NETWORK": "การอ้างอิงในเครือข่าย",
+      "REFERRALS": "การอ้างอิง",
+      "DIRECT": "โดยตรง",
+      "TOTAL_IN_YOUR_NETWORK": "รวมในเครือข่าย",
+      "NETWORK": "เครือข่าย",
+      "NEW_REFERRALS": "การอ้างอิงใหม่",
+      "COPY_YOUR_REFERRAL_LINK": "คัดลอกลิงก์",
+      "NETWORK_COMMISSIONS": "ค่าคอมมิชชั่น",
+      "USDT": "USDT",
+      "GO_TO_YOUR_USER_PROFILE": "ไปที่โปรไฟล์"
+    }
+  },
+  "PLANS": {
+    "TITLE": "เลือกสมาชิกของคุณ",
+    "SUB_TITLE": "รับสิทธิ์เข้าถึงเครื่องมือพิเศษของเราและ",
+    "SUB_TITLE_2": "เริ่มรับสัญญาณของเราวันนี้",
+    "CARD": {
+      "TITLE": "สมาชิก",
+      "BASIC": "สมาชิกพื้นฐาน",
+      "AMATEUR": "สมาชิกมือสมัครเล่น",
+      "PRO": "สมาชิกโปร",
+      "ELITE": "สมาชิกอีลีท",
+      "SIGNALS_24_7": "สัญญาณ 24/7",
+      "BOT_MANUAL": "บอทกำหนดเอง",
+      "BOT_AUTOMATIC": "บอทอัตโนมัติ",
+      "SUPPORT_24": "สนับสนุน 24 ชม.",
+      "BTN_BUY": "ซื้อ",
+      "TIME_RESTANTE": "เวลาที่เหลือ",
+      "MONTHS": "เดือน",
+      "ACTIVE_MEMBERSHIP": "ใช้งานอยู่",
+      "DAYS": "วัน",
+      "HOURS": "ชั่วโมง",
+      "RENEW_MEMBERSHIP": "ต่ออายุสมาชิก",
+      "ACTIVE_BY": "ใช้งานโดย",
+      "PAY_UP_TO_6_LEVELS": "Pays up to 6th level"
+    },
+    "PURCHASE_MODAL": {
+      "TITLE_STEP_1": "Connect Wallet",
+      "TITLE_STEP_2": "Approve USDT",
+      "TITLE_STEP_3": "Confirm Purchase",
+      "STEP_1_DESC": "To continue with the purchase, you must first connect your wallet.",
+      "STEP_2_DESC_PREFIX": "Authorize the use of",
+      "STEP_2_DESC_SUFFIX": "to complete the purchase.",
+      "STEP_2_SUBTEXT": "This is a one-time security transaction.",
+      "STEP_3_DESC_PREFIX": "You are about to purchase the plan",
+      "CANCEL_BTN": "Cancel",
+      "CONNECT_WALLET_BTN": "Connect Wallet",
+      "CONNECTING_BTN": "Connecting...",
+      "APPROVE_BTN": "Approve USDT",
+      "APPROVING_BTN": "Approving...",
+      "BUY_BTN": "Buy Now",
+      "PROCESSING_BTN": "Processing..."
+    }
+  },
+  "HISTORY": {
+    "BTN_SEARCH": "ค้นหา",
+    "ID_NUMBER": "หมายเลข ID",
+    "DETAILS": "รายละเอียด",
+    "DATE": "วันที่",
+    "AMOUNT": "จำนวนเงิน",
+    "STATUS": "สถานะ"
+  },
+  "REFERRALS": {
+    "TITLE": "เครือข่ายการอ้างอิงของคุณ",
+    "CARDS": {
+      "TITLE": "การอ้างอิงในเครือข่าย",
+      "SUB_TITLE": "การอ้างอิงโดยตรง",
+      "TORAL_NETWORK": "รวมในเครือข่าย",
+      "REFERRALS_NEW": "การอ้างอิงใหม่",
+      "BTN_LINK_REFERRALS": "คัดลอกลิงก์",
+      "COMISSION_NETWORD": "ค่าคอมมิชชั่น",
+      "SHOW_PROFILE": "ไปที่โปรไฟล์"
+    }
+  },
+  "SUPPORT": {
+    "TITLE": "ส่งข้อความ",
+    "PLACEHOLDER_1": "หัวข้อ...",
+    "PLACEHOLDER_2": "ข้อความ...",
+    "BTN_SEND_SUPPORT": "ส่งไปยังฝ่ายสนับสนุน",
+    "CHANNEL_OFFICIAL": "ติดตามช่องทางอย่างเป็นทางการ",
+    "BTN_ON_WHATSAPP": "แชร์บน WhatsApp",
+    "BTN_ON_TELEGRAM": "แชร์บน Telegram",
+    "BTN_ON_FACEBOOK": "แชร์บน Facebook",
+    "BTN_ON_INSTAGRAM": "แชร์บน Instagram"
+  },
+  "PROFILE": {
+    "USER": {
+      "HELLO": "สวัสดี",
+      "BTN_CHANGE_PHOTO": "เปลี่ยนรูปโปรไฟล์",
+      "BTN_COPY_LINK": "คัดลอกลิงก์"
+    },
+    "DATA_PERSON": {
+      "INFORMATION_PERSON": "ข้อมูลส่วนตัว",
+      "CONTROL_CONFIG": "การควบคุมบัญชีและการตั้งค่า",
+      "PLACEHOLDER_1": "ชื่อ-นามสกุล...",
+      "PLACEHOLDER_2": "อีเมล...",
+      "CHANGE_PASS": "เปลี่ยนรหัสผ่าน",
+      "PLACEHOLDER_3": "รหัสผ่านใหม่...",
+      "PLACEHOLDER_4": "ยืนยันรหัสผ่าน...",
+      "CONNECT_APP": "เชื่อมต่อแอป",
+      "BTN_GOOGLE_AUTH": "เปิดใช้งาน Google Auth",
+      "BTN_WALLET3": "เชื่อมต่อ Web 3 Wallet",
+      "BTN_SAVE": "บันทึกการเปลี่ยนแปลง"
+    }
+  },
+  "FINNACE": {
+    "USER": {
+      "HELLO": "สวัสดี",
+      "BTN_CHANGE_PHOTO": "เปลี่ยนรูปโปรไฟล์",
+      "BTN_COPY_LINK": "คัดลอกลิงก์"
+    },
+    "DATA_FINNACE": {
+      "TITLE": "การถอนเงินและการโอนเงิน",
+      "WALLET_BALANCE": "ยอดคงเหลือกระเป๋าเงิน",
+      "COMISIONS_WITHDRAW": "ถอนค่าคอมมิชชั่น",
+      "PLACEHOLDER_1": "จำนวนค่าคอมมิชชั่นที่จะถอน...",
+      "PLACEHOLDER_2": "รหัส Google Authentication",
+      "PLACEHOLDER_3": "จำนวนที่จะโอน...",
+      "PLACEHOLDER_4": "ID ผู้ใช้ที่จะโอนให้...",
+      "PLACEHOLDER_5": "รหัส Google Authentication",
+      "DO_WITHDRAW": "ทำการถอน",
+      "TRANSFER_FUNDS": "โอนเงิน",
+      "BTN_TRANSFER_USER": "โอนเงินให้ผู้ใช้",
+      "ERROR_2FA_REQUIRED": "2FA ต้องการให้ดำเนินการ"
+    }
+  },
+  "NOTIFICATIONS": {
+    "DATE": "วันที่",
+    "SUBJECT": "หัวข้อ",
+    "BTN_READ": "เปิดการแจ้งเตือน"
+  },
+  "TRANSACTION": {
+    "STATUS": {
+      "PENDING": "Pending",
+      "APPROVED": "Approved",
+      "REJECTED": "Rejected",
+      "ACTIVE": "Active"
+    },
+    "DETAIL": {
+      "MEMBERSHIP_WEEKLY": "Membership Purchase WEEKLY",
+      "MEMBERSHIP_BASIC": "Membership Purchase BASIC",
+      "MEMBERSHIP_AMATEUR": "Membership Purchase AMATEUR",
+      "MEMBERSHIP_PRO": "Membership Purchase PRO",
+      "MEMBERSHIP_EXPERT": "Membership Purchase EXPERT",
+      "MEMBERSHIP_ELITE": "Membership Purchase ELITE",
+      "WITHDRAW": "Withdraw",
+      "DEPOSIT": "Deposit",
+      "NETWORK_COMMISSION": "Network Commission",
+      "NETWORK_COMMISSION_RENEWAL": "Network Commission (Renewal)",
+      "USER_TRANSFER": "Funds Transfer"
+    }
+  }
+}

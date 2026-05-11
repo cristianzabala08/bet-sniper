@@ -1,0 +1,610 @@
+<!-- <app-logo></app-logo> -->
+<section class="stats-top-bar glass-panel mt-1 mb-4">
+  <div class="header-title">{{ "DASHBOARD.TOP_BAR.TITLE" | translate }}</div>
+
+  <div class="stats-row">
+    <div class="stat-item">
+      <i class="fa-regular fa-clock icon-stat"></i>
+      <div class="stat-content">
+        <span class="label text-neon-purple"
+          >{{ "DASHBOARD.TOP_BAR.TIME_ACTIVE" | translate }}</span
+        >
+        <span class="value">{{ timeActive }}</span>
+      </div>
+    </div>
+    <div class="stat-item">
+      <i class="fa-solid fa-bookmark icon-stat text-neon-green"></i>
+      <div class="stat-content">
+        <span class="label text-neon-purple"
+          >{{ "DASHBOARD.TOP_BAR.BALANCE_OPERATIVE" | translate }}:</span
+        >
+        <span class="value text-neon-green"
+          >{{ "DASHBOARD.CARDBAR.USDT" | translate }}: 0</span
+        >
+      </div>
+    </div>
+    <div class="stat-item">
+      <i class="fa-solid fa-crosshairs icon-stat text-neon-green"></i>
+      <div class="stat-content">
+        <span class="label text-neon-purple"
+          >{{ "DASHBOARD.TOP_BAR.SIGNAL STATISTICS" | translate }}:</span
+        >
+        <span class="value text-neon-green"
+          >{{ "DASHBOARD.TOP_BAR.WINS" | translate }}:
+          <span class="value text-white">{{
+            signalsData?.barraSuperior?.wins || 0
+          }}</span>
+          <span class="text-red">
+            {{ "DASHBOARD.TOP_BAR.LOSS" | translate }}:
+            {{ signalsData?.barraSuperior?.losses || 0 }}</span
+          ></span
+        >
+      </div>
+    </div>
+    <div class="stat-item">
+      <i class="fa-solid fa-crosshairs icon-stat text-neon-green"></i>
+      <div class="stat-content">
+        <span class="label text-neon-purple"
+          >{{ "DASHBOARD.TOP_BAR.SIGNALS TAKEN" | translate }}:</span
+        >
+        <span class="value">
+          <span class="text-white">{{
+            (signalsData?.barraSuperior?.wins || 0) +
+              (signalsData?.barraSuperior?.losses || 0)
+          }}</span>
+        </span>
+      </div>
+    </div>
+    <div class="stat-item">
+      <i class="fa-solid fa-bookmark icon-stat text-neon-green"></i>
+      <div class="stat-content">
+        <span class="label text-neon-purple"
+          >{{ "DASHBOARD.TOP_BAR.WIN RATE" | translate }}:</span
+        >
+        <span class="value">
+          <span class="value text-white">{{
+            signalsData?.barraSuperior?.wins || 0
+          }}</span>
+          <span class="text-yellow">
+            {{ signalsData?.barraSuperior?.winPercentage || 0 }}%</span
+          >
+        </span>
+      </div>
+    </div>
+
+    <div class="profit-badge">
+      <i class="fa-solid fa-signal icon-profit"></i>
+      <div class="profit-content">
+        <span class="label">{{
+          "DASHBOARD.TOP_BAR.PROFIT_TOTAL_TODAY" | translate
+        }}</span>
+        <span class="amount-row">
+          <span class="amount-val"
+            >USDT
+            {{
+              signalsData?.barraSuperior?.profit || 0 | number: "1.2-2"
+            }}</span
+          >
+          <span class="separator">|</span>
+          <span class="percent">5.98%</span>
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="operational-zone mt-1">
+  <!-- Overlay para usuarios sin plan -->
+  <div class="locked-backdrop" *ngIf="!isLoading && !isMembershipActive">
+    <div class="locked-modal">
+      <i class="fa-solid fa-lock"></i>
+      <h3>{{ "DASHBOARD.ACTIVE_SIGNALS.PLAN_REQUIRED_TITLE" | translate }}</h3>
+      <p>{{ "DASHBOARD.ACTIVE_SIGNALS.PLAN_REQUIRED_DESC" | translate }}</p>
+    </div>
+  </div>
+
+  <div
+    class="panel-card list-panel mb-4"
+    [class.blurred-content]="
+      (!isLoading && !isMembershipActive) || !sessionActive
+    "
+  >
+    <h3 class="panel-title text-neon-green">
+      {{ "DASHBOARD.HERO.SIGNALS_LIST" | translate }}
+    </h3>
+    <!-- Replaced function calls with property access -->
+    <div class="signals-list-content">
+      <div
+        class="signal-row"
+        *ngFor="
+          let item of processedSignalList | slice: 0 : visibleSignals;
+          trackBy: trackByFn
+        "
+      >
+        <div class="status-icon-container">
+          <!-- 1. Result: Win -->
+          <ng-container *ngIf="isWin(item)">
+            <span class="result-text text-neon-green">W</span>
+          </ng-container>
+
+          <!-- 2. Result: Loss -->
+          <ng-container *ngIf="isLoss(item)">
+            <span class="result-text text-red">L</span>
+          </ng-container>
+
+          <!-- 3. Pending / Active -->
+          <ng-container *ngIf="isPending(item)">
+            <!-- Check if Active (Playing) -->
+            <i
+              *ngIf="item.isPlaying"
+              class="fa-solid fa-circle-play text-neon-blue icon-check pulse-active"
+              [title]="'DASHBOARD.GAME.STATUS_PLAYING' | translate"
+            ></i>
+            <!-- If not active, show Pending (Clock) -->
+            <i
+              *ngIf="!item.isPlaying"
+              class="fa-regular fa-clock text-white pending-icon"
+              [title]="'DASHBOARD.GAME.STATUS_PENDING' | translate"
+              style="font-size: 1.1rem"
+            ></i>
+          </ng-container>
+        </div>
+        <span class="game-name">{{ item.mesa || "Baccarat" }}</span>
+        <div class="timer-box">
+          <span>{{ "DASHBOARD.GAME.ROUND" | translate }}</span>
+          <span class="time">{{ item.ronda || 1 }}</span>
+        </div>
+        <div class="timer-box">
+          <span>{{ "DASHBOARD.GAME.WINSTEP" | translate }}</span>
+          <span class="time">{{
+            item.winStep !== undefined ? item.winStep : "---"
+          }}</span>
+        </div>
+        <div class="timer-box">
+          <span>{{ "DASHBOARD.GAME.TIME" | translate }}</span>
+          <span class="time">{{
+            item?.duration ? item.duration : getRelativeTime(item.createdAt)
+          }}</span>
+        </div>
+      </div>
+
+      <button
+        class="btn-load-more"
+        (click)="loadMore()"
+        *ngIf="processedSignalList.length > visibleSignals"
+      >
+        <i class="fa-solid fa-plus-circle"></i>
+        {{ "DASHBOARD.HERO.BTN_SIGNALS_LABEL" | translate }}
+      </button>
+    </div>
+  </div>
+
+  <div class="game-panel-wrapper">
+    <!-- Previous Signal / Last Result Display (Mini Card) -->
+    <div
+      class="previous-signal-card mb-3"
+      *ngIf="processedPrevious"
+      [class.blurred-content]="
+        (!isLoading && !isMembershipActive) || !sessionActive
+      "
+    >
+      <small class="text-neon-purple">{{
+        "DASHBOARD.GAME.PREVIOUS_SIGNAL" | translate
+      }}</small>
+      <div class="prev-content">
+        <span class="prev-mesa">{{
+          processedPrevious.mesa || "Baccarat"
+        }}</span>
+        <span
+          class="prev-result"
+          [ngClass]="{
+            'text-neon-green': processedPrevious.win === true,
+            'text-red': processedPrevious.win === false,
+          }"
+        >
+          {{
+            processedPrevious.win === true
+              ? ("DASHBOARD.GAME.WIN" | translate)
+              : processedPrevious.win === false
+                ? ("DASHBOARD.GAME.LOSS" | translate)
+                : ("DASHBOARD.GAME.PENDING" | translate)
+          }}
+        </span>
+      </div>
+    </div>
+
+    <h3 class="panel-title">
+      {{ "DASHBOARD.HERO.OPERATIVE_PANEL" | translate }}
+    </h3>
+
+    <div
+      class="panel-card game-panel mb-4"
+      style="position: relative; overflow: hidden"
+    >
+      <!-- WIN ALERT OVERLAY -->
+      <div class="result-panel-overlay panel-win" *ngIf="showWinAlert">
+        <div class="panel-header">
+          {{ "DASHBOARD.GAME.SIGNAL_FINISHED" | translate }}
+        </div>
+        <i class="fa-solid fa-circle-check status-icon"></i>
+        <h1>{{ "DASHBOARD.GAME.POSITIVE_RESULT" | translate }}</h1>
+        <p class="subtext">
+          <i class="fa-solid fa-check"></i>
+          {{ "DASHBOARD.GAME.DIRECT_ENTRY_VALIDATED" | translate }}
+        </p>
+        <div class="martingale-badge">
+          {{ "DASHBOARD.GAME.MARTINGALE" | translate }}
+          {{ getMartingaleDisplayStep(signalsData?.ultimoResult) }}
+        </div>
+      </div>
+
+      <!-- LOSS ALERT OVERLAY -->
+      <div class="result-panel-overlay panel-loss" *ngIf="showLossAlert">
+        <div class="panel-header">
+          {{ "DASHBOARD.GAME.SIGNAL_FINISHED" | translate }}
+        </div>
+        <i class="fa-solid fa-circle-xmark status-icon"></i>
+        <h1>{{ "DASHBOARD.GAME.UNFAVORABLE_EVENT" | translate }}</h1>
+        <p class="subtext">
+          {{ "DASHBOARD.GAME.OUT_OF_PROBABILITY" | translate }}
+        </p>
+        <div class="martingale-badge">
+          {{ "DASHBOARD.GAME.MARTINGALE" | translate }}
+          {{ getMartingaleDisplayStep(signalsData?.ultimoResult) }}
+        </div>
+      </div>
+
+      <!-- SCANNING OVERLAY -->
+      <div
+        class="result-panel-overlay panel-scanning"
+        *ngIf="showScanningAlert"
+      >
+        <div class="panel-header">
+          {{ "DASHBOARD.GAME.IA_ANALYZING" | translate }}
+        </div>
+        <div class="loader-ring"></div>
+        <p class="scanning-text">
+          {{ "DASHBOARD.GAME.RECALCULATING" | translate }}
+        </p>
+
+        <div class="panel-footer">
+          {{ "DASHBOARD.GAME.IA_ENGINE" | translate }}
+        </div>
+      </div>
+
+      <!-- NEW SIGNAL DETECTED OVERLAY -->
+      <div
+        class="result-panel-overlay panel-new-signal"
+        *ngIf="showNewBetAlert"
+      >
+        <div class="panel-box-glow">
+          <h2>{{ "DASHBOARD.GAME.NEW_SIGNAL_IDENTIFIED" | translate }}</h2>
+          <div class="separator-line"></div>
+          <p class="subtext">
+            {{ "DASHBOARD.GAME.OPTIMAL_CONDITIONS" | translate }}
+          </p>
+          <div class="validation-badge">
+            <i class="fa-solid fa-circle-check"></i>
+            {{ "DASHBOARD.GAME.ENTRY_VALIDATED_BY_IA" | translate }}
+          </div>
+        </div>
+      </div>
+      <div
+        class="game-display"
+        [class.blurred-content]="
+          (!isLoading && !isMembershipActive) || !sessionActive
+        "
+        style="flex-direction: column"
+      >
+        <!-- REFINED HEADER -->
+        <div class="signal-header-refined">
+          <div class="signal-title">
+            {{ processedMainSignal?.mesa || "Baccarat" }}
+          </div>
+          <div
+            class="round-display-refined"
+            *ngIf="processedMainSignal?.data?.signal?.ronda_actual"
+          >
+            <span class="label" style="color: #fff">{{
+              "DASHBOARD.GAME.ROUND" | translate | uppercase
+            }}</span>
+            <span class="round-number blink-text">{{
+              processedMainSignal?.data?.signal?.ronda_actual
+            }}</span>
+          </div>
+        </div>
+
+        <div class="game-visuals" style="width: 100%">
+          <!-- Columna Izquierda -->
+          <div class="info-left">
+            <!-- Removed Old Signal Name -->
+
+            <div
+              class="dots-container mt-3"
+              style="display: flex; flex-direction: column; gap: 5px"
+            >
+              <div style="display: flex; gap: 5px">
+                <span
+                  class="dot"
+                  *ngFor="let item of processedMainSignal?.forecastItems"
+                  [ngClass]="[item.colorClass]"
+                  [title]="item.label"
+                  style="
+                    width: 18px;
+                    height: 18px;
+                    border-radius: 50%;
+                    display: inline-block;
+                    border: 1px solid rgba(255, 255, 255, 0.2);
+                  "
+                >
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Columna Central (Imagen) -->
+          <div class="visual-center">
+            <img src="assets/cartas.png" alt="Cartas Baccara" />
+            <div
+              class="prediction-overlay text-center"
+              *ngIf="processedMainSignal?.prediction"
+            >
+              <h4 class="text-neon-pink">
+                {{ "DASHBOARD.GAME.PREDICTION" | translate }}
+              </h4>
+              <h3 class="text-white">
+                {{ processedMainSignal?.prediction }}
+              </h3>
+            </div>
+          </div>
+
+          <!-- Columna Derecha -->
+          <div class="info-right">
+            <div class="game-timer">
+              <span>{{ "DASHBOARD.GAME.TIME_ELAPSED" | translate }}</span>
+              <strong class="text-neon-pink">{{
+                getRelativeTime(processedMainSignal?.createdAt || "")
+              }}</strong>
+            </div>
+
+            <!-- Removed Old Round Box -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Second Strip: Result Pattern (W/L) -->
+      <div
+        class="martingale-progress result-strip mt-2"
+        *ngIf="sessionActive && signalsData?.ultimoResult"
+      >
+        <span class="mg-label">
+          <span class="mg-current"
+            >MG {{ getMartingaleDisplayStep(signalsData?.ultimoResult) }}</span
+          >
+          <span class="mg-total"
+            >{{ "DASHBOARD.TOP_BAR.OF" | translate | uppercase }} 6</span
+          >
+        </span>
+        <span class="separator-circle"></span>
+        <div
+          class="dots-wrapper"
+          style="display: flex; align-items: center; gap: 15px"
+        >
+          <div class="dots">
+            <span
+              class="dot"
+              *ngFor="let item of getForecastItems(signalsData?.ultimoResult)"
+              [ngClass]="[
+                item.colorClass,
+                item.isActive ? 'active' : '',
+                item.isWinner ? 'winner' : '',
+                item.status === 'lost' ? 'lost' : '',
+                item.isActive ? 'pulsing' : '',
+              ]"
+              [title]="item.label"
+            >
+              <span class="dot-inner-number" *ngIf="item.winLabel">{{
+                item.winLabel
+              }}</span>
+            </span>
+          </div>
+          <span
+            class="status-text text-yellow"
+            style="
+              font-weight: 800;
+              text-transform: uppercase;
+              font-size: 0.9rem;
+              animation: pulse-blue 2s infinite;
+            "
+            *ngIf="getActiveStatus(signalsData?.ultimoResult) === 'EMPATE'"
+          >
+            {{ "DASHBOARD.GAME.TIE" | translate }}
+          </span>
+        </div>
+      </div>
+
+      <div class="action-buttons">
+        <button
+          class="btn-action pause"
+          (click)="requestPause()"
+          *ngIf="sessionActive"
+        >
+          {{ "DASHBOARD.HERO.BTN_PAUSE_SESSION" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="panel-card controls-panel redesign-panel"
+    [class.blurred-content]="
+      (!isLoading && !isMembershipActive) || !sessionActive
+    "
+  >
+    <!-- Live Header -->
+    <div class="live-status-bar">
+      <span class="live-title">{{
+        "DASHBOARD.GAME.LIVE_PLAY" | translate
+      }}</span>
+      <div class="live-badge">
+        <span class="dot"></span>
+        LIVE
+      </div>
+    </div>
+
+    <!-- Scoreboard -->
+    <div class="scoreboard-container">
+      <!-- Player -->
+      <div class="score-box player-box">
+        <span class="label">PLAYER</span>
+        <div class="score-display">{{ playerScore }}</div>
+      </div>
+
+      <!-- Center Logo -->
+      <div class="center-logo">
+        <div class="diamond-shape">
+          <span class="ia-text" [ngClass]="centerClass">{{ centerText }}</span>
+        </div>
+      </div>
+
+      <!-- Banker -->
+      <div class="score-box banker-box">
+        <span class="label">BANKER</span>
+        <div class="score-display">{{ bankerScore }}</div>
+      </div>
+    </div>
+
+    <!-- Auto Controls Section -->
+    <div class="auto-controls-section">
+      <div class="section-header">
+        {{ "DASHBOARD.HERO.MODE_AUTOMATIC" | translate }}
+      </div>
+
+      <div class="control-row">
+        <span class="label"
+          >{{ "DASHBOARD.HERO.MARTIN_LABEL" | translate }}:</span
+        >
+        <div class="value-badge">
+          {{ "DASHBOARD.GAME.LEVEL" | translate }}
+          {{ getMartingaleDisplayStep(signalsData?.ultimoResult) }}
+          <i class="fa-solid fa-caret-down ml-1"></i>
+        </div>
+      </div>
+
+      <div class="stats-row">
+        <!-- Amount / Chips -->
+        <div class="stat-pill">
+          <i class="fa-solid fa-coins"></i>
+          <span>{{ "DASHBOARD.HERO.AMOUNT_ASIGNED" | translate }}: 3</span>
+        </div>
+        <div class="stat-pill">
+          <i class="fa-solid fa-robot"></i>
+          <span
+            >{{ "DASHBOARD.HERO.MODE_STATUS" | translate }}:
+            <span class="text-neon-green">ACTIVO</span></span
+          >
+          <i class="fa-solid fa-shuffle ml-1"></i>
+        </div>
+      </div>
+
+      <button class="btn-pause-auto" (click)="requestPause()">
+        <i class="fa-solid fa-pause"></i>
+        {{ "DASHBOARD.HERO.BTN_PAUSE_SESSION" | translate }}
+      </button>
+    </div>
+  </div>
+
+  <!-- Overlay for Paused State -->
+  <!-- Start Analysis Modal Overlay -->
+  <div
+    class="start-analysis-overlay"
+    *ngIf="!sessionActive && isMembershipActive"
+  >
+    <div class="neon-modal-card">
+      <div class="power-icon-container">
+        <i class="fa-solid fa-power-off power-icon"></i>
+      </div>
+
+      <h2 class="modal-title">
+        {{ "DASHBOARD.ACTIVE_SIGNALS.START_ANALYSIS_MODAL.TITLE" | translate }}
+      </h2>
+
+      <p class="modal-description">
+        {{
+          "DASHBOARD.ACTIVE_SIGNALS.START_ANALYSIS_MODAL.DESCRIPTION_PART_1"
+            | translate
+        }}
+        <span class="highlight-active">{{
+          "DASHBOARD.ACTIVE_SIGNALS.START_ANALYSIS_MODAL.DESCRIPTION_HIGHLIGHT"
+            | translate
+        }}</span
+        >.
+        <br />
+        {{
+          "DASHBOARD.ACTIVE_SIGNALS.START_ANALYSIS_MODAL.DESCRIPTION_PART_2"
+            | translate
+        }}
+      </p>
+
+      <div class="modal-actions">
+        <button class="btn-neon-primary" (click)="startSession()">
+          {{
+            "DASHBOARD.ACTIVE_SIGNALS.START_ANALYSIS_MODAL.BTN_START_SYSTEM"
+              | translate
+          }}
+        </button>
+        <button class="btn-neon-outline">
+          {{
+            "DASHBOARD.ACTIVE_SIGNALS.START_ANALYSIS_MODAL.BTN_KEEP_PAUSED"
+              | translate
+          }}
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- Pause Analysis Modal Overlay -->
+  <div class="start-analysis-overlay" *ngIf="showPauseConfirmation">
+    <div class="neon-modal-card">
+      <div class="power-icon-container">
+        <i class="fa-solid fa-pause power-icon"></i>
+      </div>
+
+      <h2 class="modal-title">
+        {{ "DASHBOARD.ACTIVE_SIGNALS.PAUSE_ANALYSIS_MODAL.TITLE" | translate }}
+      </h2>
+
+      <p class="modal-description">
+        {{
+          "DASHBOARD.ACTIVE_SIGNALS.PAUSE_ANALYSIS_MODAL.DESCRIPTION_PART_1"
+            | translate
+        }}
+        <span class="highlight-active">{{
+          "DASHBOARD.ACTIVE_SIGNALS.PAUSE_ANALYSIS_MODAL.DESCRIPTION_HIGHLIGHT"
+            | translate
+        }}</span
+        >.
+        <br />
+        {{
+          "DASHBOARD.ACTIVE_SIGNALS.PAUSE_ANALYSIS_MODAL.DESCRIPTION_PART_2"
+            | translate
+        }}
+      </p>
+
+      <div class="modal-actions">
+        <button class="btn-neon-primary" (click)="startSession()">
+          {{
+            "DASHBOARD.ACTIVE_SIGNALS.PAUSE_ANALYSIS_MODAL.BTN_KEEP_ACTIVE"
+              | translate
+          }}
+        </button>
+      </div>
+
+      <small style="color: grey; margin-top: 15px; font-size: 0.8rem">
+        {{
+          "DASHBOARD.ACTIVE_SIGNALS.PAUSE_ANALYSIS_MODAL.FOOTER_NOTE"
+            | translate
+        }}
+      </small>
+    </div>
+  </div>
+</section>

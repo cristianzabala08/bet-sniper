@@ -1,0 +1,297 @@
+{
+  "LOGIN": {
+    "WELCOME": "Привет, добро пожаловать",
+    "COPYRIGHT": "2025 все права защищены.",
+    "USER_PLACEHOLDER": "Имя пользователя или Email...",
+    "PASS_PLACEHOLDER": "Пароль...",
+    "SHOW": "Показать",
+    "HIDE": "Скрыть",
+    "2FA_MSG": "Пожалуйста, введите код Google Authenticator.",
+    "2FA_PLACEHOLDER": "Код 2FA (6 цифр)",
+    "BTN_LOADING": "Загрузка...",
+    "BTN_VERIFY": "ПРОВЕРИТЬ КОД",
+    "BTN_ENTER": "ВОЙТИ",
+    "BTN_CANCEL": "ОТМЕНА",
+    "BTN_REGISTER": "СОЗДАТЬ АККАУНТ",
+    "REMEMBER_ME": "Запомнить меня?",
+    "FORGOT_PASS": "Забыли пароль?"
+  },
+  "REGISTER": {
+    "USER_LEADER": "Имя пользователя лидера",
+    "USER_NAME": "Имя пользователя",
+    "USER_FULL_NAME": "Полное имя",
+    "PASSWORD": "Пароль...",
+    "PASSWORD_REPEAT": "Повторите пароль...",
+    "EMAIL": "Email...",
+    "EMAIL_VERIFY": "Подтвердите Email...",
+    "TITLE": "ОТЛИЧНО, СОЗДАЙТЕ АККАУНТ",
+    "SPONSOR_OPTION": "Спонсор (Необязательно)",
+    "USER_NAME_YOU": "Ваше имя пользователя",
+    "USER_NAME_ERROR": "Требуется имя пользователя.",
+    "USER_NAME_MIN_LENGTH": "Минимум 3 символа.",
+    "USER_NAME_PATTERN_STRING": "Только буквы и цифры (без пробелов).",
+    "USER_NAME_REQUIRED": "Требуется имя.",
+    "USER_NAME_PATTERN_SPACE": "Разрешены только буквы и пробелы.",
+    "CONTRASE_A": "Пароль",
+    "CONTRASE_A_OBLIGATOR": "Требуется пароль.",
+    "PASSWORD_MIN_LENGTH": "Должен содержать не менее 8 символов.",
+    "PASSWORD_MATCH": "Пароли не совпадают.",
+    "EMAIL_REQUIRED": "Требуется Email.",
+    "EMAIL_PATTERN": "Неверный формат Email.",
+    "EMAIL_MATCH": "Email не совпадают.",
+    "ACCEPT_TERMS": "Я принимаю",
+    "TERMS_AND_CONDITIONS": "Условия и Положения",
+    "BACK_TO_LOGIN": "НАЗАД КО ВХОДУ",
+    "CREATING": "Создание...",
+    "CREATE_ACCOUNT": "СОЗДАТЬ АККАУНТ"
+  },
+  "FORGOT_PASSWORD": {
+    "WRITE_EMAIL": "Введите ваш email...",
+    "RECOVER_ACCESS": "Восстановить доступ",
+    "RECOVER_NEW": "Новый пароль",
+    "WRITE_NEW_PASS": "Введите новый пароль...",
+    "RECOVER_LINK": "Создать новый пароль",
+    "WRITE_EMAIL_PASS": "Введите email для сброса пароля",
+    "SEND_RECOVERY_LINK": "ОТПРАВИТЬ ССЫЛКУ",
+    "BACK_TO_LOGIN": "НАЗАД КО ВХОДУ",
+    "CREATE_ACCOUNT": "СОЗДАТЬ АККАУНТ"
+  },
+  "DASHBOARD": {
+    "TOP_BAR": {
+      "TITLE": "СТАТИСТИКА СЕССИИ",
+      "TIME_ACTIVE": "АКТИВНОЕ ВРЕМЯ:",
+      "BALANCE_OPERATIVE": "РАБОЧИЙ БАЛАНС:",
+      "SIGNAL_STATISTICS": "СТАТИСТИКА СИГНАЛОВ:",
+      "SIGNALS_TAKEN": "ПРИНЯТЫЕ СИГНАЛЫ:",
+      "WIN_RATE": "ВИНРЕЙТ:",
+      "PROFIT_TOTAL_TODAY": "ОБЩАЯ ПРИБЫЛЬ СЕГОДНЯ",
+      "OF": "из"
+    },
+    "ACTIVE_SIGNALS": {
+      "PLAN_REQUIRED_TITLE": "ACTIVE PLAN REQUIRED",
+      "PLAN_REQUIRED_DESC": "To access live signals, you need an active membership. Please purchase or renew your plan."
+    },
+    "HERO": {
+      "SIGNALS_LIST": "СПИСОК СИГНАЛОВ",
+      "BTN_SIGNALS_LABEL": "ЗАГРУЗИТЬ ЕЩЕ СИГНАЛЫ",
+      "OPERATIVE_PANEL": "ОПЕРАТИВНАЯ ПАНЕЛЬ",
+      "BTN_START_SESSION": "НАЧАТЬ СЕССИЮ",
+      "BTN_PAUSE_SESSION": "ПАУЗА СЕССИИ",
+      "SIGNALS_CONTROL": "КОНТРОЛЬ СИГНАЛОВ",
+      "MODE_AUTOMATIC": "АВТОМАТИЧЕСКИЙ РЕЖИМ",
+      "MODE_MANUAL": "РУЧНОЙ РЕЖИМ",
+      "MODE_STATUS": "АКТИВИРОВАНО",
+      "TAKE_SIGNAL": "ПРИНЯТЬ ЭТОТ СИГНАЛ",
+      "MARTIN_LABEL": "КОНТРОЛЬ МАРТИНГЕЙЛА",
+      "AMOUNT_ASIGNED": "НАЗНАЧЕННАЯ СУММА"
+    },
+    "CARDBAR": {
+      "PLANS": {
+        "WEEKLY": "1 Неделя",
+        "MONTHLY": "1 Месяц",
+        "3MONTHS": "3 Месяца",
+        "6MONTHS": "6 Месяцев",
+        "9MONTHS": "9 Месяцев",
+        "12MONTHS": "12 Месяцев"
+      },
+      "ACTIVE_MEMBERSHIP": "АКТИВНОЕ ЧЛЕНСТВО",
+      "MONTHS": "Месяцев",
+      "REMAINING_TIME": "Оставшееся время",
+      "DAYS": "Дней",
+      "HOURS": "Часов",
+      "RENEW_MEMBERSHIP": "ПРОДЛИТЬ ЧЛЕНСТВО",
+      "REFERRALS_IN_YOUR_NETWORK": "РЕФЕРАЛЫ В ВАШЕЙ СЕТИ",
+      "REFERRALS": "РЕФЕРАЛЫ",
+      "DIRECT": "ПРЯМЫЕ",
+      "TOTAL_IN_YOUR_NETWORK": "ВСЕГО В ВАШЕЙ СЕТИ",
+      "NETWORK": "СЕТЬ",
+      "NEW_REFERRALS": "НОВЫЕ РЕФЕРАЛЫ",
+      "COPY_YOUR_REFERRAL_LINK": "КОПИРОВАТЬ РЕФЕРАЛЬНУЮ ССЫЛКУ",
+      "NETWORK_COMMISSIONS": "СЕТЕВЫЕ КОМИССИИ",
+      "USDT": "USDT",
+      "GO_TO_YOUR_USER_PROFILE": "ПЕРЕЙТИ В ПРОФИЛЬ"
+    },
+    "NOTIFICATIONS": {
+      "LAST_NOTIFICATIONS": "ПОСЛЕДНИЕ УВЕДОМЛЕНИЯ",
+      "PUBLISHED": "ОПУБЛИКОВАНО",
+      "DETEAIL_OPERATIONS": "ДЕТАЛИ ОПЕРАЦИЙ"
+    }
+  },
+  "ORACLE": {
+    "WELCOME": "Привет, я ваш оракул",
+    "SUB_TITLE": "Я здесь, чтобы ответить на ваши вопросы"
+  },
+  "MENU": {
+    "DASHBOARD": "ДАШБОРД",
+    "SIGNALS": "СИГНАЛЫ",
+    "PLANS": "ПЛАНЫ",
+    "HISTORY": "ИСТОРИЯ",
+    "REFERRALS": "РЕФЕРАЛЫ",
+    "SUPPORT": "ПОДДЕРЖКА"
+  },
+  "DETAIL_OPERATIONS": {
+    "TITLE": "ДЕТАЛИ ОПЕРАЦИЙ",
+    "CARD": {
+      "TITLE": "ДЕТАЛИ ОПЕРАЦИЙ",
+      "ACTIVE_MEMBERSHIP": "АКТИВНОЕ ЧЛЕНСТВО",
+      "MONTHS": "месяцев",
+      "REMAINING_TIME": "Оставшееся время",
+      "DAYS": "дней",
+      "HOURS": "часов",
+      "DATE": "ВЫБРАТЬ ДАТУ",
+      "BUTTON_DOWNLOAD": "СКАЧАТЬ PDF",
+      "BALANCE": "ОБЩИЙ БАЛАНС",
+      "RENEW_MEMBERSHIP": "ПРОДЛИТЬ ЧЛЕНСТВО",
+      "REFERRALS_IN_YOUR_NETWORK": "РЕФЕРАЛЫ В СЕТИ",
+      "REFERRALS": "РЕФЕРАЛЫ",
+      "DIRECT": "ПРЯМЫЕ",
+      "TOTAL_IN_YOUR_NETWORK": "ВСЕГО В СЕТИ",
+      "NETWORK": "СЕТЬ",
+      "NEW_REFERRALS": "НОВЫЕ РЕФЕРАЛЫ",
+      "COPY_YOUR_REFERRAL_LINK": "КОПИРОВАТЬ ССЫЛКУ",
+      "NETWORK_COMMISSIONS": "СЕТЕВЫЕ КОМИССИИ",
+      "USDT": "USDT",
+      "GO_TO_YOUR_USER_PROFILE": "ПЕРЕЙТИ В ПРОФИЛЬ"
+    }
+  },
+  "PLANS": {
+    "TITLE": "ВЫБЕРИТЕ ВАШЕ ЧЛЕНСТВО",
+    "SUB_TITLE": "Получите эксклюзивный доступ к инструментам и",
+    "SUB_TITLE_2": "начните получать сигналы сегодня.",
+    "CARD": {
+      "TITLE": "ЧЛЕНСТВО",
+      "BASIC": "БАЗОВОЕ",
+      "AMATEUR": "ЛЮБИТЕЛЬСКОЕ",
+      "PRO": "PRO",
+      "ELITE": "ЭЛИТНОЕ",
+      "SIGNALS_24_7": "Сигналы 24/7",
+      "BOT_MANUAL": "Настраиваемый ручной бот",
+      "BOT_AUTOMATIC": "Автоматический бот",
+      "SUPPORT_24": "Поддержка 24/7",
+      "BTN_BUY": "КУПИТЬ",
+      "TIME_RESTANTE": "Оставшееся время",
+      "MONTHS": "месяцев",
+      "ACTIVE_MEMBERSHIP": "АКТИВНО",
+      "DAYS": "дней",
+      "HOURS": "часов",
+      "RENEW_MEMBERSHIP": "ПРОДЛИТЬ",
+      "ACTIVE_BY": "Активировано кем",
+      "PAY_UP_TO_6_LEVELS": "Pays up to 6th level"
+    },
+    "PURCHASE_MODAL": {
+      "TITLE_STEP_1": "Connect Wallet",
+      "TITLE_STEP_2": "Approve USDT",
+      "TITLE_STEP_3": "Confirm Purchase",
+      "STEP_1_DESC": "To continue with the purchase, you must first connect your wallet.",
+      "STEP_2_DESC_PREFIX": "Authorize the use of",
+      "STEP_2_DESC_SUFFIX": "to complete the purchase.",
+      "STEP_2_SUBTEXT": "This is a one-time security transaction.",
+      "STEP_3_DESC_PREFIX": "You are about to purchase the plan",
+      "CANCEL_BTN": "Cancel",
+      "CONNECT_WALLET_BTN": "Connect Wallet",
+      "CONNECTING_BTN": "Connecting...",
+      "APPROVE_BTN": "Approve USDT",
+      "APPROVING_BTN": "Approving...",
+      "BUY_BTN": "Buy Now",
+      "PROCESSING_BTN": "Processing..."
+    }
+  },
+  "HISTORY": {
+    "BTN_SEARCH": "ПОИСК",
+    "ID_NUMBER": "ID НОМЕР",
+    "DETAILS": "ДЕТАЛИ",
+    "DATE": "ДАТА",
+    "AMOUNT": "СУММА",
+    "STATUS": "СТАТУС"
+  },
+  "REFERRALS": {
+    "TITLE": "ВАША РЕФЕРАЛЬНАЯ СЕТЬ",
+    "CARDS": {
+      "TITLE": "РЕФЕРАЛЫ В ВАШЕЙ СЕТИ",
+      "SUB_TITLE": "ПРЯМЫЕ РЕФЕРАЛЫ",
+      "TORAL_NETWORK": "ВСЕГО В СЕТИ",
+      "REFERRALS_NEW": "НОВЫЕ РЕФЕРАЛЫ",
+      "BTN_LINK_REFERRALS": "КОПИРОВАТЬ ССЫЛКУ",
+      "COMISSION_NETWORD": "СЕТЕВЫЕ КОМИССИИ",
+      "SHOW_PROFILE": "ПЕРЕЙТИ В ПРОФИЛЬ"
+    }
+  },
+  "SUPPORT": {
+    "TITLE": "ОТПРАВИТЬ СООБЩЕНИЕ",
+    "PLACEHOLDER_1": "Тема...",
+    "PLACEHOLDER_2": "Сообщение...",
+    "BTN_SEND_SUPPORT": "ОТПРАВИТЬ В ПОДДЕРЖКУ",
+    "CHANNEL_OFFICIAL": "ПОДПИСЫВАЙТЕСЬ НА НАШИ КАНАЛЫ",
+    "BTN_ON_WHATSAPP": "ПОДЕЛИТЬСЯ В WHATSAPP",
+    "BTN_ON_TELEGRAM": "ПОДЕЛИТЬСЯ В TELEGRAM",
+    "BTN_ON_FACEBOOK": "ПОДЕЛИТЬСЯ В FACEBOOK",
+    "BTN_ON_INSTAGRAM": "ПОДЕЛИТЬСЯ В INSTAGRAM"
+  },
+  "PROFILE": {
+    "USER": {
+      "HELLO": "Привет",
+      "BTN_CHANGE_PHOTO": "ИЗМЕНИТЬ ФОТО",
+      "BTN_COPY_LINK": "КОПИРОВАТЬ ССЫЛКУ"
+    },
+    "DATA_PERSON": {
+      "INFORMATION_PERSON": "ИНФОРМАЦИЯ ПРОФИЛЯ",
+      "CONTROL_CONFIG": "Управление и настройка аккаунта",
+      "PLACEHOLDER_1": "Полное имя...",
+      "PLACEHOLDER_2": "Email...",
+      "CHANGE_PASS": "ИЗМЕНИТЬ ПАРОЛЬ",
+      "PLACEHOLDER_3": "Новый пароль...",
+      "PLACEHOLDER_4": "Подтвердить пароль...",
+      "CONNECT_APP": "ПОДКЛЮЧИТЬ ПРИЛОЖЕНИЯ",
+      "BTN_GOOGLE_AUTH": "ВКЛЮЧИТЬ GOOGLE AUTH",
+      "BTN_WALLET3": "ПОДКЛЮЧИТЬ WEB 3 КОШЕЛЕК",
+      "BTN_SAVE": "СОХРАНИТЬ ИЗМЕНЕНИЯ"
+    }
+  },
+  "FINNACE": {
+    "USER": {
+      "HELLO": "Привет",
+      "BTN_CHANGE_PHOTO": "ИЗМЕНИТЬ ФОТО",
+      "BTN_COPY_LINK": "КОПИРОВАТЬ ССЫЛКУ"
+    },
+    "DATA_FINNACE": {
+      "TITLE": "ВЫВОДЫ И ПЕРЕВОДЫ",
+      "WALLET_BALANCE": "БАЛАНС КОШЕЛЬКА",
+      "COMISIONS_WITHDRAW": "ВЫВЕСТИ КОМИССИИ",
+      "PLACEHOLDER_1": "Сумма комиссий для вывода...",
+      "PLACEHOLDER_2": "Код Google Authentication",
+      "PLACEHOLDER_3": "Сумма для перевода...",
+      "PLACEHOLDER_4": "ID получателя...",
+      "PLACEHOLDER_5": "Код Google Authentication",
+      "DO_WITHDRAW": "ВЫПОЛНИТЬ ВЫВОД",
+      "TRANSFER_FUNDS": "ПЕРЕВЕСТИ СРЕДСТВА",
+      "BTN_TRANSFER_USER": "ПЕРЕВЕСТИ ПОЛЬЗОВАТЕЛЮ",
+      "ERROR_2FA_REQUIRED": "2FA требуется для выполнения этой операции."
+    }
+  },
+  "NOTIFICATIONS": {
+    "DATE": "ДАТА",
+    "SUBJECT": "ТЕМА",
+    "BTN_READ": "ОТКРЫТЬ УВЕДОМЛЕНИЕ"
+  },
+  "TRANSACTION": {
+    "STATUS": {
+      "PENDING": "Pending",
+      "APPROVED": "Approved",
+      "REJECTED": "Rejected",
+      "ACTIVE": "Active"
+    },
+    "DETAIL": {
+      "MEMBERSHIP_WEEKLY": "Membership Purchase WEEKLY",
+      "MEMBERSHIP_BASIC": "Membership Purchase BASIC",
+      "MEMBERSHIP_AMATEUR": "Membership Purchase AMATEUR",
+      "MEMBERSHIP_PRO": "Membership Purchase PRO",
+      "MEMBERSHIP_EXPERT": "Membership Purchase EXPERT",
+      "MEMBERSHIP_ELITE": "Membership Purchase ELITE",
+      "WITHDRAW": "Withdraw",
+      "DEPOSIT": "Deposit",
+      "NETWORK_COMMISSION": "Network Commission",
+      "NETWORK_COMMISSION_RENEWAL": "Network Commission (Renewal)",
+      "USER_TRANSFER": "Funds Transfer"
+    }
+  }
+}

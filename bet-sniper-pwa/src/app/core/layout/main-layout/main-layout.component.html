@@ -1,0 +1,169 @@
+<div class="app-layout">
+  <header class="topbar">
+    <div class="brand-logo">
+      <!-- <span class="logo-text">BET SNIPER</span> -->
+    </div>
+
+    <div class="profile-widget-container">
+      <div class="profile-trigger" (click)="toggleProfileMenu()">
+        <span class="arrow-indicator">↓</span>
+        <div class="avatar-box">
+          <i class="fa-regular fa-user"></i>
+        </div>
+      </div>
+
+      <div class="profile-dropdown" [class.show]="isProfileMenuOpen">
+        <ul (click)="isProfileMenuOpen = false">
+          <li>
+            <a
+              [routerLink]="['/app/profile']"
+              routerLinkActive="active-link"
+              [routerLinkActiveOptions]="{ exact: true }"
+            >
+              <span>PERFIL</span>
+              <i class="icon-right fa-solid fa-pen text-neon-purple"></i>
+            </a>
+          </li>
+
+          <li>
+            <a
+              [routerLink]="['/app/profile/finances']"
+              routerLinkActive="active-link"
+            >
+              <span>FINANZAS</span>
+              <i class="icon-right fa-solid fa-gear"></i>
+            </a>
+          </li>
+
+          <li>
+            <a
+              [routerLink]="['/app/profile/notifications']"
+              routerLinkActive="active-link"
+            >
+              <span>NOTIFICACIONES</span>
+
+              <i class="icon-right fa-regular fa-bell"></i>
+            </a>
+          </li>
+
+          <li class="logout-item">
+            <a (click)="logout()">
+              <span class="text-neon-pink">SALIR</span>
+              <i class="icon-right fa-solid fa-arrow-right-from-bracket"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <main class="content-scroll-area">
+    <router-outlet></router-outlet>
+    <div class="bottom-spacer"></div>
+  </main>
+
+  <div class="footer-dock-container">
+    <div class="oracle-floating-info">
+      <div class="info-left">
+        <span class="title"
+            >{{ "ORACLE.WELCOME" | translate }}
+            <span class="highlight-ia">iA</span> de
+            <span class="highlight-win">BET</span
+            ><span class="highlight-x"> SNIPER</span></span
+        >
+        <span class="subtitle">{{ "ORACLE.SUB_TITLE" | translate }}</span>
+      </div>
+
+      <div class="spacer-center"></div>
+
+      <div class="search-right">
+        <input
+          type="text"
+          class="oracle-input"
+          placeholder="Pregúntame lo que desees..."
+          [(ngModel)]="searchQuery"
+          (keydown)="onKeydown($event)"
+          [disabled]="isThinking"
+        />
+        <button class="btn-search" (click)="onSearch()" [disabled]="isThinking">
+          <i class="fa-solid fa-magnifying-glass" *ngIf="!isThinking"></i>
+          <i class="fa-solid fa-circle-notch fa-spin" *ngIf="isThinking"></i>
+        </button>
+      </div>
+    </div>
+
+    <nav class="bottom-navbar">
+      <div class="nav-group left">
+        <a
+          [routerLink]="['/app/dashboard']"
+          routerLinkActive="active-btn"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="nav-item btn-neon-purple"
+        >
+          <i class="icon fa-solid fa-table-columns"></i>
+          <span class="label">{{ "MENU.DASHBOARD" | translate }}</span>
+        </a>
+        <a
+          [routerLink]="['/app/dashboard/signals']"
+          routerLinkActive="active-btn"
+          class="nav-item btn-neon-purple"
+        >
+          <i class="icon fa-solid fa-bolt"></i>
+          <span class="label">{{ "MENU.SIGNALS" | translate }}</span>
+        </a>
+        <a
+          [routerLink]="['/app/plans']"
+          routerLinkActive="active-btn"
+          class="nav-item btn-neon-purple"
+        >
+          <i class="icon fa-solid fa-file-invoice-dollar"></i>
+          <span class="label">{{ "MENU.PLANS" | translate }}</span>
+        </a>
+      </div>
+
+      <div class="oracle-orb-container">
+        <div class="orb-visual"></div>
+      </div>
+
+      <div class="nav-group right">
+        <a
+          [routerLink]="['/app/history']"
+          routerLinkActive="active-btn"
+          class="nav-item btn-neon-purple"
+        >
+          <i class="icon fa-solid fa-clock-rotate-left"></i>
+          <span class="label">{{ "MENU.HISTORY" | translate }}</span>
+        </a>
+        <a
+          [routerLink]="['/app/referrals']"
+          routerLinkActive="active-btn"
+          class="nav-item btn-neon-purple"
+        >
+          <i class="icon fa-solid fa-users"></i>
+          <span class="label">{{ "MENU.REFERRALS" | translate }}</span>
+        </a>
+        <a
+          [routerLink]="['/app/support']"
+          routerLinkActive="active-btn"
+          class="nav-item btn-neon-purple"
+        >
+          <i class="icon fa-solid fa-headset"></i>
+          <span class="label">{{ "MENU.SUPPORT" | translate }}</span>
+        </a>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Response Area (Appears below when there is an answer) -->
+  <div class="oracle-response-area" *ngIf="responseMessage">
+    <div class="response-card fade-in-up">
+      <div class="response-header">
+        <span class="ai-label">BET SNIPER AI</span>
+        <button class="btn-close-response" (click)="responseMessage = null">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <p class="response-text">{{ responseMessage }}</p>
+    </div>
+  </div>
+</div>

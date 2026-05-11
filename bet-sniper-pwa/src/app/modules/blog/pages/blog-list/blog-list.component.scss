@@ -1,0 +1,140 @@
+$gold-primary: #c9a84c;
+$gold-dark: #8b6914;
+$bg-dark: #0a0a0a;
+$bg-card: #121210;
+$text-main: #f5f0e1;
+$text-muted: #b0a48a;
+
+.gold-gradient-text {
+  background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fcf6ba, #aa771c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+}
+
+.blog-page {
+  background: $bg-dark;
+  color: $text-main;
+  font-family: 'Montserrat', 'Rajdhani', sans-serif;
+  min-height: 100vh;
+}
+
+.blog-header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba($gold-primary, 0.2);
+  padding: 0 20px;
+}
+
+.header-container {
+  max-width: 1200px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between; height: 70px;
+}
+
+.header-logo { height: 50px; width: auto; background: transparent; }
+
+.header-nav {
+  display: flex; gap: 30px;
+  .nav-link {
+    color: $text-muted; text-decoration: none; font-weight: 500; font-size: 0.95rem;
+    transition: color 0.3s;
+    &:hover, &.active { color: $gold-primary; }
+  }
+}
+
+.mobile-menu-btn {
+  display: none; background: none; border: 1px solid $gold-primary;
+  color: $gold-primary; padding: 8px 12px; border-radius: 8px; cursor: pointer; font-size: 1.2rem;
+}
+
+.mobile-menu {
+  display: none; flex-direction: column; padding: 15px 20px;
+  background: rgba(10, 10, 10, 0.98); border-top: 1px solid rgba($gold-primary, 0.2);
+  .mobile-link {
+    color: $text-muted; text-decoration: none; padding: 12px 0;
+    border-bottom: 1px solid rgba($gold-primary, 0.1); font-weight: 500;
+    &:hover { color: $gold-primary; }
+  }
+}
+
+.blog-content {
+  max-width: 1100px; margin: 0 auto; padding: 100px 20px 60px;
+}
+
+.blog-title { font-size: 2.5rem; text-align: center; margin-bottom: 10px; }
+.blog-subtitle { text-align: center; color: $text-muted; font-size: 1.05rem; margin-bottom: 50px; }
+
+.blog-loading {
+  text-align: center; color: $gold-primary; font-size: 1.1rem; padding: 60px 0;
+  i { margin-right: 8px; }
+}
+
+.blog-empty {
+  text-align: center; padding: 80px 20px; color: $text-muted;
+  i { font-size: 3rem; color: rgba($gold-primary, 0.3); margin-bottom: 20px; display: block; }
+  p { font-size: 1.1rem; margin-bottom: 25px; }
+}
+
+.btn-back {
+  display: inline-block; padding: 12px 30px;
+  border: 1px solid $gold-primary; color: $gold-primary; border-radius: 25px;
+  text-decoration: none; font-weight: 600; transition: all 0.3s;
+  &:hover { background: rgba($gold-primary, 0.1); }
+}
+
+.blog-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px;
+}
+
+.blog-card {
+  background: rgba(18, 18, 16, 0.9); border: 1px solid rgba($gold-primary, 0.15);
+  border-radius: 16px; overflow: hidden; cursor: pointer; transition: all 0.3s;
+  text-decoration: none; color: inherit; display: block;
+  &:hover {
+    transform: translateY(-5px); box-shadow: 0 0 25px rgba($gold-primary, 0.2);
+    border-color: $gold-primary;
+  }
+}
+
+.card-image {
+  height: 200px; overflow: hidden; background: rgba($gold-primary, 0.05);
+  display: flex; align-items: center; justify-content: center;
+  img { width: 100%; height: 100%; object-fit: cover; }
+  &.placeholder { i { font-size: 3rem; color: rgba($gold-primary, 0.2); } }
+}
+
+.card-body { padding: 20px; }
+
+.card-tags {
+  display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px;
+  .tag {
+    padding: 3px 10px; background: rgba($gold-primary, 0.1); border: 1px solid rgba($gold-primary, 0.2);
+    border-radius: 12px; font-size: 0.75rem; color: $gold-primary; font-weight: 600;
+  }
+}
+
+.card-title {
+  font-size: 1.15rem; font-weight: 700; margin-bottom: 10px; color: $text-main;
+  line-height: 1.4;
+}
+
+.card-excerpt { font-size: 0.9rem; color: $text-muted; line-height: 1.6; margin-bottom: 15px; }
+
+.card-meta {
+  display: flex; gap: 15px; font-size: 0.8rem; color: $text-muted;
+  i { margin-right: 4px; color: rgba($gold-primary, 0.5); }
+}
+
+@media (max-width: 992px) {
+  .header-nav { display: none; }
+  .mobile-menu-btn { display: block; }
+  .mobile-menu { display: flex; }
+  .blog-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .blog-title { font-size: 1.8rem; }
+  .blog-grid { grid-template-columns: 1fr; }
+}

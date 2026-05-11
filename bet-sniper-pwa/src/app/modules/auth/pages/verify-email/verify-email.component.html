@@ -1,0 +1,74 @@
+<section class="auth-container">
+  <div class="auth-content">
+    <div class="logo-section">
+      <h1 class="brand-title">
+        BET SNIPER<br />
+        <span class="brand-subtitle">ORACLE</span>
+      </h1>
+      <p class="copyright">2025 ALL RIGHTS RESERVED.</p>
+    </div>
+
+    <div class="form-header">
+      <h2>
+        {{ "VERIFY_EMAIL.TITLE" | translate }}
+        <span class="highlight">{{ email }}</span>
+      </h2>
+    </div>
+
+    <form [formGroup]="verifyForm" (ngSubmit)="onSubmit()" class="auth-form">
+      <div
+        class="input-group"
+        [class.error]="
+          verifyForm.get('code')?.invalid && verifyForm.get('code')?.touched
+        "
+      >
+        <span class="icon-wrapper">🔑</span>
+        <input
+          type="text"
+          formControlName="code"
+          placeholder="{{ 'VERIFY_EMAIL.CODE_PLACEHOLDER' | translate }}"
+        />
+      </div>
+      <div
+        *ngIf="
+          verifyForm.get('code')?.invalid && verifyForm.get('code')?.touched
+        "
+        class="error-msg"
+      >
+        {{ "VERIFY_EMAIL.ERROR_REQUIRED" | translate }}
+      </div>
+
+      <button
+        type="submit"
+        class="btn-primary"
+        [disabled]="isLoading || verifyForm.invalid"
+      >
+        {{
+          (isLoading ? "VERIFY_EMAIL.VERIFYING" : "VERIFY_EMAIL.SUBMIT")
+            | translate
+        }}
+      </button>
+
+      <div class="auth-footer">
+        <p class="resend-text">
+          {{ "VERIFY_EMAIL.NOT_RECEIVED" | translate }}
+          <button
+            type="button"
+            class="btn-resend"
+            (click)="onResend()"
+            [disabled]="isResending || isLoading"
+          >
+            {{
+              (isResending ? "VERIFY_EMAIL.SENDING" : "VERIFY_EMAIL.RESEND")
+                | translate
+            }}
+          </button>
+        </p>
+        <a routerLink="/auth/login">{{
+          "VERIFY_EMAIL.BACK_TO_LOGIN" | translate
+        }}</a>
+      </div>
+
+    </form>
+  </div>
+</section>

@@ -1,0 +1,220 @@
+<app-logo></app-logo>
+<div class="profile-settings-container">
+  <!-- 1. TARJETA DE PERFIL (Izquierda - Reutilizable) -->
+  <aside class="profile-card panel-card">
+    <div class="avatar-section">
+      <div class="avatar-box" (click)="openAvatarSelector()">
+        <i [class]="defaultProfileIcon"></i>
+      </div>
+      <h3 class="greeting">
+        {{ "PROFILE.USER.HELLO" | translate }},
+        <span class="username">{{ fullName }}</span>
+      </h3>
+    </div>
+
+    <div class="profile-actions">
+      <button (click)="openAvatarSelector()" class="btn-action btn-photo">
+        {{ "PROFILE.USER.BTN_CHANGE_PHOTO" | translate }}
+      </button>
+      <button class="btn-action btn-link" (click)="copyReferralLink()">
+        {{ "PROFILE.USER.BTN_COPY_LINK" | translate }}
+      </button>
+    </div>
+  </aside>
+
+  <!-- 2. PANEL DE INFORMACIÓN (Derecha) -->
+  <section class="settings-panel panel-card">
+    <div class="panel-header">
+      <h3 class="title">
+        {{ "PROFILE.DATA_PERSON.INFORMATION_PERSON" | translate }}
+      </h3>
+      <p class="subtitle">
+        {{ "PROFILE.DATA_PERSON.CONTROL_CONFIG" | translate }}
+      </p>
+    </div>
+
+    <form
+      [formGroup]="passwordForm"
+      class="settings-form"
+      (ngSubmit)="changePassword()"
+    >
+      <!-- ID (Read only) -->
+      <div class="form-group">
+        <input
+          type="text"
+          placeholder="Usuario ID..."
+          class="input-field input-id-user"
+          readonly
+          [value]="displayId"
+        />
+      </div>
+
+      <!-- Nombre -->
+      <div class="form-group">
+        <input
+          type="text"
+          placeholder="{{ 'PROFILE.DATA_PERSON.PLACEHOLDER_1' | translate }}"
+          class="input-field"
+          value="{{ fullName }}"
+          readonly
+        />
+      </div>
+
+      <!-- Email -->
+      <div class="form-group icon-right">
+        <input
+          type="email"
+          placeholder="eMail..."
+          class="input-field"
+          value="{{ email }}"
+          readonly
+        />
+        <i class="fa-regular fa-envelope input-icon"></i>
+      </div>
+
+      <!-- SECCIÓN: PASSWORD -->
+      <div class="section-divider">
+        <span>{{ "PROFILE.DATA_PERSON.CHANGE_PASS" | translate }}</span>
+      </div>
+
+      <div class="row-split">
+        <div class="form-group icon-right">
+          <div
+            class="input-wrapper"
+            [class.is-invalid]="
+              f['newPassword'].invalid && f['newPassword'].touched
+            "
+          >
+            <input
+              type="password"
+              placeholder="{{
+                'PROFILE.DATA_PERSON.PLACEHOLDER_3' | translate
+              }}"
+              class="input-field"
+              formControlName="newPassword"
+            />
+            <i class="fa-solid fa-lock-open input-icon"></i>
+          </div>
+          <div
+            *ngIf="f['newPassword'].invalid && f['newPassword'].touched"
+            class="validation-errors"
+          >
+            <small *ngIf="f['newPassword'].errors?.['required']">
+              {{ "REGISTER.CONTRASE_A_OBLIGATOR" | translate }}
+            </small>
+            <small *ngIf="f['newPassword'].errors?.['minlength']">
+              {{ "REGISTER.PASSWORD_MIN_LENGTH" | translate }}
+            </small>
+          </div>
+        </div>
+        <div class="form-group icon-right">
+          <div
+            class="input-wrapper"
+            [class.is-invalid]="
+              (f['confirmNewPassword'].invalid &&
+                f['confirmNewPassword'].touched) ||
+              passwordMatchError
+            "
+          >
+            <input
+              type="password"
+              placeholder="{{
+                'PROFILE.DATA_PERSON.PLACEHOLDER_4' | translate
+              }}"
+              class="input-field"
+              formControlName="confirmNewPassword"
+            />
+            <i class="fa-solid fa-lock input-icon"></i>
+          </div>
+          <div
+            *ngIf="
+              (f['confirmNewPassword'].invalid &&
+                f['confirmNewPassword'].touched) ||
+              passwordMatchError
+            "
+            class="validation-errors"
+          >
+            <small *ngIf="f['confirmNewPassword'].errors?.['required']">
+              {{ "REGISTER.CONTRASE_A_OBLIGATOR" | translate }}
+            </small>
+            <small *ngIf="passwordMatchError">
+              {{ "REGISTER.PASSWORD_MATCH" | translate }}
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECCIÓN: CONECTAR APPS -->
+      <div class="section-divider">
+        <span>{{ "PROFILE.DATA_PERSON.CONNECT_APP" | translate }}</span>
+      </div>
+
+      <div class="row-split apps-buttons">
+        <!-- Botón Google Auth -->
+        <div class="app-item">
+          <i class="fa-brands fa-google icon-colored"></i>
+          <!-- Icono multicolor simulado -->
+          <button
+            type="button"
+            (click)="onActivate2FA()"
+            class="btn-app google-btn"
+            [disabled]="twoFactorEnabled"
+            [class.activated]="twoFactorEnabled"
+          >
+            <span *ngIf="!twoFactorEnabled">{{
+              "PROFILE.DATA_PERSON.BTN_GOOGLE_AUTH" | translate
+            }}</span>
+            <span *ngIf="twoFactorEnabled">
+              {{ "DASHBOARD.HERO.MODE_STATUS" | translate }}
+              <i class="fa-solid fa-check" style="margin-left: 5px"></i>
+            </span>
+          </button>
+        </div>
+
+        <!-- Botón Web3 -->
+        <div class="app-item">
+          <i class="fa-solid fa-wallet"></i>
+          <button
+            type="button"
+            (click)="connectWallet()"
+            class="btn-app web3-btn"
+            [class.activated]="isWalletConnected"
+          >
+            <span *ngIf="!isWalletConnected">{{
+              "PROFILE.DATA_PERSON.BTN_WALLET3" | translate
+            }}</span>
+            <span *ngIf="isWalletConnected">
+              {{ walletAddress | slice : 0 : 6 }}...{{
+                walletAddress | slice : -4
+              }}
+              <span
+                class="balance"
+                style="font-size: 0.8em; display: block; opacity: 0.8"
+                >{{ usdtBalance }} USDT</span
+              >
+            </span>
+          </button>
+        </div>
+      </div>
+
+      <!-- BOTÓN GUARDAR -->
+      <button type="submit" class="btn-save">
+        {{ "PROFILE.DATA_PERSON.BTN_SAVE" | translate }}
+      </button>
+    </form>
+  </section>
+</div>
+
+<!-- Modal de Activación 2FA -->
+<app-activate-2fa-modal
+  *ngIf="showActivate2FAModal"
+  (close)="closeActivate2FAModal()"
+  (twoFactorActivated)="onTwoFactorActivated()"
+></app-activate-2fa-modal>
+
+<!-- Modal de Selección de Avatar -->
+<app-avatar-selector-modal
+  *ngIf="showAvatarSelectorModal"
+  (close)="closeAvatarSelector()"
+  (iconSelected)="onAvatarSelected($event)"
+></app-avatar-selector-modal>

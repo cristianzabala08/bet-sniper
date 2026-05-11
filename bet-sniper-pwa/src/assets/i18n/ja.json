@@ -1,0 +1,297 @@
+{
+  "LOGIN": {
+    "WELCOME": "こんにちは、ようこそ",
+    "COPYRIGHT": "2025 全著作権所有。",
+    "USER_PLACEHOLDER": "ユーザー名またはメール...",
+    "PASS_PLACEHOLDER": "パスワード...",
+    "SHOW": "表示",
+    "HIDE": "非表示",
+    "2FA_MSG": "Google認証コードを入力してください。",
+    "2FA_PLACEHOLDER": "2FAコード (6桁)",
+    "BTN_LOADING": "読み込み中...",
+    "BTN_VERIFY": "コードを確認",
+    "BTN_ENTER": "ログイン",
+    "BTN_CANCEL": "キャンセル",
+    "BTN_REGISTER": "アカウント作成",
+    "REMEMBER_ME": "ログイン状態を保持",
+    "FORGOT_PASS": "パスワードをお忘れですか？"
+  },
+  "REGISTER": {
+    "USER_LEADER": "リーダーのユーザー名",
+    "USER_NAME": "ユーザー名",
+    "USER_FULL_NAME": "氏名",
+    "PASSWORD": "パスワード...",
+    "PASSWORD_REPEAT": "パスワード（再入力）...",
+    "EMAIL": "メール...",
+    "EMAIL_VERIFY": "メール確認...",
+    "TITLE": "素晴らしい、アカウントを作成しましょう",
+    "SPONSOR_OPTION": "スポンサー (任意)",
+    "USER_NAME_YOU": "あなたのユーザー名",
+    "USER_NAME_ERROR": "ユーザー名は必須です。",
+    "USER_NAME_MIN_LENGTH": "最低3文字必要です。",
+    "USER_NAME_PATTERN_STRING": "英数字のみ（スペース不可）。",
+    "USER_NAME_REQUIRED": "名前は必須です。",
+    "USER_NAME_PATTERN_SPACE": "文字とスペースのみ許可されます。",
+    "CONTRASE_A": "パスワード",
+    "CONTRASE_A_OBLIGATOR": "パスワードは必須です。",
+    "PASSWORD_MIN_LENGTH": "最低8文字以上必要です。",
+    "PASSWORD_MATCH": "パスワードが一致しません。",
+    "EMAIL_REQUIRED": "メールは必須です。",
+    "EMAIL_PATTERN": "無効なメール形式です。",
+    "EMAIL_MATCH": "メールが一致しません。",
+    "ACCEPT_TERMS": "以下に同意します：",
+    "TERMS_AND_CONDITIONS": "利用規約",
+    "BACK_TO_LOGIN": "ログインに戻る",
+    "CREATING": "作成中...",
+    "CREATE_ACCOUNT": "アカウント作成"
+  },
+  "FORGOT_PASSWORD": {
+    "WRITE_EMAIL": "メールアドレスを入力...",
+    "RECOVER_ACCESS": "アクセス復旧",
+    "RECOVER_NEW": "新しいパスワード",
+    "WRITE_NEW_PASS": "新しいパスワードを入力...",
+    "RECOVER_LINK": "新しいパスワードを生成",
+    "WRITE_EMAIL_PASS": "パスワードリセット用のメールを入力",
+    "SEND_RECOVERY_LINK": "復旧リンクを送信",
+    "BACK_TO_LOGIN": "ログインに戻る",
+    "CREATE_ACCOUNT": "アカウント作成"
+  },
+  "DASHBOARD": {
+    "TOP_BAR": {
+      "TITLE": "セッション統計",
+      "TIME_ACTIVE": "アクティブ時間:",
+      "BALANCE_OPERATIVE": "運用残高:",
+      "SIGNAL_STATISTICS": "シグナル統計:",
+      "SIGNALS_TAKEN": "取得シグナル:",
+      "WIN_RATE": "勝率:",
+      "PROFIT_TOTAL_TODAY": "本日の総利益",
+      "OF": "/"
+    },
+    "ACTIVE_SIGNALS": {
+      "PLAN_REQUIRED_TITLE": "ACTIVE PLAN REQUIRED",
+      "PLAN_REQUIRED_DESC": "To access live signals, you need an active membership. Please purchase or renew your plan."
+    },
+    "HERO": {
+      "SIGNALS_LIST": "シグナルリスト",
+      "BTN_SIGNALS_LABEL": "さらにシグナルを読み込む",
+      "OPERATIVE_PANEL": "シグナル運用パネル",
+      "BTN_START_SESSION": "セッション開始",
+      "BTN_PAUSE_SESSION": "セッション一時停止",
+      "SIGNALS_CONTROL": "シグナル管理",
+      "MODE_AUTOMATIC": "自動モード",
+      "MODE_MANUAL": "手動モード",
+      "MODE_STATUS": "有効",
+      "TAKE_SIGNAL": "このシグナルを取得",
+      "MARTIN_LABEL": "マーチンゲール制御",
+      "AMOUNT_ASIGNED": "割り当て金額"
+    },
+    "CARDBAR": {
+      "PLANS": {
+        "WEEKLY": "1 週間",
+        "MONTHLY": "1 ヶ月",
+        "3MONTHS": "3 ヶ月",
+        "6MONTHS": "6 ヶ月",
+        "9MONTHS": "9 ヶ月",
+        "12MONTHS": "12 ヶ月"
+      },
+      "ACTIVE_MEMBERSHIP": "有効なメンバーシップ",
+      "MONTHS": "ヶ月",
+      "REMAINING_TIME": "残り時間",
+      "DAYS": "日",
+      "HOURS": "時間",
+      "RENEW_MEMBERSHIP": "メンバーシップ更新",
+      "REFERRALS_IN_YOUR_NETWORK": "ネットワーク内の紹介",
+      "REFERRALS": "紹介",
+      "DIRECT": "直接",
+      "TOTAL_IN_YOUR_NETWORK": "ネットワーク合計",
+      "NETWORK": "ネットワーク",
+      "NEW_REFERRALS": "新規紹介",
+      "COPY_YOUR_REFERRAL_LINK": "紹介リンクをコピー",
+      "NETWORK_COMMISSIONS": "ネットワーク報酬",
+      "USDT": "USDT",
+      "GO_TO_YOUR_USER_PROFILE": "ユーザープロフィールへ"
+    },
+    "NOTIFICATIONS": {
+      "LAST_NOTIFICATIONS": "最新の通知",
+      "PUBLISHED": "公開済み",
+      "DETEAIL_OPERATIONS": "操作詳細"
+    }
+  },
+  "ORACLE": {
+    "WELCOME": "こんにちは、私はあなたのオラクルです",
+    "SUB_TITLE": "ご質問にお答えします"
+  },
+  "MENU": {
+    "DASHBOARD": "ダッシュボード",
+    "SIGNALS": "シグナル",
+    "PLANS": "プラン",
+    "HISTORY": "履歴",
+    "REFERRALS": "紹介",
+    "SUPPORT": "サポート"
+  },
+  "DETAIL_OPERATIONS": {
+    "TITLE": "操作詳細",
+    "CARD": {
+      "TITLE": "操作詳細",
+      "ACTIVE_MEMBERSHIP": "有効なメンバーシップ",
+      "MONTHS": "ヶ月",
+      "REMAINING_TIME": "残り時間",
+      "DAYS": "日",
+      "HOURS": "時間",
+      "DATE": "日付を選択",
+      "BUTTON_DOWNLOAD": "PDFをダウンロード",
+      "BALANCE": "総残高",
+      "RENEW_MEMBERSHIP": "メンバーシップ更新",
+      "REFERRALS_IN_YOUR_NETWORK": "ネットワーク内の紹介",
+      "REFERRALS": "紹介",
+      "DIRECT": "直接",
+      "TOTAL_IN_YOUR_NETWORK": "ネットワーク合計",
+      "NETWORK": "ネットワーク",
+      "NEW_REFERRALS": "新規紹介",
+      "COPY_YOUR_REFERRAL_LINK": "紹介リンクをコピー",
+      "NETWORK_COMMISSIONS": "ネットワーク報酬",
+      "USDT": "USDT",
+      "GO_TO_YOUR_USER_PROFILE": "ユーザープロフィールへ"
+    }
+  },
+  "PLANS": {
+    "TITLE": "メンバーシップを選択",
+    "SUB_TITLE": "ツールへの限定アクセスを取得し、",
+    "SUB_TITLE_2": "今日からシグナルを受け取りましょう。",
+    "CARD": {
+      "TITLE": "メンバーシップ",
+      "BASIC": "ベーシック",
+      "AMATEUR": "アマチュア",
+      "PRO": "プロ",
+      "ELITE": "エリート",
+      "SIGNALS_24_7": "24/7 シグナル",
+      "BOT_MANUAL": "手動設定ボット",
+      "BOT_AUTOMATIC": "自動ボット",
+      "SUPPORT_24": "24時間サポート",
+      "BTN_BUY": "購入",
+      "TIME_RESTANTE": "残り時間",
+      "MONTHS": "ヶ月",
+      "ACTIVE_MEMBERSHIP": "有効",
+      "DAYS": "日",
+      "HOURS": "時間",
+      "RENEW_MEMBERSHIP": "更新",
+      "ACTIVE_BY": "有効化：",
+      "PAY_UP_TO_6_LEVELS": "Pays up to 6th level"
+    },
+    "PURCHASE_MODAL": {
+      "TITLE_STEP_1": "Connect Wallet",
+      "TITLE_STEP_2": "Approve USDT",
+      "TITLE_STEP_3": "Confirm Purchase",
+      "STEP_1_DESC": "To continue with the purchase, you must first connect your wallet.",
+      "STEP_2_DESC_PREFIX": "Authorize the use of",
+      "STEP_2_DESC_SUFFIX": "to complete the purchase.",
+      "STEP_2_SUBTEXT": "This is a one-time security transaction.",
+      "STEP_3_DESC_PREFIX": "You are about to purchase the plan",
+      "CANCEL_BTN": "Cancel",
+      "CONNECT_WALLET_BTN": "Connect Wallet",
+      "CONNECTING_BTN": "Connecting...",
+      "APPROVE_BTN": "Approve USDT",
+      "APPROVING_BTN": "Approving...",
+      "BUY_BTN": "Buy Now",
+      "PROCESSING_BTN": "Processing..."
+    }
+  },
+  "HISTORY": {
+    "BTN_SEARCH": "検索",
+    "ID_NUMBER": "ID番号",
+    "DETAILS": "詳細",
+    "DATE": "日付",
+    "AMOUNT": "金額",
+    "STATUS": "ステータス"
+  },
+  "REFERRALS": {
+    "TITLE": "あなたの紹介ネットワーク",
+    "CARDS": {
+      "TITLE": "ネットワーク内の紹介",
+      "SUB_TITLE": "直接紹介",
+      "TORAL_NETWORK": "ネットワーク合計",
+      "REFERRALS_NEW": "新規紹介",
+      "BTN_LINK_REFERRALS": "紹介リンクをコピー",
+      "COMISSION_NETWORD": "ネットワーク報酬",
+      "SHOW_PROFILE": "ユーザープロフィールへ"
+    }
+  },
+  "SUPPORT": {
+    "TITLE": "メッセージを送信",
+    "PLACEHOLDER_1": "件名...",
+    "PLACEHOLDER_2": "メッセージ...",
+    "BTN_SEND_SUPPORT": "サポートへ送信",
+    "CHANNEL_OFFICIAL": "公式チャンネルをフォロー",
+    "BTN_ON_WHATSAPP": "WhatsAppでシェア",
+    "BTN_ON_TELEGRAM": "Telegramでシェア",
+    "BTN_ON_FACEBOOK": "Facebookでシェア",
+    "BTN_ON_INSTAGRAM": "Instagramでシェア"
+  },
+  "PROFILE": {
+    "USER": {
+      "HELLO": "こんにちは",
+      "BTN_CHANGE_PHOTO": "プロフィール写真を変更",
+      "BTN_COPY_LINK": "紹介リンクをコピー"
+    },
+    "DATA_PERSON": {
+      "INFORMATION_PERSON": "プロフィール情報",
+      "CONTROL_CONFIG": "アカウント管理設定",
+      "PLACEHOLDER_1": "氏名...",
+      "PLACEHOLDER_2": "メール...",
+      "CHANGE_PASS": "パスワード変更",
+      "PLACEHOLDER_3": "新しいパスワード...",
+      "PLACEHOLDER_4": "パスワード確認...",
+      "CONNECT_APP": "アプリ連携",
+      "BTN_GOOGLE_AUTH": "Google認証を有効化",
+      "BTN_WALLET3": "Web3ウォレット接続",
+      "BTN_SAVE": "変更を保存"
+    }
+  },
+  "FINNACE": {
+    "USER": {
+      "HELLO": "こんにちは",
+      "BTN_CHANGE_PHOTO": "プロフィール写真を変更",
+      "BTN_COPY_LINK": "紹介リンクをコピー"
+    },
+    "DATA_FINNACE": {
+      "TITLE": "出金と資金移動",
+      "WALLET_BALANCE": "ウォレット残高",
+      "COMISIONS_WITHDRAW": "報酬を出金",
+      "PLACEHOLDER_1": "出金する報酬額...",
+      "PLACEHOLDER_2": "Google認証コード",
+      "PLACEHOLDER_3": "移動する報酬額...",
+      "PLACEHOLDER_4": "移動先のユーザーID...",
+      "PLACEHOLDER_5": "Google認証コード",
+      "DO_WITHDRAW": "出金を実行",
+      "TRANSFER_FUNDS": "資金を移動",
+      "BTN_TRANSFER_USER": "ユーザーへ送金",
+      "ERROR_2FA_REQUIRED": "2FAが必要です。"
+    }
+  },
+  "NOTIFICATIONS": {
+    "DATE": "日付",
+    "SUBJECT": "件名",
+    "BTN_READ": "通知を開く"
+  },
+  "TRANSACTION": {
+    "STATUS": {
+      "PENDING": "Pending",
+      "APPROVED": "Approved",
+      "REJECTED": "Rejected",
+      "ACTIVE": "Active"
+    },
+    "DETAIL": {
+      "MEMBERSHIP_WEEKLY": "Membership Purchase WEEKLY",
+      "MEMBERSHIP_BASIC": "Membership Purchase BASIC",
+      "MEMBERSHIP_AMATEUR": "Membership Purchase AMATEUR",
+      "MEMBERSHIP_PRO": "Membership Purchase PRO",
+      "MEMBERSHIP_EXPERT": "Membership Purchase EXPERT",
+      "MEMBERSHIP_ELITE": "Membership Purchase ELITE",
+      "WITHDRAW": "Withdraw",
+      "DEPOSIT": "Deposit",
+      "NETWORK_COMMISSION": "Network Commission",
+      "NETWORK_COMMISSION_RENEWAL": "Network Commission (Renewal)",
+      "USER_TRANSFER": "Funds Transfer"
+    }
+  }
+}

@@ -1,0 +1,297 @@
+{
+  "LOGIN": {
+    "WELCOME": "你好，欢迎",
+    "COPYRIGHT": "2025 版权所有。",
+    "USER_PLACEHOLDER": "用户名 or 邮箱...",
+    "PASS_PLACEHOLDER": "密码...",
+    "SHOW": "显示",
+    "HIDE": "隐藏",
+    "2FA_MSG": "请输入您的谷歌验证码。",
+    "2FA_PLACEHOLDER": "2FA 代码 (6 位数)",
+    "BTN_LOADING": "加载中...",
+    "BTN_VERIFY": "验证代码",
+    "BTN_ENTER": "登录",
+    "BTN_CANCEL": "取消",
+    "BTN_REGISTER": "创建账户",
+    "REMEMBER_ME": "记住我？",
+    "FORGOT_PASS": "忘记密码？"
+  },
+  "REGISTER": {
+    "USER_LEADER": "领导人用户名",
+    "USER_NAME": "用户名",
+    "USER_FULL_NAME": "全名",
+    "PASSWORD": "密码...",
+    "PASSWORD_REPEAT": "重复密码...",
+    "EMAIL": "邮箱...",
+    "EMAIL_VERIFY": "验证邮箱...",
+    "TITLE": "太好了，创建您的账户",
+    "SPONSOR_OPTION": "推荐人 (可选)",
+    "USER_NAME_YOU": "您的用户名",
+    "USER_NAME_ERROR": "用户名为必填项。",
+    "USER_NAME_MIN_LENGTH": "至少 3 个字符。",
+    "USER_NAME_PATTERN_STRING": "仅限字母和数字（无空格）。",
+    "USER_NAME_REQUIRED": "姓名为必填项。",
+    "USER_NAME_PATTERN_SPACE": "仅允许字母和空格。",
+    "CONTRASE_A": "密码",
+    "CONTRASE_A_OBLIGATOR": "密码为必填项。",
+    "PASSWORD_MIN_LENGTH": "必须至少 8 个字符。",
+    "PASSWORD_MATCH": "密码不匹配。",
+    "EMAIL_REQUIRED": "邮箱为必填项。",
+    "EMAIL_PATTERN": "无效的邮箱格式。",
+    "EMAIL_MATCH": "邮箱不匹配。",
+    "ACCEPT_TERMS": "我接受",
+    "TERMS_AND_CONDITIONS": "条款和条件",
+    "BACK_TO_LOGIN": "返回登录",
+    "CREATING": "创建中...",
+    "CREATE_ACCOUNT": "创建账户"
+  },
+  "FORGOT_PASSWORD": {
+    "WRITE_EMAIL": "输入您的邮箱...",
+    "RECOVER_ACCESS": "恢复访问",
+    "RECOVER_NEW": "新密码",
+    "WRITE_NEW_PASS": "输入新密码...",
+    "RECOVER_LINK": "创建新密码",
+    "WRITE_EMAIL_PASS": "输入您的邮箱以重置密码",
+    "SEND_RECOVERY_LINK": "发送恢复链接",
+    "BACK_TO_LOGIN": "返回登录",
+    "CREATE_ACCOUNT": "创建账户"
+  },
+  "DASHBOARD": {
+    "TOP_BAR": {
+      "TITLE": "会话统计",
+      "TIME_ACTIVE": "活跃时间:",
+      "BALANCE_OPERATIVE": "操作余额:",
+      "SIGNAL_STATISTICS": "信号统计:",
+      "SIGNALS_TAKEN": "已采纳信号:",
+      "WIN_RATE": "胜率:",
+      "PROFIT_TOTAL_TODAY": "今日总利润",
+      "OF": "/"
+    },
+    "ACTIVE_SIGNALS": {
+      "PLAN_REQUIRED_TITLE": "ACTIVE PLAN REQUIRED",
+      "PLAN_REQUIRED_DESC": "To access live signals, you need an active membership. Please purchase or renew your plan."
+    },
+    "HERO": {
+      "SIGNALS_LIST": "信号列表",
+      "BTN_SIGNALS_LABEL": "加载更多信号",
+      "OPERATIVE_PANEL": "信号操作面板",
+      "BTN_START_SESSION": "开始会话",
+      "BTN_PAUSE_SESSION": "暂停会话",
+      "SIGNALS_CONTROL": "信号控制",
+      "MODE_AUTOMATIC": "自动模式",
+      "MODE_MANUAL": "手动模式",
+      "MODE_STATUS": "已激活",
+      "TAKE_SIGNAL": "采纳此信号",
+      "MARTIN_LABEL": "马丁格尔控制",
+      "AMOUNT_ASIGNED": "分配金额"
+    },
+    "CARDBAR": {
+      "PLANS": {
+        "WEEKLY": "1 周",
+        "MONTHLY": "1 个月",
+        "3MONTHS": "3 个月",
+        "6MONTHS": "6 个月",
+        "9MONTHS": "9 个月",
+        "12MONTHS": "12 个月"
+      },
+      "ACTIVE_MEMBERSHIP": "活跃会员",
+      "MONTHS": "月",
+      "REMAINING_TIME": "剩余时间",
+      "DAYS": "天",
+      "HOURS": "小时",
+      "RENEW_MEMBERSHIP": "续费会员",
+      "REFERRALS_IN_YOUR_NETWORK": "网络中的推荐人",
+      "REFERRALS": "推荐",
+      "DIRECT": "直推",
+      "TOTAL_IN_YOUR_NETWORK": "网络总人数",
+      "NETWORK": "网络",
+      "NEW_REFERRALS": "新推荐",
+      "COPY_YOUR_REFERRAL_LINK": "复制您的推荐链接",
+      "NETWORK_COMMISSIONS": "网络佣金",
+      "USDT": "USDT",
+      "GO_TO_YOUR_USER_PROFILE": "前往用户资料"
+    },
+    "NOTIFICATIONS": {
+      "LAST_NOTIFICATIONS": "最新通知",
+      "PUBLISHED": "已发布",
+      "DETEAIL_OPERATIONS": "操作详情"
+    }
+  },
+  "ORACLE": {
+    "WELCOME": "你好，我是你的预言机",
+    "SUB_TITLE": "我在这里回答你的问题"
+  },
+  "MENU": {
+    "DASHBOARD": "仪表板",
+    "SIGNALS": "信号",
+    "PLANS": "计划",
+    "HISTORY": "历史",
+    "REFERRALS": "推荐",
+    "SUPPORT": "支持"
+  },
+  "DETAIL_OPERATIONS": {
+    "TITLE": "操作详情",
+    "CARD": {
+      "TITLE": "操作详情",
+      "ACTIVE_MEMBERSHIP": "活跃会员",
+      "MONTHS": "月",
+      "REMAINING_TIME": "剩余时间",
+      "DAYS": "天",
+      "HOURS": "小时",
+      "DATE": "选择日期",
+      "BUTTON_DOWNLOAD": "下载 PDF",
+      "BALANCE": "总余额",
+      "RENEW_MEMBERSHIP": "续费会员",
+      "REFERRALS_IN_YOUR_NETWORK": "网络中的推荐人",
+      "REFERRALS": "推荐",
+      "DIRECT": "直推",
+      "TOTAL_IN_YOUR_NETWORK": "网络总人数",
+      "NETWORK": "网络",
+      "NEW_REFERRALS": "新推荐",
+      "COPY_YOUR_REFERRAL_LINK": "复制您的推荐链接",
+      "NETWORK_COMMISSIONS": "网络佣金",
+      "USDT": "USDT",
+      "GO_TO_YOUR_USER_PROFILE": "前往用户资料"
+    }
+  },
+  "PLANS": {
+    "TITLE": "选择您的会员资格",
+    "SUB_TITLE": "获得我们工具的独家访问权限，",
+    "SUB_TITLE_2": "即刻开始接收信号。",
+    "CARD": {
+      "TITLE": "会员资格",
+      "BASIC": "基础会员",
+      "AMATEUR": "业余会员",
+      "PRO": "专业会员",
+      "ELITE": "精英会员",
+      "SIGNALS_24_7": "24/7 信号",
+      "BOT_MANUAL": "手动配置机器人",
+      "BOT_AUTOMATIC": "自动机器人",
+      "SUPPORT_24": "24/4 支持",
+      "BTN_BUY": "购买",
+      "TIME_RESTANTE": "剩余时间",
+      "MONTHS": "月",
+      "ACTIVE_MEMBERSHIP": "活跃",
+      "DAYS": "天",
+      "HOURS": "小时",
+      "RENEW_MEMBERSHIP": "续费会员",
+      "ACTIVE_BY": "激活于",
+      "PAY_UP_TO_6_LEVELS": "Pays up to 6th level"
+    },
+    "PURCHASE_MODAL": {
+      "TITLE_STEP_1": "Connect Wallet",
+      "TITLE_STEP_2": "Approve USDT",
+      "TITLE_STEP_3": "Confirm Purchase",
+      "STEP_1_DESC": "To continue with the purchase, you must first connect your wallet.",
+      "STEP_2_DESC_PREFIX": "Authorize the use of",
+      "STEP_2_DESC_SUFFIX": "to complete the purchase.",
+      "STEP_2_SUBTEXT": "This is a one-time security transaction.",
+      "STEP_3_DESC_PREFIX": "You are about to purchase the plan",
+      "CANCEL_BTN": "Cancel",
+      "CONNECT_WALLET_BTN": "Connect Wallet",
+      "CONNECTING_BTN": "Connecting...",
+      "APPROVE_BTN": "Approve USDT",
+      "APPROVING_BTN": "Approving...",
+      "BUY_BTN": "Buy Now",
+      "PROCESSING_BTN": "Processing..."
+    }
+  },
+  "HISTORY": {
+    "BTN_SEARCH": "搜索",
+    "ID_NUMBER": "ID 号码",
+    "DETAILS": "详情",
+    "DATE": "日期",
+    "AMOUNT": "金额",
+    "STATUS": "状态"
+  },
+  "REFERRALS": {
+    "TITLE": "您的推荐网络",
+    "CARDS": {
+      "TITLE": "网络中的推荐",
+      "SUB_TITLE": "直接推荐",
+      "TORAL_NETWORK": "网络总人数",
+      "REFERRALS_NEW": "新推荐",
+      "BTN_LINK_REFERRALS": "复制您的推荐链接",
+      "COMISSION_NETWORD": "网络佣金",
+      "SHOW_PROFILE": "前往用户资料"
+    }
+  },
+  "SUPPORT": {
+    "TITLE": "发送消息",
+    "PLACEHOLDER_1": "主题...",
+    "PLACEHOLDER_2": "消息...",
+    "BTN_SEND_SUPPORT": "发送至支持",
+    "CHANNEL_OFFICIAL": "关注我们的官方频道",
+    "BTN_ON_WHATSAPP": "分享到 WhatsApp",
+    "BTN_ON_TELEGRAM": "分享到 Telegram",
+    "BTN_ON_FACEBOOK": "分享到 Facebook",
+    "BTN_ON_INSTAGRAM": "分享到 Instagram"
+  },
+  "PROFILE": {
+    "USER": {
+      "HELLO": "你好",
+      "BTN_CHANGE_PHOTO": "更改头像",
+      "BTN_COPY_LINK": "复制推荐链接"
+    },
+    "DATA_PERSON": {
+      "INFORMATION_PERSON": "个人资料信息",
+      "CONTROL_CONFIG": "账户控制与配置",
+      "PLACEHOLDER_1": "全名...",
+      "PLACEHOLDER_2": "邮箱...",
+      "CHANGE_PASS": "更改密码",
+      "PLACEHOLDER_3": "新密码...",
+      "PLACEHOLDER_4": "确认密码...",
+      "CONNECT_APP": "连接应用",
+      "BTN_GOOGLE_AUTH": "启用谷歌验证",
+      "BTN_WALLET3": "连接 Web3 钱包",
+      "BTN_SAVE": "保存更改"
+    }
+  },
+  "FINNACE": {
+    "USER": {
+      "HELLO": "你好",
+      "BTN_CHANGE_PHOTO": "更改头像",
+      "BTN_COPY_LINK": "复制推荐链接"
+    },
+    "DATA_FINNACE": {
+      "TITLE": "提款与资金转账",
+      "WALLET_BALANCE": "钱包余额",
+      "COMISIONS_WITHDRAW": "提取佣金",
+      "PLACEHOLDER_1": "提取佣金金额...",
+      "PLACEHOLDER_2": "谷歌验证码",
+      "PLACEHOLDER_3": "转账佣金金额...",
+      "PLACEHOLDER_4": "转账目标用户 ID...",
+      "PLACEHOLDER_5": "谷歌验证码",
+      "DO_WITHDRAW": "执行提款",
+      "TRANSFER_FUNDS": "转移资金",
+      "BTN_TRANSFER_USER": "转账给用户",
+      "ERROR_2FA_REQUIRED": "进行此操作需要双重认证（2FA）."
+    }
+  },
+  "NOTIFICATIONS": {
+    "DATE": "日期",
+    "SUBJECT": "主题",
+    "BTN_READ": "打开通知"
+  },
+  "TRANSACTION": {
+    "STATUS": {
+      "PENDING": "Pending",
+      "APPROVED": "Approved",
+      "REJECTED": "Rejected",
+      "ACTIVE": "Active"
+    },
+    "DETAIL": {
+      "MEMBERSHIP_WEEKLY": "Membership Purchase WEEKLY",
+      "MEMBERSHIP_BASIC": "Membership Purchase BASIC",
+      "MEMBERSHIP_AMATEUR": "Membership Purchase AMATEUR",
+      "MEMBERSHIP_PRO": "Membership Purchase PRO",
+      "MEMBERSHIP_EXPERT": "Membership Purchase EXPERT",
+      "MEMBERSHIP_ELITE": "Membership Purchase ELITE",
+      "WITHDRAW": "Withdraw",
+      "DEPOSIT": "Deposit",
+      "NETWORK_COMMISSION": "Network Commission",
+      "NETWORK_COMMISSION_RENEWAL": "Network Commission (Renewal)",
+      "USER_TRANSFER": "Funds Transfer"
+    }
+  }
+}

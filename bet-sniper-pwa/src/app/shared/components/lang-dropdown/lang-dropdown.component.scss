@@ -1,0 +1,84 @@
+/* 1. Posicionamiento Fijo (Arriba a la Derecha) */
+:host {
+    position: fixed;
+    top: 20px;
+    left: 13px;
+    /* right: 20px; */
+    z-index: 1000;
+}
+
+/* 2. Estilo del Botón Principal (Glassmorphism) */
+.lang-btn {
+  /* Fondo transparente borroso */
+  background: rgba(18, 18, 16, 0.6) !important; /* Oscuro semitransparente */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  
+  /* Bordes y Forma */
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 50px !important; /* Píldora */
+  height: 42px;
+  min-width: unset !important; /* Reset de material */
+  padding: 0 16px !important;
+  
+  /* Sombra sutil */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+
+  .content-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #fff;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .icon-globe {
+    color: #ffd700; /* Dorado de Bet Sniper */
+    font-size: 16px;
+  }
+
+  .icon-arrow {
+    font-size: 10px;
+    opacity: 0.7;
+    margin-top: 2px;
+  }
+
+  /* Efecto Hover */
+  &:hover {
+    background: rgba(30, 28, 20, 0.8) !important;
+    border-color: rgba(255, 215, 0, 0.5) !important; /* Borde neón al pasar mouse */
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+  }
+}
+
+/* 3. Estilo del Menú Desplegable (Hack para Material) */
+/* ::ng-deep es necesario porque el mat-menu se crea fuera del componente */
+::ng-deep .betsniper-lang-menu {
+  /* Fondo del menú desplegable */
+  background-color: #121210 !important; /* Fondo muy oscuro */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px !important;
+  min-width: 150px !important;
+  margin-top: 8px; /* Espacio con el botón */
+
+  /* Estilo de los items (botones internos) */
+  .mat-mdc-menu-item {
+    color: #e0e0e0 !important;
+    font-family: 'Segoe UI', sans-serif;
+    height: 40px !important;
+    line-height: 40px !important;
+
+    .flag {
+      margin-right: 10px;
+      font-size: 1.2em;
+    }
+
+    &:hover {
+      background-color: rgba(255, 215, 0, 0.1) !important; /* Hover azulito */
+      color: #fff !important;
+    }
+  }
+}

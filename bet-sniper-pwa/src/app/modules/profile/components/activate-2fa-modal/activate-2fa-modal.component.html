@@ -1,0 +1,58 @@
+<div class="modal-overlay" (click)="closeModal()">
+  <!-- Wrapper para posicionamiento relativo -->
+  <div class="modal-wrapper" (click)="$event.stopPropagation()">
+    <!-- Contenedor principal con el diseño recortado -->
+    <div class="modal-container cyber-border">
+      <!-- Contenido Interno -->
+      <div class="modal-content">
+        <!-- Loader mientras carga -->
+        <div *ngIf="isLoading && !qrCodeUrl" class="loader-section">
+          <i class="fa-solid fa-spinner fa-spin"></i>
+          <p>Cargando código QR...</p>
+        </div>
+
+        <!-- QR Code -->
+        <div *ngIf="!isLoading && qrCodeUrl" class="qr-section">
+          <h3 class="qr-title">Escanea este código QR</h3>
+          <img [src]="qrCodeUrl" alt="QR Code 2FA" class="qr-image" />
+          <p class="secret-label">Código de respaldo:</p>
+          <p class="secret-text">{{ secret }}</p>
+        </div>
+
+        <!-- Mensaje de error -->
+        <div *ngIf="errorMessage" class="error-message">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          {{ errorMessage }}
+        </div>
+
+        <!-- Input para código de verificación -->
+        <div class="input-section">
+          <input
+            type="text"
+            class="verification-input"
+            placeholder="Ingresa el código de 6 dígitos..."
+            [(ngModel)]="verificationCode"
+            maxlength="6"
+            [disabled]="isLoading"
+          />
+        </div>
+
+        <!-- Botón de activación -->
+        <div class="button-section">
+          <button
+            class="btn-activate"
+            (click)="onSubmit()"
+            [disabled]="isLoading || !verificationCode"
+          >
+            {{ isLoading ? "Verificando..." : "Activar 2FA" }}
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Botón Cerrar (Flotante sobre la esquina biselada) -->
+    <button class="btn-close" (click)="closeModal()">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+</div>

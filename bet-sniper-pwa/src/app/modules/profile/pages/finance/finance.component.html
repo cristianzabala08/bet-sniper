@@ -1,0 +1,306 @@
+<app-logo></app-logo>
+<div class="profile-container">
+  <!-- 1. TARJETA DE PERFIL (Izquierda) -->
+  <aside class="profile-card panel-card">
+    <div class="avatar-section">
+      <div class="avatar-box" (click)="openAvatarSelector()">
+        <i [class]="defaultProfileIcon"></i>
+      </div>
+      <h3 class="greeting">
+        {{ "FINNACE.USER.HELLO" | translate }},
+        <span class="username">{{ fullName || username }}</span>
+      </h3>
+    </div>
+
+    <div class="profile-actions">
+      <button class="btn-action btn-photo" (click)="openAvatarSelector()">
+        {{ "FINNACE.USER.BTN_CHANGE_PHOTO" | translate }}
+      </button>
+      <button class="btn-action btn-link" (click)="copyReferralLink()">
+        {{ "FINNACE.USER.BTN_COPY_LINK" | translate }}
+      </button>
+    </div>
+  </aside>
+
+  <!-- 2. PANEL DE FINANZAS (Derecha) -->
+  <section class="finance-panel panel-card">
+    <h3 class="panel-title">{{ "FINNACE.DATA_FINNACE.TITLE" | translate }}</h3>
+
+    <!-- Tarjeta de Balance -->
+    <div class="wallet-balance-card">
+      <div class="wallet-section">
+        <div class="wallet-icon">
+          <i class="fa-solid fa-coins"></i>
+          <!-- Changed to coins/points icon -->
+        </div>
+        <span class="label">{{
+          "DETAIL_OPERATIONS.CARD.BALANCE" | translate
+        }}</span>
+        <!-- Or translate key if available -->
+      </div>
+      <div class="balance-info">
+        <div class="row-center">
+          <span class="amount"
+            >{{ pointsBalance | number : "1.2-4" }} <small>USDT</small></span
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- SECCIÓN: RETIRAR -->
+    <div class="form-section">
+      <div class="section-divider">
+        <span>{{ "FINNACE.DATA_FINNACE.COMISIONS_WITHDRAW" | translate }}</span>
+      </div>
+
+      <form [formGroup]="withdrawForm" (ngSubmit)="onWithdraw()">
+        <div class="form-row">
+          <div class="input-group full-width">
+            <input
+              type="number"
+              formControlName="amount"
+              placeholder="{{
+                'FINNACE.DATA_FINNACE.PLACEHOLDER_1' | translate
+              }}"
+              class="input-field rounded"
+              [class.is-invalid]="
+                (fWithdraw['amount'].touched && fWithdraw['amount'].invalid) ||
+                fWithdraw['amount'].value > pointsBalance
+              "
+              [max]="pointsBalance"
+            />
+            <div class="input-addon">PTS</div>
+          </div>
+          <!-- Validation Errors for Amount -->
+          <div
+            *ngIf="
+              (fWithdraw['amount'].touched && fWithdraw['amount'].invalid) ||
+              fWithdraw['amount'].value > pointsBalance
+            "
+            class="validation-errors"
+          >
+            <small *ngIf="fWithdraw['amount'].errors?.['required']">
+              El monto es obligatorio.
+            </small>
+            <small *ngIf="fWithdraw['amount'].errors?.['min']">
+              El monto debe ser mayor a 0.
+            </small>
+            <small
+              *ngIf="
+                fWithdraw['amount'].errors?.['max'] ||
+                fWithdraw['amount'].value > pointsBalance
+              "
+            >
+              Fondos insuficientes.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-row split-row">
+          <div class="auth-input-row">
+            <div class="icon-standalone">
+              <i class="fa-solid fa-asterisk color-multi"></i>
+            </div>
+            <div class="input-group">
+              <input
+                type="text"
+                formControlName="code"
+                placeholder="{{
+                  'FINNACE.DATA_FINNACE.PLACEHOLDER_5' | translate
+                }}"
+                class="input-field rounded rounded"
+                [class.is-invalid]="
+                  fWithdraw['code'].touched && fWithdraw['code'].invalid
+                "
+              />
+              <div class="input-addon">
+                <i class="fa-solid fa-lock-open"></i>
+              </div>
+            </div>
+            <!-- Validation Errors for Code -->
+            <div
+              *ngIf="fWithdraw['code'].touched && fWithdraw['code'].invalid"
+              class="validation-errors"
+            >
+              <small *ngIf="fWithdraw['code'].errors?.['required']">
+                El código 2FA es obligatorio.
+              </small>
+            </div>
+          </div>
+
+          <div class="wallet-row">
+            <div class="icon-standalone wallet-icon">
+              <i class="fa-solid fa-wallet"></i>
+            </div>
+            <div class="input-group full-width">
+              <!-- Wallet is just a text field here as per request (internal/backend verified) or user wallet -->
+              <input
+                type="text"
+                formControlName="wallet"
+                placeholder="Wallet Address"
+                class="input-field rounded"
+                readonly
+                [class.is-invalid]="
+                  fWithdraw['wallet'].touched && fWithdraw['wallet'].invalid
+                "
+              />
+              <!-- Made readonly as it patches from user profile. If user can change withdrawal wallet, remove readonly -->
+            </div>
+            <!-- Validation Errors for Wallet -->
+            <div
+              *ngIf="fWithdraw['wallet'].touched && fWithdraw['wallet'].invalid"
+              class="validation-errors"
+            >
+              <small *ngIf="fWithdraw['wallet'].errors?.['required']">
+                La wallet es obligatoria.
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          class="btn-submit green-grad"
+          [disabled]="withdrawForm.invalid || isWithdrawLoading"
+        >
+          <ng-container *ngIf="!isWithdrawLoading">
+            {{ "FINNACE.DATA_FINNACE.DO_WITHDRAW" | translate }}
+          </ng-container>
+          <ng-container *ngIf="isWithdrawLoading">
+            {{ "LOGIN.BTN_LOADING" | translate }}
+          </ng-container>
+        </button>
+      </form>
+    </div>
+
+    <!-- SECCIÓN: TRANSFERIR -->
+    <div class="form-section">
+      <div class="section-divider">
+        <span>{{ "FINNACE.DATA_FINNACE.TRANSFER_FUNDS" | translate }}</span>
+      </div>
+
+      <form [formGroup]="transferForm" (ngSubmit)="onTransfer()">
+        <div class="form-row">
+          <div class="input-group full-width">
+            <input
+              type="number"
+              formControlName="amount"
+              placeholder="{{
+                'FINNACE.DATA_FINNACE.PLACEHOLDER_3' | translate
+              }}"
+              class="input-field rounded rounded"
+              [class.is-invalid]="
+                (fTransfer['amount'].touched && fTransfer['amount'].invalid) ||
+                fTransfer['amount'].value > pointsBalance
+              "
+              [max]="pointsBalance"
+            />
+            <div class="input-addon">PTS</div>
+          </div>
+          <!-- Validation Errors for Amount -->
+          <div
+            *ngIf="
+              (fTransfer['amount'].touched && fTransfer['amount'].invalid) ||
+              fTransfer['amount'].value > pointsBalance
+            "
+            class="validation-errors"
+          >
+            <small *ngIf="fTransfer['amount'].errors?.['required']">
+              El monto es obligatorio.
+            </small>
+            <small *ngIf="fTransfer['amount'].errors?.['min']">
+              El monto debe ser mayor a 0.
+            </small>
+            <small
+              *ngIf="
+                fTransfer['amount'].errors?.['max'] ||
+                fTransfer['amount'].value > pointsBalance
+              "
+            >
+              Fondos insuficientes.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-row split-row">
+          <div class="input-group">
+            <input
+              type="text"
+              formControlName="recipientId"
+              placeholder="{{
+                'FINNACE.DATA_FINNACE.PLACEHOLDER_4' | translate
+              }}"
+              class="input-field rounded"
+              [class.is-invalid]="
+                fTransfer['recipientId'].touched &&
+                fTransfer['recipientId'].invalid
+              "
+            />
+            <!-- Validation Errors for Recipient -->
+            <div
+              *ngIf="
+                fTransfer['recipientId'].touched &&
+                fTransfer['recipientId'].invalid
+              "
+              class="validation-errors"
+            >
+              <small *ngIf="fTransfer['recipientId'].errors?.['required']">
+                El usuario destino es obligatorio.
+              </small>
+            </div>
+          </div>
+
+          <div class="auth-input-row">
+            <div class="icon-standalone">
+              <i class="fa-solid fa-asterisk color-multi"></i>
+            </div>
+            <div class="input-group">
+              <input
+                type="text"
+                formControlName="code"
+                placeholder="{{
+                  'FINNACE.DATA_FINNACE.PLACEHOLDER_5' | translate
+                }}"
+                class="input-field rounded"
+                [class.is-invalid]="
+                  fTransfer['code'].touched && fTransfer['code'].invalid
+                "
+              />
+              <div class="input-addon">
+                <i class="fa-solid fa-lock-open"></i>
+              </div>
+            </div>
+            <!-- Validation Errors for Code -->
+            <div
+              *ngIf="fTransfer['code'].touched && fTransfer['code'].invalid"
+              class="validation-errors"
+            >
+              <small *ngIf="fTransfer['code'].errors?.['required']">
+                El código 2FA es obligatorio.
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          class="btn-submit green-grad"
+          [disabled]="transferForm.invalid || isTransferLoading"
+        >
+          <ng-container *ngIf="!isTransferLoading">
+            {{ "FINNACE.DATA_FINNACE.BTN_TRANSFER_USER" | translate }}
+          </ng-container>
+          <ng-container *ngIf="isTransferLoading">
+            {{ "LOGIN.BTN_LOADING" | translate }}
+          </ng-container>
+        </button>
+      </form>
+    </div>
+  </section>
+</div>
+
+<app-avatar-selector-modal
+  *ngIf="showAvatarSelectorModal"
+  (close)="closeAvatarSelector()"
+  (iconSelected)="onAvatarSelected($event)"
+></app-avatar-selector-modal>

@@ -1,0 +1,657 @@
+/* --- VARIABLES (Si no son globales) --- */
+$neon-green: #c9a84c;
+$neon-purple: #c9a84c;
+$neon-pink: #d4af37;
+$neon-blue: #8b6914;
+$bg-panel: rgba(13, 13, 40, 0.8);
+$border-color: rgba(255, 255, 255, 0.1);
+
+.dashboard-container-signals-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-bottom: 50px;
+  color: white;
+  font-family: "Rajdhani", sans-serif;
+}
+
+/* --- LAYOUT PRINCIPAL (Comentado/Simplificado ya no define la grilla principal) --- */
+/*
+.history-container {
+  // Ya no se usa para la grilla de 2 columnas
+  display: block;
+  width: 100%;
+}
+*/
+
+/* --- ESTILOS COMUNES --- */
+.text-neon-green {
+  color: $neon-green;
+  text-shadow: 0 0 5px rgba(0, 255, 195, 0.4);
+}
+.text-neon-pink {
+  color: $neon-pink;
+  text-shadow: 0 0 5px rgba(255, 0, 222, 0.4);
+}
+.text-neon-purple {
+  color: $neon-purple;
+}
+.text-neon-blue {
+  color: $neon-blue;
+}
+
+.panel-card {
+  background: $bg-panel;
+  // border: 1px solid $neon-blue; /* Borde azul del panel principal */
+  border: transparent; /* Borde azul del panel principal */
+  // border-radius: 15px;
+  padding: 20px;
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+
+  /* Capa de borde */
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: $neon-blue;
+    clip-path: polygon(
+      0 0,
+      calc(100% - 20px) 0,
+      100% 20px,
+      100% 100%,
+      20px 100%,
+      0 calc(100% - 20px)
+    );
+    z-index: -2;
+  }
+
+  /* Capa de fondo top bar */
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 2px;
+    background: radial-gradient(
+      circle at 50% 30%,
+      rgba(18, 18, 16, 0.9) 0%,
+      /* Morado intenso en el centro */ rgba(18, 18, 16, 0.95) 50%,
+      /* Transición a morado oscuro */ rgba(10, 10, 8, 1) 100%
+        /* Oscuro/Negro en las esquinas */
+    );
+    // backdrop-filter: blur(10px);
+    clip-path: polygon(
+      0 0,
+      calc(100% - 20px) 0,
+      100% 20px,
+      100% 100%,
+      20px 100%,
+      0 calc(100% - 20px)
+    );
+    z-index: -1;
+  }
+}
+
+/* --- SECCIÓN PRINCIPAL: OPERACIONES Y SIDEBAR JUNTOS --- */
+.operations-detail {
+  .panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 1px solid $border-color;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+
+    .title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin: 0;
+      text-transform: uppercase;
+    }
+    .date-label {
+      font-size: 0.8rem;
+      color: #888;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .btn-refresh {
+      background: transparent;
+      border: 1px solid $neon-blue;
+      color: $neon-blue;
+      width: 35px;
+      height: 35px;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+      box-shadow: 0 0 5px rgba($neon-blue, 0.2);
+
+      &:hover:not([disabled]) {
+        background: rgba($neon-blue, 0.1);
+        box-shadow: 0 0 10px rgba($neon-blue, 0.5);
+        color: white;
+        transform: rotate(180deg);
+      }
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        border-color: #555;
+        color: #555;
+      }
+    }
+  }
+
+  /* NUEVO: Contenedor para las dos columnas internas */
+  .operations-and-sidebar-content {
+    display: grid;
+    grid-template-columns: 4fr 1fr; /* 75% Lista de Operaciones - 25% Sidebar */
+    gap: 20px;
+    height: 100%; /* Para que el wrapper de operaciones pueda tener altura máxima relativa */
+
+    @media (max-width: 1100px) {
+      grid-template-columns: 1fr; /* Apilado en pantallas pequeñas */
+    }
+  }
+
+  /* NUEVO: Wrapper para manejar el scroll solo en las operaciones */
+  .operations-list-wrapper {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto; /* Habilita el scroll vertical */
+    max-height: 600px; /* Altura máxima con scroll */
+    padding-right: 10px;
+
+    padding-right: 15px;
+
+    // 1. Define el ancho de la barra de desplazamiento completa
+    &::-webkit-scrollbar {
+      width: 15px; /* Ancho deseado del cilindro */
+    }
+
+    // 2. Define el riel (track) de la barra
+    &::-webkit-scrollbar-track {
+      background: rgba(
+        0,
+        0,
+        0,
+        0.3
+      ); /* Fondo oscuro transparente para el riel */
+      border-radius: 10px; // Forma de cilindro
+    }
+
+    // 3. Define el "pulgar" (thumb) que se mueve
+    &::-webkit-scrollbar-thumb {
+      // Gradiente que simula la luz y el color futurista
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.4) 0%,
+        /* Blanco/Claro en la parte superior */ $neon-purple 15%,
+        /* Morado neón */ #005acc 85%,
+        /* Azul oscuro en el medio/bajo */ rgba(255, 255, 255, 0.2) 100%
+          /* Blanco/Claro sutil en el fondo */
+      );
+      border-radius: 10px; // Hace el pulgar también con forma de cilindro
+      border: 3px solid rgba(13, 13, 40, 0.5); /* Borde que separa el thumb del track */
+      box-shadow: 0 0 10px rgba($neon-purple, 0.5); /* Resplandor sutil */
+    }
+
+    // 4. Estilo del pulgar al pasar el ratón (Hover)
+    &::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.6) 0%,
+        $neon-pink 20%,
+        /* Cambia a rosa/magenta al pasar el ratón */ #0069d9 80%,
+        rgba(255, 255, 255, 0.4) 100%
+      );
+    }
+  }
+
+  /* Contenedor de la lista de filas (Ahora dentro del wrapper) */
+  .operations-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dos columnas de operaciones */
+    gap: 20px 40px; /* Espacio entre filas y columnas */
+
+    @media (max-width: 1400px) {
+      grid-template-columns: 1fr;
+    } /* Una sola columna si es estrecho */
+
+    .op-row {
+      display: flex;
+      align-items: center;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+      /* Icono Izquierda */
+      .icon-col {
+        font-size: 1.2rem;
+        margin-right: 15px;
+        i {
+          display: block;
+        }
+      }
+
+      &.win .icon-col i {
+        color: $neon-green;
+      }
+      &.loss .icon-col i {
+        color: $neon-pink;
+      }
+
+      /* Info del Juego */
+      .info-col {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        border-right: 1px solid $border-color; /* Línea separadora vertical */
+        padding-right: 15px;
+        margin-right: 15px;
+
+        .type {
+          font-size: 0.65rem;
+          font-weight: 700;
+          color: $neon-purple;
+          text-transform: uppercase;
+          margin-bottom: 2px;
+        }
+        .game {
+          font-size: 0.85rem;
+          font-weight: 600;
+          color: white;
+        }
+
+        .forecast-visual {
+          display: flex;
+          gap: 6px;
+          margin-top: 6px;
+          align-items: center;
+
+          .forecast-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &.dot-blue { background-color: $neon-blue; box-shadow: 0 0 5px $neon-blue; }
+            &.dot-red { background-color: $neon-pink; box-shadow: 0 0 5px $neon-pink; }
+            &.dot-green { background-color: $neon-green; box-shadow: 0 0 5px $neon-green; }
+
+            &.active {
+              width: 16px;
+              height: 16px;
+              background-color: white;
+              box-shadow: 0 0 10px white;
+              z-index: 1;
+              
+              /* Apply color border or glow based on type? */
+              /* Or just white center as in the image? Image shows white glowing dot. */
+              
+              .dot-number {
+                font-size: 0.6rem;
+                color: black;
+                font-weight: 800;
+              }
+            }
+          }
+        }
+      }
+
+      /* Resultado (Monto) */
+      .result-col {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        border-right: 1px solid $border-color;
+        padding-right: 15px;
+        margin-right: 15px;
+        min-width: 100px;
+
+        .label {
+          font-size: 0.65rem;
+          font-weight: 700;
+          color: $neon-purple;
+        }
+        .amount {
+          font-size: 0.9rem;
+          font-weight: 700;
+        }
+      }
+
+      /* Hora */
+      .time-col {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-width: 50px;
+
+        .label {
+          font-size: 0.65rem;
+          color: $neon-purple;
+          font-weight: 700;
+        }
+        .time {
+          font-size: 0.85rem;
+          color: white;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}
+
+/* --- SECCIÓN DERECHA: SIDEBAR (Ajustado para estar DENTRO del panel) --- */
+.history-sidebar-in-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  /* Ya no necesita el background/borde de panel, pues el contenedor padre lo tiene */
+
+  .sidebar-header {
+    text-align: right;
+    margin-bottom: 10px;
+    .title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin: 0;
+      text-transform: uppercase;
+    }
+  }
+
+  /* Selector Fecha */
+  .date-selector {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    // Quitamos el background y el padding general de aquí
+    padding: 0;
+    border-radius: 5px;
+
+    span {
+      font-size: 0.7rem;
+      color: $neon-purple;
+      font-weight: 700;
+      padding-left: 10px; /* Añade padding al texto 'SELECCIONAR FECHA' */
+    }
+
+    .date-input {
+      // ESTILOS CLAVE MODIFICADOS
+      background: rgba(0, 0, 0, 0.4); /* Fondo más oscuro */
+      border: 1px solid $neon-purple; /* Borde delgado y del color púrpura neón */
+
+      display: flex;
+      align-items: center;
+      justify-content: center; // Centrado horizontal
+      gap: 10px;
+      color: white;
+      font-weight: 700;
+      width: 150px;
+      cursor: pointer;
+
+      padding: 10px; /* Mantenemos el padding para el tamaño */
+      border-radius: 5px;
+
+      i {
+        font-size: 1.1rem;
+      }
+    }
+  }
+
+  /* Botón Descargar */
+  .btn-download {
+    background: linear-gradient(135deg, #8b6914, #c9a84c, #ffd700);
+    border: none;
+    padding: 15px;
+    width: 100%;
+    border-radius: 0;
+    font-weight: 800;
+    font-size: 1rem;
+    cursor: pointer;
+    color: white;
+    text-transform: uppercase;
+    clip-path: polygon(
+      0 0,
+      calc(100% - 10px) 0,
+      100% 10px,
+      100% 100%,
+      10px 100%,
+      0 calc(100% - 10px)
+    );
+    box-shadow: 0 0 15px rgba(201, 168, 76, 0.15);
+    transition: all 0.3s ease;
+
+    &:hover {
+      filter: brightness(1.1);
+      box-shadow: 0 0 20px rgba(201, 168, 76, 0.3);
+    }
+  }
+
+  /* Balance Card */
+  .balance-card {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 15px;
+    border-left: 3px solid $neon-green;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-radius: 5px;
+
+    .icon {
+      color: $neon-green;
+      font-size: 1.2rem;
+    }
+
+    .balance-info {
+      display: flex;
+      flex-direction: column;
+      .label {
+        font-size: 0.7rem;
+        color: $neon-purple;
+        font-weight: 700;
+      }
+      .amount {
+        font-size: 1.1rem;
+        font-weight: 800;
+      }
+    }
+  }
+
+  /* Membership Card (Estilo Verde) */
+  .membership-card {
+    background: $bg-panel;
+    border-top: 3px solid $neon-green;
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    .card-header {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+
+      .icon-box {
+        background: linear-gradient(135deg, #8b6914, #c9a84c, #ffd700);
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        clip-path: polygon(
+          0 0,
+          calc(100% - 10px) 0,
+          100% 10px,
+          100% 100%,
+          10px 100%,
+          0 calc(100% - 10px)
+        );
+        box-shadow: 0 0 15px rgba(0, 255, 157, 0.3);
+        transition: all 0.3s ease;
+        z-index: 10;
+
+        i {
+          font-size: 1.8rem;
+          color: white;
+          position: relative;
+          z-index: 2;
+        }
+      }
+
+      .card-title {
+        color: white;
+        font-weight: 800;
+        font-size: 1.5rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+    }
+
+    .card-body {
+      display: flex;
+      flex-direction: row;
+      align-items: center; /* Changed from flex-start to center for better alignment */
+      justify-content: space-between;
+      gap: 20px;
+
+      .membership-duration {
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+        position: relative; /* For divider */
+        padding-right: 25px; /* Space for divider */
+
+        /* Green Vertical Divider */
+        &::after {
+          content: "";
+          position: absolute;
+          right: 0;
+          top: 10%;
+          height: 95%;
+          width: 2px;
+          background-color: $neon-green;
+        }
+
+        .months-number {
+          font-size: 4rem;
+          font-weight: 800;
+          color: $neon-green;
+          line-height: 1;
+        }
+
+        .months-label {
+          font-size: 1rem;
+          font-weight: 700;
+          color: white;
+          text-transform: uppercase;
+        }
+      }
+
+      .time-remaining {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 5px;
+
+        .time-label {
+          font-size: 0.75rem;
+          color: $neon-green; /* Updated to green */
+          font-weight: 600;
+          text-transform: capitalize;
+        }
+
+        .time-countdown {
+          display: flex;
+          align-items: center;
+          gap: 25px; /* Increased gap for dividers */
+
+          .time-unit {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: transparent;
+            padding: 0;
+            border-radius: 0;
+            min-width: auto;
+            position: relative; /* For divider */
+
+            /* Green Vertical Divider */
+            &:not(:last-child)::after {
+              content: "";
+              position: absolute;
+              right: -12.5px;
+              top: 10%;
+              height: 80%;
+              width: 2px;
+              background-color: $neon-green;
+            }
+
+            .time-number {
+              font-size: 1.8rem;
+              font-weight: 800;
+              color: white; /* Updated to white */
+              line-height: 1;
+            }
+
+            .time-text {
+              font-size: 0.65rem;
+              color: $neon-green; /* Updated to green */
+              font-weight: 600;
+              margin-top: 2px;
+            }
+          }
+
+          /* .time-divider removed as it is now handled by pseudo-element */
+        }
+      }
+    }
+
+    .btn-renew {
+      background: linear-gradient(135deg, #8b6914, #c9a84c, #ffd700);
+      border: none;
+      padding: 15px;
+      width: 100%;
+      border-radius: 0;
+      font-weight: 800;
+      font-size: 1rem;
+      cursor: pointer;
+      color: white;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      clip-path: polygon(
+        0 0,
+        calc(100% - 10px) 0,
+        100% 10px,
+        100% 100%,
+        10px 100%,
+        0 calc(100% - 10px)
+      );
+      box-shadow: 0 0 15px rgba(201, 168, 76, 0.15);
+      transition: all 0.3s ease;
+
+      &:hover {
+        filter: brightness(1.1);
+        box-shadow: 0 0 20px rgba(201, 168, 76, 0.3);
+      }
+    }
+  }
+}

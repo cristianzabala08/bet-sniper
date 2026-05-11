@@ -1,0 +1,672 @@
+/* VARIABLES GLOBALES - TEMA LUXURY DARK GOLD (Bet Sniper) */
+:root {
+  --bg-deep: #0a0a0a;
+  /* Fondo negro profundo */
+  --bg-card: #121210;
+  /* Fondo de tarjetas */
+  --primary: #c9a84c;
+  /* Dorado Principal */
+  --primary-glow: #ffd700;
+  /* Brillo Dorado */
+  --accent: #c9a84c;
+  /* Dorado (Botones) */
+  --accent-hover: #d4af37;
+  --text-main: #f5f0e1;
+  /* Blanco roto / crema */
+  --text-muted: #8a7e6b;
+  --input-bg: #1a1a18;
+  /* Fondo de inputs */
+  --border-color: #2a2520;
+  --gold-primary: #c9a84c;
+  --gold-light: #ffd700;
+  --gold-dark: #8b6914;
+  --gold-accent: #d4af37;
+  --bronze: #cd7f32;
+  --gold-glow: rgba(201, 168, 76, 0.15);
+  --gold-glow-strong: rgba(201, 168, 76, 0.3);
+}
+
+body,
+html {
+  position: relative;
+
+  /* Clase para el fondo animado dorado */
+  .video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #050505;
+    z-index: -2;
+    overflow: hidden;
+  }
+}
+
+/* Gold Animated Background */
+.gold-animated-bg {
+  background: radial-gradient(ellipse at 50% 0%, rgba(201, 168, 76, 0.15) 0%, transparent 50%),
+              radial-gradient(ellipse at 80% 80%, rgba(139, 105, 20, 0.1) 0%, transparent 40%),
+              radial-gradient(ellipse at 20% 90%, rgba(212, 175, 55, 0.08) 0%, transparent 40%),
+              #050505;
+}
+
+/* Hexagonal Background Pattern - Bet Sniper Signature */
+.hex-bg-pattern {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  background-color: #050505;
+  background-image:
+    /* Gold corner accents */
+    radial-gradient(ellipse at 0% 0%, rgba(201, 168, 76, 0.12) 0%, transparent 35%),
+    radial-gradient(ellipse at 100% 0%, rgba(201, 168, 76, 0.12) 0%, transparent 35%),
+    radial-gradient(ellipse at 0% 100%, rgba(201, 168, 76, 0.08) 0%, transparent 30%),
+    radial-gradient(ellipse at 100% 100%, rgba(201, 168, 76, 0.08) 0%, transparent 30%),
+    /* Hexagonal grid overlay */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpath d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100' fill='none' stroke='rgba(201,168,76,0.08)' stroke-width='0.5'/%3E%3Cpath d='M28 0L28 34L0 50L0 84L28 100L56 84L56 50L28 34' fill='none' stroke='rgba(201,168,76,0.04)' stroke-width='0.3'/%3E%3C/svg%3E");
+}
+
+/* Gold border frame decoration for sections */
+.gold-frame {
+  position: relative;
+  &::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: -1px; right: -1px; bottom: -1px;
+    background: linear-gradient(135deg, #c9a84c 0%, #8b6914 25%, #c9a84c 50%, #8b6914 75%, #c9a84c 100%);
+    z-index: -1;
+    clip-path: polygon(
+      0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px)
+    );
+  }
+  &::after {
+    content: '';
+    position: absolute;
+    top: 1px; left: 1px; right: 1px; bottom: 1px;
+    background: rgba(10, 10, 8, 0.95);
+    z-index: -1;
+    clip-path: polygon(
+      0 0, calc(100% - 19px) 0, 100% 19px, 100% 100%, 19px 100%, 0 calc(100% - 19px)
+    );
+  }
+}
+
+/* Gold gradient text utility */
+.gold-gradient-text {
+  background: linear-gradient(135deg, #ffd700, #c9a84c, #ffd700);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gold-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    radial-gradient(2px 2px at 20% 30%, rgba(201, 168, 76, 0.4) 0%, transparent 100%),
+    radial-gradient(2px 2px at 40% 70%, rgba(255, 215, 0, 0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 60% 20%, rgba(212, 175, 55, 0.5) 0%, transparent 100%),
+    radial-gradient(2px 2px at 80% 50%, rgba(201, 168, 76, 0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 10% 80%, rgba(255, 215, 0, 0.4) 0%, transparent 100%),
+    radial-gradient(2px 2px at 70% 90%, rgba(139, 105, 20, 0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 90% 10%, rgba(201, 168, 76, 0.5) 0%, transparent 100%),
+    radial-gradient(2px 2px at 50% 50%, rgba(212, 175, 55, 0.2) 0%, transparent 100%),
+    radial-gradient(1px 1px at 30% 60%, rgba(255, 215, 0, 0.35) 0%, transparent 100%),
+    radial-gradient(2px 2px at 85% 35%, rgba(201, 168, 76, 0.25) 0%, transparent 100%);
+  background-size: 100% 100%;
+  animation: particleFloat 20s ease-in-out infinite;
+  opacity: 0.8;
+}
+
+.gold-particles-2 {
+  background-image:
+    radial-gradient(1px 1px at 15% 45%, rgba(201, 168, 76, 0.5) 0%, transparent 100%),
+    radial-gradient(2px 2px at 55% 25%, rgba(255, 215, 0, 0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 75% 65%, rgba(212, 175, 55, 0.4) 0%, transparent 100%),
+    radial-gradient(2px 2px at 35% 85%, rgba(139, 105, 20, 0.35) 0%, transparent 100%),
+    radial-gradient(1px 1px at 95% 75%, rgba(201, 168, 76, 0.3) 0%, transparent 100%),
+    radial-gradient(2px 2px at 5% 15%, rgba(255, 215, 0, 0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 45% 95%, rgba(212, 175, 55, 0.3) 0%, transparent 100%),
+    radial-gradient(2px 2px at 65% 5%, rgba(201, 168, 76, 0.45) 0%, transparent 100%);
+  background-size: 100% 100%;
+  animation: particleFloat 25s ease-in-out infinite reverse;
+  opacity: 0.6;
+}
+
+.gold-glow-orb {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, rgba(201, 168, 76, 0.12) 0%, rgba(139, 105, 20, 0.05) 40%, transparent 70%);
+  animation: orbPulse 8s ease-in-out infinite;
+  border-radius: 50%;
+}
+
+@keyframes particleFloat {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  25% { transform: translateY(-15px) translateX(10px); }
+  50% { transform: translateY(-5px) translateX(-8px); }
+  75% { transform: translateY(-20px) translateX(5px); }
+}
+
+@keyframes orbPulse {
+  0%, 100% { opacity: 0.6; transform: translateX(-50%) scale(1); }
+  50% { opacity: 1; transform: translateX(-50%) scale(1.15); }
+}
+
+/* =========================================
+   SISTEMA DE ESPACIADO (UTILITIES)
+   Base: 0.25rem (4px)
+   ========================================= */
+
+// Configuración base: 1 unidad = 0.25rem (aprox 4px)
+$spacer: 0.25rem;
+
+@for $i from 0 through 5 {
+  // MARGINS (m)
+  .m-#{$i} {
+    margin: $i * $spacer !important;
+  }
+
+  .mt-#{$i} {
+    margin-top: $i * $spacer !important;
+  }
+
+  .mb-#{$i} {
+    margin-bottom: $i * $spacer !important;
+  }
+
+  .ml-#{$i} {
+    margin-left: $i * $spacer !important;
+  }
+
+  .mr-#{$i} {
+    margin-right: $i * $spacer !important;
+  }
+
+  .mx-#{$i} {
+    margin-left: $i * $spacer !important;
+    margin-right: $i * $spacer !important;
+  }
+
+  // Eje X
+  .my-#{$i} {
+    margin-top: $i * $spacer !important;
+    margin-bottom: $i * $spacer !important;
+  }
+
+  // Eje Y
+
+  // PADDINGS (p)
+  .p-#{$i} {
+    padding: $i * $spacer !important;
+  }
+
+  .pt-#{$i} {
+    padding-top: $i * $spacer !important;
+  }
+
+  .pb-#{$i} {
+    padding-bottom: $i * $spacer !important;
+  }
+
+  .pl-#{$i} {
+    padding-left: $i * $spacer !important;
+  }
+
+  .pr-#{$i} {
+    padding-right: $i * $spacer !important;
+  }
+
+  .px-#{$i} {
+    padding-left: $i * $spacer !important;
+    padding-right: $i * $spacer !important;
+  }
+
+  // Eje X
+  .py-#{$i} {
+    padding-top: $i * $spacer !important;
+    padding-bottom: $i * $spacer !important;
+  }
+
+  // Eje Y
+}
+
+/* =========================================
+   UTILIDADES FLEXBOX (GAP)
+   Muy útil para separar botones o inputs
+   ========================================= */
+@for $i from 1 through 5 {
+  .gap-#{$i} {
+    gap: $i * $spacer !important;
+  }
+}
+
+/* =========================================
+   TEXT UTILITIES
+   ========================================= */
+.text-center {
+  text-align: center !important;
+}
+
+.text-left {
+  text-align: left !important;
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+.w-100 {
+  width: 100% !important;
+}
+
+/* Utilidad para centrar todo (Login layout) */
+.full-screen-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  background: radial-gradient(
+    circle at 50% -20%,
+    #1a1508 0%,
+    var(--bg-deep) 60%
+  );
+}
+
+/* Reset de Inputs básicos */
+input {
+  outline: none;
+}
+
+/* 1. RESET GLOBAL OBLIGATORIO */
+* {
+  box-sizing: border-box;
+}
+
+/* 2. CONTENEDOR PRINCIPAL */
+.login-container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Asegurarse que el contenido esté por encima del fondo */
+.login-box {
+  position: relative;
+  z-index: 1;
+}
+
+/* 3. CAJA DEL LOGIN (LA TARJETA) */
+.login-box {
+  width: 100%;
+  max-width: 900px;
+  background: linear-gradient(135deg, #8b6914, #c9a84c, #ffd700); /* Gold gradient border */
+  border-radius: 0px;
+  clip-path: polygon(
+    0 0,
+    calc(100% - 20px) 0,
+    100% 20px,
+    100% 100%,
+    20px 100%,
+    0 calc(100% - 20px)
+  );
+  padding: 2px;
+  display: flex;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 30px rgba(201, 168, 76, 0.3);
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    background: rgba(10, 10, 8, 0.92); //fondo interno
+    clip-path: polygon(
+      0 0,
+      calc(100% - 19px) 0,
+      100% 19px,
+      100% 100%,
+      19px 100%,
+      0 calc(100% - 19px)
+    );
+    z-index: 0;
+  }
+
+  > * {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+/* --- SECCIÓN IZQUIERDA (LOGO) --- */
+.left-section {
+  width: 40%;
+  padding: 3rem 2rem;
+  background: rgba(18, 18, 16, 0.4);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+
+  .logo-img {
+    width: 250px;
+    height: auto;
+    max-width: 100%;
+    margin-bottom: 20px;
+    background: transparent;
+    border: none;
+    image-rendering: auto;
+  }
+
+  .copyright {
+    font-size: 0.75rem;
+    color: rgba(201, 168, 76, 0.4);
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Línea divisoria */
+.divider {
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    transparent 10%,
+    #2a2520 10%,
+    #c9a84c 50%,
+    #2a2520 90%,
+    transparent 90%
+  );
+  align-self: stretch;
+}
+
+/* --- SECCIÓN DERECHA (FORMULARIO) --- */
+.right-section {
+  width: 60%;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .welcome-title {
+    color: #f5f0e1;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+  }
+}
+
+/* --- INPUTS Y FORMULARIO --- */
+.form-group {
+  margin-bottom: 1.2rem;
+  width: 100%;
+  position: relative;
+}
+
+.input-wrapper,
+.form-group {
+  position: relative;
+  width: 100%;
+
+  input {
+    width: 100%;
+    padding: 14px 40px 14px 16px;
+    /* Padding derecho extra para el icono */
+    background: rgba(26, 26, 24, 0.8);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    color: var(--text-main);
+    font-size: 0.95rem;
+    outline: none;
+    transition: all 0.3s ease;
+
+    &::placeholder {
+      color: var(--text-muted);
+    }
+
+    &:focus {
+      border-color: var(--gold-primary);
+      box-shadow: 0 0 10px var(--gold-glow);
+    }
+  }
+
+  .password-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 1.1rem;
+    opacity: 0.7;
+    z-index: 2;
+    color: #c9a84c;
+  }
+}
+
+/* --- LINKS Y BOTONES --- */
+.bottom-links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+
+  label {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--text-muted);
+  }
+
+  a {
+    color: var(--gold-primary);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--gold-light);
+      text-shadow: 0 0 8px var(--gold-glow);
+    }
+  }
+}
+
+@mixin tech-button-shape {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  color: #0a0a0a;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 0;
+  clip-path: polygon(
+    0 0,
+    calc(100% - 15px) 0,
+    100% 15px,
+    100% 100%,
+    15px 100%,
+    0 calc(100% - 15px)
+  );
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+
+  button {
+    font-size: 0.9rem;
+  }
+
+  .btn-login {
+    @include tech-button-shape;
+    background: linear-gradient(135deg, #8b6914 0%, #c9a84c 50%, #ffd700 100%);
+    color: #0a0a0a;
+    text-shadow: none;
+  }
+
+  .btn-register {
+    @include tech-button-shape;
+    background: linear-gradient(135deg, #2a2520 0%, #3d3428 100%);
+    border: 1px solid var(--gold-primary);
+    color: var(--gold-primary);
+  }
+
+  .btn-back-to-login {
+    @include tech-button-shape;
+    background: linear-gradient(135deg, #2a2520 0%, #3d3428 100%);
+    border: 1px solid var(--gold-primary);
+    color: var(--gold-primary);
+    width: 100%;
+    max-width: 400px;
+    display: block;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(201, 168, 76, 0.3);
+  }
+}
+
+/* =========================================
+   MEDIA QUERY: RESPONSIVE
+   ========================================= */
+@media (max-width: 768px) {
+  .buttons {
+    flex-direction: column;
+  }
+
+  .login-container {
+    padding: 15px;
+    height: auto;
+  }
+
+  .login-box {
+    flex-direction: column;
+    width: 100%;
+    max-width: 450px;
+  }
+
+  .divider {
+    display: none;
+  }
+
+  .left-section,
+  .right-section {
+    width: 100% !important;
+    padding: 2rem;
+  }
+
+  .left-section {
+    padding-bottom: 0;
+    background: transparent;
+
+    .logo-img {
+      width: 140px;
+    }
+
+    .copyright {
+      display: none;
+    }
+  }
+
+  .right-section {
+    padding-top: 1rem;
+
+    .welcome-title {
+      text-align: center;
+      font-size: 1.5rem;
+    }
+  }
+
+  .bottom-links {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Montserrat', 'Rajdhani', Roboto, "Helvetica Neue", sans-serif;
+  background-color: #0a0a0a;
+  color: #f5f0e1;
+}
+
+.toast-success {
+  background: linear-gradient(135deg, #1a3a1a, #2d5a2d) !important;
+  color: #f5f0e1 !important;
+  font-weight: bold;
+  border-radius: 6px !important;
+  border: 1px solid rgba(201, 168, 76, 0.3) !important;
+}
+
+.toast-success .mat-mdc-snack-bar-label,
+.toast-success .mdc-snackbar__surface {
+  background: linear-gradient(90deg, #c9a84c, #8b6914) !important;
+  color: #0a0a0a !important;
+  border-radius: 6px !important;
+}
+
+.snack-error {
+  background-color: rgba(180, 50, 50, 0.95) !important;
+  color: #f5f0e1 !important;
+  border-radius: 6px !important;
+  border: 1px solid rgba(201, 168, 76, 0.3) !important;
+}
+
+.snack-error .mat-mdc-snack-bar-label,
+.snack-error .mdc-snackbar__surface {
+  background-color: #8b2020 !important;
+  color: #f5f0e1 !important;
+  border-radius: 6px !important;
+}
+
+.toast-info {
+  background: linear-gradient(135deg, #1a1508, #2a2520) !important;
+  color: #f5f0e1 !important;
+  font-weight: bold;
+  border-radius: 6px !important;
+  border: 1px solid rgba(201, 168, 76, 0.4) !important;
+}
+
+.toast-info .mat-mdc-snack-bar-label,
+.toast-info .mdc-snackbar__surface {
+  background: linear-gradient(90deg, #1a1408, #2a1f0a) !important;
+  color: #ffd700 !important;
+  border-radius: 6px !important;
+}
+
+/* FIX: Ensure Toasts (SnackBars) appear ABOVE any custom modal overlay */
+.cdk-overlay-container {
+  z-index: 10000 !important;
+}

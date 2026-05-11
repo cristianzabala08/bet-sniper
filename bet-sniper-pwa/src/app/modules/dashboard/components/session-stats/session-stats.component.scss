@@ -1,0 +1,884 @@
+/* --- VARIABLES - Luxury Dark Gold Theme --- */
+$gold-primary: #c9a84c;
+$gold-light: #ffd700;
+$gold-dark: #8b6914;
+$gold-accent: #d4af37;
+$bronze: #cd7f32;
+$neon-green: #c9a84c;
+$neon-purple: #c9a84c;
+$neon-blue: #8b6914;
+$bg-panel: rgba(18, 18, 16, 0.85);
+$text-muted: #8a7e6b;
+$text-white: #f5f0e1;
+$gold-glow: rgba(201, 168, 76, 0.15);
+$gold-glow-strong: rgba(201, 168, 76, 0.3);
+$border-gold: #2a2520;
+
+.info-cards-zone {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 tarjetas por fila en PC grandes */
+  gap: 12px;
+  width: 100%;
+  padding: 9px 5px;
+
+  /* --- RESPONSIVE INTERMEDIO (LAPTOPS/TABLETS) --- */
+  @media (max-width: 1450px) {
+     grid-template-columns: 1fr; /* Apilar en 1 columna si no caben las 3 bien */
+     
+     /* Permitir que las tarjetas ocupen todo el ancho y no tengan min-width fijo que rompa */
+    .purple-card-container,
+    .green-card-container {
+      min-width: 100% !important;
+    }
+    
+    /* Ajustes opcionales para que se vean bien estiradas */
+    .purple-card-container .btn-card.purple {
+        width: 100% !important; /* Botón full width en este modo */
+    }
+  }
+
+  /* Contenedor para la tarjeta morada y su icono flotante */
+  .purple-card-container {
+    position: relative;
+    min-width: 500px;
+    height: 100%; /* Fill grid cell */
+    display: flex;
+    flex-direction: column;
+
+    .icon-corner {
+      position: absolute;
+      top: -20px;
+      left: 20px;
+      background: linear-gradient(135deg, $gold-dark 0%, $gold-primary 100%);
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      clip-path: polygon(
+        10px 0,
+        100% 0,
+        100% calc(100% - 10px),
+        calc(100% - 10px) 100%,
+        0 100%,
+        0 10px
+      );
+      z-index: 10;
+
+      &::before {
+        content: "";
+        position: absolute;
+        inset: 2px;
+        background: linear-gradient(135deg, $gold-dark 0%, $gold-primary 100%);
+        clip-path: polygon(
+          10px 0,
+          100% 0,
+          100% calc(100% - 10px),
+          calc(100% - 10px) 100%,
+          0 100%,
+          0 10px
+        );
+        z-index: -1;
+      }
+
+      i {
+        font-size: 1.8rem;
+        color: #0a0a0a;
+        position: relative;
+        z-index: 2;
+      }
+    }
+
+    .border-wrapper {
+      background: $gold-primary; /* Borde dorado */
+      flex: 1; /* Grow to fill container */
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  /* Contenedor para la tarjeta azul y su icono flotante */
+  .blue-card-container {
+    position: relative;
+
+    .icon-corner {
+      position: absolute;
+      top: -20px;
+      left: 20px;
+      background: linear-gradient(135deg, $gold-dark 0%, $gold-accent 100%);
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      /* Chamfer Top-Right and Bottom-Left */
+      clip-path: polygon(
+        0 0,
+        calc(100% - 15px) 0,
+        100% 15px,
+        100% 100%,
+        15px 100%,
+        0 calc(100% - 15px)
+      );
+      z-index: 10;
+
+      &::before {
+        content: "";
+        position: absolute;
+        inset: 2px;
+        background: linear-gradient(135deg, $gold-dark 0%, $gold-accent 100%);
+        clip-path: polygon(
+          0 0,
+          calc(100% - 15px) 0,
+          100% 15px,
+          100% 100%,
+          15px 100%,
+          0 calc(100% - 15px)
+        );
+        z-index: -1;
+      }
+
+      i {
+        font-size: 1.8rem;
+        color: #0a0a0a;
+        position: relative;
+        z-index: 2;
+      }
+    }
+
+    .border-wrapper {
+      background: $gold-accent; /* Borde dorado */
+      clip-path: polygon(
+        0 0,
+        calc(100% - 15px) 0,
+        100% 15px,
+        100% 100%,
+        15px 100%,
+        0 calc(100% - 15px)
+      );
+      padding: 2px;
+    }
+  }
+
+  /* Contenedor para la tarjeta verde y su icono flotante */
+  .green-card-container {
+    position: relative;
+    min-width: 400px;
+    height: 100%; /* Fill grid cell */
+    display: flex;
+    flex-direction: column;
+
+    /* El icono ahora es hijo directo de este contenedor */
+    .icon-corner {
+      position: absolute;
+      top: -20px; /* Sube el icono para que flote sobre el borde */
+      left: 20px;
+      background: linear-gradient(135deg, $gold-primary 0%, $gold-light 100%);
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      clip-path: polygon(
+        10px 0,
+        100% 0,
+        100% calc(100% - 10px),
+        calc(100% - 10px) 100%,
+        0 100%,
+        0 10px
+      );
+      z-index: 10; /* Asegura que esté por encima de todo */
+
+      /* Borde simulado */
+      &::before {
+        content: "";
+        position: absolute;
+        inset: 2px;
+        background: linear-gradient(135deg, $gold-primary 0%, $gold-light 100%);
+        clip-path: polygon(
+          10px 0,
+          100% 0,
+          100% calc(100% - 10px),
+          calc(100% - 10px) 100%,
+          0 100%,
+          0 10px
+        );
+        z-index: -1;
+      }
+
+      i {
+        font-size: 1.8rem;
+        color: #0a0a0a;
+        position: relative;
+        z-index: 2;
+      }
+    }
+  }
+
+  /* Clase de utilidad para margen superior */
+  &.mt-1 {
+    margin-top: 1rem;
+  }
+
+  /* Wrapper for border effect */
+  .border-wrapper {
+    background: $gold-primary;
+    clip-path: polygon(
+      0 0,
+      calc(100% - 15px) 0,
+      100% 15px,
+      100% 100%,
+      15px 100%,
+      0 calc(100% - 15px)
+    );
+    padding: 2px;
+    
+    /* Ensure wrapper fills the height and passes it to the card */
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* --- ESTILO BASE DE LA TARJETA --- */
+  .info-card {
+    background: $bg-panel;
+    border: 1px solid $border-gold;
+    backdrop-filter: blur(10px); /* Efecto vidrio */
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Empuja el botón al final */
+    min-height: 220px; /* Altura mínima para que se vean uniformes */
+    height: 100%; /* Fill wrapper */
+    flex: 1; /* Stretch to fill */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    /* Variantes de Color (Borde Superior Neón) */
+    &.green-card {
+      background: linear-gradient(
+        135deg,
+        rgba(201, 168, 76, 0.4) 0%,
+        rgba(18, 18, 16, 0.9) 50%,
+        rgba(10, 10, 8, 0.95) 100%
+      );
+      border: none;
+      border-radius: 0;
+      clip-path: polygon(
+        0 0,
+        calc(100% - 15px) 0,
+        100% 15px,
+        100% 100%,
+        15px 100%,
+        0 calc(100% - 15px)
+      );
+      position: relative;
+      padding: 25px;
+      padding: 25px;
+      height: 100%;
+      min-height: 320px; /* Aumentado para igualar alturas */
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 15px $gold-glow;
+
+      > * {
+        position: relative;
+        z-index: 2;
+      }
+
+      .icon-corner {
+        display: none;
+      }
+
+      .card-content {
+        margin-top: 40px;
+
+        .card-title {
+          font-size: 1.5rem;
+          font-weight: 800;
+          color: $text-white;
+          font-family: 'Montserrat', sans-serif;
+          margin: 0 0 20px 0;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+        }
+
+        .membership-info {
+          display: flex;
+          align-items: center;
+          gap: 25px;
+          margin-bottom: 20px;
+
+          .months-display {
+            display: flex;
+            align-items: baseline;
+            gap: 15px;
+
+            .big-number {
+              font-size: 4rem;
+              font-weight: 800;
+              color: white;
+              line-height: 1;
+            }
+
+            .label {
+              font-size: 1.3rem;
+              font-weight: 700;
+              color: white;
+              text-transform: uppercase;
+              letter-spacing: 1px;
+            }
+          }
+
+          .divider {
+            width: 2px;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.3);
+          }
+
+          .time-remaining {
+            flex: 1;
+
+            > .label {
+              display: block;
+              font-size: 0.9rem;
+              color: $gold-primary;
+              margin-bottom: 10px;
+            }
+
+            .time-values {
+              display: flex;
+              gap: 25px;
+
+              .time-item {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                position: relative; /* Needed for positioning the divider */
+
+                /* Divider between items */
+                &:not(:last-child)::after {
+                  content: "";
+                  position: absolute;
+                  right: -12.5px; /* Half of the gap (25px) */
+                  top: 10%;
+                  height: 80%; /* Almost full height */
+                  width: 2px;
+                  background-color: $gold-primary;
+                }
+
+                .value {
+                  font-size: 2rem;
+                  font-weight: 800;
+                  color: white; /* Changed to white as requested */
+                  line-height: 1;
+                }
+
+                .unit {
+                  font-size: 0.75rem;
+                  color: $gold-primary;
+                  text-transform: lowercase;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .btn-card.green {
+        background: linear-gradient(135deg, $gold-dark, $gold-primary, $gold-light);
+        color: #0a0a0a;
+        border-radius: 0;
+        clip-path: polygon(
+          0 0,
+          calc(100% - 10px) 0,
+          100% 10px,
+          100% 100%,
+          10px 100%,
+          0 calc(100% - 10px)
+        );
+        padding: 15px;
+        font-size: 1rem;
+        margin-top: auto;
+        position: relative; /* Added relative positioning */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        i {
+          position: absolute; /* Added absolute positioning for icon */
+          left: 20px;
+          font-size: 1.2rem;
+        }
+      }
+    }
+
+    &.purple-card {
+      background: linear-gradient(
+        135deg,
+        rgba(139, 105, 20, 0.4) 0%,
+        rgba(18, 18, 16, 0.9) 50%,
+        rgba(10, 10, 8, 0.95) 100%
+      );
+      border: none;
+      border-radius: 0;
+      clip-path: polygon(
+        0 0,
+        calc(100% - 15px) 0,
+        100% 15px,
+        100% 100%,
+        15px 100%,
+        0 calc(100% - 15px)
+      );
+      position: relative;
+      padding: 25px;
+      padding: 25px;
+      height: 100%;
+      min-height: 320px; /* Aumentado para igualar alturas */
+      box-shadow: 0 4px 20px rgba(201, 168, 76, 0.2), 0 0 15px $gold-glow;
+
+      .card-content {
+        margin-top: 40px;
+
+        .card-title {
+          font-size: 1.5rem;
+          font-weight: 800;
+          color: white;
+          margin: 0 0 20px 0;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+        }
+
+        .referral-info {
+          display: flex;
+          align-items: center;
+          gap: 25px;
+          margin-bottom: 20px;
+
+          .main-stat {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+
+            .big-number {
+              font-size: 5rem;
+              font-weight: 800;
+              color: $gold-light;
+              line-height: 1;
+            }
+
+            .label-group {
+              display: flex;
+              flex-direction: column;
+
+              .label {
+                font-size: 1.3rem;
+                font-weight: 700;
+                color: white;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                line-height: 1.2;
+              }
+            }
+          }
+
+          .divider {
+            width: 2px;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.3);
+          }
+
+          .secondary-stats {
+            flex: 1;
+            display: flex;
+            gap: 25px;
+
+            .divider-small {
+              width: 1px;
+              height: 40px;
+              background: rgba(255, 255, 255, 0.3);
+              align-self: center;
+            }
+
+            .stat-item {
+              display: flex;
+              flex-direction: column;
+
+              .label {
+                font-size: 0.75rem;
+                color: $gold-primary;
+                text-transform: uppercase;
+                margin-bottom: 5px;
+                font-weight: 600;
+              }
+
+              .value {
+                font-size: 1.5rem;
+                font-weight: 700;
+                color: white;
+                font-family: "Courier New", monospace;
+                line-height: 1;
+              }
+
+              .sub-label {
+                font-size: 0.6rem;
+                color: #666;
+                text-transform: uppercase;
+                margin-top: 2px;
+              }
+            }
+          }
+        }
+      }
+
+      .btn-card.purple {
+        background: linear-gradient(135deg, $gold-dark, $gold-primary);
+        color: #0a0a0a;
+        border-radius: 0;
+        clip-path: polygon(
+          0 0,
+          calc(100% - 10px) 0,
+          100% 10px,
+          100% 100%,
+          10px 100%,
+          0 calc(100% - 10px)
+        );
+        padding: 15px;
+        font-size: 1rem;
+        margin-top: auto;
+
+        @media (min-width: 901px) {
+          width: 350px; /* Ancho fijo para PC */
+          align-self: flex-end; /* Alineado a la derecha */
+        }
+      }
+    }
+    &.blue-card {
+      background: linear-gradient(
+        135deg,
+        rgba(205, 127, 50, 0.3) 0%,
+        rgba(18, 18, 16, 0.9) 50%,
+        rgba(10, 10, 8, 0.95) 100%
+      );
+      border: none;
+      border-radius: 0;
+      /* Chamfer Top-Right and Bottom-Left */
+      clip-path: polygon(
+        0 0,
+        calc(100% - 15px) 0,
+        100% 15px,
+        100% 100%,
+        15px 100%,
+        0 calc(100% - 15px)
+      );
+      position: relative;
+      padding: 25px;
+      padding: 25px;
+      height: 100%;
+      min-height: 320px;
+      box-shadow: 0 4px 20px rgba(205, 127, 50, 0.2), 0 0 15px $gold-glow;
+
+      .card-content {
+        margin-top: 40px;
+
+        .card-title {
+          font-size: 1.5rem;
+          font-weight: 800;
+          color: white;
+          margin: 0 0 20px 0;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+        }
+
+        .commissions-info {
+          display: flex;
+          align-items: center;
+          margin-bottom: 20px;
+
+          .money-number {
+            font-size: 4rem;
+            font-weight: 800;
+            color: $gold-light;
+            line-height: 1;
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+
+            small {
+              font-size: 1.2rem;
+              color: white;
+              font-weight: 600;
+              text-transform: uppercase;
+            }
+          }
+        }
+      }
+
+      .btn-card.blue {
+        background: linear-gradient(135deg, $bronze, $gold-primary);
+        color: #0a0a0a;
+        border-radius: 0;
+        /* Chamfer Top-Right and Bottom-Left */
+        clip-path: polygon(
+          0 0,
+          calc(100% - 10px) 0,
+          100% 10px,
+          100% 100%,
+          10px 100%,
+          0 calc(100% - 10px)
+        );
+        padding: 15px;
+        font-size: 1rem;
+        margin-top: auto;
+        position: relative; /* Added relative positioning */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        i {
+          position: absolute; /* Added absolute positioning for icon */
+          left: 20px;
+          font-size: 1.2rem;
+        }
+      }
+    }
+
+    /* Efecto Hover */
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    /* --- CABECERA (Icono + Título) --- */
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 15px;
+
+      .icon {
+        background: rgba(201, 168, 76, 0.15);
+        padding: 8px;
+        border-radius: 8px;
+        color: white;
+        font-size: 1.1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      span {
+        font-weight: 700;
+        font-size: 0.9rem;
+        color: white;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+    }
+
+    /* --- CUERPO (Números grandes) --- */
+    .card-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center; /* Centra el contenido verticalmente si sobra espacio */
+
+      /* Estilo para "12 MESES" y "999 REFERIDOS" */
+      .big-number {
+        font-size: 2.8rem;
+        font-weight: 800;
+        line-height: 1;
+        color: white;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: baseline; /* Alinea el número con el texto pequeño */
+
+        small {
+          font-size: 1rem;
+          font-weight: 600;
+          color: $text-muted;
+          margin-left: 8px;
+          text-transform: uppercase;
+        }
+      }
+
+      /* Estilo para el dinero "USDT 9999..." */
+      .money-number {
+        font-size: 2.2rem;
+        font-weight: 800;
+        color: $gold-light;
+        text-shadow: 0 0 10px $gold-glow-strong;
+        display: flex;
+        align-items: baseline;
+
+        small {
+          font-size: 1rem;
+          color: white;
+          font-weight: 600;
+          margin-right: 5px;
+          &:last-child {
+            margin-left: 2px;
+          } /* Para los centavos .00 */
+        }
+      }
+
+      /* Texto secundario (Countdown y Stats de Referidos) */
+      .timer-countdown,
+      .referral-stats {
+        margin-top: 10px;
+        font-size: 0.85rem;
+        color: #ccc;
+
+        small {
+          display: block;
+          color: $text-muted;
+          font-size: 0.7rem;
+          text-transform: uppercase;
+          font-weight: 700;
+          margin-bottom: 3px;
+        }
+
+        span {
+          font-weight: 600;
+          font-family: "Courier New", monospace; /* Fuente técnica para números */
+          letter-spacing: -0.5px;
+        }
+      }
+
+      /* Ajuste específico para la fila de stats de referidos */
+      .referral-stats {
+        display: flex;
+        gap: 20px;
+
+        div {
+          display: flex;
+          flex-direction: column;
+        }
+      }
+    }
+
+    /* --- BOTONES DE ACCIÓN --- */
+    .btn-card {
+      width: 100%;
+      border: none;
+      padding: 12px;
+      margin-top: 20px;
+      border-radius: 8px;
+      font-weight: 800;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: filter 0.2s;
+
+      &:hover {
+        filter: brightness(1.2);
+      }
+
+      /* Colores específicos por tarjeta */
+      &.green {
+        background: linear-gradient(135deg, $gold-dark, $gold-primary, $gold-light);
+        color: #0a0a0a;
+      }
+
+      &.purple {
+        background: linear-gradient(135deg, $gold-dark, $gold-primary);
+        color: #0a0a0a;
+      }
+
+      &.blue {
+        background: linear-gradient(135deg, $bronze, $gold-primary);
+        color: #0a0a0a;
+      }
+
+      i {
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+/* --- RESPONSIVE (Móvil) --- */
+@media (max-width: 900px) {
+  .info-cards-zone {
+    grid-template-columns: 1fr; /* Una sola columna en celulares */
+    gap: 15px;
+
+    /* Override container min-widths for mobile */
+    .purple-card-container,
+    .green-card-container {
+      min-width: 100% !important;
+    }
+
+    .info-card.green-card,
+    .info-card.purple-card,
+    .info-card.blue-card {
+      padding: 20px;
+      min-height: auto;
+
+      .card-content {
+        margin-top: 60px;
+
+        .card-title {
+          font-size: 1.3rem;
+        }
+
+        .membership-info,
+        .referral-info,
+        .commissions-info {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 15px;
+
+          .months-display,
+          .main-stat,
+          .money-number {
+            width: 100%;
+            justify-content: flex-start;
+
+            .big-number {
+              font-size: 4rem;
+            }
+          }
+
+          /* Ajuste específico para money-number en móvil */
+          &.commissions-info .money-number {
+            font-size: 3rem;
+            flex-wrap: wrap;
+          }
+
+          .divider {
+            display: none;
+          }
+
+          .time-remaining,
+          .secondary-stats {
+            width: 100%;
+
+            .time-values {
+              justify-content: space-between;
+              gap: 10px;
+
+              .time-item {
+                .value {
+                  font-size: 2rem;
+                }
+              }
+            }
+          }
+
+          /* Específico para purple card responsive */
+          .secondary-stats {
+            flex-direction: column;
+            gap: 15px;
+
+            .divider-small {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}

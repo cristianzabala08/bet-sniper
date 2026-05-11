@@ -1,0 +1,122 @@
+version: "3.9"
+
+services:
+  # ─── MongoDB ────────────────────────────────────────────────
+  mongodb:
+    image: mongo:7
+    container_name: betsniper-mongodb
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USER:-admin}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASS:-secret}
+      MONGO_INITDB_DATABASE: ${MONGO_DB:-bet_sniper}
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - betsniper-network
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ─── Backend NestJS (BACKENDBOTPROJECT) ─────────────────────
+  backend:
+    build:
+      context: ./BACKENDBOTPROJECT
+      dockerfile: Dockerfile
+      target: runner
+    container_name: betsniper-backend
+    restart: always
+    environment:
+      NODE_ENV: production
+      PORT: "3000"
+      MONGODB_URI: mongodb://${MONGO_ROOT_USER}:${MONGO_ROOT_PASS}@mongodb:27017/${MONGO_DB}?authSource=admin
+      JWT_SECRET: ${JWT_SECRET}
+      ADMIN_EMAIL: ${ADMIN_EMAIL}
+      ADMIN_USER: ${ADMIN_USER}
+      ADMIN_PASS: ${ADMIN_PASS}
+      SMTP_HOST: ${SMTP_HOST}
+      SMTP_PORT: ${SMTP_PORT}
+      SMTP_USER: ${SMTP_USER}
+      SMTP_PASS: ${SMTP_PASS}
+      SMTP_FROM: ${SMTP_FROM}
+      RESEND_API_KEY: ${RESEND_API_KEY}
+      FRONTEND_URL: ${FRONTEND_URL}
+      FRONTEND_PWA_URL: ${FRONTEND_PWA_URL:-https://betsniper.com}
+      ADMIN_PANEL_URL: ${ADMIN_PANEL_URL:-https://panel.betsniper.com}
+      GENESIS_SOCKET_URL: ${GENESIS_SOCKET_URL}
+      GENESIS_SOCKET_TOKEN: ${GENESIS_SOCKET_TOKEN}
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    networks:
+      - betsniper-network
+
+  # ─── Panel Admin Angular (bet-sniper-admin) ───────────────
+  panel-admin:
+    build:
+      context: ./bet-sniper-admin
+      dockerfile: Dockerfile
+    container_name: betsniper-admin
+    restart: always
+    depends_on:
+      - backend
+    networks:
+      - betsniper-network
+
+  # ─── PWA Angular (bet-sniper-pwa) ────────────────────────
+  pwa:
+    build:
+      context: ./bet-sniper-pwa
+      dockerfile: Dockerfile
+    container_name: betsniper-pwa
+    restart: always
+    depends_on:
+      - backend
+    networks:
+      - betsniper-network
+
+  # ─── Nginx Reverse Proxy ────────────────────────────────────
+  nginx:
+    image: nginx:stable-alpine
+    container_name: betsniper-nginx
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./deploy/nginx/betsniper.conf:/etc/nginx/conf.d/default.conf:ro
+      - certbot_etc:/etc/letsencrypt:ro
+      - certbot_var:/var/lib/letsencrypt
+      - certbot_webroot:/var/www/certbot:ro
+    depends_on:
+      - backend
+      - panel-admin
+      - pwa
+    networks:
+      - betsniper-network
+
+  # ─── Certbot (SSL) ─────────────────────────────────────────
+  certbot:
+    image: certbot/certbot
+    container_name: betsniper-certbot
+    volumes:
+      - certbot_etc:/etc/letsencrypt
+      - certbot_var:/var/lib/letsencrypt
+      - certbot_webroot:/var/www/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do sleep 6h & wait $${!}; certbot renew; done;'"
+
+volumes:
+  mongo_data:
+    driver: local
+  certbot_etc:
+    driver: local
+  certbot_var:
+    driver: local
+  certbot_webroot:
+    driver: local
+
+networks:
+  betsniper-network:
+    driver: bridge

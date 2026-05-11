@@ -1,0 +1,232 @@
+<div class="row">
+  <div class="col-sm-12">
+    <app-card cardTitle="Gestión de Planes" [options]="false">
+      <div class="row mb-3">
+        <div class="col-md-6 d-flex align-items-center gap-2">
+          <button class="btn btn-primary" (click)="openCreateModal()">
+            <i class="feather icon-plus"></i> Nuevo Plan
+          </button>
+          <div class="form-check form-switch ms-3">
+            <input class="form-check-input" type="checkbox" id="showInactive" [(ngModel)]="showInactive" (change)="loadPlans()">
+            <label class="form-check-label" for="showInactive">Mostrar inactivos</label>
+          </div>
+        </div>
+        <div class="col-md-6 text-end" *ngIf="!isSuperAdmin">
+          <span class="badge bg-warning text-dark">
+            <i class="feather icon-alert-triangle"></i>
+            Solo puedes crear planes de 1 día (prueba)
+          </span>
+        </div>
+        <div class="col-md-6 text-end" *ngIf="isSuperAdmin">
+          <span class="badge bg-danger">
+            <i class="feather icon-shield"></i>
+            SUPER SUPER ADMIN - Permisos completos
+          </span>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Nombre</th>
+              <th>Duración</th>
+              <th>Precio</th>
+              <th>Señales/Día</th>
+              <th>Niveles Comisión</th>
+              <th>Tipo</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let plan of plans; let i = index" [class.table-secondary]="!plan.isActive">
+              <td>{{ plan.sortOrder || i + 1 }}</td>
+              <td>
+                <div>
+                  <strong>{{ plan.displayName }}</strong>
+                  <br>
+                  <small class="text-muted">{{ plan.name }}</small>
+                </div>
+              </td>
+              <td>
+                <span class="badge" [ngClass]="plan.durationDays <= 1 ? 'bg-info' : 'bg-primary'">
+                  {{ plan.durationDays }} día{{ plan.durationDays > 1 ? 's' : '' }}
+                </span>
+              </td>
+              <td>
+                <strong>{{ plan.price }}</strong> {{ plan.currency }}
+              </td>
+              <td>{{ plan.maxSignalsPerDay || 'Ilimitado' }}</td>
+              <td>{{ plan.commissionLevels }}</td>
+              <td>
+                <span class="badge" [ngClass]="plan.isTrialPlan ? 'bg-warning text-dark' : 'bg-light text-dark'">
+                  {{ plan.isTrialPlan ? 'Prueba' : 'Regular' }}
+                </span>
+              </td>
+              <td>
+                <span class="badge" [ngClass]="plan.isActive ? 'bg-success' : 'bg-secondary'" style="cursor: pointer" (click)="togglePlanStatus(plan)">
+                  {{ plan.isActive ? 'Activo' : 'Inactivo' }}
+                </span>
+              </td>
+              <td>
+                <button class="btn btn-icon btn-rounded btn-outline-primary m-r-5" title="Editar" (click)="openEditModal(plan)">
+                  <i class="feather icon-edit"></i>
+                </button>
+                <button class="btn btn-icon btn-rounded btn-outline-danger" title="Eliminar" (click)="openDeleteModal(plan)" *ngIf="isSuperAdmin">
+                  <i class="feather icon-trash-2"></i>
+                </button>
+              </td>
+            </tr>
+            <tr *ngIf="plans.length === 0 && !loading">
+              <td colspan="9" class="text-center p-4">
+                <h5>No hay planes creados</h5>
+                <p class="text-muted">Haz clic en "Nuevo Plan" para crear el primer plan</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="text-center p-3" *ngIf="loading">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Cargando...</span>
+        </div>
+      </div>
+
+      <!-- Features List for each plan -->
+      <div class="row mt-4" *ngIf="plans.length > 0">
+        <div class="col-md-4" *ngFor="let plan of plans">
+          <div class="card mb-3" [class.border-success]="plan.isActive" [class.border-secondary]="!plan.isActive">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <h6 class="mb-0">{{ plan.displayName }}</h6>
+              <span class="badge" [ngClass]="plan.isActive ? 'bg-success' : 'bg-secondary'">
+                {{ plan.isActive ? 'Activo' : 'Inactivo' }}
+              </span>
+            </div>
+            <div class="card-body">
+              <p class="mb-2"><strong>{{ plan.price }} {{ plan.currency }}</strong> / {{ plan.durationDays }} día{{ plan.durationDays > 1 ? 's' : '' }}</p>
+              <ul class="list-unstyled" *ngIf="plan.features && plan.features.length > 0">
+                <li *ngFor="let feature of plan.features" class="mb-1">
+                  <i class="feather icon-check text-success me-1"></i> {{ feature }}
+                </li>
+              </ul>
+              <p *ngIf="!plan.features || plan.features.length === 0" class="text-muted">Sin características definidas</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </app-card>
+  </div>
+</div>
+
+<!-- Create/Edit Plan Modal -->
+<ng-template #planModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">{{ editingPlanId ? 'Editar Plan' : 'Nuevo Plan' }}</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="planName" class="form-label">Nombre (clave)</label>
+          <input type="text" class="form-control" id="planName" [(ngModel)]="planForm.name" name="name" placeholder="Ej: BASIC" [disabled]="!!editingPlanId">
+          <small class="text-muted">Identificador único del plan (se guarda en mayúsculas)</small>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="displayName" class="form-label">Nombre a Mostrar</label>
+          <input type="text" class="form-control" id="displayName" [(ngModel)]="planForm.displayName" name="displayName" placeholder="Ej: Plan Básico">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <label for="durationDays" class="form-label">Duración (días)</label>
+          <input type="number" class="form-control" id="durationDays" [(ngModel)]="planForm.durationDays" name="durationDays" min="1" [max]="isSuperAdmin ? 365 : 1">
+          <small class="text-muted" *ngIf="!isSuperAdmin">Máximo 1 día (restricción de rol)</small>
+          <small class="text-muted" *ngIf="isSuperAdmin">Sin restricción de duración</small>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="price" class="form-label">Precio</label>
+          <input type="number" class="form-control" id="price" [(ngModel)]="planForm.price" name="price" min="0" step="0.01">
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="currency" class="form-label">Moneda</label>
+          <select class="form-select" id="currency" [(ngModel)]="planForm.currency" name="currency">
+            <option value="USDT">USDT</option>
+            <option value="USD">USD</option>
+            <option value="BTC">BTC</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="maxSignals" class="form-label">Señales por Día</label>
+          <input type="number" class="form-control" id="maxSignals" [(ngModel)]="planForm.maxSignalsPerDay" name="maxSignalsPerDay" min="0">
+          <small class="text-muted">0 = Ilimitado</small>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="commissionLevels" class="form-label">Niveles de Comisión</label>
+          <input type="number" class="form-control" id="commissionLevels" [(ngModel)]="planForm.commissionLevels" name="commissionLevels" min="0">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <label for="sortOrder" class="form-label">Orden</label>
+          <input type="number" class="form-control" id="sortOrder" [(ngModel)]="planForm.sortOrder" name="sortOrder" min="0">
+        </div>
+        <div class="col-md-4 mb-3 d-flex align-items-end">
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="isActive" [(ngModel)]="planForm.isActive" name="isActive">
+            <label class="form-check-label" for="isActive">Activo</label>
+          </div>
+        </div>
+        <div class="col-md-4 mb-3 d-flex align-items-end">
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="isTrialPlan" [(ngModel)]="planForm.isTrialPlan" name="isTrialPlan">
+            <label class="form-check-label" for="isTrialPlan">Plan de Prueba</label>
+          </div>
+        </div>
+      </div>
+      <!-- Features -->
+      <div class="mb-3">
+        <label class="form-label">Características</label>
+        <div class="input-group mb-2">
+          <input type="text" class="form-control" [(ngModel)]="featureInput" name="featureInput" placeholder="Agregar característica..." (keyup.enter)="addFeature()">
+          <button class="btn btn-outline-primary" type="button" (click)="addFeature()">
+            <i class="feather icon-plus"></i>
+          </button>
+        </div>
+        <div *ngIf="planForm.features && planForm.features.length > 0">
+          <span *ngFor="let feature of planForm.features; let i = index" class="badge bg-light text-dark me-1 mb-1" style="font-size: 0.85rem">
+            {{ feature }}
+            <button type="button" class="btn-close btn-close-dark ms-1" style="font-size: 0.5rem" (click)="removeFeature(i)"></button>
+          </span>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.close()">Cancelar</button>
+    <button type="button" class="btn btn-primary" (click)="savePlan()">
+      {{ editingPlanId ? 'Guardar Cambios' : 'Crear Plan' }}
+    </button>
+  </div>
+</ng-template>
+
+<!-- Delete Confirmation Modal -->
+<ng-template #deleteModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Confirmar Eliminación</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+  </div>
+  <div class="modal-body">
+    <p>¿Estás seguro de que deseas eliminar el plan <strong>{{ selectedPlan?.displayName }}</strong>?</p>
+    <p class="text-danger">Esta acción no se puede deshacer.</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.close()">Cancelar</button>
+    <button type="button" class="btn btn-danger" (click)="confirmDelete()">Eliminar</button>
+  </div>
+</ng-template>

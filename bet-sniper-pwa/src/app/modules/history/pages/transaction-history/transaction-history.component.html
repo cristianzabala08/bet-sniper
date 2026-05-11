@@ -1,0 +1,134 @@
+<app-logo></app-logo>
+<div class="history-table-container">
+  <!-- 1. BARRA DE HERRAMIENTAS SUPERIOR -->
+  <div class="table-toolbar">
+    <!-- Buscador -->
+    <div class="search-box">
+      <input type="text" placeholder="Buscar aquí..." class="search-input" />
+      <button class="btn-search">{{ "HISTORY.BTN_SEARCH" | translate }}</button>
+    </div>
+
+    <!-- Botón Descarga -->
+    <button class="btn-download" (click)="downloadExcel()">
+      {{ "HISTORY.BTN_DOWNLOAD" | translate }}
+    </button>
+  </div>
+
+  <!-- 2. TABLA DE DATOS -->
+  <div class="data-table">
+    <!-- Cabecera -->
+    <div class="table-header">
+      <div class="col col-no">N°</div>
+      <div class="col col-id">{{ "HISTORY.ID_NUMBER" | translate }}</div>
+      <div class="col col-details">{{ "HISTORY.DETAILS" | translate }}</div>
+      <div class="col col-details">{{ "HISTORY.TYPE" | translate }}</div>
+      <div class="col col-date">{{ "HISTORY.DATE" | translate }}</div>
+      <div class="col col-amount">{{ "HISTORY.AMOUNT" | translate }}</div>
+      <div class="col col-status">{{ "HISTORY.STATUS" | translate }}</div>
+    </div>
+
+    <!-- Filas de Datos (Simuladas según imagen) -->
+    <!-- Filas de Datos (Iteradas) -->
+    <!-- Filas de Datos (Iteradas) -->
+    <div class="table-body">
+      <div
+        class="table-row"
+        *ngFor="let t of paginatedTransactions; let i = index"
+      >
+        <div class="col col-no">
+          <span class="mobile-label">N°</span>
+          {{ (currentPage - 1) * itemsPerPage + i + 1 }}
+        </div>
+        <div class="col col-id" title="{{ t._id }}">
+          <span class="mobile-label">{{
+            "HISTORY.ID_NUMBER" | translate
+          }}</span>
+          {{ t._id | slice : 0 : 8 }}...
+        </div>
+        <div class="col col-details">
+          <span class="mobile-label">{{ "HISTORY.DETAILS" | translate }}</span>
+          {{ getTranslationKey("detail", t.details) | translate }}
+        </div>
+        <div class="col" title="{{ t.type }}">
+          <span class="mobile-label">{{ "HISTORY.TYPE" | translate }}</span>
+          {{ formatType(t.type) }}
+        </div>
+        <div class="col col-date">
+          <span class="mobile-label">{{ "HISTORY.DATE" | translate }}</span>
+          {{ t.createdAt | date : "short" }}
+        </div>
+        <div class="col col-amount" [class.text-red]="isNegative(t.amount)">
+          <span class="mobile-label">{{ "HISTORY.AMOUNT" | translate }}</span>
+          {{ t.amount | number : "1.2-2" }} USDT
+        </div>
+        <div class="col col-status" [ngClass]="getStatusClass(t.status)">
+          <span class="mobile-label">{{ "HISTORY.STATUS" | translate }}</span>
+          <span class="status-value">
+            {{ getTranslationKey("status", t.status) | translate }}
+          </span>
+          <div class="status-actions">
+            <i
+              class="fa-regular fa-copy"
+              style="margin-left: 8px; cursor: pointer; color: #fff"
+              *ngIf="canShowHash(t)"
+              (click)="copyHash(t.txHash)"
+              title="Copy Transaction Hash"
+            ></i>
+            <i
+              class="fa-solid fa-arrow-up-right-from-square"
+              style="margin-left: 8px; cursor: pointer; color: #fff"
+              *ngIf="canShowHash(t)"
+              (click)="openExplorer(t.txHash)"
+              title="View on BscScan"
+            ></i>
+          </div>
+        </div>
+      </div>
+      <div
+        class="table-row mobile-only"
+        *ngIf="paginatedTransactions.length === 0"
+      >
+        <div class="col" style="width: 100%; text-align: center; padding: 20px">
+          {{ "HISTORY.NO_TRANSACTIONS" | translate }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. FOOTER / PAGINACIÓN -->
+  <div class="table-footer">
+    <span class="entries-info">
+      {{ "HISTORY.SHOWING" | translate }}
+      {{ (currentPage - 1) * itemsPerPage + 1 }} -
+      {{
+        currentPage * itemsPerPage > totalItems
+          ? totalItems
+          : currentPage * itemsPerPage
+      }}
+      {{ "HISTORY.OF" | translate }} {{ totalItems }}
+      {{ "HISTORY.ENTRIES" | translate }}
+    </span>
+
+    <div class="pagination-controls">
+      <button
+        class="page-btn prev"
+        [disabled]="currentPage === 1"
+        (click)="changePage(currentPage - 1)"
+      >
+        {{ "HISTORY.PREVIOUS" | translate }}
+      </button>
+      <button class="page-btn number active">
+        {{ currentPage }}
+      </button>
+      <!-- We can add more logic here for multiple page numbers if needed, for now just showing current -->
+      <button
+        class="page-btn next"
+        [disabled]="currentPage === totalPages"
+        (click)="changePage(currentPage + 1)"
+      >
+        >
+        {{ "HISTORY.NEXT" | translate }}
+      </button>
+    </div>
+  </div>
+</div>

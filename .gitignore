@@ -1,0 +1,53 @@
+# ─── Dependencies ───────────────────────────────────────────
+node_modules/
+**/node_modules/
+.pnpm-store/
+
+# ─── Build outputs ──────────────────────────────────────────
+dist/
+**/dist/
+build/
+**/build/
+
+# ─── Environment files (NEVER commit secrets) ───────────────
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+!**/.env.example
+
+# ─── Logs ───────────────────────────────────────────────────
+logs/
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ─── OS ─────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ─── IDEs ───────────────────────────────────────────────────
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+*.sublime-workspace
+
+# ─── Testing / Coverage ─────────────────────────────────────
+coverage/
+.nyc_output/
+
+# ─── Docker ─────────────────────────────────────────────────
+mongo_data/
+
+# ─── Temp ───────────────────────────────────────────────────
+.temp/
+.tmp/
+*.pid
+*.seed
+*.pid.lock

@@ -1,0 +1,396 @@
+<div class="row" *ngIf="user">
+  <div class="col-sm-12">
+    <app-card [cardTitle]="'User Details: ' + user.fullname" [options]="false">
+      <!-- Action Buttons -->
+      <div class="mb-3 d-flex justify-content-end">
+        <button class="btn btn-warning" (click)="openReset2FAModal()">
+          <i class="feather icon-shield m-r-5"></i>
+          Reset 2FA
+        </button>
+
+        <button class="btn btn-outline-primary" (click)="openPlanSelectionModal()">
+          <i class="feather icon-shopping-cart m-r-5"></i>
+          Purchase Plan
+        </button>
+
+        <button class="btn btn-outline-warning ms-2" (click)="openManualPurchaseModal()">
+          <i class="feather icon-hash m-r-5"></i>
+          Manual Purchase
+        </button>
+      </div>
+
+      <div class="row">
+        <!-- Profile Info -->
+        <div class="col-md-4 text-center">
+          <div
+            class="d-flex align-items-center justify-content-center img-radius m-auto text-white fw-bold mb-3"
+            [style.background-color]="getAvatarColor(user.fullname)"
+            style="font-size: 30px; font-weight: 600; height: 120px; width: 120px"
+          >
+            {{ getInitials(user.fullname) }}
+          </div>
+          <h5>{{ user.fullname }}</h5>
+          <p class="text-muted">{{ user.username }}</p>
+          <span class="badge" [ngClass]="user.status === 'active' ? 'bg-success' : 'bg-secondary'">{{ user.status }}</span>
+        </div>
+
+        <!-- Details -->
+        <div class="col-md-8">
+          <dl class="row">
+            <dt class="col-sm-3">Email</dt>
+            <dd class="col-sm-9">{{ user.email }}</dd>
+
+            <dt class="col-sm-3">Wallet</dt>
+            <dd class="col-sm-9">{{ user.wallet || 'N/A' }}</dd>
+
+            <dt class="col-sm-3">Plan</dt>
+            <dd class="col-sm-9">{{ user.plan }}</dd>
+
+            <dt class="col-sm-3">Points</dt>
+            <dd class="col-sm-9">{{ user.points }}</dd>
+
+            <dt class="col-sm-3">Referrals</dt>
+            <dd class="col-sm-9">
+              Total: {{ user.referralsCount }}
+              <br />
+              Active: {{ user.direct_referrals_count }}
+            </dd>
+
+            <dt class="col-sm-3">Sponsor ID</dt>
+            <dd class="col-sm-9">{{ user.sponsor_id || 'N/A' }}</dd>
+
+            <dt class="col-sm-3">Expiration</dt>
+            <dd class="col-sm-9">{{ user.membership_expiration ? (user.membership_expiration | date: 'medium') : 'N/A' }}</dd>
+
+            <dt class="col-sm-3">Created</dt>
+            <dd class="col-sm-9">{{ user.created | date: 'medium' }}</dd>
+
+            <dt class="col-sm-3">2FA Enabled</dt>
+            <dd class="col-sm-9">
+              <span class="badge" [ngClass]="user.twoFactorEnabled ? 'bg-success' : 'bg-danger'">
+                {{ user.twoFactorEnabled ? 'Yes' : 'No' }}
+              </span>
+            </dd>
+          </dl>
+        </div>
+      </div>
+    </app-card>
+
+    <!-- User Transactions -->
+    <app-card cardTitle="User Transactions" [options]="false">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Type</th>
+              <th>Amount</th>
+              <th>Status</th>
+              <th>Details</th>
+              <th>TxHash</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let tx of transactions">
+              <td>{{ tx.createdAt | date: 'medium' }}</td>
+              <td>{{ tx.type }}</td>
+              <td>{{ tx.amount | currency: 'USD' }}</td>
+              <td>
+                <span
+                  class="badge"
+                  [ngClass]="{
+                    'bg-success': tx.status === 'COMPLETED',
+                    'bg-warning': tx.status === 'PENDING',
+                    'bg-danger': tx.status === 'FAILED',
+                    'bg-secondary': tx.status === 'CANCELLED'
+                  }"
+                >
+                  {{ tx.status }}
+                </span>
+              </td>
+              <td>{{ tx.details }}</td>
+              <td>
+                <small *ngIf="tx.txHash" class="text-muted text-truncate d-inline-block" style="max-width: 150px" [title]="tx.txHash">
+                  {{ tx.txHash }}
+                </small>
+                <span *ngIf="!tx.txHash">-</span>
+              </td>
+            </tr>
+            <tr *ngIf="transactions.length === 0 && !txLoading">
+              <td colspan="6" class="text-center">No transactions found.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="d-flex justify-content-between align-items-center" *ngIf="txTotal > 0">
+        <div>
+          Showing {{ (txPage - 1) * txLimit + 1 }} to {{ txPage * txLimit > txTotal ? txTotal : txPage * txLimit }} of {{ txTotal }} entries
+        </div>
+        <ngb-pagination
+          [collectionSize]="txTotal"
+          [(page)]="txPage"
+          [pageSize]="txLimit"
+          (pageChange)="onTxPageChange($event)"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+        ></ngb-pagination>
+      </div>
+    </app-card>
+
+    <!-- User Commissions -->
+    <app-card cardTitle="User Commissions" [options]="false">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Level</th>
+              <th>Amount</th>
+              <th>Percentage</th>
+              <th>Status</th>
+              <th>Transaction ID</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let com of commissions">
+              <td>{{ com.createdAt | date: 'medium' }}</td>
+              <td>Level {{ com.level }}</td>
+              <td>{{ com.amount | currency: 'USD' }}</td>
+              <td>{{ com.percentage }}%</td>
+              <td>
+                <span
+                  class="badge"
+                  [ngClass]="{
+                    'bg-success': com.validation_status === 'approved',
+                    'bg-warning': com.validation_status === 'skipped',
+                    'bg-danger': com.validation_status === 'rejected'
+                  }"
+                >
+                  {{ com.validation_status }}
+                </span>
+              </td>
+              <td>
+                <small class="text-muted text-truncate d-inline-block" style="max-width: 150px" [title]="com.transaction_id">
+                  {{ com.transaction_id }}
+                </small>
+              </td>
+            </tr>
+            <tr *ngIf="commissions.length === 0 && !comLoading">
+              <td colspan="6" class="text-center">No commissions found.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="d-flex justify-content-between align-items-center" *ngIf="comTotal > 0">
+        <div>
+          Showing {{ (comPage - 1) * comLimit + 1 }} to {{ comPage * comLimit > comTotal ? comTotal : comPage * comLimit }} of
+          {{ comTotal }} entries
+        </div>
+        <ngb-pagination
+          [collectionSize]="comTotal"
+          [(page)]="comPage"
+          [pageSize]="comLimit"
+          (pageChange)="onComPageChange($event)"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+        ></ngb-pagination>
+      </div>
+    </app-card>
+
+    <!-- User Holds -->
+    <app-card cardTitle="User Holds" [options]="false">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Amount</th>
+              <th>Type</th>
+              <th>Status</th>
+              <th>Wallet</th>
+              <th>Reason</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let hold of holds">
+              <td>{{ hold.createdAt | date: 'medium' }}</td>
+              <td>{{ hold.amount | currency: 'USD' }}</td>
+              <td>{{ hold.type }}</td>
+              <td>
+                <span
+                  class="badge"
+                  [ngClass]="{
+                    'bg-warning': hold.status === 'PENDING',
+                    'bg-success': hold.status === 'APPROVED',
+                    'bg-danger': hold.status === 'REJECTED'
+                  }"
+                >
+                  {{ hold.status }}
+                </span>
+              </td>
+              <td>
+                <small class="text-muted text-truncate d-inline-block" style="max-width: 150px" [title]="hold.wallet">
+                  {{ hold.wallet }}
+                </small>
+              </td>
+              <td>{{ hold.reason || '-' }}</td>
+            </tr>
+            <tr *ngIf="holds.length === 0 && !holdsLoading">
+              <td colspan="6" class="text-center">No holds found.</td>
+            </tr>
+            <tr *ngIf="holdsLoading">
+              <td colspan="6" class="text-center">Loading...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </app-card>
+  </div>
+</div>
+
+<div *ngIf="!user && !loading" class="text-center p-5">
+  <p>User not found.</p>
+</div>
+
+<!-- Reset 2FA Confirmation Modal -->
+<ng-template #reset2FAModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Reset 2FA</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <p>
+      Are you sure you want to
+      <strong>Reset 2FA</strong>
+      for {{ user?.fullname }}?
+    </p>
+    <p class="text-warning">The user will need to configure 2FA again.</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Cancel</button>
+    <button type="button" class="btn btn-warning" (click)="confirmReset2FA()">Confirm Reset</button>
+  </div>
+</ng-template>
+
+<!-- Purchase Plan Modal -->
+<ng-template #purchasePlanModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Confirm Plan Activation</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <div class="alert alert-info" *ngIf="selectedPlan">
+      Are you sure you want to activate the
+      <strong>{{ selectedPlan.name }}</strong>
+      Plan for
+      <strong>{{ user?.fullname }}</strong>
+      ?
+    </div>
+    <ul class="list-group mb-3" *ngIf="selectedPlan">
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        Plan Name
+        <span class="fw-bold">{{ selectedPlan.name }}</span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        Duration
+        <span class="fw-bold">{{ selectedPlan.duration }}</span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        Price
+        <span class="fw-bold">{{ selectedPlan.price | currency: 'USD' }}</span>
+      </li>
+    </ul>
+    <p class="text-muted small">This action will verify the purchase and activate the plan immediately.</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Cancel</button>
+    <button type="button" class="btn btn-primary" (click)="confirmPurchasePlan()" [disabled]="purchaseLoading">
+      <span *ngIf="purchaseLoading" class="spinner-border spinner-border-sm me-1"></span>
+      Confirm Activation
+    </button>
+  </div>
+</ng-template>
+
+<!-- Manual Purchase Modal -->
+<ng-template #manualPurchaseModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Manual Plan Activation</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <div class="alert alert-info">
+      Enter the Transaction Hash to manually activate a plan for
+      <strong>{{ user?.fullname }}</strong>
+      .
+    </div>
+
+    <div class="mb-3">
+      <label for="txHashInput" class="form-label">Transaction Hash (TxHash)</label>
+      <input type="text" class="form-control" id="txHashInput" [(ngModel)]="manualTxHash" placeholder="Enter transaction hash" />
+      <div class="form-text">The system will identify the plan based on the hash.</div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Cancel</button>
+    <button type="button" class="btn btn-warning" (click)="confirmManualPurchase()" [disabled]="purchaseLoading || !manualTxHash">
+      <span *ngIf="purchaseLoading" class="spinner-border spinner-border-sm me-1"></span>
+      Confirm Manual Activation
+    </button>
+  </div>
+</ng-template>
+
+<!-- Plan Selection Modal -->
+<ng-template #planSelectionModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Select Plan to Purchase</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <p class="text-muted mb-4">
+      Choose a plan for
+      <strong>{{ user?.fullname }}</strong>
+    </p>
+    <div class="row g-3">
+      <div class="col-md-6" *ngFor="let plan of plans">
+        <div
+          class="card h-100 border shadow plan-item-card"
+          (click)="openPurchasePlanModal(plan)"
+          style="cursor: pointer; transition: all 0.2s ease; border-radius: 10px"
+        >
+          <div class="card-body p-3">
+            <div class="d-flex align-items-center mb-2">
+              <div class="p-2 rounded rounded-3 me-3" [style.background-color]="plan.color + '20'" [style.color]="plan.color">
+                <i class="feather" [ngClass]="'icon-' + plan.icon"></i>
+              </div>
+              <div>
+                <h6 class="mb-0 fw-bold">{{ plan.name }}</h6>
+                <small class="text-muted">{{ plan.duration }}</small>
+              </div>
+            </div>
+            <div class="d-flex justify-content-between align-items-center mt-3">
+              <span class="fs-5 fw-bold text-primary">{{ plan.price | currency: 'USD' }}</span>
+              <button class="btn btn-sm btn-link text-primary p-0">
+                Activate Plan
+                <i class="feather icon-chevron-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Cancel</button>
+  </div>
+</ng-template>
+
+<style>
+  .plan-item-card:hover {
+    border-color: #7267ef !important;
+    background-color: #f8f9fa;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+  }
+</style>

@@ -1,0 +1,251 @@
+/* --- VARIABLES - Luxury Dark Gold Theme --- */
+$gold-primary: #c9a84c;
+$gold-light: #ffd700;
+$gold-dark: #8b6914;
+$gold-accent: #d4af37;
+$bronze: #cd7f32;
+$bg-dark: #0a0a0a;
+$bg-panel: rgba(18, 18, 16, 0.8);
+$neon-blue: #c9a84c;
+$neon-cyan: #ffd700;
+$text-white: #f5f0e1;
+$text-gray: #8a7e6b;
+$gold-glow: rgba(201, 168, 76, 0.15);
+
+/* Container Principal */
+.notifications-page-container {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  font-family: "Rajdhani", sans-serif; /* O tu fuente principal */
+}
+
+/* Panel Estilo Marco */
+.notifications-panel {
+  width: 100%;
+  max-width: 1200px;
+  background: $bg-panel;
+  border: none;
+  padding: 30px;
+  box-shadow: 0 0 20px rgba(201, 168, 76, 0.15);
+  height: fit-content;
+  min-height: 600px;
+  position: relative;
+
+  /* Borde simulado con clip-path para esquinas biseladas */
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: $gold-dark;
+    clip-path: polygon(
+      /* Exterior */ 0 0,
+      calc(100% - 10px) 0,
+      100% 10px,
+      100% 100%,
+      10px 100%,
+      0 calc(100% - 10px),
+      0 0,
+      /* Interior (2px de grosor) */ 2px 2px,
+      2px calc(100% - 10px - 1px),
+      11px calc(100% - 2px),
+      calc(100% - 2px) calc(100% - 2px),
+      calc(100% - 2px) 11px,
+      calc(100% - 10px - 1px) 2px,
+      2px 2px
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Recorte del panel principal */
+  clip-path: polygon(
+    0 0,
+    calc(100% - 10px) 0,
+    100% 10px,
+    100% 100%,
+    10px 100%,
+    0 calc(100% - 10px)
+  );
+}
+
+/* Lista Scrollable (si hay muchos items) */
+.notifications-scroll-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* --- FILA DE NOTIFICACIÓN --- */
+.notification-row {
+  display: grid;
+  /* Columnas: Icono | Fecha | Asunto (Flexible) | Botón */
+  grid-template-columns: 60px 120px 1fr 180px;
+  align-items: center;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
+  border-radius: 8px;
+  padding: 15px 20px;
+  border-left: 4px solid #555; /* Borde por defecto */
+  transition: all 0.3s ease;
+
+  &:hover,
+  &:focus-within {
+    background: linear-gradient(
+      90deg,
+      rgba(201, 168, 76, 0.2) 0%,
+      rgba(255, 255, 255, 0.05) 100%
+    );
+    border-left-color: $gold-light; /* Hover cian */
+
+    /* Hacer que el botón cambie a estilo vibrante al hacer hover en la fila */
+    .btn-open {
+      background: linear-gradient(135deg, #8b6914, #c9a84c, #ffd700);
+      color: white;
+      filter: brightness(1.1);
+    }
+  }
+
+  /* 1. Icono */
+  .icon-col {
+    display: flex;
+    align-items: center;
+
+    .icon-wrapper {
+      position: relative;
+      font-size: 1.8rem;
+      color: $text-gray; /* Por defecto gris */
+      transition: color 0.3s ease;
+
+      .badge-plus {
+        position: absolute;
+        top: -2px;
+        right: -8px;
+        font-size: 0.7rem;
+        color: white;
+      }
+    }
+  }
+
+  /* Cambio de color del ícono al hacer hover en la fila */
+  &:hover,
+  &:focus-within {
+    .icon-col .icon-wrapper {
+      color: $gold-light;
+    }
+  }
+
+  /* 2. Labels y Valores Comunes */
+  .date-col,
+  .subject-col {
+    display: flex;
+    flex-direction: column;
+
+    .label {
+      font-size: 0.65rem;
+      font-weight: 800;
+      color: white;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    .value {
+      font-size: 0.9rem;
+      color: $text-gray;
+      font-weight: 500;
+    }
+  }
+
+  /* Asunto (Truncar texto largo) */
+  .subject-col {
+    padding-right: 20px;
+    .value {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  /* 3. Botón */
+  .action-col {
+    display: flex;
+    justify-content: flex-end;
+
+    .btn-open {
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-weight: 800;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      color: white;
+      cursor: pointer;
+      /* Forma futurista */
+      clip-path: polygon(
+        0 0,
+        calc(100% - 10px) 0,
+        100% 10px,
+        100% 100%,
+        10px 100%,
+        0 calc(100% - 10px)
+      );
+      width: 100%;
+      transition: filter 0.2s;
+
+      &:hover {
+        filter: brightness(1.2);
+      }
+
+      /* Variantes de color */
+      &.btn-green {
+        background: linear-gradient(135deg, #8b6914, #c9a84c, #ffd700);
+        color: white; /* Texto negro para contraste */
+      }
+
+      &.btn-purple {
+        background: linear-gradient(135deg, #cd7f32, #c9a84c);
+      }
+    }
+  }
+}
+
+/* RESPONSIVE (Móvil) */
+@media (max-width: 768px) {
+  .notification-row {
+    grid-template-columns: 50px 1fr; /* Icono + Contenido */
+    grid-template-areas:
+      "icon date"
+      "icon subject"
+      "action action";
+    gap: 10px;
+
+    .icon-col {
+      grid-area: icon;
+      align-self: start;
+      margin-top: 5px;
+    }
+    .date-col {
+      grid-area: date;
+    }
+    .subject-col {
+      grid-area: subject;
+      padding-right: 0;
+      .value {
+        white-space: normal;
+      }
+    }
+    .action-col {
+      grid-area: action;
+      margin-top: 10px;
+    }
+  }
+}

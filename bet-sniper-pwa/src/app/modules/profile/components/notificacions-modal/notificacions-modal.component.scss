@@ -1,0 +1,228 @@
+/* --- VARIABLES --- */
+$bg-overlay: rgba(0, 0, 0, 0.85);
+$bg-modal-gradient: linear-gradient(160deg, #2a0050 0%, #0d0018 90%);
+$neon-purple: #c9a84c;
+$neon-purple-glow: rgba(189, 0, 255, 0.45);
+$neon-pink: #d4af37;
+$text-white: #ffffff;
+$text-gray: #c9c9c9;
+$scroll-track: rgba(255, 255, 255, 0.06);
+$scroll-thumb: #8b6914;
+$gold-mid: #c9a84c;
+$gold-accent: #d4af37;
+$gold-glow: rgba(201, 168, 76, 0.45);
+
+/* --- OVERLAY --- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: $bg-overlay;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(8px);
+  animation: fadeIn 0.25s ease-out;
+}
+
+/* --- CONTENEDOR DEL MODAL --- */
+.modal-wrapper {
+  position: relative;
+  width: 90%;
+  max-width: 750px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 35px 40px;
+  // background: $bg-modal-gradient;
+  background: radial-gradient(
+    circle at center,
+    rgba(201, 168, 76, 0.25) 0%,
+    #0a0a06 70%
+  );
+  border: none; /* Eliminamos borde estándar */
+  box-shadow: 0 0 20px $neon-purple-glow, 0 0 45px rgba(201, 168, 76, 0.15);
+
+  animation: modalPop 0.25s ease-out;
+  overflow: hidden;
+
+  /* Bisel en esquinas Superior-Derecha e Inferior-Izquierda */
+  clip-path: polygon(
+    0 0,
+    calc(100% - 30px) 0,
+    100% 30px,
+    100% 100%,
+    30px 100%,
+    0 calc(100% - 30px)
+  );
+
+  /* Borde simulado que sigue el clip-path */
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: $gold-mid;
+    pointer-events: none;
+    z-index: 2; /* Por encima del fondo */
+
+    /* Doble polígono para crear el borde hueco */
+    clip-path: polygon(
+      /* Exterior */ 0 0,
+      calc(100% - 30px) 0,
+      100% 30px,
+      100% 100%,
+      30px 100%,
+      0 calc(100% - 30px),
+      0 0,
+      /* Interior (2px de grosor) */ 2px 2px,
+      2px calc(100% - 30px - 1px),
+      30px calc(100% - 2px),
+      calc(100% - 2px) calc(100% - 2px),
+      calc(100% - 2px) 30px,
+      calc(100% - 30px - 1px) 2px,
+      2px 2px
+    );
+  }
+}
+
+/* --- BOTÓN CERRAR --- */
+.btn-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: $gold-accent;
+  border: none;
+  color: black;
+  font-size: 1.3rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 18px rgba(255, 215, 0, 0.7);
+  transition: 0.2s ease;
+  z-index: 10; /* Asegurar que esté por encima */
+
+  &:hover {
+    transform: scale(1.12) rotate(90deg);
+  }
+}
+
+/* --- CONTENIDO DEL MODAL --- */
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* --- HEADER --- */
+.modal-header {
+  margin-bottom: 20px;
+
+  .notification-title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+    color: $text-white;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.25);
+  }
+
+  .notification-date {
+    font-size: 0.85rem;
+    font-family: monospace;
+    color: $text-gray;
+    margin-bottom: 12px;
+  }
+
+  .divider-line {
+    width: 100%;
+    height: 2px;
+    // background: linear-gradient(90deg, $gold-mid 0%, transparent 100%);
+    background: $text-gray;
+    margin-top: 6px;
+  }
+}
+
+/* --- BODY SCROLLEAR --- */
+.modal-body {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 12px;
+  color: #818080;
+  line-height: 1.55;
+  max-height: 60vh;
+
+  p {
+    margin-bottom: 16px;
+  }
+
+  .text-highlight {
+    color: rgba(207, 190, 190, 0.856);
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+}
+
+/* --- SCROLL PERSONALIZADO --- */
+.modal-body::-webkit-scrollbar {
+  width: 8px;
+}
+.modal-body::-webkit-scrollbar-track {
+  background: $scroll-track;
+  border-radius: 5px;
+}
+.modal-body::-webkit-scrollbar-thumb {
+  background: $scroll-thumb;
+  border-radius: 5px;
+}
+.modal-body::-webkit-scrollbar-thumb:hover {
+  background: $gold-mid;
+}
+
+/* --- ANIMACIONES --- */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalPop {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+  .modal-container {
+    width: 95%;
+    padding: 22px;
+  }
+
+  .notification-title {
+    font-size: 1.2rem !important;
+  }
+
+  .btn-close {
+    right: 10px;
+    top: 10px;
+    width: 34px;
+    height: 34px;
+  }
+}

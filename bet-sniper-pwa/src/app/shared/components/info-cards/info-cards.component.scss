@@ -1,0 +1,144 @@
+/* Variables (Si no las tienes importadas globalmente) */
+$gold-dark: #8b6914;
+$gold-light: #ffd700;
+$text-muted: #888888;
+$border-light: rgba(255, 255, 255, 0.1);
+
+.notifications-zone {
+  /* Estilo base del panel (Glassmorphism se hereda de .glass-panel) */
+  // border-left: 3px solid $gold-dark; /* Acento lateral azul característico */
+  display: flex;
+  flex-direction: column;
+
+  .zone-title {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    /* Opcional: una línea sutil debajo del título */
+    border-bottom: 1px solid $border-light;
+    padding-bottom: 10px;
+  }
+
+  .divider {
+    width: 1px;
+    align-self: stretch;
+    background-color: rgba(255, 255, 255, 0.5);
+    margin: 0 15px;
+  }
+
+  .notification-item {
+    display: flex;
+    gap: 15px; /* Espacio entre icono, texto y fecha */
+    align-items: stretch; /* Cambiar a stretch para que el divider se estire */
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid $border-light;
+
+    /* Quitar borde al último elemento */
+    &:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    /* Icono de Check */
+    .icon-check {
+      color: $gold-light;
+      font-size: 1.1rem;
+      margin-top: 3px; /* Ajuste fino para alinear con la primera línea de texto */
+      flex-shrink: 0; /* Evita que el icono se aplaste */
+    }
+
+    /* Contenido (Título y Descripción) */
+    .notif-content {
+      flex: 1; /* Ocupa todo el espacio disponible */
+
+      h4 {
+        margin: 0 0 6px 0;
+        font-size: 0.9rem;
+        color: white;
+        font-weight: 700;
+        text-transform: uppercase;
+        line-height: 1.2;
+      }
+
+      p {
+        margin: 0;
+        font-size: 0.85rem;
+        color: $text-muted;
+        line-height: 1.4;
+      }
+    }
+
+    /* Fecha a la derecha */
+    .date {
+      font-size: 0.7rem;
+      color: #6b6b6b;
+      text-align: left;
+      min-width: 80px; /* Ancho fijo para que no bailen las fechas */
+      line-height: 1.3;
+      font-weight: 600;
+    }
+  }
+}
+
+/* Responsivo para móviles */
+@media (max-width: 600px) {
+  .notification-item {
+    flex-wrap: wrap; /* Permitir que la fecha baje si no cabe */
+
+    .date {
+      width: 100%;
+      text-align: left;
+      margin-top: 5px;
+      padding-left: 28px; /* Alinear con el texto (saltando el icono) */
+      color: $gold-dark; /* Destacar la fecha en móvil */
+    }
+  }
+}
+
+.glass-panel {
+  position: relative;
+  z-index: 0;
+  padding: 20px;
+  background: transparent;
+
+  /* Capa de borde */
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #c9a84c;
+    clip-path: polygon(
+      0 0,
+      calc(100% - 20px) 0,
+      100% 20px,
+      100% 100%,
+      20px 100%,
+      0 calc(100% - 20px)
+    );
+    z-index: -2;
+  }
+
+  /* Capa de fondo (crea el efecto de borde) */
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    background: #121210;
+    backdrop-filter: blur(10px);
+    clip-path: polygon(
+      0 0,
+      calc(100% - 20px) 0,
+      100% 20px,
+      100% 100%,
+      20px 100%,
+      0 calc(100% - 20px)
+    );
+    z-index: -1;
+  }
+}

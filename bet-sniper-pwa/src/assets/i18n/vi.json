@@ -1,0 +1,297 @@
+{
+  "LOGIN": {
+    "WELCOME": "Xin chào, chào mừng",
+    "COPYRIGHT": "2025 bảo lưu mọi quyền.",
+    "USER_PLACEHOLDER": "Tên đăng nhập hoặc Email...",
+    "PASS_PLACEHOLDER": "Mật khẩu...",
+    "SHOW": "Hiện",
+    "HIDE": "Ẩn",
+    "2FA_MSG": "Vui lòng nhập mã Google Authenticator.",
+    "2FA_PLACEHOLDER": "Mã 2FA (6 chữ số)",
+    "BTN_LOADING": "Đang tải...",
+    "BTN_VERIFY": "XÁC MINH MÃ",
+    "BTN_ENTER": "ĐĂNG NHẬP",
+    "BTN_CANCEL": "HỦY",
+    "BTN_REGISTER": "TẠO TÀI KHOẢN",
+    "REMEMBER_ME": "Ghi nhớ tôi?",
+    "FORGOT_PASS": "Quên mật khẩu?"
+  },
+  "REGISTER": {
+    "USER_LEADER": "Tên người giới thiệu",
+    "USER_NAME": "Tên đăng nhập",
+    "USER_FULL_NAME": "Họ và tên",
+    "PASSWORD": "Mật khẩu...",
+    "PASSWORD_REPEAT": "Nhập lại mật khẩu...",
+    "EMAIL": "Email...",
+    "EMAIL_VERIFY": "Xác minh Email...",
+    "TITLE": "TUYỆT VỜI, TẠO TÀI KHOẢN CỦA BẠN",
+    "SPONSOR_OPTION": "Người bảo trợ (Tùy chọn)",
+    "USER_NAME_YOU": "Tên đăng nhập của bạn",
+    "USER_NAME_ERROR": "Tên đăng nhập là bắt buộc.",
+    "USER_NAME_MIN_LENGTH": "Tối thiểu 3 ký tự.",
+    "USER_NAME_PATTERN_STRING": "Chỉ chữ cái và số (không khoảng trắng).",
+    "USER_NAME_REQUIRED": "Tên là bắt buộc.",
+    "USER_NAME_PATTERN_SPACE": "Chỉ cho phép chữ cái và khoảng trắng.",
+    "CONTRASE_A": "Mật khẩu",
+    "CONTRASE_A_OBLIGATOR": "Mật khẩu là bắt buộc.",
+    "PASSWORD_MIN_LENGTH": "Phải có ít nhất 8 ký tự.",
+    "PASSWORD_MATCH": "Mật khẩu không khớp.",
+    "EMAIL_REQUIRED": "Email là bắt buộc.",
+    "EMAIL_PATTERN": "Định dạng email không hợp lệ.",
+    "EMAIL_MATCH": "Email không khớp.",
+    "ACCEPT_TERMS": "Tôi chấp nhận",
+    "TERMS_AND_CONDITIONS": "Điều khoản và Điều kiện",
+    "BACK_TO_LOGIN": "QUAY LẠI ĐĂNG NHẬP",
+    "CREATING": "Đang tạo...",
+    "CREATE_ACCOUNT": "TẠO TÀI KHOẢN"
+  },
+  "FORGOT_PASSWORD": {
+    "WRITE_EMAIL": "Nhập email của bạn...",
+    "RECOVER_ACCESS": "Khôi phục quyền truy cập",
+    "RECOVER_NEW": "Mật khẩu mới",
+    "WRITE_NEW_PASS": "Nhập mật khẩu mới...",
+    "RECOVER_LINK": "Tạo mật khẩu mới",
+    "WRITE_EMAIL_PASS": "Nhập email để đặt lại mật khẩu",
+    "SEND_RECOVERY_LINK": "GỬI LIÊN KẾT KHÔI PHỤC",
+    "BACK_TO_LOGIN": "QUAY LẠI ĐĂNG NHẬP",
+    "CREATE_ACCOUNT": "TẠO TÀI KHOẢN"
+  },
+  "DASHBOARD": {
+    "TOP_BAR": {
+      "TITLE": "THỐNG KÊ PHIÊN",
+      "TIME_ACTIVE": "THỜI GIAN HOẠT ĐỘNG:",
+      "BALANCE_OPERATIVE": "SỐ DƯ GIAO DỊCH:",
+      "SIGNAL_STATISTICS": "THỐNG KÊ TÍN HIỆU:",
+      "SIGNALS_TAKEN": "TÍN HIỆU ĐÃ LẤY:",
+      "WIN_RATE": "TỶ LỆ THẮNG:",
+      "PROFIT_TOTAL_TODAY": "TỔNG LỢI NHUẬN HÔM NAY",
+      "OF": "của"
+    },
+    "ACTIVE_SIGNALS": {
+      "PLAN_REQUIRED_TITLE": "ACTIVE PLAN REQUIRED",
+      "PLAN_REQUIRED_DESC": "To access live signals, you need an active membership. Please purchase or renew your plan."
+    },
+    "HERO": {
+      "SIGNALS_LIST": "DANH SÁCH TÍN HIỆU",
+      "BTN_SIGNALS_LABEL": "TẢI THÊM TÍN HIỆU",
+      "OPERATIVE_PANEL": "BẢNG ĐIỀU KHIỂN TÍN HIỆU",
+      "BTN_START_SESSION": "BẮT ĐẦU PHIÊN",
+      "BTN_PAUSE_SESSION": "TẠM DỪNG PHIÊN",
+      "SIGNALS_CONTROL": "KIỂM SOÁT TÍN HIỆU",
+      "MODE_AUTOMATIC": "CHẾ ĐỘ TỰ ĐỘNG",
+      "MODE_MANUAL": "CHẾ ĐỘ THỦ CÔNG",
+      "MODE_STATUS": "ĐÃ KÍCH HOẠT",
+      "TAKE_SIGNAL": "LẤY TÍN HIỆU NÀY",
+      "MARTIN_LABEL": "KIỂM SOÁT MARTINGALE",
+      "AMOUNT_ASIGNED": "SỐ TIỀN ĐƯỢC GÁN"
+    },
+    "CARDBAR": {
+      "PLANS": {
+        "WEEKLY": "1 Tuần",
+        "MONTHLY": "1 Tháng",
+        "3MONTHS": "3 Tháng",
+        "6MONTHS": "6 Tháng",
+        "9MONTHS": "9 Tháng",
+        "12MONTHS": "12 Tháng"
+      },
+      "ACTIVE_MEMBERSHIP": "GÓI THÀNH VIÊN ĐANG HOẠT ĐỘNG",
+      "MONTHS": "Tháng",
+      "REMAINING_TIME": "Thời gian còn lại",
+      "DAYS": "Ngày",
+      "HOURS": "Giờ",
+      "RENEW_MEMBERSHIP": "GIA HẠN THÀNH VIÊN",
+      "REFERRALS_IN_YOUR_NETWORK": "GIỚI THIỆU TRONG MẠNG LƯỚI",
+      "REFERRALS": "GIỚI THIỆU",
+      "DIRECT": "TRỰC TIẾP",
+      "TOTAL_IN_YOUR_NETWORK": "TỔNG CỘNG TRONG MẠNG LƯỚI",
+      "NETWORK": "MẠNG LƯỚI",
+      "NEW_REFERRALS": "GIỚI THIỆU MỚI",
+      "COPY_YOUR_REFERRAL_LINK": "SAO CHÉP LIÊN KẾT GIỚI THIỆU",
+      "NETWORK_COMMISSIONS": "HOA HỒNG MẠNG LƯỚI",
+      "USDT": "USDT",
+      "GO_TO_YOUR_USER_PROFILE": "ĐI ĐẾN HỒ SƠ CỦA BẠN"
+    },
+    "NOTIFICATIONS": {
+      "LAST_NOTIFICATIONS": "THÔNG BÁO MỚI NHẤT",
+      "PUBLISHED": "ĐÃ XUẤT BẢN",
+      "DETEAIL_OPERATIONS": "CHI TIẾT GIAO DỊCH"
+    }
+  },
+  "ORACLE": {
+    "WELCOME": "Xin chào, tôi là người tiên tri của bạn",
+    "SUB_TITLE": "Tôi ở đây để trả lời câu hỏi của bạn"
+  },
+  "MENU": {
+    "DASHBOARD": "BẢNG ĐIỀU KHIỂN",
+    "SIGNALS": "TÍN HIỆU",
+    "PLANS": "CÁC GÓI",
+    "HISTORY": "LỊCH SỬ",
+    "REFERRALS": "GIỚI THIỆU",
+    "SUPPORT": "HỖ TRỢ"
+  },
+  "DETAIL_OPERATIONS": {
+    "TITLE": "CHI TIẾT GIAO DỊCH",
+    "CARD": {
+      "TITLE": "CHI TIẾT GIAO DỊCH",
+      "ACTIVE_MEMBERSHIP": "THÀNH VIÊN HOẠT ĐỘNG",
+      "MONTHS": "tháng",
+      "REMAINING_TIME": "Thời gian còn lại",
+      "DAYS": "ngày",
+      "HOURS": "giờ",
+      "DATE": "CHỌN NGÀY",
+      "BUTTON_DOWNLOAD": "TẢI XUỐNG PDF",
+      "BALANCE": "TỔNG SỐ DƯ",
+      "RENEW_MEMBERSHIP": "GIA HẠN",
+      "REFERRALS_IN_YOUR_NETWORK": "GIỚI THIỆU TRONG MẠNG LƯỚI",
+      "REFERRALS": "GIỚI THIỆU",
+      "DIRECT": "TRỰC TIẾP",
+      "TOTAL_IN_YOUR_NETWORK": "TỔNG MẠNG LƯỚI",
+      "NETWORK": "MẠNG LƯỚI",
+      "NEW_REFERRALS": "GIỚI THIỆU MỚI",
+      "COPY_YOUR_REFERRAL_LINK": "SAO CHÉP LIÊN KẾT",
+      "NETWORK_COMMISSIONS": "HOA HỒNG",
+      "USDT": "USDT",
+      "GO_TO_YOUR_USER_PROFILE": "ĐI ĐẾN HỒ SƠ"
+    }
+  },
+  "PLANS": {
+    "TITLE": "CHỌN GÓI THÀNH VIÊN",
+    "SUB_TITLE": "Nhận quyền truy cập độc quyền vào các công cụ và",
+    "SUB_TITLE_2": "bắt đầu nhận tín hiệu ngay hôm nay.",
+    "CARD": {
+      "TITLE": "THÀNH VIÊN",
+      "BASIC": "CƠ BẢN",
+      "AMATEUR": "NGHIỆP DƯ",
+      "PRO": "CHUYÊN NGHIỆP",
+      "ELITE": "CAO CẤP",
+      "SIGNALS_24_7": "Tín hiệu 24/7",
+      "BOT_MANUAL": "Bot thủ công có cấu hình",
+      "BOT_AUTOMATIC": "Bot tự động",
+      "SUPPORT_24": "Hỗ trợ 24/7",
+      "BTN_BUY": "MUA NGAY",
+      "TIME_RESTANTE": "Thời gian còn lại",
+      "MONTHS": "tháng",
+      "ACTIVE_MEMBERSHIP": "ĐANG HOẠT ĐỘNG",
+      "DAYS": "ngày",
+      "HOURS": "giờ",
+      "RENEW_MEMBERSHIP": "GIA HẠN",
+      "ACTIVE_BY": "Kích hoạt bởi",
+      "PAY_UP_TO_6_LEVELS": "Pays up to 6th level"
+    },
+    "PURCHASE_MODAL": {
+      "TITLE_STEP_1": "Connect Wallet",
+      "TITLE_STEP_2": "Approve USDT",
+      "TITLE_STEP_3": "Confirm Purchase",
+      "STEP_1_DESC": "To continue with the purchase, you must first connect your wallet.",
+      "STEP_2_DESC_PREFIX": "Authorize the use of",
+      "STEP_2_DESC_SUFFIX": "to complete the purchase.",
+      "STEP_2_SUBTEXT": "This is a one-time security transaction.",
+      "STEP_3_DESC_PREFIX": "You are about to purchase the plan",
+      "CANCEL_BTN": "Cancel",
+      "CONNECT_WALLET_BTN": "Connect Wallet",
+      "CONNECTING_BTN": "Connecting...",
+      "APPROVE_BTN": "Approve USDT",
+      "APPROVING_BTN": "Approving...",
+      "BUY_BTN": "Buy Now",
+      "PROCESSING_BTN": "Processing..."
+    }
+  },
+  "HISTORY": {
+    "BTN_SEARCH": "TÌM KIẾM",
+    "ID_NUMBER": "SỐ ID",
+    "DETAILS": "CHI TIẾT",
+    "DATE": "NGÀY",
+    "AMOUNT": "SỐ TIỀN",
+    "STATUS": "TRẠNG THÁI"
+  },
+  "REFERRALS": {
+    "TITLE": "MẠNG LƯỚI GIỚI THIỆU CỦA BẠN",
+    "CARDS": {
+      "TITLE": "GIỚI THIỆU TRONG MẠNG LƯỚI",
+      "SUB_TITLE": "GIỚI THIỆU TRỰC TIẾP",
+      "TORAL_NETWORK": "TỔNG MẠNG LƯỚI",
+      "REFERRALS_NEW": "GIỚI THIỆU MỚI",
+      "BTN_LINK_REFERRALS": "SAO CHÉP LIÊN KẾT",
+      "COMISSION_NETWORD": "HOA HỒNG MẠNG LƯỚI",
+      "SHOW_PROFILE": "ĐI ĐẾN HỒ SƠ"
+    }
+  },
+  "SUPPORT": {
+    "TITLE": "GỬI TIN NHẮN",
+    "PLACEHOLDER_1": "Chủ đề...",
+    "PLACEHOLDER_2": "Nội dung...",
+    "BTN_SEND_SUPPORT": "GỬI HỖ TRỢ",
+    "CHANNEL_OFFICIAL": "THEO DÕI CÁC KÊNH CHÍNH THỨC",
+    "BTN_ON_WHATSAPP": "CHIA SẺ QUA WHATSAPP",
+    "BTN_ON_TELEGRAM": "CHIA SẺ QUA TELEGRAM",
+    "BTN_ON_FACEBOOK": "CHIA SẺ QUA FACEBOOK",
+    "BTN_ON_INSTAGRAM": "CHIA SẺ QUA INSTAGRAM"
+  },
+  "PROFILE": {
+    "USER": {
+      "HELLO": "Xin chào",
+      "BTN_CHANGE_PHOTO": "ĐỔI ẢNH ĐẠI DIỆN",
+      "BTN_COPY_LINK": "SAO CHÉP LIÊN KẾT"
+    },
+    "DATA_PERSON": {
+      "INFORMATION_PERSON": "THÔNG TIN HỒ SƠ",
+      "CONTROL_CONFIG": "Kiểm soát và cấu hình tài khoản",
+      "PLACEHOLDER_1": "Họ và tên...",
+      "PLACEHOLDER_2": "Email...",
+      "CHANGE_PASS": "ĐỔI MẬT KHẨU",
+      "PLACEHOLDER_3": "Mật khẩu mới...",
+      "PLACEHOLDER_4": "Xác nhận mật khẩu...",
+      "CONNECT_APP": "KẾT NỐI ỨNG DỤNG",
+      "BTN_GOOGLE_AUTH": "BẬT GOOGLE AUTH",
+      "BTN_WALLET3": "KẾT NỐI VÍ WEB 3",
+      "BTN_SAVE": "LƯU THAY ĐỔI"
+    }
+  },
+  "FINNACE": {
+    "USER": {
+      "HELLO": "Xin chào",
+      "BTN_CHANGE_PHOTO": "ĐỔI ẢNH",
+      "BTN_COPY_LINK": "SAO CHÉP LIÊN KẾT"
+    },
+    "DATA_FINNACE": {
+      "TITLE": "RÚT TIỀN VÀ CHUYỂN KHOẢN",
+      "WALLET_BALANCE": "SỐ DƯ VÍ",
+      "COMISIONS_WITHDRAW": "RÚT HOA HỒNG",
+      "PLACEHOLDER_1": "Số tiền hoa hồng muốn rút...",
+      "PLACEHOLDER_2": "Mã Google Authentication",
+      "PLACEHOLDER_3": "Số tiền muốn chuyển...",
+      "PLACEHOLDER_4": "ID người nhận...",
+      "PLACEHOLDER_5": "Mã Google Authentication",
+      "DO_WITHDRAW": "THỰC HIỆN RÚT TIỀN",
+      "TRANSFER_FUNDS": "CHUYỂN TIỀN",
+      "BTN_TRANSFER_USER": "CHUYỂN CHO NGƯỜI DÙNG",
+      "ERROR_2FA_REQUIRED": "Xác thực 2 lớp là bắt buộc để thực hiện thao tác này."
+    }
+  },
+  "NOTIFICATIONS": {
+    "DATE": "NGÀY",
+    "SUBJECT": "CHỦ ĐỀ",
+    "BTN_READ": "MỞ THÔNG BÁO"
+  },
+  "TRANSACTION": {
+    "STATUS": {
+      "PENDING": "Pending",
+      "APPROVED": "Approved",
+      "REJECTED": "Rejected",
+      "ACTIVE": "Active"
+    },
+    "DETAIL": {
+      "MEMBERSHIP_WEEKLY": "Membership Purchase WEEKLY",
+      "MEMBERSHIP_BASIC": "Membership Purchase BASIC",
+      "MEMBERSHIP_AMATEUR": "Membership Purchase AMATEUR",
+      "MEMBERSHIP_PRO": "Membership Purchase PRO",
+      "MEMBERSHIP_EXPERT": "Membership Purchase EXPERT",
+      "MEMBERSHIP_ELITE": "Membership Purchase ELITE",
+      "WITHDRAW": "Withdraw",
+      "DEPOSIT": "Deposit",
+      "NETWORK_COMMISSION": "Network Commission",
+      "NETWORK_COMMISSION_RENEWAL": "Network Commission (Renewal)",
+      "USER_TRANSFER": "Funds Transfer"
+    }
+  }
+}

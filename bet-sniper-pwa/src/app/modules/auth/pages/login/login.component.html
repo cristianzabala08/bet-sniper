@@ -1,0 +1,93 @@
+<section class="login-container">
+  <div class="login-box">
+    <div class="left-section">
+      <img src="assets/logo_principal.png" alt="Bet Sniper Logo" class="logo-img" />
+      <p class="copyright">{{ 'LOGIN.COPYRIGHT' | translate }}</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="right-section">
+      <h2 class="welcome-title">{{ 'LOGIN.WELCOME' | translate }}</h2>
+
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div *ngIf="!is2faRequired">
+          <div class="form-group password-wrapper">
+            <div class="input-wrapper">
+              <input
+                type="text"
+                formControlName="username"
+                [placeholder]="'LOGIN.USER_PLACEHOLDER' | translate"
+              />
+              <span class="password-icon">👤</span>
+            </div>
+          </div>
+
+          <div class="form-group password-wrapper">
+            <input
+              [type]="showPassword ? 'text' : 'password'"
+              formControlName="password"
+              [placeholder]="'LOGIN.PASS_PLACEHOLDER' | translate"
+            />
+            <span class="password-icon" (click)="showPassword = !showPassword">
+              {{ showPassword ? "👁️" : "🔒" }}
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group" *ngIf="is2faRequired">
+          <div class="alert-info">
+            <p>{{ 'LOGIN.2FA_MSG' | translate }}</p>
+          </div>
+          <input
+            type="text"
+            formControlName="twoFactor"
+            [placeholder]="'LOGIN.2FA_PLACEHOLDER' | translate"
+            class="input-2fa"
+            autocomplete="one-time-code"
+          />
+        </div>
+
+        <div class="buttons">
+          <button type="submit" class="btn-login" [disabled]="isLoading">
+            {{
+              isLoading
+                ? ('LOGIN.BTN_LOADING' | translate)
+                : is2faRequired
+                ? ('LOGIN.BTN_VERIFY' | translate)
+                : ('LOGIN.BTN_ENTER' | translate)
+            }}
+          </button>
+
+          <button
+            *ngIf="is2faRequired"
+            type="button"
+            class="btn-register"
+            (click)="is2faRequired = false; loginForm.controls['password'].enable()"
+          >
+            {{ 'LOGIN.BTN_CANCEL' | translate }}
+          </button>
+
+          <button
+            *ngIf="!is2faRequired"
+            type="button"
+            class="btn-register"
+            routerLink="/auth/register"
+          >
+            {{ 'LOGIN.BTN_REGISTER' | translate }}
+          </button>
+        </div>
+        <div class="bottom-links mt-4">
+          <label class="remember">
+            <input type="checkbox" formControlName="rememberMe" />
+            {{ 'LOGIN.REMEMBER_ME' | translate }}
+          </label>
+
+          <a routerLink="/auth/forgot-password" class="forgot-link">
+            {{ 'LOGIN.FORGOT_PASS' | translate }}
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

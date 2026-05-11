@@ -1,0 +1,207 @@
+/* --- VARIABLES --- */
+$bg-overlay: rgba(0, 0, 0, 0.85);
+$bg-modal-gradient: linear-gradient(160deg, #2a0050 0%, #0d0018 90%);
+$neon-purple: #c9a84c;
+$neon-purple-glow: rgba(189, 0, 255, 0.45);
+$neon-pink: #d4af37;
+$gold-mid: #c9a84c;
+$gold-accent: #d4af37;
+$text-white: #ffffff;
+$text-gray: #c9c9c9;
+
+/* --- OVERLAY --- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: $bg-overlay;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(8px);
+  animation: fadeIn 0.25s ease-out;
+}
+
+/* --- CONTENEDOR DEL MODAL --- */
+.modal-wrapper {
+  position: relative;
+  width: 90%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-container {
+  position: relative;
+  width: 100%;
+  padding: 40px;
+  background: radial-gradient(
+    circle at center,
+    rgba(201, 168, 76, 0.25) 0%,
+    #0a0a06 70%
+  );
+  border: none;
+  box-shadow: 0 0 20px $neon-purple-glow, 0 0 45px rgba(201, 168, 76, 0.15);
+  animation: modalPop 0.25s ease-out;
+  overflow: hidden;
+
+  /* Bisel en esquinas */
+  clip-path: polygon(
+    0 0,
+    calc(100% - 30px) 0,
+    100% 30px,
+    100% 100%,
+    30px 100%,
+    0 calc(100% - 30px)
+  );
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: $gold-mid;
+    pointer-events: none;
+    z-index: 2;
+
+    clip-path: polygon(
+      0 0,
+      calc(100% - 30px) 0,
+      100% 30px,
+      100% 100%,
+      30px 100%,
+      0 calc(100% - 30px),
+      0 0,
+      2px 2px,
+      2px calc(100% - 30px - 1px),
+      30px calc(100% - 2px),
+      calc(100% - 2px) calc(100% - 2px),
+      calc(100% - 2px) 30px,
+      calc(100% - 30px - 1px) 2px,
+      2px 2px
+    );
+  }
+}
+
+/* --- BOTÓN CERRAR --- */
+.btn-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: $gold-accent;
+  border: none;
+  color: black;
+  font-size: 1.3rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 18px rgba(255, 215, 0, 0.7);
+  transition: 0.2s ease;
+  z-index: 10;
+
+  &:hover {
+    transform: scale(1.12) rotate(90deg);
+  }
+}
+
+/* --- CONTENIDO DEL MODAL --- */
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+  position: relative;
+  z-index: 3;
+}
+
+.modal-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: $text-white;
+  margin-bottom: 10px;
+  text-shadow: 0 0 10px rgba(201, 168, 76, 0.3);
+}
+
+/* --- ICONS GRID --- */
+.icons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+  gap: 20px;
+  width: 100%;
+  padding: 10px;
+}
+
+.icon-item {
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid $gold-mid;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  i {
+    font-size: 2rem;
+    color: $text-gray;
+    transition: color 0.3s ease;
+  }
+
+  &:hover {
+    background: rgba(201, 168, 76, 0.15);
+    box-shadow: 0 0 15px $neon-purple-glow;
+    transform: translateY(-3px);
+    border-color: $gold-accent;
+
+    i {
+      color: $text-white;
+    }
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+/* --- ANIMACIONES --- */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalPop {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 600px) {
+  .icons-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+  }
+
+  .icon-item {
+    width: 60px;
+    height: 60px;
+
+    i {
+      font-size: 1.6rem;
+    }
+  }
+}
