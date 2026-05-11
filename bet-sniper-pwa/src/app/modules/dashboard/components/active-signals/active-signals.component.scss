@@ -37,10 +37,10 @@ $border-gold: 1px solid #c9a84c;
     z-index: -1;
     pointer-events: none;
     background-image:
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpath d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100' fill='none' stroke='rgba(201,168,76,0.07)' stroke-width='0.5'/%3E%3Cpath d='M28 0L28 34L0 50L0 84L28 100L56 84L56 50L28 34' fill='none' stroke='rgba(201,168,76,0.03)' stroke-width='0.3'/%3E%3C/svg%3E"),
-      radial-gradient(ellipse at 0% 0%, rgba(201, 168, 76, 0.1) 0%, transparent 40%),
-      radial-gradient(ellipse at 100% 0%, rgba(201, 168, 76, 0.1) 0%, transparent 40%),
-      radial-gradient(ellipse at 50% 100%, rgba(201, 168, 76, 0.05) 0%, transparent 50%);
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpath d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100' fill='none' stroke='rgba(201,168,76,0.15)' stroke-width='0.6'/%3E%3Cpath d='M28 0L28 34L0 50L0 84L28 100L56 84L56 50L28 34' fill='none' stroke='rgba(201,168,76,0.08)' stroke-width='0.4'/%3E%3C/svg%3E"),
+      radial-gradient(ellipse at 0% 0%, rgba(201, 168, 76, 0.15) 0%, transparent 40%),
+      radial-gradient(ellipse at 100% 0%, rgba(201, 168, 76, 0.15) 0%, transparent 40%),
+      radial-gradient(ellipse at 50% 100%, rgba(201, 168, 76, 0.08) 0%, transparent 50%);
   }
 }
 
@@ -144,7 +144,7 @@ $border-gold: 1px solid #c9a84c;
     content: "";
     position: absolute;
     inset: 0;
-    background: $gold-dark;
+    background: linear-gradient(135deg, $gold-light, $gold-primary, $gold-dark);
     clip-path: polygon(
       0 0,
       calc(100% - 20px) 0,
@@ -154,6 +154,7 @@ $border-gold: 1px solid #c9a84c;
       0 calc(100% - 20px)
     );
     z-index: -2;
+    box-shadow: 0 0 15px rgba(201, 168, 76, 0.2);
   }
 
   /* Capa de fondo top bar */
@@ -163,10 +164,9 @@ $border-gold: 1px solid #c9a84c;
     inset: 2px;
     background: radial-gradient(
       circle at 50% 30%,
-      rgba(18, 18, 16, 0.9) 0%,
-      /* Morado intenso en el centro */ rgba(18, 18, 16, 0.95) 50%,
-      /* Transición a morado oscuro */ rgba(10, 10, 8, 1) 100%
-        /* Oscuro/Negro en las esquinas */
+      rgba(201, 168, 76, 0.08) 0%,
+      rgba(18, 18, 16, 0.95) 50%,
+      rgba(10, 10, 8, 1) 100%
     );
     // backdrop-filter: blur(10px);
     clip-path: polygon(
