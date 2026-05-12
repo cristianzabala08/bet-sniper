@@ -1,3 +1,5 @@
+@use "sass:color";
+
 $gold-primary: #c9a84c;
 $gold-light: #ffd700;
 $gold-dark: #8b6914;
@@ -935,7 +937,7 @@ $border-gold: 1px solid #c9a84c;
           }
           &.dot-green {
             background-color: $gold-light;
-            border-color: lighten($gold-light, 10%);
+            border-color: color.adjust($gold-light, $lightness: 10%);
             box-shadow: 0 0 5px $gold-light;
 
             &.active,
