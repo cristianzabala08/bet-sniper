@@ -30,7 +30,7 @@ $border-gold: #2a2520;
     radial-gradient(ellipse at 0% 100%, rgba(201, 168, 76, 0.06) 0%, transparent 30%),
     radial-gradient(ellipse at 100% 100%, rgba(201, 168, 76, 0.06) 0%, transparent 30%),
     /* Hexagonal grid overlay */
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpath d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100' fill='none' stroke='rgba(201,168,76,0.12)' stroke-width='0.6'/%3E%3Cpath d='M28 0L28 34L0 50L0 84L28 100L56 84L56 50L28 34' fill='none' stroke='rgba(201,168,76,0.06)' stroke-width='0.4'/%3E%3C/svg%3E");
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpath d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100' fill='none' stroke='rgba(201,168,76,0.16)' stroke-width='0.7'/%3E%3Cpath d='M28 0L28 34L0 50L0 84L28 100L56 84L56 50L28 34' fill='none' stroke='rgba(201,168,76,0.08)' stroke-width='0.4'/%3E%3C/svg%3E");
 
   /* Elaborate gold corner decorations */
   .corner-decor {
@@ -51,16 +51,18 @@ $border-gold: #2a2520;
       &::before {
         top: 8px;
         left: 8px;
-        width: 80px;
+        width: 140px;
         height: 2px;
-        background: linear-gradient(90deg, rgba(201, 168, 76, 0.7), transparent);
+        background: linear-gradient(90deg, rgba(255, 215, 0, 0.9), rgba(201, 168, 76, 0.5), transparent);
+        box-shadow: 0 0 8px rgba(201, 168, 76, 0.4), 0 0 20px rgba(201, 168, 76, 0.15);
       }
       &::after {
         top: 8px;
         left: 8px;
         width: 2px;
-        height: 80px;
-        background: linear-gradient(180deg, rgba(201, 168, 76, 0.7), transparent);
+        height: 140px;
+        background: linear-gradient(180deg, rgba(255, 215, 0, 0.9), rgba(201, 168, 76, 0.5), transparent);
+        box-shadow: 0 0 8px rgba(201, 168, 76, 0.4), 0 0 20px rgba(201, 168, 76, 0.15);
       }
     }
 
@@ -70,16 +72,18 @@ $border-gold: #2a2520;
       &::before {
         top: 8px;
         right: 8px;
-        width: 80px;
+        width: 140px;
         height: 2px;
-        background: linear-gradient(270deg, rgba(201, 168, 76, 0.7), transparent);
+        background: linear-gradient(270deg, rgba(255, 215, 0, 0.9), rgba(201, 168, 76, 0.5), transparent);
+        box-shadow: 0 0 8px rgba(201, 168, 76, 0.4), 0 0 20px rgba(201, 168, 76, 0.15);
       }
       &::after {
         top: 8px;
         right: 8px;
         width: 2px;
-        height: 80px;
-        background: linear-gradient(180deg, rgba(201, 168, 76, 0.7), transparent);
+        height: 140px;
+        background: linear-gradient(180deg, rgba(255, 215, 0, 0.9), rgba(201, 168, 76, 0.5), transparent);
+        box-shadow: 0 0 8px rgba(201, 168, 76, 0.4), 0 0 20px rgba(201, 168, 76, 0.15);
       }
     }
 
@@ -89,16 +93,18 @@ $border-gold: #2a2520;
       &::before {
         bottom: 8px;
         left: 8px;
-        width: 80px;
+        width: 120px;
         height: 2px;
-        background: linear-gradient(90deg, rgba(201, 168, 76, 0.5), transparent);
+        background: linear-gradient(90deg, rgba(255, 215, 0, 0.7), rgba(201, 168, 76, 0.4), transparent);
+        box-shadow: 0 0 6px rgba(201, 168, 76, 0.3);
       }
       &::after {
         bottom: 8px;
         left: 8px;
         width: 2px;
-        height: 80px;
-        background: linear-gradient(0deg, rgba(201, 168, 76, 0.5), transparent);
+        height: 120px;
+        background: linear-gradient(0deg, rgba(255, 215, 0, 0.7), rgba(201, 168, 76, 0.4), transparent);
+        box-shadow: 0 0 6px rgba(201, 168, 76, 0.3);
       }
     }
 
@@ -108,16 +114,18 @@ $border-gold: #2a2520;
       &::before {
         bottom: 8px;
         right: 8px;
-        width: 80px;
+        width: 120px;
         height: 2px;
-        background: linear-gradient(270deg, rgba(201, 168, 76, 0.5), transparent);
+        background: linear-gradient(270deg, rgba(255, 215, 0, 0.7), rgba(201, 168, 76, 0.4), transparent);
+        box-shadow: 0 0 6px rgba(201, 168, 76, 0.3);
       }
       &::after {
         bottom: 8px;
         right: 8px;
         width: 2px;
-        height: 80px;
-        background: linear-gradient(0deg, rgba(201, 168, 76, 0.5), transparent);
+        height: 120px;
+        background: linear-gradient(0deg, rgba(255, 215, 0, 0.7), rgba(201, 168, 76, 0.4), transparent);
+        box-shadow: 0 0 6px rgba(201, 168, 76, 0.3);
       }
     }
   }
@@ -345,7 +353,7 @@ $border-gold: #2a2520;
     height: 90px;
     background: radial-gradient(circle, $gold-light, $gold-dark);
     border-radius: 50%;
-    box-shadow: 0 0 20px $gold-glow-strong, 0 0 40px rgba(201, 168, 76, 0.2);
+    box-shadow: 0 0 20px $gold-glow-strong, 0 0 40px rgba(201, 168, 76, 0.3), 0 0 80px rgba(201, 168, 76, 0.15);
     position: absolute;
     bottom: 20px;
     animation: float 3s ease-in-out infinite;
@@ -358,8 +366,10 @@ $border-gold: #2a2520;
 .nav-group {
   display: flex;
   gap: 15px;
-  background: rgba(18, 18, 16, 0.8);
+  background: rgba(18, 18, 16, 0.85);
   padding: 10px 20px;
+  box-shadow: inset 0 0 15px rgba(201, 168, 76, 0.05), 0 0 10px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(201, 168, 76, 0.15);
 
   &.left {
     border-radius: 10px 40px 40px -1px;
@@ -401,9 +411,9 @@ $border-gold: #2a2520;
     }
 
     &.btn-neon-purple {
-      background: linear-gradient(135deg, rgba(201, 168, 76, 0.2), rgba(139, 105, 20, 0.3));
+      background: linear-gradient(135deg, rgba(201, 168, 76, 0.15), rgba(139, 105, 20, 0.25));
       color: $gold-primary;
-      border: 1px solid rgba(201, 168, 76, 0.3);
+      border: 1px solid rgba(201, 168, 76, 0.35);
       clip-path: polygon(
         0 0,
         calc(100% - 10px) 0,
@@ -412,13 +422,16 @@ $border-gold: #2a2520;
         10px 100%,
         0 calc(100% - 10px)
       );
+      box-shadow: 0 0 8px rgba(201, 168, 76, 0.1), inset 0 0 6px rgba(201, 168, 76, 0.05);
+      text-shadow: 0 0 4px rgba(201, 168, 76, 0.3);
 
       &.active-btn,
       &:hover {
-        background: linear-gradient(135deg, $gold-dark, $gold-primary);
+        background: linear-gradient(135deg, $gold-dark, $gold-primary, $gold-light);
         color: $bg-dark;
-        box-shadow: 0 0 15px $gold-glow-strong;
+        box-shadow: 0 0 20px rgba(201, 168, 76, 0.4), 0 0 40px rgba(201, 168, 76, 0.15), inset 0 0 10px rgba(255, 215, 0, 0.1);
         border: none;
+        text-shadow: none;
       }
     }
 
@@ -561,7 +574,7 @@ $dropdown-bg: #121210;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 0 10px $gold-glow;
+    box-shadow: 0 0 10px $gold-glow, 0 0 20px rgba(201, 168, 76, 0.15);
 
     i {
       color: $bg-dark;
@@ -583,8 +596,8 @@ $dropdown-bg: #121210;
   width: 220px;
   background-color: $dropdown-bg;
   border-radius: 0 0 10px 10px;
-  box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.5);
-  border: 1px solid $border-gold;
+  box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.5), 0 0 15px rgba(201, 168, 76, 0.1);
+  border: 1px solid rgba(201, 168, 76, 0.3);
 
   opacity: 0;
   visibility: hidden;
@@ -683,7 +696,7 @@ $dropdown-bg: #121210;
     border-radius: 15px;
     width: 90%;
     max-width: 600px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 20px $gold-glow;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 20px $gold-glow, 0 0 40px rgba(201, 168, 76, 0.1), inset 0 0 15px rgba(201, 168, 76, 0.05);
 
     .response-header {
       display: flex;

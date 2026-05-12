@@ -39,10 +39,11 @@ $border-gold: 1px solid #c9a84c;
     z-index: -1;
     pointer-events: none;
     background-image:
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpath d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100' fill='none' stroke='rgba(201,168,76,0.15)' stroke-width='0.6'/%3E%3Cpath d='M28 0L28 34L0 50L0 84L28 100L56 84L56 50L28 34' fill='none' stroke='rgba(201,168,76,0.08)' stroke-width='0.4'/%3E%3C/svg%3E"),
-      radial-gradient(ellipse at 0% 0%, rgba(201, 168, 76, 0.15) 0%, transparent 40%),
-      radial-gradient(ellipse at 100% 0%, rgba(201, 168, 76, 0.15) 0%, transparent 40%),
-      radial-gradient(ellipse at 50% 100%, rgba(201, 168, 76, 0.08) 0%, transparent 50%);
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpath d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100' fill='none' stroke='rgba(201,168,76,0.18)' stroke-width='0.7'/%3E%3Cpath d='M28 0L28 34L0 50L0 84L28 100L56 84L56 50L28 34' fill='none' stroke='rgba(201,168,76,0.09)' stroke-width='0.4'/%3E%3C/svg%3E"),
+      radial-gradient(ellipse at 0% 0%, rgba(201, 168, 76, 0.18) 0%, transparent 45%),
+      radial-gradient(ellipse at 100% 0%, rgba(201, 168, 76, 0.18) 0%, transparent 45%),
+      radial-gradient(ellipse at 50% 40%, rgba(201, 168, 76, 0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 100%, rgba(201, 168, 76, 0.1) 0%, transparent 50%);
   }
 }
 
@@ -125,11 +126,15 @@ $border-gold: 1px solid #c9a84c;
 .glass-panel,
 .panel-card {
   background: $bg-panel;
-  border: $border-gold;
+  border: 1px solid rgba(201, 168, 76, 0.3);
   backdrop-filter: blur(10px);
   border-radius: 15px;
   padding: 15px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.3),
+    0 0 15px rgba(201, 168, 76, 0.1),
+    inset 0 0 20px rgba(201, 168, 76, 0.04),
+    inset 0 1px 0 rgba(201, 168, 76, 0.1);
 }
 
 /* 1. BARRA SUPERIOR */
@@ -146,7 +151,7 @@ $border-gold: 1px solid #c9a84c;
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, $gold-light, $gold-primary, $gold-dark);
+    background: linear-gradient(135deg, $gold-light, $gold-primary, $gold-dark, $gold-primary, $gold-light);
     clip-path: polygon(
       0 0,
       calc(100% - 20px) 0,
@@ -156,7 +161,7 @@ $border-gold: 1px solid #c9a84c;
       0 calc(100% - 20px)
     );
     z-index: -2;
-    box-shadow: 0 0 15px rgba(201, 168, 76, 0.2);
+    box-shadow: 0 0 20px rgba(201, 168, 76, 0.3), 0 0 40px rgba(201, 168, 76, 0.1);
   }
 
   /* Capa de fondo top bar */
@@ -166,11 +171,11 @@ $border-gold: 1px solid #c9a84c;
     inset: 2px;
     background: radial-gradient(
       circle at 50% 30%,
-      rgba(201, 168, 76, 0.08) 0%,
+      rgba(201, 168, 76, 0.12) 0%,
       rgba(18, 18, 16, 0.95) 50%,
       rgba(10, 10, 8, 1) 100%
     );
-    // backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
     clip-path: polygon(
       0 0,
       calc(100% - 20px) 0,
@@ -234,7 +239,7 @@ $border-gold: 1px solid #c9a84c;
         &.text-neon-green {
           color: $neon-green;
           border-color: $neon-green;
-          box-shadow: 0 0 10px rgba(201, 168, 76, 0.2);
+          box-shadow: 0 0 10px rgba(201, 168, 76, 0.3), 0 0 20px rgba(201, 168, 76, 0.1);
         }
       }
 
@@ -272,8 +277,8 @@ $border-gold: 1px solid #c9a84c;
       display: flex;
       align-items: center;
       gap: 15px;
-      box-shadow: 0 0 10px rgba(201, 168, 76, 0.3);
-      border: none; /* Remove border if present */
+      box-shadow: 0 0 15px rgba(201, 168, 76, 0.4), 0 0 30px rgba(201, 168, 76, 0.15), inset 0 0 10px rgba(255, 215, 0, 0.1);
+      border: none;
 
       .icon-profit {
         font-size: 2rem;
@@ -333,7 +338,7 @@ $border-gold: 1px solid #c9a84c;
     content: "";
     position: absolute;
     inset: 0;
-    background: #c9a84c; /* Morado neón brillante */
+    background: linear-gradient(135deg, #ffd700, #c9a84c, #8b6914, #c9a84c, #ffd700);
     clip-path: polygon(
       0 0,
       calc(100% - 20px) 0,
@@ -343,6 +348,7 @@ $border-gold: 1px solid #c9a84c;
       0 calc(100% - 20px)
     );
     z-index: -2;
+    box-shadow: 0 0 25px rgba(201, 168, 76, 0.25), 0 0 50px rgba(201, 168, 76, 0.1);
   }
 
   &::after {
@@ -351,10 +357,9 @@ $border-gold: 1px solid #c9a84c;
     inset: 2px;
     background: radial-gradient(
       circle at 50% 30%,
-      rgba(201, 168, 76, 0.2) 0%,
-      /* Morado intenso en el centro */ rgba(139, 105, 20, 0.2) 50%,
-      /* Transición a morado oscuro */ rgba(10, 10, 8, 1) 100%
-        /* Oscuro/Negro en las esquinas */
+      rgba(201, 168, 76, 0.15) 0%,
+      rgba(139, 105, 20, 0.12) 40%,
+      rgba(10, 10, 8, 1) 100%
     );
     backdrop-filter: blur(10px);
     clip-path: polygon(
@@ -587,7 +592,7 @@ $border-gold: 1px solid #c9a84c;
       content: "";
       position: absolute;
       inset: 0;
-      background: #c9a84c; /* Morado neón brillante */
+      background: linear-gradient(135deg, #ffd700, #c9a84c, #8b6914, #c9a84c);
       clip-path: polygon(
         0 0,
         calc(100% - 20px) 0,
@@ -597,19 +602,19 @@ $border-gold: 1px solid #c9a84c;
         0 calc(100% - 20px)
       );
       z-index: -2;
+      box-shadow: 0 0 20px rgba(201, 168, 76, 0.2);
     }
 
-    /* Capa de fondo con degradado */
+    /* Capa de fondo con degradado + inner glow */
     &::after {
       content: "";
       position: absolute;
       inset: 2px;
       background: radial-gradient(
         circle at 50% 30%,
-        rgba(201, 168, 76, 0.3) 0%,
-        /* Morado intenso en el centro */ rgba(139, 105, 20, 0.2) 50%,
-        /* Transición a morado oscuro */ rgba(10, 10, 8, 1) 100%
-          /* Oscuro/Negro en las esquinas */
+        rgba(201, 168, 76, 0.2) 0%,
+        rgba(139, 105, 20, 0.12) 40%,
+        rgba(10, 10, 8, 1) 100%
       );
       backdrop-filter: blur(10px);
       clip-path: polygon(
@@ -776,7 +781,8 @@ $border-gold: 1px solid #c9a84c;
         content: "";
         position: absolute;
         inset: 0;
-        background: #c9a84c; /* Border Color */
+        background: linear-gradient(135deg, #ffd700, #c9a84c, #8b6914);
+        box-shadow: 0 0 12px rgba(201, 168, 76, 0.2);
         clip-path: polygon(
           15px 0,
           100% 0,
@@ -1003,6 +1009,7 @@ $border-gold: 1px solid #c9a84c;
           background: linear-gradient(135deg, #8b6914, #c9a84c, #ffd700);
           color: white;
           border-radius: 0;
+          box-shadow: 0 0 15px rgba(201, 168, 76, 0.3), inset 0 0 10px rgba(255, 215, 0, 0.1);
           clip-path: polygon(
             0 0,
             calc(100% - 10px) 0,
@@ -1059,8 +1066,9 @@ $border-gold: 1px solid #c9a84c;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        background: linear-gradient(135deg, #8b6914, #c9a84c);
+        background: linear-gradient(135deg, #8b6914, #c9a84c, #ffd700);
         border: none;
+        box-shadow: 0 0 15px rgba(201, 168, 76, 0.3), inset 0 0 8px rgba(255, 215, 0, 0.15);
         border-radius: 0;
         clip-path: polygon(
           0 0,
