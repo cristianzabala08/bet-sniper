@@ -7,7 +7,7 @@ import packageInfo from '../../package.json';
 export const environment = {
   appVersion: packageInfo.version,
   production: false,
-  apiBaseUrl: 'https://services.betsniper.com'
+  apiBaseUrl: 'https://services.betsniper.xyz'
 };
 /*
  * For easier debugging in development mode, you can import the following file

@@ -3,5 +3,5 @@ import packageInfo from '../../package.json';
 export const environment = {
   appVersion: packageInfo.version,
   production: true,
-  apiBaseUrl: 'https://services.betsniper.com'
+  apiBaseUrl: 'https://services.betsniper.xyz'
 };
