@@ -1,7 +1,17 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npx ng *)"
+      "Bash(npx ng *)",
+      "Bash(sshpass -p 'tyvbim-8Succy-sovvuh' ssh -o StrictHostKeyChecking=no root@159.223.141.122 'echo \"=== CONECTADO ===\" && whoami && uname -a && docker --version 2>/dev/null || echo \"Docker no instalado\" && docker-compose --version 2>/dev/null || echo \"docker-compose no instalado\" && git --version && ls /opt/')",
+      "Bash(ssh -o StrictHostKeyChecking=no -o BatchMode=no -o ConnectTimeout=10 root@159.223.141.122 'echo CONECTADO')",
+      "Bash(pip install *)",
+      "Bash(apt-get install *)",
+      "Bash(brew install *)",
+      "Bash(echo \"exit: $?\")",
+      "Bash(python3 -c ' *)",
+      "Bash(python3 -c \"import paramiko; print\\('OK'\\)\")",
+      "Bash(pip3 install *)",
+      "PowerShell(python c:\\\\Users\\\\zabala\\\\Documents\\\\GitHub\\\\bet-sniper\\\\deploy_check.py)"
     ]
   }
 }
