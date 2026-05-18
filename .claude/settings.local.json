@@ -11,7 +11,8 @@
       "Bash(python3 -c ' *)",
       "Bash(python3 -c \"import paramiko; print\\('OK'\\)\")",
       "Bash(pip3 install *)",
-      "PowerShell(python c:\\\\Users\\\\zabala\\\\Documents\\\\GitHub\\\\bet-sniper\\\\deploy_check.py)"
+      "PowerShell(python c:\\\\Users\\\\zabala\\\\Documents\\\\GitHub\\\\bet-sniper\\\\deploy_check.py)",
+      "PowerShell(python c:\\\\Users\\\\zabala\\\\Documents\\\\GitHub\\\\bet-sniper\\\\deploy_pull.py)"
     ]
   }
 }
