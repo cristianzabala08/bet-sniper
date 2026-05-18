@@ -30,7 +30,7 @@ $border-gold: #2a2520;
     radial-gradient(ellipse at 0% 100%, rgba(201, 168, 76, 0.06) 0%, transparent 30%),
     radial-gradient(ellipse at 100% 100%, rgba(201, 168, 76, 0.06) 0%, transparent 30%),
     /* Hexagonal grid overlay */
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpath d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100' fill='none' stroke='rgba(201,168,76,0.16)' stroke-width='0.7'/%3E%3Cpath d='M28 0L28 34L0 50L0 84L28 100L56 84L56 50L28 34' fill='none' stroke='rgba(201,168,76,0.08)' stroke-width='0.4'/%3E%3C/svg%3E");
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpath d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100' fill='none' stroke='rgba(201,168,76,0.22)' stroke-width='0.8'/%3E%3Cpath d='M28 0L28 34L0 50L0 84L28 100L56 84L56 50L28 34' fill='none' stroke='rgba(201,168,76,0.1)' stroke-width='0.5'/%3E%3C/svg%3E");
 
   /* Elaborate gold corner decorations */
   .corner-decor {
@@ -183,7 +183,7 @@ $border-gold: #2a2520;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: linear-gradient(to top, $bg-dark 90%, transparent 100%);
+  background: linear-gradient(to top, rgba(5, 5, 5, 0.96) 60%, transparent 100%);
 }
 
 .oracle-floating-info {
@@ -360,6 +360,7 @@ $border-gold: #2a2520;
     background-image: url("/assets/orbe-video2.gif");
     background-position: center;
     background-size: cover;
+    filter: sepia(0.7) saturate(2) hue-rotate(5deg) brightness(0.95);
   }
 }
 
@@ -468,7 +469,12 @@ $border-gold: #2a2520;
 
 @media (max-width: 900px) {
   .footer-dock-container {
-    background: $bg-dark;
+    background: linear-gradient(
+      to top,
+      rgba(5, 5, 5, 0.97) 55%,
+      rgba(5, 5, 5, 0.75) 80%,
+      transparent 100%
+    );
     padding-bottom: 0;
   }
 

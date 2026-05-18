@@ -69,19 +69,12 @@ $gold-mid: #c9a84c;
     z-index: -2;
   }
 
-  /* Capa de fondo top bar */
+  /* Capa de fondo */
   &::after {
     content: "";
     position: absolute;
     inset: 2px;
-    background: radial-gradient(
-      circle at 50% 50%,
-      rgba(201, 168, 76, 0.15) 0%,
-      rgba(139, 105, 20, 0.1) 15%,
-      rgba(18, 18, 16, 0.7) 40%,
-      rgba(10, 10, 8, 1) 100%
-    );
-    // backdrop-filter: blur(10px);
+    background: #0c0c0a;
     clip-path: polygon(
       0 0,
       calc(100% - 20px) 0,
@@ -131,9 +124,11 @@ $gold-mid: #c9a84c;
       .celular-img {
         max-width: 100%;
         height: 280px;
+        filter: sepia(0.85) saturate(2.2) hue-rotate(10deg) brightness(0.88)
+                drop-shadow(0 0 18px rgba(201, 168, 76, 0.35));
 
         @media (max-width: 768px) {
-          max-width: 120px; /* Imagen más pequeña en móvil */
+          max-width: 120px;
         }
       }
     }
@@ -416,11 +411,11 @@ $gold-mid: #c9a84c;
 
   /* --- VARIANTES DE COLOR --- */
 
-  /* 0. WEEKLY (Gold/Orange - New) */
+  /* 0. WEEKLY */
   &.card-weekly {
     border-top: 2px solid #ffd700;
-    box-shadow: 0 -5px 20px rgba(201, 168, 76, 0.15);
-    background: linear-gradient(180deg, rgba(201, 168, 76, 0.3) 0%, rgba(10, 10, 8, 0.95) 100%);
+    box-shadow: 0 -4px 16px rgba(255, 215, 0, 0.2), 0 0 0 1px rgba(255,215,0,0.1);
+    background: #0c0c0a;
 
     .card-badge {
       background: linear-gradient(135deg, #c9a84c, #ffd700);
@@ -470,11 +465,11 @@ $gold-mid: #c9a84c;
     }
   }
   
-  /* 4. EXPERT (Red - New) */
+  /* 4. EXPERT */
   &.card-expert {
     border-top: 2px solid #cd7f32;
-    box-shadow: 0 -5px 20px rgba(201, 168, 76, 0.1);
-    background: linear-gradient(180deg, rgba(205, 127, 50, 0.3) 0%, rgba(10, 10, 8, 0.95) 100%);
+    box-shadow: 0 -4px 16px rgba(205, 127, 50, 0.2);
+    background: #0c0c0a;
 
     .card-badge {
       background: linear-gradient(135deg, #cd7f32, #8b6914);
@@ -496,14 +491,14 @@ $gold-mid: #c9a84c;
     }
   }
 
-  /* 2. AMATEUR (Azul) */
+  /* 2. AMATEUR */
   &.card-amateur {
     border-top: 2px solid $neon-blue;
-    box-shadow: 0 -5px 20px rgba(201, 168, 76, 0.1);
-    background: linear-gradient(180deg, rgba(139, 105, 20, 0.4) 0%, rgba(10, 10, 8, 0.95) 100%);
+    box-shadow: 0 -4px 16px rgba(139, 105, 20, 0.2);
+    background: #0c0c0a;
 
     .card-badge {
-      background: linear-gradient(180deg, rgba(139, 105, 20, 0.4) 0%, rgba(10, 10, 8, 0.95) 100%);
+      background: #0c0c0a;
     }
     .plan-name strong {
       color: $gold-dark;
@@ -521,14 +516,14 @@ $gold-mid: #c9a84c;
     }
   }
 
-  /* 3. PRO (Violeta/Rosa) */
+  /* 3. PRO */
   &.card-pro {
     border-top: 2px solid $neon-purple;
-    box-shadow: 0 -5px 20px rgba(201, 168, 76, 0.1);
-    background: linear-gradient(180deg, rgba(212, 175, 55, 0.3) 0%, rgba(10, 10, 8, 0.95) 100%);
+    box-shadow: 0 -4px 16px rgba(212, 175, 55, 0.2);
+    background: #0c0c0a;
 
     .card-badge {
-      background: linear-gradient(180deg, rgba(212, 175, 55, 0.3) 0%, rgba(10, 10, 8, 0.95) 100%);
+      background: #0c0c0a;
     }
     .plan-name strong {
       color: $gold-mid;
@@ -546,14 +541,14 @@ $gold-mid: #c9a84c;
     }
   }
 
-  /* 4. ELITE (Verde) */
+  /* 4. ELITE */
   &.card-elite {
-    border: 1px solid $neon-green; /* Borde completo verde */
-    box-shadow: 0 0 20px rgba(201, 168, 76, 0.15);
-    background: linear-gradient(180deg, rgba(201, 168, 76, 0.5) 0%, rgba(10, 10, 8, 0.95) 100%);
+    border: 1px solid $neon-green;
+    box-shadow: 0 0 20px rgba(201, 168, 76, 0.2);
+    background: #0c0c0a;
 
     .card-badge {
-      background: linear-gradient(180deg, rgba(201, 168, 76, 0.5) 0%, rgba(10, 10, 8, 0.95) 100%);
+      background: #0c0c0a;
       color: white;
     }
     .plan-name strong {

@@ -41,16 +41,15 @@ $border-color: rgba(255, 255, 255, 0.1);
 }
 
 .panel-card {
-  background: $bg-panel;
-  // border: 1px solid $neon-blue; /* Borde azul del panel principal */
-  border: transparent; /* Borde azul del panel principal */
-  // border-radius: 15px;
+  background: #0c0c0a;
+  border: transparent;
   padding: 20px;
-  backdrop-filter: blur(10px);
   display: flex;
   flex-direction: column;
+  position: relative;
+  z-index: 0;
 
-  /* Capa de borde */
+  /* Capa de borde dorado */
   &::before {
     content: "";
     position: absolute;
@@ -67,19 +66,12 @@ $border-color: rgba(255, 255, 255, 0.1);
     z-index: -2;
   }
 
-  /* Capa de fondo top bar */
+  /* Capa de fondo negro */
   &::after {
     content: "";
     position: absolute;
     inset: 2px;
-    background: radial-gradient(
-      circle at 50% 30%,
-      rgba(18, 18, 16, 0.9) 0%,
-      /* Morado intenso en el centro */ rgba(18, 18, 16, 0.95) 50%,
-      /* Transición a morado oscuro */ rgba(10, 10, 8, 1) 100%
-        /* Oscuro/Negro en las esquinas */
-    );
-    // backdrop-filter: blur(10px);
+    background: #0c0c0a;
     clip-path: polygon(
       0 0,
       calc(100% - 20px) 0,
@@ -190,28 +182,24 @@ $border-color: rgba(255, 255, 255, 0.1);
 
     // 3. Define el "pulgar" (thumb) que se mueve
     &::-webkit-scrollbar-thumb {
-      // Gradiente que simula la luz y el color futurista
       background: linear-gradient(
         180deg,
-        rgba(255, 255, 255, 0.4) 0%,
-        /* Blanco/Claro en la parte superior */ $neon-purple 15%,
-        /* Morado neón */ #005acc 85%,
-        /* Azul oscuro en el medio/bajo */ rgba(255, 255, 255, 0.2) 100%
-          /* Blanco/Claro sutil en el fondo */
+        #ffd700 0%,
+        #c9a84c 50%,
+        #8b6914 100%
       );
-      border-radius: 10px; // Hace el pulgar también con forma de cilindro
-      border: 3px solid rgba(13, 13, 40, 0.5); /* Borde que separa el thumb del track */
-      box-shadow: 0 0 10px rgba($neon-purple, 0.5); /* Resplandor sutil */
+      border-radius: 10px;
+      border: 3px solid rgba(10, 10, 8, 0.5);
+      box-shadow: 0 0 8px rgba(201, 168, 76, 0.4);
     }
 
     // 4. Estilo del pulgar al pasar el ratón (Hover)
     &::-webkit-scrollbar-thumb:hover {
       background: linear-gradient(
         180deg,
-        rgba(255, 255, 255, 0.6) 0%,
-        $neon-pink 20%,
-        /* Cambia a rosa/magenta al pasar el ratón */ #0069d9 80%,
-        rgba(255, 255, 255, 0.4) 100%
+        #ffd700 0%,
+        #d4af37 50%,
+        #c9a84c 100%
       );
     }
   }

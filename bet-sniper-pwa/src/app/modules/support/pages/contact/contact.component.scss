@@ -58,7 +58,7 @@ $gold-glow: rgba(201, 168, 76, 0.15);
     content: "";
     position: absolute;
     inset: 1px;
-    background: $bg-panel;
+    background: #0c0c0a;
     z-index: -1;
     clip-path: polygon(
       0 0,
@@ -198,6 +198,7 @@ $gold-glow: rgba(201, 168, 76, 0.15);
         width: 100%;
         height: auto;
         max-width: 800px;
+        filter: sepia(0.6) saturate(1.8) hue-rotate(5deg) brightness(0.82) contrast(1.05);
       }
     }
   }
@@ -310,11 +311,7 @@ $gold-glow: rgba(201, 168, 76, 0.15);
         box-shadow: inset 0 0 20px rgba(201, 168, 76, 0.1);
 
         &::after {
-          background: linear-gradient(
-            135deg,
-            rgba(201, 168, 76, 0.4) 0%,
-            $bg-panel 100%
-          );
+          background: #0c0c0a;
         }
 
         .icon-wrapper {
@@ -333,11 +330,7 @@ $gold-glow: rgba(201, 168, 76, 0.15);
         box-shadow: inset 0 0 20px rgba(201, 168, 76, 0.1);
 
         &::after {
-          background: linear-gradient(
-            135deg,
-            rgba(201, 168, 76, 0.3) 0%,
-            $bg-panel 100%
-          );
+          background: #0c0c0a;
         }
 
         .icon-wrapper {
@@ -355,11 +348,7 @@ $gold-glow: rgba(201, 168, 76, 0.15);
         box-shadow: inset 0 0 20px rgba(201, 168, 76, 0.1);
 
         &::after {
-          background: linear-gradient(
-            135deg,
-            rgba(201, 168, 76, 0.25) 0%,
-            $bg-panel 100%
-          );
+          background: #0c0c0a;
         }
 
         .icon-wrapper {
@@ -377,11 +366,7 @@ $gold-glow: rgba(201, 168, 76, 0.15);
         box-shadow: inset 0 0 20px rgba(201, 168, 76, 0.1);
 
         &::after {
-          background: linear-gradient(
-            135deg,
-            rgba(201, 168, 76, 0.3) 0%,
-            $bg-panel 100%
-          );
+          background: #0c0c0a;
         }
 
         .icon-wrapper {

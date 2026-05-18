@@ -34,8 +34,8 @@ $gold-glow: rgba(201, 168, 76, 0.15);
 
 /* --- ÁRBOL DE REFERIDOS --- */
 .referral-tree-panel {
-  background: $bg-panel;
-  border: 1px solid $gold-dark;
+  background: #0c0c0a;
+  border: 1px solid rgba(201, 168, 76, 0.5);
   border-radius: 15px;
   padding: 30px;
   box-shadow: 0 0 20px rgba(201, 168, 76, 0.1);
@@ -140,7 +140,7 @@ $gold-glow: rgba(201, 168, 76, 0.15);
 
     /* Raíz (Tú) */
     &.root {
-      background: linear-gradient(90deg, $neon-green 0%, #8b6914 100%);
+      background: linear-gradient(90deg, $gold-primary 0%, $gold-dark 100%);
       color: black;
       width: 320px; /* Más ancho */
       .username {
@@ -164,53 +164,22 @@ $gold-glow: rgba(201, 168, 76, 0.15);
       }
     }
 
-    /* Nivel 1 (Morado) */
-    &.lvl-1 {
-      background: linear-gradient(135deg, rgba(201, 168, 76, 0.6), rgba(139, 105, 20, 0.8));
-      border-left: 4px solid $neon-purple;
-    }
-
-    /* Nivel 2 (Verde) */
-    &.lvl-2 {
-      background: linear-gradient(135deg, rgba(212, 175, 55, 0.5), rgba(139, 105, 20, 0.7));
-      border-left: 4px solid $neon-green;
-    }
-
-    /* Nivel 3 (Violeta oscuro) */
-    &.lvl-3 {
-      background: linear-gradient(135deg, rgba(205, 127, 50, 0.6), rgba(139, 105, 20, 0.7));
-      border-left: 4px solid #c9a84c;
-    }
-
-    /* Nivel 4 (Rosa) */
-    &.lvl-4 {
-      background: linear-gradient(135deg, rgba(201, 168, 76, 0.4), rgba(139, 105, 20, 0.6));
-      border-left: 4px solid $neon-pink;
-    }
-
-    /* Nivel 5 (Naranja) */
-    &.lvl-5 {
-      background: linear-gradient(135deg, rgba(205, 127, 50, 0.5), rgba(139, 105, 20, 0.6));
-      border-left: 4px solid $neon-orange;
-    }
-
-    /* Nivel 6 (Cobre) */
-    &.lvl-6 {
-      background: linear-gradient(135deg, rgba(201, 168, 76, 0.3), rgba(139, 105, 20, 0.5));
-      border-left: 4px solid #d4af37;
-    }
-
-    /* Nivel 7 (Teal) */
-    &.lvl-7 {
-      background: linear-gradient(135deg, rgba(212, 175, 55, 0.4), rgba(139, 105, 20, 0.6));
-      border-left: 4px solid $neon-teal;
-    }
-
-    /* Nivel 8 (Cyan) */
-    &.lvl-8 {
-      background: linear-gradient(135deg, rgba(255, 215, 0, 0.3), rgba(139, 105, 20, 0.5));
-      border-left: 4px solid #d4af37;
-    }
+    /* Nivel 1 */
+    &.lvl-1 { background: #0c0c0a; border-left: 3px solid $gold-primary; }
+    /* Nivel 2 */
+    &.lvl-2 { background: #0c0c0a; border-left: 3px solid $gold-light; }
+    /* Nivel 3 */
+    &.lvl-3 { background: #0c0c0a; border-left: 3px solid $gold-accent; }
+    /* Nivel 4 */
+    &.lvl-4 { background: #0c0c0a; border-left: 3px solid $gold-dark; }
+    /* Nivel 5 */
+    &.lvl-5 { background: #0c0c0a; border-left: 3px solid $bronze; }
+    /* Nivel 6 */
+    &.lvl-6 { background: #0c0c0a; border-left: 3px solid #d4af37; }
+    /* Nivel 7 */
+    &.lvl-7 { background: #0c0c0a; border-left: 3px solid $gold-primary; }
+    /* Nivel 8 */
+    &.lvl-8 { background: #0c0c0a; border-left: 3px solid $gold-dark; }
 
     /* Slot Vacío */
     &.slot-empty {
@@ -305,12 +274,12 @@ $gold-glow: rgba(201, 168, 76, 0.15);
       );
     }
 
-    /* Capa de Fondo (Oscuro) */
+    /* Capa de Fondo negro */
     &::after {
       content: "";
       position: absolute;
-      inset: 1px; /* Grosor del borde simulado */
-      background: rgba(18, 18, 16, 0.9);
+      inset: 1px;
+      background: #0c0c0a;
       z-index: -1;
       clip-path: polygon(
         0 0,
@@ -323,35 +292,16 @@ $gold-glow: rgba(201, 168, 76, 0.15);
     }
 
     &.purple-card {
-      &::before {
-        background: $gold-mid;
-      }
-      &::after {
-        background: linear-gradient(
-          135deg,
-          rgba(201, 168, 76, 0.2) 0%,
-          rgba(5, 5, 15, 1) 100%
-        ); /* Degradado diagonal de superior-izquierda a inferior-derecha más oscuro */
-      }
-      filter: drop-shadow(0 0 15px rgba(201, 168, 76, 0.1));
+      &::before { background: $gold-primary; }
+      &::after  { background: #0c0c0a; }
+      filter: drop-shadow(0 0 15px rgba(201, 168, 76, 0.15));
     }
 
     &.blue-card {
       min-height: 250px;
-      &::before {
-        background: $gold-dark; // Borde exterior (bien)
-      }
-      // **MODIFICACIÓN: Gradiente de Fondo a Azul Eléctrico Oscuro**
-      &::after {
-        background: linear-gradient(
-          to bottom right,
-          // Dirección: Superior Izquierda a Inferior Derecha
-          #0a0a06,
-          // Color inicial: Azul muy oscuro (casi negro)
-          #1a1408 // Color final: Azul medianoche más intenso y saturado
-        );
-      }
-      filter: drop-shadow(0 0 15px rgba(201, 168, 76, 0.1));
+      &::before { background: $gold-dark; }
+      &::after  { background: #0c0c0a; }
+      filter: drop-shadow(0 0 15px rgba(201, 168, 76, 0.15));
     }
 
     .card-header {
@@ -539,8 +489,8 @@ $gold-glow: rgba(201, 168, 76, 0.15);
 
   .referral-tree-panel {
     padding: 20px;
-    background: rgba(18, 18, 16, 0.95); /* Más opaco para mejor contraste */
-    border: 1px solid $neon-blue;
+    background: #0c0c0a;
+    border: 1px solid rgba(201, 168, 76, 0.5);
     min-height: 300px; /* Altura mínima asegurada */
     
     .panel-title {

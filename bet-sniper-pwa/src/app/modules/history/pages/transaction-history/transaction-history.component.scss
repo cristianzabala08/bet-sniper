@@ -175,20 +175,11 @@ $border-gold: #2a2520;
     transition: background 0.2s;
 
     &:nth-child(even) {
-      background: linear-gradient(
-        90deg,
-        rgba(139, 105, 20, 0.15) 0%,
-        rgba(201, 168, 76, 0.05) 100%
-      );
+      background: rgba(201, 168, 76, 0.03);
     }
 
     &:hover {
-      background: rgba(
-        255,
-        255,
-        255,
-        0.1
-      ) !important; /* Hover más brillante para resaltar */
+      background: rgba(201, 168, 76, 0.07) !important;
     }
 
     /* Estilos de Columnas */
@@ -284,16 +275,14 @@ $border-gold: #2a2520;
     .table-row {
       display: flex;
       flex-direction: column;
-      background: rgba(201, 168, 76, 0.05);
-      margin-bottom: 20px;
-      border-radius: 10px;
-      padding: 15px;
-      border: 1px solid $border-gold;
-      
-      min-width: unset; /* Override min-width from previous snippet if any */
-      
+      background: #0c0c0a;
+      margin-bottom: 12px;
+      border-radius: 4px;
+      padding: 14px;
+      border: 1px solid rgba(201, 168, 76, 0.25);
+
       &:nth-child(even) {
-        background: rgba(201, 168, 76, 0.08);
+        background: #0c0c0a;
       }
 
       .col {

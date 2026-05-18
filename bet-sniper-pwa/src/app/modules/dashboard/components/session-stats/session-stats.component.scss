@@ -91,8 +91,18 @@ $border-gold: #2a2520;
     }
 
     .border-wrapper {
-      background: $gold-primary; /* Borde dorado */
-      flex: 1; /* Grow to fill container */
+      background: linear-gradient(160deg, $gold-light 0%, $gold-primary 40%, $gold-dark 60%, $gold-primary 80%, $gold-light 100%);
+      clip-path: polygon(
+        0 0,
+        calc(100% - 14px) 0,
+        100% 14px,
+        100% 100%,
+        14px 100%,
+        0 calc(100% - 14px)
+      );
+      padding: 1.5px;
+      box-shadow: 0 0 20px rgba(201, 168, 76, 0.3), 0 0 45px rgba(201, 168, 76, 0.1);
+      flex: 1;
       display: flex;
       flex-direction: column;
     }
@@ -223,21 +233,21 @@ $border-gold: #2a2520;
     margin-top: 1rem;
   }
 
-  /* Wrapper for border effect */
+  /* Wrapper for border effect — borde dorado angulado como en la referencia */
   .border-wrapper {
-    background: linear-gradient(135deg, #ffd700, #c9a84c, #8b6914, #c9a84c, #ffd700);
+    background: linear-gradient(160deg, $gold-light 0%, $gold-primary 40%, $gold-dark 60%, $gold-primary 80%, $gold-light 100%);
     clip-path: polygon(
       0 0,
-      calc(100% - 15px) 0,
-      100% 15px,
+      calc(100% - 14px) 0,
+      100% 14px,
       100% 100%,
-      15px 100%,
-      0 calc(100% - 15px)
+      14px 100%,
+      0 calc(100% - 14px)
     );
-    padding: 2px;
-    box-shadow: 0 0 15px rgba(201, 168, 76, 0.2), 0 0 30px rgba(201, 168, 76, 0.08);
-    
-    /* Ensure wrapper fills the height and passes it to the card */
+    padding: 1.5px;
+    box-shadow:
+      0 0 20px rgba(201, 168, 76, 0.3),
+      0 0 45px rgba(201, 168, 76, 0.1);
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -245,54 +255,46 @@ $border-gold: #2a2520;
 
   /* --- ESTILO BASE DE LA TARJETA --- */
   .info-card {
-    background: $bg-panel;
-    border: 1px solid $border-gold;
-    backdrop-filter: blur(10px); /* Efecto vidrio */
-    border-radius: 15px;
+    background: #0c0c0a;
+    border: none;
     padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Empuja el botón al final */
-    min-height: 220px; /* Altura mínima para que se vean uniformes */
-    height: 100%; /* Fill wrapper */
-    flex: 1; /* Stretch to fill */
+    justify-content: space-between;
+    min-height: 220px;
+    height: 100%;
+    flex: 1;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 
-    /* Variantes de Color (Borde Superior Neón) */
+    /* Variantes de Color */
     &.green-card {
-      background: linear-gradient(
-        135deg,
-        rgba(201, 168, 76, 0.35) 0%,
-        rgba(18, 18, 16, 0.92) 40%,
-        rgba(10, 10, 8, 0.97) 100%
-      );
+      background: #0c0c0a;
       border: none;
       border-radius: 0;
       clip-path: polygon(
         0 0,
-        calc(100% - 15px) 0,
-        100% 15px,
+        calc(100% - 14px) 0,
+        100% 14px,
         100% 100%,
-        15px 100%,
-        0 calc(100% - 15px)
+        14px 100%,
+        0 calc(100% - 14px)
       );
       position: relative;
-      padding: 25px;
-      padding: 25px;
+      padding: 20px 22px;
       height: 100%;
-      min-height: 320px; /* Aumentado para igualar alturas */
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 20px rgba(201, 168, 76, 0.2), 0 0 40px rgba(201, 168, 76, 0.08), inset 0 0 25px rgba(201, 168, 76, 0.06), inset 0 1px 0 rgba(255, 215, 0, 0.1);
+      min-height: 280px;
+      box-shadow: none;
 
       /* BET SNIPER watermark */
       &::before {
         content: 'BET SNIPER';
         position: absolute;
-        bottom: 60px;
+        bottom: 58px;
         left: 50%;
         transform: translateX(-50%);
-        font-size: 2.5rem;
+        font-size: 2rem;
         font-weight: 900;
-        color: rgba(201, 168, 76, 0.06);
+        color: rgba(201, 168, 76, 0.09);
         letter-spacing: 8px;
         text-transform: uppercase;
         white-space: nowrap;
@@ -306,10 +308,10 @@ $border-gold: #2a2520;
         bottom: 40px;
         left: 50%;
         transform: translateX(-50%);
-        font-size: 0.9rem;
+        font-size: 0.65rem;
         font-weight: 600;
-        color: rgba(201, 168, 76, 0.05);
-        letter-spacing: 6px;
+        color: rgba(201, 168, 76, 0.07);
+        letter-spacing: 5px;
         text-transform: uppercase;
         white-space: nowrap;
         pointer-events: none;
@@ -317,26 +319,21 @@ $border-gold: #2a2520;
         font-family: 'Montserrat', sans-serif;
       }
 
-      > * {
-        position: relative;
-        z-index: 2;
-      }
+      > * { position: relative; z-index: 2; }
 
-      .icon-corner {
-        display: none;
-      }
+      .icon-corner { display: none; }
 
       .card-content {
-        margin-top: 40px;
+        margin-top: 36px;
 
         .card-title {
-          font-size: 1.5rem;
+          font-size: 1.1rem;
           font-weight: 800;
           color: $text-white;
           font-family: 'Montserrat', sans-serif;
-          margin: 0 0 20px 0;
+          margin: 0 0 14px 0;
           text-transform: uppercase;
-          letter-spacing: 1px;
+          letter-spacing: 2px;
         }
 
         .membership-info {
@@ -450,12 +447,7 @@ $border-gold: #2a2520;
     }
 
     &.purple-card {
-      background: linear-gradient(
-        135deg,
-        rgba(139, 105, 20, 0.35) 0%,
-        rgba(18, 18, 16, 0.92) 40%,
-        rgba(10, 10, 8, 0.97) 100%
-      );
+      background: #0c0c0a;
       border: none;
       border-radius: 0;
       clip-path: polygon(
@@ -623,12 +615,7 @@ $border-gold: #2a2520;
       }
     }
     &.blue-card {
-      background: linear-gradient(
-        135deg,
-        rgba(205, 127, 50, 0.3) 0%,
-        rgba(18, 18, 16, 0.9) 50%,
-        rgba(10, 10, 8, 0.95) 100%
-      );
+      background: #0c0c0a;
       border: none;
       border-radius: 0;
       clip-path: polygon(
@@ -858,46 +845,44 @@ $border-gold: #2a2520;
       }
     }
 
-    /* --- BOTONES DE ACCIÓN --- */
+    /* --- BOTONES DE ACCIÓN — estilo referencia: dorado sólido angulado --- */
     .btn-card {
       width: 100%;
       border: none;
-      padding: 12px;
-      margin-top: 20px;
-      border-radius: 8px;
-      font-weight: 800;
-      font-size: 0.85rem;
+      padding: 11px 14px;
+      margin-top: 16px;
+      border-radius: 0;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      transition: filter 0.2s;
+      color: #0a0a0a;
+      background: linear-gradient(135deg, $gold-dark 0%, $gold-primary 45%, $gold-light 100%);
+      clip-path: polygon(
+        0 0,
+        calc(100% - 10px) 0,
+        100% 10px,
+        100% 100%,
+        10px 100%,
+        0 calc(100% - 10px)
+      );
+      box-shadow:
+        0 0 12px rgba(201, 168, 76, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      transition: filter 0.2s, box-shadow 0.2s;
 
       &:hover {
-        filter: brightness(1.2);
+        filter: brightness(1.15);
+        box-shadow: 0 0 22px rgba(201, 168, 76, 0.55);
       }
 
-      /* Colores específicos por tarjeta */
-      &.green {
-        background: linear-gradient(135deg, $gold-dark, $gold-primary, $gold-light);
-        color: #0a0a0a;
-      }
-
-      &.purple {
-        background: linear-gradient(135deg, $gold-dark, $gold-primary);
-        color: #0a0a0a;
-      }
-
-      &.blue {
-        background: linear-gradient(135deg, $bronze, $gold-primary);
-        color: #0a0a0a;
-      }
-
-      i {
-        font-size: 1rem;
-      }
+      i { font-size: 0.9rem; }
     }
   }
 }

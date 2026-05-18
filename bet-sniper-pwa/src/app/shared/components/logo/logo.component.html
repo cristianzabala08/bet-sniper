@@ -7,7 +7,38 @@
       <span class="brand-sub">PRECISION OVER CHANCE.</span>
     </div>
     <div class="logo-center">
-      <img src="assets/logo_principal.png" alt="Bet Sniper" class="main-logo" />
+      <!-- SVG sniper crosshair logo — fallback to PNG if asset exists -->
+    <svg class="main-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-label="Bet Sniper">
+      <defs>
+        <radialGradient id="goldGrad" cx="50%" cy="50%" r="50%">
+          <stop offset="0%"   stop-color="#ffd700"/>
+          <stop offset="60%"  stop-color="#c9a84c"/>
+          <stop offset="100%" stop-color="#8b6914"/>
+        </radialGradient>
+        <filter id="glow">
+          <feGaussianBlur stdDeviation="2.5" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      <!-- outer ring -->
+      <circle cx="50" cy="50" r="44" fill="none" stroke="url(#goldGrad)" stroke-width="1.5" filter="url(#glow)" opacity="0.8"/>
+      <!-- mid ring -->
+      <circle cx="50" cy="50" r="30" fill="none" stroke="url(#goldGrad)" stroke-width="1" opacity="0.6"/>
+      <!-- inner ring -->
+      <circle cx="50" cy="50" r="16" fill="none" stroke="url(#goldGrad)" stroke-width="1.5" filter="url(#glow)"/>
+      <!-- crosshair lines -->
+      <line x1="50" y1="2"  x2="50" y2="34" stroke="url(#goldGrad)" stroke-width="1.5" filter="url(#glow)"/>
+      <line x1="50" y1="66" x2="50" y2="98" stroke="url(#goldGrad)" stroke-width="1.5" filter="url(#glow)"/>
+      <line x1="2"  y1="50" x2="34" y2="50" stroke="url(#goldGrad)" stroke-width="1.5" filter="url(#glow)"/>
+      <line x1="66" y1="50" x2="98" y2="50" stroke="url(#goldGrad)" stroke-width="1.5" filter="url(#glow)"/>
+      <!-- tick marks on outer ring -->
+      <line x1="50" y1="6"  x2="50" y2="14" stroke="#ffd700" stroke-width="2"/>
+      <line x1="50" y1="86" x2="50" y2="94" stroke="#ffd700" stroke-width="2"/>
+      <line x1="6"  y1="50" x2="14" y2="50" stroke="#ffd700" stroke-width="2"/>
+      <line x1="86" y1="50" x2="94" y2="50" stroke="#ffd700" stroke-width="2"/>
+      <!-- center dot -->
+      <circle cx="50" cy="50" r="3.5" fill="#ffd700" filter="url(#glow)"/>
+    </svg>
       <h1 class="brand-title">BET SN<span class="i-accent">I</span>PER</h1>
       <p class="brand-tagline">PRECISION OVER CHANCE.</p>
     </div>
