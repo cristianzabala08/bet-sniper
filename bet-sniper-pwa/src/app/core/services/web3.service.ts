@@ -22,7 +22,7 @@ export class Web3Service {
 
   // --- PASARELA METHODS ---
   public readonly PASARELA_ADDRESS =
-    '0x0F1247D4394145b08f819D8184D71595622f8470'; // TODO: Replace with real address
+    '0xb0D52740Afc02c611120803442383cafD80F4D1e'; // TODO: Replace with real address
 
   private userService = inject(UserService);
   private toast: ToastService = inject(ToastService);

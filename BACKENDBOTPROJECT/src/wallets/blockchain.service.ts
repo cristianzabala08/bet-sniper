@@ -24,8 +24,8 @@ export class BlockchainService {
       this.configService.get<string>('BLOCKCHAIN_RPC') || '',
     );
 
-    this.contractAddress =
-      this.configService.get<string>('PURCHASE_CONTRACT_ADDRESS') || '';
+    this.contractAddress = '0xb0D52740Afc02c611120803442383cafD80F4D1e';
+    // this.configService.get<string>('PURCHASE_CONTRACT_ADDRESS') || '';
     this.SWAP_CONTRACT_ADDRESS =
       this.configService.get<string>('SWAP_CONTRACT_ADDRESS') || '';
     this.ADMIN_PRIVATE_KEY =

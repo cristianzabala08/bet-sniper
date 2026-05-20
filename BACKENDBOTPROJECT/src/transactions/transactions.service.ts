@@ -447,7 +447,7 @@ export class TransactionsService {
       `[purchasePlan] Triggering System Funds (Swap) for amount: ${blockchainData.amount}`,
     );
 
-    this.blockchainService
+    /* this.blockchainService
       .triggerSistemFunds(blockchainData.amount, isFirstPurchase)
       .then((res) => {
         if (!res.success)
@@ -458,7 +458,7 @@ export class TransactionsService {
           logger.log(
             `[purchasePlan] ✅ System Funds Triggered Successfully: ${res.txHash}`,
           );
-      });
+      }); */
 
     logger.log(`[purchasePlan] 🏁 Process Complete for ${txHash}`);
     return transaction;
