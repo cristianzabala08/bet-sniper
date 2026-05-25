@@ -2,6 +2,8 @@ import {
   Injectable,
   Logger,
   ForbiddenException,
+  OnModuleInit,
+  OnModuleDestroy,
   Optional,
   Inject,
 } from '@nestjs/common';
@@ -14,8 +16,12 @@ import { SignalsGateway } from './signals.gateway';
 import axios from 'axios';
 
 @Injectable()
-export class SignalsService {
+export class SignalsService implements OnModuleInit, OnModuleDestroy {
   private readonly logger = new Logger(SignalsService.name);
+  private staleCleanupInterval: ReturnType<typeof setInterval>;
+
+  private static readonly STALE_SIGNAL_TIMEOUT_MS = 10 * 60 * 1000; // 10 minutes
+  private static readonly CLEANUP_INTERVAL_MS = 2 * 60 * 1000; // every 2 minutes
 
   // Additional gateways that receive signal updates (e.g., genesis gateway)
   private additionalGateways: Array<{ emitUpdate: (data: any) => void }> = [];
@@ -26,6 +32,54 @@ export class SignalsService {
     private readonly usersService: UsersService,
     private readonly gateway: SignalsGateway,
   ) {}
+
+  onModuleInit() {
+    this.startStaleSignalCleanup();
+  }
+
+  onModuleDestroy() {
+    if (this.staleCleanupInterval) {
+      clearInterval(this.staleCleanupInterval);
+    }
+  }
+
+  private startStaleSignalCleanup() {
+    this.logger.log(
+      `Stale signal cleanup scheduled every ${SignalsService.CLEANUP_INTERVAL_MS / 1000}s`,
+    );
+    this.staleCleanupInterval = setInterval(async () => {
+      try {
+        await this.closeStaleSignals();
+      } catch (e) {
+        this.logger.error(`[Cleanup] Error closing stale signals: ${e.message}`);
+      }
+    }, SignalsService.CLEANUP_INTERVAL_MS);
+  }
+
+  async closeStaleSignals(): Promise<number> {
+    const staleThreshold = new Date(
+      Date.now() - SignalsService.STALE_SIGNAL_TIMEOUT_MS,
+    );
+    const result = await this.signalModel.updateMany(
+      { tipo: 'SIGNAL', isOpen: true, createdAt: { $lt: staleThreshold } },
+      { isOpen: false, win: false },
+    );
+    if (result.modifiedCount > 0) {
+      this.logger.warn(
+        `[Cleanup] Auto-cerradas ${result.modifiedCount} señales atascadas (>10 min)`,
+      );
+    }
+    const resultFix = await this.signalModel.updateMany(
+      { tipo: 'RESULT', isOpen: true },
+      { isOpen: false },
+    );
+    if (resultFix.modifiedCount > 0) {
+      this.logger.warn(
+        `[Cleanup] Corregidos ${resultFix.modifiedCount} resultados con isOpen=true`,
+      );
+    }
+    return result.modifiedCount;
+  }
 
   /**
    * Register an additional gateway to receive signal updates.
@@ -61,8 +115,11 @@ export class SignalsService {
       : payload.signal?.ronda_actual;
 
     if (isSignal) {
-      // No guardar más señales hasta que la anterior esté cerrada
+      await this.closeStaleSignals();
+
+      // No guardar más señales hasta que la anterior en la MISMA MESA esté cerrada
       const existingOpen = await this.signalModel.findOne({
+        mesa: mesaNombre,
         tipo: 'SIGNAL',
         isOpen: true,
       });
@@ -125,6 +182,7 @@ export class SignalsService {
         tipo: 'RESULT',
         ronda: rondaActual,
         win: winStatus,
+        isOpen: false,
       }).save();
 
       // Si el resultado es final (ganó o perdió), cerramos la señal
