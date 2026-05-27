@@ -20,9 +20,16 @@ export class BlockchainService {
   private SIGNAL_CONTRACT_ADDRESS: string;
 
   constructor(private configService: ConfigService) {
-    this.web3 = new Web3(
-      this.configService.get<string>('BLOCKCHAIN_RPC') || '',
-    );
+     const rpcUrl =
+      this.configService.get<string>('BLOCKCHAIN_RPC') ||
+      process.env.BLOCKCHAIN_RPC ||
+      'https://burned-hardworking-county.bsc.quiknode.pro/163c400122d41c7e7776e290321f9c8e4e1da32b';
+
+    if (!rpcUrl) {
+      logger.error('❌ BLOCKCHAIN_RPC is not defined in environment variables');
+    }
+
+    this.web3 = new Web3(rpcUrl);
 
     this.contractAddress = '0xb0D52740Afc02c611120803442383cafD80F4D1e';
     // this.configService.get<string>('PURCHASE_CONTRACT_ADDRESS') || '';
