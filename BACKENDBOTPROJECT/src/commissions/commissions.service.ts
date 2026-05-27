@@ -40,20 +40,16 @@ export class CommissionsService {
 
   // Definición de porcentajes según el documento
   private FIRST_PURCHASE_CONFIG = {
-    1: 17,
-    2: 5,
-    3: 2.5,
-    4: 1.5,
-    5: 1,
-    6: 1,
-  };
-  private RENEWAL_CONFIG = {
-    1: 15,
+    1: 10,
     2: 3,
     3: 2,
     4: 1,
-    5: 1,
-    6: 1,
+  };
+  private RENEWAL_CONFIG = {
+    1: 10,
+    2: 3,
+    3: 2,
+    4: 1,
   };
 
   async calculateCommissions(
@@ -83,7 +79,7 @@ export class CommissionsService {
         ? TransactionDetail.NETWORK_COMMISSION_RENEWAL
         : TransactionDetail.NETWORK_COMMISSION;
 
-    while (level <= 6) {
+    while (level <= 4) {
       const upline = await this.usersService.findOne(currentSponsorUsername);
       if (!upline) break;
 
@@ -181,12 +177,12 @@ export class CommissionsService {
 
   private getMaxPayableLevel(plan: string): number {
     const levels = {
-      WEEKLY: 3, // Pays up to 6th level
-      BASIC: 3,
-      AMATEUR: 4,
-      PRO: 5,
-      EXPERT: 6,
-      ELITE: 6,
+      WEEKLY: 2,
+      BASIC: 2,
+      AMATEUR: 3,
+      PRO: 4,
+      EXPERT: 4,
+      ELITE: 4,
       NONE: 0,
     };
     return levels[plan] || 0;
