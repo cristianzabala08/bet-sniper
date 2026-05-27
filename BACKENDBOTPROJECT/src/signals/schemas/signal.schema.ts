@@ -20,7 +20,7 @@ export class Signal {
   @Prop({ required: false })
   ronda: number; // Para identificar la ronda actual del bot
 
-  @Prop({ required: false, default: true })
+  @Prop({ required: false, default: false })
   isOpen: boolean;
 
   @Prop({ required: false })
