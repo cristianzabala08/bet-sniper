@@ -259,13 +259,75 @@
         class="result-panel-overlay panel-scanning"
         *ngIf="showScanningAlert"
       >
-        <div class="panel-header">
-          {{ "DASHBOARD.GAME.IA_ANALYZING" | translate }}
+        <div class="ai-hud" aria-hidden="true">
+          <span class="hud-mark tl"></span>
+          <span class="hud-mark tr"></span>
+          <span class="hud-mark bl"></span>
+          <span class="hud-mark br"></span>
         </div>
-        <div class="loader-ring"></div>
-        <p class="scanning-text">
-          {{ "DASHBOARD.GAME.RECALCULATING" | translate }}
-        </p>
+
+        <div class="ai-reactor" aria-hidden="true">
+          <span class="reactor-ring ring-1"></span>
+          <span class="reactor-ring ring-2"></span>
+          <span class="reactor-ring ring-3"></span>
+          <span class="reactor-ring ring-4"></span>
+          <span class="reactor-scanner"></span>
+
+          <svg class="reactor-circuits" viewBox="0 0 300 300">
+            <line class="circuit" x1="150" y1="150" x2="150" y2="6" />
+            <line class="circuit" x1="150" y1="150" x2="150" y2="294" />
+            <line class="circuit" x1="150" y1="150" x2="6" y2="150" />
+            <line class="circuit" x1="150" y1="150" x2="294" y2="150" />
+            <line class="circuit" x1="150" y1="150" x2="45" y2="45" />
+            <line class="circuit" x1="150" y1="150" x2="255" y2="45" />
+            <line class="circuit" x1="150" y1="150" x2="45" y2="255" />
+            <line class="circuit" x1="150" y1="150" x2="255" y2="255" />
+          </svg>
+
+          <span class="reactor-pulse p1"></span>
+          <span class="reactor-pulse p2"></span>
+          <span class="reactor-pulse p3"></span>
+
+          <div class="reactor-core">
+            <span class="core-percent"></span>
+            <span class="core-label">Probabilidad</span>
+          </div>
+        </div>
+
+        <div class="panel-header">
+          <span class="header-eyebrow">AI CORE &middot; Motor Neural Activo</span>
+          <span class="header-main">{{
+            "DASHBOARD.GAME.IA_ANALYZING" | translate
+          }}</span>
+        </div>
+
+        <div class="ai-phrases">
+          <span>Analizando patrones...</span>
+          <span>Calculando probabilidades...</span>
+          <span>Sincronizando IA...</span>
+          <span>Escaneando historial...</span>
+          <span>Evaluando tendencia...</span>
+          <span>Procesando redes neuronales...</span>
+          <span>Detectando anomalías...</span>
+        </div>
+
+        <div class="ai-stats-row">
+          <div class="ai-stat">
+            <span class="stat-value">{{
+              signalsData?.listaMesas?.length || 0
+            }}</span>
+            <span class="stat-label">Mesas Activas</span>
+          </div>
+          <div class="ai-stat-divider"></div>
+          <div class="ai-stat">
+            <span class="stat-value status-processing">Procesando</span>
+            <span class="stat-label">Estado</span>
+          </div>
+        </div>
+
+        <div class="ai-loadbar">
+          <div class="ai-loadbar-fill"></div>
+        </div>
 
         <div class="panel-footer">
           {{ "DASHBOARD.GAME.IA_ENGINE" | translate }}
@@ -511,6 +573,16 @@
         <i class="fa-solid fa-pause"></i>
         {{ "DASHBOARD.HERO.BTN_PAUSE_SESSION" | translate }}
       </button>
+
+      <a
+        class="btn-goto-automatic"
+        [class.is-loading]="isGpulseSsoLoading"
+        href="javascript:void(0)"
+        (click)="goToGpulseAutomatico()"
+      >
+        <i class="fa-solid fa-robot"></i>
+        Autom&aacute;tico
+      </a>
     </div>
   </div>
 

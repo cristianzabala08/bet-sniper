@@ -6,6 +6,7 @@ import {
   ChangeDetectorRef,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserService } from 'src/app/core/services/user.service';
 import { TokenService } from 'src/app/shared/services/jwt-token.service';
@@ -64,6 +65,8 @@ export class ActiveSignalsComponent implements OnInit, OnDestroy {
   private sessionStartTime: number | null = null;
   visibleSignals: number = 5;
 
+  isGpulseSsoLoading = false;
+
   constructor(
     private userService: UserService,
     private tokenService: TokenService,
@@ -71,7 +74,55 @@ export class ActiveSignalsComponent implements OnInit, OnDestroy {
     private toastService: ToastService,
     private cdr: ChangeDetectorRef,
     private translate: TranslateService,
+    private http: HttpClient,
   ) {}
+
+  // Botón "Automático": pide al backend un JWT de SSO de un solo uso (firmado
+  // con el secret compartido, nunca visible acá) y recién con la URL firmada
+  // abre GPulse en una pestaña nueva, ya logueado. No puede ser un <a href>
+  // directo porque esta app autentica por Bearer token (interceptor HTTP),
+  // no por cookie de sesión — un click normal no manda ese header.
+  goToGpulseAutomatico(): void {
+    if (this.isGpulseSsoLoading) return;
+    this.isGpulseSsoLoading = true;
+    this.cdr.markForCheck();
+
+    // Pestaña en blanco abierta YA, de forma sincrónica dentro del gesto de
+    // click: si esperáramos a que responda /gpulse-sso antes de abrirla, deja
+    // de contar como "gesto directo del usuario" y el navegador la bloquea
+    // como popup. Una vez llega la URL firmada, navegamos esa misma pestaña
+    // (navegación real, no fetch — necesaria para que GPulse pueda setear su
+    // cookie de sesión y aterrizar en el juego, no en un fetch inerte).
+    const newTab = window.open('', '_blank');
+
+    this.http.get<{ data: { redirectUrl: string } }>('/gpulse-sso').subscribe({
+      next: (res) => {
+        this.isGpulseSsoLoading = false;
+        this.cdr.markForCheck();
+        const redirectUrl = res?.data?.redirectUrl;
+        if (redirectUrl && newTab) {
+          newTab.location.href = redirectUrl;
+        } else {
+          newTab?.close();
+          this.toastService.showError('No se pudo abrir el modo automático.');
+        }
+      },
+      error: (err) => {
+        this.isGpulseSsoLoading = false;
+        this.cdr.markForCheck();
+        newTab?.close();
+        if (err?.status === 422) {
+          this.toastService.showError(
+            'Necesitás una wallet vinculada a tu cuenta para usar el modo automático.',
+          );
+        } else if (err?.status === 401) {
+          this.toastService.showError('Tu sesión expiró, volvé a iniciar sesión.');
+        } else {
+          this.toastService.showError('No se pudo abrir el modo automático.');
+        }
+      },
+    });
+  }
 
   ngOnInit(): void {
     this.signalsService.syncTime(); // Sync time on init

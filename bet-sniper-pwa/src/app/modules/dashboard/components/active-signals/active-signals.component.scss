@@ -16,6 +16,69 @@ $border-neon: 1px solid #2a2520;
 $gold-glow: rgba(201, 168, 76, 0.15);
 $border-gold: 1px solid #c9a84c;
 
+// --- AI CORE (panel "IA analizando"): propiedades animables 100% CSS ---
+@property --ai-progress {
+  syntax: '<integer>';
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ai-border-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes aiBorderSpin {
+  to { --ai-border-angle: 360deg; }
+}
+
+@keyframes reactorSpin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes reactorSpinReverse {
+  to { transform: rotate(-360deg); }
+}
+
+@keyframes circuitFlow {
+  to { stroke-dashoffset: -32; }
+}
+
+@keyframes reactorPulse {
+  0% { transform: scale(0.55); opacity: 0.7; }
+  100% { transform: scale(1.35); opacity: 0; }
+}
+
+@keyframes coreBreathe {
+  0%, 100% {
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.35), inset 0 0 20px rgba(255, 215, 0, 0.18);
+  }
+  50% {
+    box-shadow: 0 0 42px rgba(255, 215, 0, 0.6), inset 0 0 28px rgba(255, 215, 0, 0.3);
+  }
+}
+
+@keyframes aiCount {
+  0% { --ai-progress: 0; }
+  65% { --ai-progress: 97; }
+  88% { --ai-progress: 97; }
+  100% { --ai-progress: 0; }
+}
+
+@keyframes phraseCycle {
+  0% { opacity: 0; }
+  4% { opacity: 1; }
+  11% { opacity: 1; }
+  14% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes loadbarSweep {
+  0% { transform: translateX(-250%); }
+  100% { transform: translateX(250%); }
+}
+
 .dashboard-container {
   display: flex;
   flex-direction: column;
@@ -1696,38 +1759,283 @@ $border-gold: 1px solid #c9a84c;
     }
   }
 
+  // ================================================================
+  // AI CORE — reactor cinematográfico del panel "IA analizando".
+  // Solo visual: showScanningAlert, el *ngIf y el resto del estado
+  // del componente no se tocan. El contador de % y las frases
+  // rotativas son 100% CSS (vía @property), sin JS/TS involucrado.
+  // ================================================================
   &.panel-scanning {
-    border: 1px solid rgba($gold-bright, 0.5);
-    box-shadow: inset 0 0 60px rgba($gold-dark, 0.1);
-    background: radial-gradient(
-      circle at center,
-      rgba($gold-dark, 0.2) 0%,
-      rgba(10, 10, 20, 0.98) 80%
-    );
+    overflow: hidden;
+    border: 1.5px solid transparent;
+    background:
+      radial-gradient(
+        circle at center,
+        rgba($gold-dark, 0.16) 0%,
+        rgba(6, 6, 12, 0.98) 78%
+      ) padding-box,
+      conic-gradient(
+        from var(--ai-border-angle),
+        transparent 0%,
+        rgba($gold-bright, 0.05) 6%,
+        $gold-bright 14%,
+        $gold-accent 20%,
+        rgba($gold-bright, 0.05) 28%,
+        transparent 40%,
+        transparent 100%
+      ) border-box;
+    animation: aiBorderSpin 5s linear infinite;
+    box-shadow: 0 0 70px rgba($gold-dark, 0.18);
 
-    .panel-header {
-      color: $gold-bright;
-      font-size: 1.4rem;
-      margin-bottom: 30px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
+    // --- HUD: mini marcas técnicas en las esquinas ---
+    .ai-hud {
+      position: absolute;
+      inset: 14px;
+      pointer-events: none;
+
+      .hud-mark {
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        border-color: rgba($gold-bright, 0.45);
+        border-style: solid;
+        border-width: 0;
+
+        &.tl { top: 0; left: 0; border-top-width: 1.5px; border-left-width: 1.5px; }
+        &.tr { top: 0; right: 0; border-top-width: 1.5px; border-right-width: 1.5px; }
+        &.bl { bottom: 0; left: 0; border-bottom-width: 1.5px; border-left-width: 1.5px; }
+        &.br { bottom: 0; right: 0; border-bottom-width: 1.5px; border-right-width: 1.5px; }
+      }
     }
 
-    .loader-ring {
-      width: 60px;
-      height: 60px;
-      border: 3px solid rgba($gold-bright, 0.3);
-      border-top: 3px solid $gold-bright;
+    // --- Reactor central ---
+    .ai-reactor {
+      position: relative;
+      width: 190px;
+      height: 190px;
+      margin-bottom: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .reactor-ring {
+      position: absolute;
       border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin-bottom: 25px;
-      box-shadow: 0 0 15px $gold-bright;
+      will-change: transform;
     }
 
-    p.scanning-text {
-      font-size: 1.3rem;
-      color: #fff;
-      font-weight: 300;
+    .ring-1 {
+      inset: 0;
+      border: 1px dashed rgba($gold-bright, 0.4);
+      animation: reactorSpin 14s linear infinite;
+    }
+
+    .ring-2 {
+      inset: 16px;
+      border: 1px solid rgba($gold-accent, 0.3);
+      animation: reactorSpinReverse 10s linear infinite;
+    }
+
+    .ring-3 {
+      inset: 32px;
+      border: 1.5px dotted rgba($gold-bright, 0.35);
+      animation: reactorSpin 22s linear infinite;
+    }
+
+    .ring-4 {
+      inset: 48px;
+      border: 1px solid rgba(#7fd8ff, 0.18);
+      animation: reactorSpinReverse 34s linear infinite;
+    }
+
+    .reactor-scanner {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: conic-gradient(
+        from 0deg,
+        transparent 0deg,
+        rgba($gold-bright, 0.45) 18deg,
+        transparent 40deg,
+        transparent 360deg
+      );
+      animation: reactorSpin 4s linear infinite;
+      filter: blur(1px);
+    }
+
+    .reactor-circuits {
+      position: absolute;
+      inset: -20px;
+      width: calc(100% + 40px);
+      height: calc(100% + 40px);
+      overflow: visible;
+
+      .circuit {
+        stroke: rgba($gold-bright, 0.55);
+        stroke-width: 1;
+        stroke-dasharray: 6 10;
+        animation: circuitFlow 2.4s linear infinite;
+        filter: drop-shadow(0 0 3px rgba($gold-bright, 0.6));
+      }
+    }
+
+    .reactor-pulse {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 1px solid rgba($gold-bright, 0.55);
+      opacity: 0;
+      animation: reactorPulse 3.6s ease-out infinite;
+    }
+
+    .reactor-pulse.p2 { animation-delay: 1.2s; }
+    .reactor-pulse.p3 { animation-delay: 2.4s; }
+
+    .reactor-core {
+      position: relative;
+      z-index: 2;
+      width: 104px;
+      height: 104px;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle, rgba($gold-dark, 0.35) 0%, rgba(4, 4, 8, 0.9) 75%);
+      box-shadow:
+        0 0 25px rgba($gold-bright, 0.45),
+        inset 0 0 20px rgba($gold-bright, 0.25);
+      animation: coreBreathe 3.2s ease-in-out infinite;
+
+      .core-percent {
+        counter-reset: aiprogress var(--ai-progress);
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: $gold-bright;
+        text-shadow: 0 0 12px rgba($gold-bright, 0.7);
+        animation: aiCount 4.5s cubic-bezier(0.22, 0.61, 0.36, 1) infinite;
+        line-height: 1;
+
+        &::before {
+          content: counter(aiprogress) '%';
+        }
+      }
+
+      .core-label {
+        margin-top: 4px;
+        font-size: 0.6rem;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: rgba(#fff, 0.5);
+      }
+    }
+
+    // --- Header con jerarquía ---
+    .panel-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      margin-bottom: 14px;
+
+      .header-eyebrow {
+        font-size: 0.68rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: rgba($gold-bright, 0.55);
+      }
+
+      .header-main {
+        color: $gold-bright;
+        font-size: 1.35rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        text-shadow: 0 0 16px rgba($gold-bright, 0.35);
+      }
+    }
+
+    // --- Frases rotativas (100% CSS, sin JS) ---
+    .ai-phrases {
+      position: relative;
+      height: 22px;
+      width: 100%;
+      max-width: 320px;
+      margin-bottom: 18px;
+
+      span {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.85rem;
+        font-weight: 300;
+        color: rgba(#fff, 0.75);
+        opacity: 0;
+        animation: phraseCycle 14s ease-in-out infinite;
+
+        @for $i from 1 through 7 {
+          &:nth-child(#{$i}) { animation-delay: ($i - 1) * -2s; }
+        }
+      }
+    }
+
+    // --- Stats reales (mesas activas viene de signalsData, no inventado) ---
+    .ai-stats-row {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 16px;
+
+      .ai-stat {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .stat-value {
+          font-size: 1.1rem;
+          font-weight: 700;
+          color: #fff;
+
+          &.status-processing {
+            color: $gold-bright;
+            font-size: 0.95rem;
+          }
+        }
+
+        .stat-label {
+          font-size: 0.62rem;
+          letter-spacing: 1px;
+          text-transform: uppercase;
+          color: rgba(#fff, 0.4);
+          margin-top: 2px;
+        }
+      }
+
+      .ai-stat-divider {
+        width: 1px;
+        height: 26px;
+        background: rgba($gold-bright, 0.25);
+      }
+    }
+
+    // --- Barra circular/lineal que respira ---
+    .ai-loadbar {
+      width: 200px;
+      height: 3px;
+      border-radius: 3px;
+      background: rgba(#fff, 0.08);
+      overflow: hidden;
+
+      .ai-loadbar-fill {
+        height: 100%;
+        width: 40%;
+        border-radius: 3px;
+        background: linear-gradient(90deg, transparent, $gold-bright, transparent);
+        animation: loadbarSweep 2.8s ease-in-out infinite;
+      }
     }
 
     .panel-footer {
@@ -2260,6 +2568,37 @@ $border-gold: 1px solid #c9a84c;
         background: rgba(0, 255, 195, 0.15);
         box-shadow: 0 0 25px rgba(201, 168, 76, 0.2);
         transform: translateY(-2px);
+      }
+    }
+
+    .btn-goto-automatic {
+      margin-top: 10px;
+      width: 100%;
+      background: linear-gradient(135deg, #c9a84c 0%, #a8863a 100%);
+      border: 1px solid #c9a84c;
+      color: #14100a;
+      padding: 12px;
+      border-radius: 8px;
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 15px rgba(201, 168, 76, 0.25);
+
+      &:hover {
+        box-shadow: 0 0 25px rgba(201, 168, 76, 0.4);
+        transform: translateY(-2px);
+      }
+
+      &.is-loading {
+        opacity: 0.6;
+        pointer-events: none;
       }
     }
   }
