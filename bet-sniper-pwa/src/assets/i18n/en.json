@@ -1,6 +1,7 @@
 {
   "LOGIN": {
-    "WELCOME": "Hello, welcome",
+    "WELCOME": "Welcome back, Trader.",
+    "WELCOME_SUBTITLE": "Sign in to keep using our artificial intelligence.",
     "COPYRIGHT": "2025 all rights reserved.",
     "USER_PLACEHOLDER": "Username or Email...",
     "PASS_PLACEHOLDER": "Password...",

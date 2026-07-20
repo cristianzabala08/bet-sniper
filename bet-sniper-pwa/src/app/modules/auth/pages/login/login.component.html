@@ -1,7 +1,43 @@
-<section class="login-container">
+<section class="login-container login-premium">
+  <div class="ambient-particles" aria-hidden="true">
+    <span class="particle" *ngFor="let p of [1,2,3,4,5,6,7,8,9,10,11,12]"></span>
+  </div>
+
   <div class="login-box">
     <div class="left-section">
-      <img src="assets/logo_principal.png" alt="Bet Sniper Logo" class="logo-img" />
+      <div class="left-halo" aria-hidden="true">
+        <span class="halo-ring ring-1"></span>
+        <span class="halo-ring ring-2"></span>
+      </div>
+
+      <div class="mascot-wrap">
+        <img src="assets/logo_principal.png" alt="Chucho Signal" class="logo-img" />
+      </div>
+
+      <div class="feature-cards">
+        <div class="feature-card">
+          <span class="feature-icon"><i class="fa-solid fa-brain"></i></span>
+          <div class="feature-text">
+            <strong>IA Avanzada</strong>
+            <span>Analiza miles de variables para generar señales profesionales.</span>
+          </div>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon"><i class="fa-solid fa-bolt"></i></span>
+          <div class="feature-text">
+            <strong>Señales Instantáneas</strong>
+            <span>Recibe oportunidades en tiempo real.</span>
+          </div>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon"><i class="fa-solid fa-crosshairs"></i></span>
+          <div class="feature-text">
+            <strong>Precisión Profesional</strong>
+            <span>Modelos entrenados para máxima efectividad.</span>
+          </div>
+        </div>
+      </div>
+
       <p class="copyright">{{ 'LOGIN.COPYRIGHT' | translate }}</p>
     </div>
 
@@ -9,6 +45,7 @@
 
     <div class="right-section">
       <h2 class="welcome-title">{{ 'LOGIN.WELCOME' | translate }}</h2>
+      <p class="welcome-subtitle">{{ 'LOGIN.WELCOME_SUBTITLE' | translate }}</p>
 
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <div *ngIf="!is2faRequired">
@@ -19,7 +56,7 @@
                 formControlName="username"
                 [placeholder]="'LOGIN.USER_PLACEHOLDER' | translate"
               />
-              <span class="password-icon">👤</span>
+              <span class="password-icon"><i class="fa-solid fa-user"></i></span>
             </div>
           </div>
 
@@ -30,7 +67,7 @@
               [placeholder]="'LOGIN.PASS_PLACEHOLDER' | translate"
             />
             <span class="password-icon" (click)="showPassword = !showPassword">
-              {{ showPassword ? "👁️" : "🔒" }}
+              <i class="fa-solid" [class.fa-eye]="showPassword" [class.fa-lock]="!showPassword"></i>
             </span>
           </div>
         </div>
