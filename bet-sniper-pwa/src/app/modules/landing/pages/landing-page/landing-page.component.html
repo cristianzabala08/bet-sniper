@@ -36,14 +36,9 @@
       <div class="particle" *ngFor="let p of [1,2,3,4,5,6,7,8]"></div>
     </div>
     <div class="hero-glow"></div>
-    <div class="hero-content">
-      <img src="assets/logo_principal.png" alt="Bet Sniper" class="hero-mascot" />
-      <h1 class="hero-title gold-gradient-text">{{ config.heroTitle }}</h1>
-      <p class="hero-subtitle">{{ config.heroSubtitle }}</p>
-      <a [routerLink]="config.heroCtaLink" class="btn-hero-cta">
-        <i class="fa fa-rocket"></i> {{ config.heroCtaText }}
-      </a>
-    </div>
+    <a [routerLink]="config.heroCtaLink" class="btn-hero-cta hero-cta-overlay">
+      <i class="fa fa-rocket"></i> {{ config.heroCtaText }}
+    </a>
   </section>
 
   <!-- Stats Section -->
