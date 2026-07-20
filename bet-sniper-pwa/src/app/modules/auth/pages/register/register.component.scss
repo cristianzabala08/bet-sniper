@@ -1,214 +1,439 @@
-.login-card {
-  width: 100%;
-  max-width: 400px;
-  background: rgba(18, 18, 16, 0.85);
-  backdrop-filter: blur(10px);
-  padding: 2.5rem;
-  border-radius: 20px;
-  border: 1px solid rgba(201, 168, 76, 0.3);
-  box-shadow: 0 0 30px rgba(201, 168, 76, 0.15);
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+// ============================================================
+// CHUCHO SIGNAL — Registro, rediseño premium (solo visual).
+//
+// Todo lo de acá abajo vive bajo `.reg-premium` (la sección raíz
+// del template de ESTE componente) y por el ViewEncapsulation por
+// defecto de Angular, estas reglas solo aplican a lo que renderiza
+// RegisterComponent — login/forgot-password/reset-password siguen
+// usando .login-container/.login-box/etc. tal cual están definidos
+// en styles.scss (global), sin ningún cambio.
+//
+// Ningún formControlName, *ngIf, validador ni handler fue tocado —
+// solo estructura decorativa nueva (halo, partículas, tarjetas) e
+// íconos de Font Awesome reemplazando los emoji.
+// ============================================================
 
-  .header {
-    text-align: center;
-    margin-bottom: 1rem;
+@property --angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
 
-    .brand-title {
-      font-size: 2rem;
-      font-weight: 800;
-      color: var(--primary);
-      text-shadow: 0 0 10px var(--primary);
-      margin: 0;
-      
-      .subtitle {
-        display: block;
-        font-size: 0.9rem;
-        color: var(--text-main);
-        letter-spacing: 2px;
-        text-shadow: none;
-        font-weight: 400;
-        margin-top: -5px;
+$bg-void: #050505;
+$bg-panel: #111111;
+$bg-raised: #1a1a1a;
+$gold-1: #ffd54a; // oro principal
+$gold-2: #ffc107; // oro brillante
+$gold-3: #ffb300; // oro intenso
+$ink: #f5f5f5;
+
+@mixin energy-frame($radius: 20px, $duration: 5s, $border: 1.5px, $surface: rgba(17, 17, 17, 0.55)) {
+  position: relative;
+  border-radius: $radius;
+  border: $border solid transparent;
+  background:
+    linear-gradient($surface, $surface) padding-box,
+    conic-gradient(
+      from var(--angle),
+      transparent 0%,
+      rgba($gold-1, 0.05) 6%,
+      $gold-2 14%,
+      $gold-1 20%,
+      rgba($gold-1, 0.05) 28%,
+      transparent 40%,
+      transparent 100%
+    ) border-box;
+  animation: energySpin $duration linear infinite;
+}
+
+@keyframes energySpin {
+  to { --angle: 360deg; }
+}
+
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes haloSpin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes haloSpinReverse {
+  to { transform: rotate(-360deg); }
+}
+
+@keyframes driftParticle {
+  0%, 100% { transform: translate(0, 0); opacity: 0.15; }
+  50% { transform: translate(12px, -22px); opacity: 0.65; }
+}
+
+@keyframes softPulse {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50% { opacity: 0.9; transform: scale(1.04); }
+}
+
+.reg-premium {
+  background-color: $bg-void;
+}
+
+// --- Fondo: partículas doradas flotantes ---
+.reg-premium .ambient-particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+
+  .particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: $gold-1;
+    box-shadow: 0 0 6px 1px rgba($gold-1, 0.8);
+    animation: driftParticle 7s ease-in-out infinite;
+
+    @for $i from 1 through 12 {
+      &:nth-child(#{$i}) {
+        top: percentage(($i * 37 % 100) * 0.01);
+        left: percentage(($i * 53 % 100) * 0.01);
+        animation-delay: $i * 0.6s;
+        animation-duration: 6s + ($i % 4) * 1s;
       }
     }
-
-    .welcome-text {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      margin-top: 10px;
-    }
   }
 }
 
-.form-row {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 1rem;
-  
-  .form-group {
-    flex: 1;
+// --- Panel principal: cristal premium con energía recorriendo el borde ---
+.reg-premium .login-box {
+  @include energy-frame(24px, 6s, 1.5px, rgba(8, 8, 8, 0.55));
+  backdrop-filter: blur(18px) saturate(140%);
+  box-shadow:
+    0 0 60px rgba($gold-2, 0.12),
+    0 30px 80px rgba(0, 0, 0, 0.6);
+  clip-path: none; // el look angular anterior queda reemplazado por el marco de energía
+
+  &::before {
+    display: none; // desactiva el borde estático heredado del estilo global
   }
 }
 
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-bottom: 1rem;
-  
-  &.full-width {
-    width: 100%;
+// --- Columna izquierda: 45%, zona visual ---
+.reg-premium .left-section {
+  width: 45%;
+  position: relative;
+  overflow: hidden;
+  padding: 2.75rem 2rem 2rem;
+  background:
+    radial-gradient(ellipse at 50% 20%, rgba($gold-2, 0.1) 0%, transparent 60%),
+    rgba(10, 10, 9, 0.35);
+
+  // patrón hexagonal sutil de más
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpath d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100' fill='none' stroke='rgba(255,213,74,0.06)' stroke-width='0.5'/%3E%3C/svg%3E");
+    opacity: 0.6;
   }
 
-  label {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    font-weight: 500;
-  }
-
-  .input-wrapper {
+  .left-halo {
     position: relative;
-    
-    input {
-      width: 100%;
-      background: var(--input-bg);
-      border: 1px solid var(--border-color);
-      padding: 12px 40px 12px 15px; /* Espacio para el icono a la derecha */
-      border-radius: 8px;
-      color: var(--text-main);
-      font-size: 1rem;
-      transition: all 0.3s ease;
-      box-sizing: border-box;
-
-      &:focus {
-        border-color: var(--primary);
-        box-shadow: 0 0 10px rgba(201, 168, 76, 0.3);
-      }
-      
-      &::placeholder {
-        color: rgba(255,255,255,0.2);
-      }
-    }
-
-    .icon {
-      position: absolute;
-      right: 15px;
-      top: 50%;
-      transform: translateY(-50%);
-      opacity: 0.5;
-    }
-  }
-}
-
-.actions {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.8rem;
-  margin-bottom: 1rem;
-
-  .remember-me {
+    width: 100%;
     display: flex;
     align-items: center;
-    gap: 5px;
-    color: var(--text-muted);
-    cursor: pointer;
+    justify-content: center;
+    height: 0;
   }
 
-  .forgot-link {
-    color: var(--primary);
-    text-decoration: none;
-    transition: 0.3s;
-    
+  .halo-ring {
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px dashed rgba($gold-1, 0.35);
+  }
+
+  .ring-1 {
+    width: 230px;
+    height: 230px;
+    animation: haloSpin 22s linear infinite;
+  }
+
+  .ring-2 {
+    width: 190px;
+    height: 190px;
+    border-style: solid;
+    border-color: rgba($gold-2, 0.18);
+    animation: haloSpinReverse 16s linear infinite;
+  }
+
+  .mascot-wrap {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 10%;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba($gold-1, 0.35) 0%, transparent 70%);
+      filter: blur(6px);
+      animation: softPulse 4s ease-in-out infinite;
+      z-index: -1;
+    }
+
+    .logo-img {
+      width: 260px;
+      filter: drop-shadow(0 0 25px rgba($gold-2, 0.35));
+    }
+  }
+
+  .left-tagline {
+    text-align: center;
+    color: rgba($ink, 0.55);
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin: 0.25rem 0 1.5rem;
+  }
+}
+
+// --- Tarjetas premium ---
+.reg-premium .feature-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  position: relative;
+  z-index: 1;
+
+  .feature-card {
+    @include energy-frame(14px, 9s, 1px, rgba(20, 20, 18, 0.5));
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.85rem 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
     &:hover {
-      text-shadow: 0 0 5px var(--primary);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba($gold-2, 0.15);
+    }
+
+    &:nth-child(1) .feature-icon { animation-delay: 0s; }
+    &:nth-child(2) .feature-icon { animation-delay: 0.3s; }
+    &:nth-child(3) .feature-icon { animation-delay: 0.6s; }
+  }
+
+  .feature-icon {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: rgba($gold-1, 0.08);
+    color: $gold-1;
+    font-size: 1rem;
+    animation: floatY 3.5s ease-in-out infinite;
+    text-shadow: 0 0 10px rgba($gold-1, 0.6);
+  }
+
+  .feature-text {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+
+    strong {
+      color: $ink;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+
+    span {
+      color: rgba($ink, 0.5);
+      font-size: 0.72rem;
+      line-height: 1.3;
+      margin-top: 2px;
     }
   }
 }
 
-/* Botones */
-button {
-  width: 100%;
-  padding: 14px;
-  border-radius: 50px; /* Bordes redondos como el PDF */
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+.reg-premium .copyright {
+  position: relative;
+  margin-top: 1.5rem;
+  color: rgba($gold-1, 0.3) !important;
 }
 
-.btn-primary {
-  background: linear-gradient(135deg, #8b6914, #c9a84c, #ffd700);
-  border: none;
-  color: #0a0a0a;
-  box-shadow: 0 0 15px rgba(201, 168, 76, 0.4);
-  margin-bottom: 1rem;
+// --- Columna derecha: consola del formulario ---
+.reg-premium .right-section {
+  width: 55%;
+  position: relative;
+  padding: 3rem 3.2rem;
+  background: radial-gradient(ellipse at 80% 0%, rgba($gold-2, 0.06) 0%, transparent 55%);
 
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 25px rgba(201, 168, 76, 0.6);
-  }
-  
-  &:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
+  .welcome-title {
+    font-size: 2.1rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    background: linear-gradient(135deg, $ink 0%, $gold-1 55%, $gold-3 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 0.4rem;
   }
 }
 
-.btn-outline {
-  background: transparent;
-  border: 1px solid var(--text-muted);
-  color: var(--text-muted);
+.reg-premium .divider {
+  background: linear-gradient(
+    to bottom,
+    transparent 5%,
+    rgba($gold-1, 0.5) 50%,
+    transparent 95%
+  );
+}
 
-  &:hover {
-    border-color: var(--text-main);
-    color: var(--text-main);
-    background: rgba(255,255,255,0.05);
+// --- Inputs: consola tecnológica ---
+.reg-premium .form-group {
+  label {
+    color: rgba($ink, 0.6);
+    font-size: 0.78rem;
+    letter-spacing: 0.5px;
   }
 }
 
-.footer {
-  text-align: center;
-  margin-top: 1rem;
-  p {
-    font-size: 0.75rem;
-    color: rgba(255,255,255,0.2);
-  }
-}
+.reg-premium .input-wrapper {
+  @include energy-frame(12px, 10s, 1px, rgba(15, 15, 14, 0.75));
+  transition: box-shadow 0.25s ease;
+  box-shadow: 0 0 0 rgba($gold-2, 0);
 
-
-// ... tus estilos existentes ...
-
-// Clase dinámica que agregamos en el HTML
-.input-wrapper.is-invalid {
-   border:  1px solid #ff4d4f !important; 
   input {
-      color: #ff4d4f;
+    background: transparent;
+    border: none;
+    border-radius: 12px;
+    padding: 13px 42px 13px 16px;
+
+    &:focus {
+      box-shadow: none; // el glow ahora lo maneja el wrapper
+    }
   }
-  
+
   .password-icon {
-      filter: grayscale(100%) brightness(80%) sepia(100%) hue-rotate(-50deg) saturate(600%); // Truco para poner el icono rojo
+    color: $gold-1;
+    opacity: 0.75;
+    transition: opacity 0.25s ease, text-shadow 0.25s ease;
+    font-size: 0.95rem;
+  }
+
+  &:hover {
+    box-shadow: 0 0 14px rgba($gold-2, 0.12);
+
+    .password-icon { opacity: 0.95; }
+  }
+
+  &:focus-within {
+    animation-duration: 1.8s;
+    box-shadow: 0 0 22px rgba($gold-2, 0.32);
+
+    .password-icon {
+      opacity: 1;
+      text-shadow: 0 0 8px rgba($gold-1, 0.8);
+    }
+  }
+
+  // Estado de error: rojo elegante, sin romper el marco premium
+  &.is-invalid {
+    animation: none;
+    background:
+      linear-gradient(rgba(30, 10, 10, 0.6), rgba(30, 10, 10, 0.6)) padding-box,
+      linear-gradient(135deg, #ff6b6b, #c0392b) border-box;
+    box-shadow: 0 0 16px rgba(220, 60, 60, 0.25);
+
+    input { color: #ff8080; }
+    .password-icon {
+      color: #ff6b6b;
+      filter: none;
+      opacity: 1;
+    }
   }
 }
 
-// Contenedor de mensajes de error
-.validation-errors {
-  margin-top: 4px;
-  display: flex;
-  flex-direction: column;
-  
-  small {
-    color: #ff4d4f;
-    font-size: 11px;
-    font-weight: 500;
-    line-height: 1.2;
+.reg-premium .bottom-links {
+  a {
+    position: relative;
+
+    &:hover {
+      text-shadow: 0 0 10px rgba($gold-1, 0.7);
+    }
   }
 }
 
-// Ajuste para el checkbox de términos
-.remember span.error-text {
-    color: #ff4d4f;
+// --- Botones: relieve + destello dorado al hover ---
+.reg-premium .buttons button {
+  position: relative;
+  overflow: hidden;
+  will-change: transform;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, transparent 40%, rgba(255, 255, 255, 0.55) 50%, transparent 60%);
+    transform: translateX(-140%);
+    transition: transform 0.65s ease;
+    pointer-events: none;
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.05);
+
+    &::after { transform: translateX(140%); }
+  }
+
+  &:active {
+    transform: translateY(-1px) scale(0.98);
+  }
+}
+
+.reg-premium .buttons .btn-login {
+  box-shadow: 0 10px 25px rgba($gold-2, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.reg-premium .buttons .btn-register {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+
+// --- Responsive: mismos breakpoints que el layout global, solo visual ---
+@media (max-width: 768px) {
+  .reg-premium .left-section,
+  .reg-premium .right-section {
+    width: 100% !important;
+  }
+
+  .reg-premium .feature-cards {
+    display: none; // prioriza el formulario en mobile, sin romper el flujo
+  }
+
+  .reg-premium .left-halo {
+    display: none;
+  }
+
+  .reg-premium .mascot-wrap .logo-img {
+    width: 150px;
+  }
+
+  .reg-premium .right-section {
+    padding: 2rem 1.5rem;
+  }
 }
