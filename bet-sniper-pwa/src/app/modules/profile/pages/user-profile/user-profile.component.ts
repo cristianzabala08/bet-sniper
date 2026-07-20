@@ -173,8 +173,10 @@ export class UserProfileComponent {
 
   updateUserWallet(wallet: string) {
     this.userService.updateWallet(wallet).subscribe({
-      next: (res) => {
+      next: (res: any) => {
         this.currentBackendWallet = wallet;
+        const newToken = res?.token;
+        if (newToken) this.tokenService.saveToken(newToken);
         this.toast.success('Wallet actualizada correctamente');
       },
       error: (err) => {
