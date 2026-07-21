@@ -2,8 +2,9 @@
   <!-- Header -->
   <header class="landing-header">
     <div class="header-container">
-      <a routerLink="/" class="logo-link">
-        <img src="assets/logo_principal.png" alt="Bet Sniper" class="header-logo" />
+      <a routerLink="/" class="logo-link brand-lockup">
+        <img src="assets/logo_bs_shield.png" alt="Bet Sniper" class="header-logo" />
+        <span class="brand-wordmark"><strong>BET</strong> SNIPER</span>
       </a>
       <nav class="header-nav">
         <a routerLink="/landing" fragment="stats" class="nav-link">Estadísticas</a>
@@ -31,20 +32,12 @@
   </header>
 
   <!-- Hero Section -->
-  <section class="hero-section">
-    <div class="hero-particles">
-      <div class="particle" *ngFor="let p of [1,2,3,4,5,6,7,8]"></div>
-    </div>
-    <div class="hero-glow"></div>
-    <div class="hero-content">
-      <img src="assets/logo_principal.png" alt="Bet Sniper" class="hero-mascot" />
-      <h1 class="hero-title gold-gradient-text">{{ config.heroTitle }}</h1>
-      <p class="hero-subtitle">{{ config.heroSubtitle }}</p>
-      <a [routerLink]="config.heroCtaLink" class="btn-hero-cta">
-        <i class="fa fa-rocket"></i> {{ config.heroCtaText }}
-      </a>
-    </div>
-  </section>
+  <app-hero-cinematic
+    [title]="config.heroTitle"
+    [subtitle]="config.heroSubtitle"
+    [ctaText]="config.heroCtaText"
+    [ctaLink]="config.heroCtaLink">
+  </app-hero-cinematic>
 
   <!-- Stats Section -->
   <section class="stats-section" id="stats">
@@ -272,7 +265,10 @@
   <footer class="landing-footer">
     <div class="footer-content">
       <div class="footer-brand">
-        <img src="assets/logo_principal.png" alt="Bet Sniper" class="footer-logo" />
+        <div class="brand-lockup footer-brand-lockup">
+          <img src="assets/logo_bs_shield.png" alt="Bet Sniper" class="footer-logo" />
+          <span class="brand-wordmark"><strong>BET</strong> SNIPER</span>
+        </div>
         <p class="footer-text">{{ config.footerText }}</p>
       </div>
       <div class="footer-links">

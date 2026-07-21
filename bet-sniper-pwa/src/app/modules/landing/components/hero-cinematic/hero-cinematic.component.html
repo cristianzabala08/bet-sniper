@@ -1,0 +1,93 @@
+<section class="hero-cinematic" #heroRoot>
+
+  <!-- Marco tecnológico + borde de energía -->
+  <div class="hero-frame" aria-hidden="true">
+    <span class="frame-edge edge-top"></span>
+    <span class="frame-edge edge-right"></span>
+    <span class="frame-edge edge-bottom"></span>
+    <span class="frame-edge edge-left"></span>
+    <span class="frame-corner corner-tl"></span>
+    <span class="frame-corner corner-tr"></span>
+    <span class="frame-corner corner-bl"></span>
+    <span class="frame-corner corner-br"></span>
+  </div>
+
+  <!-- Niebla + luz volumétrica -->
+  <div class="hero-fog" aria-hidden="true"></div>
+  <div class="hero-volumetric" aria-hidden="true"></div>
+
+  <div class="hero-inner">
+
+    <!-- Imagen de fondo (sin recortar) + escenario del cinema centrado en el BS -->
+    <div class="hero-visual">
+      <img src="assets/hero_bg_full.png" alt="Bet Sniper" class="hero-bg-image" aria-hidden="true" />
+      <div class="hero-bg-mask-navbar" aria-hidden="true"></div>
+
+    <div class="logo-stage">
+
+      <!-- Halo de energía -->
+      <div class="parallax-layer depth-halo">
+        <div class="halo"></div>
+      </div>
+
+      <!-- Pedestal tecnológico -->
+      <div class="pedestal-wrap parallax-layer depth-pedestal">
+        <div class="pedestal-ring r1"></div>
+        <div class="pedestal-ring r2"></div>
+        <div class="pedestal-ring r3"></div>
+        <div class="pedestal-core"></div>
+      </div>
+
+      <!-- Aro tecnológico HUD (rotación lenta) -->
+      <div class="parallax-layer depth-hud">
+        <div class="hud-spin">
+          <svg class="hud-ring-svg" viewBox="0 0 400 400" aria-hidden="true">
+            <circle class="hud-circle-outer" cx="200" cy="200" r="185"></circle>
+            <circle class="hud-circle-inner" cx="200" cy="200" r="162"></circle>
+            <line *ngFor="let angle of hudTicks"
+                  class="hud-tick"
+                  x1="200" y1="12" x2="200" y2="30"
+                  [attr.transform]="'rotate(' + angle + ' 200 200)'"></line>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Luz girando alrededor del logo (SVG stroke animation) -->
+      <div class="parallax-layer depth-energy">
+        <svg class="energy-ring-svg" viewBox="0 0 400 400" aria-hidden="true">
+          <circle class="energy-track" cx="200" cy="200" r="172"></circle>
+          <circle class="energy-light" cx="200" cy="200" r="172"></circle>
+        </svg>
+      </div>
+
+      <!-- Chispas sobre el escudo de la imagen de fondo -->
+      <div class="shield-wrap parallax-layer depth-shield">
+        <div class="shield-pulse">
+          <span class="spark" *ngFor="let s of sparks" [class]="'spark-' + s"></span>
+        </div>
+      </div>
+
+      <!-- Partículas de polvo dorado -->
+      <div class="particles-wrap parallax-layer depth-particles" aria-hidden="true">
+        <span class="dust"
+              *ngFor="let d of dust"
+              [style.left.%]="d.left"
+              [style.top.%]="d.top"
+              [style.width.px]="d.size"
+              [style.height.px]="d.size"
+              [style.animation-delay.s]="d.delay"
+              [style.animation-duration.s]="d.duration"></span>
+      </div>
+    </div>
+    </div>
+
+    <!-- Texto principal -->
+    <div class="hero-text">
+      <p class="hero-subtitle-cinematic">{{ subtitle }}</p>
+      <a [routerLink]="ctaLink" class="btn-cta-liquid">
+        <span class="btn-sweep"></span>
+        <i class="fa fa-rocket"></i> {{ ctaText }}
+      </a>
+    </div>
+  </div>
+</section>
