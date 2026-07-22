@@ -49,9 +49,10 @@ $border-gold: #2a2520;
       position: absolute;
       top: -20px;
       left: 20px;
-      background: linear-gradient(135deg, $gold-dark 0%, $gold-primary 100%);
+      background: linear-gradient(135deg, $gold-dark 0%, $gold-primary 50%, $gold-light 100%);
       width: 60px;
       height: 60px;
+      box-shadow: 0 0 12px rgba(201, 168, 76, 0.4), 0 0 25px rgba(201, 168, 76, 0.15);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -105,9 +106,10 @@ $border-gold: #2a2520;
       position: absolute;
       top: -20px;
       left: 20px;
-      background: linear-gradient(135deg, $gold-dark 0%, $gold-accent 100%);
+      background: linear-gradient(135deg, $gold-dark 0%, $gold-accent 50%, $gold-light 100%);
       width: 60px;
       height: 60px;
+      box-shadow: 0 0 12px rgba(212, 175, 55, 0.4), 0 0 25px rgba(212, 175, 55, 0.15);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -176,6 +178,7 @@ $border-gold: #2a2520;
       background: linear-gradient(135deg, $gold-primary 0%, $gold-light 100%);
       width: 60px;
       height: 60px;
+      box-shadow: 0 0 12px rgba(255, 215, 0, 0.4), 0 0 25px rgba(255, 215, 0, 0.15);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -222,7 +225,7 @@ $border-gold: #2a2520;
 
   /* Wrapper for border effect */
   .border-wrapper {
-    background: $gold-primary;
+    background: linear-gradient(135deg, #ffd700, #c9a84c, #8b6914, #c9a84c, #ffd700);
     clip-path: polygon(
       0 0,
       calc(100% - 15px) 0,
@@ -232,6 +235,7 @@ $border-gold: #2a2520;
       0 calc(100% - 15px)
     );
     padding: 2px;
+    box-shadow: 0 0 15px rgba(201, 168, 76, 0.2), 0 0 30px rgba(201, 168, 76, 0.08);
     
     /* Ensure wrapper fills the height and passes it to the card */
     flex: 1;
@@ -258,9 +262,9 @@ $border-gold: #2a2520;
     &.green-card {
       background: linear-gradient(
         135deg,
-        rgba(201, 168, 76, 0.4) 0%,
-        rgba(18, 18, 16, 0.9) 50%,
-        rgba(10, 10, 8, 0.95) 100%
+        rgba(201, 168, 76, 0.35) 0%,
+        rgba(18, 18, 16, 0.92) 40%,
+        rgba(10, 10, 8, 0.97) 100%
       );
       border: none;
       border-radius: 0;
@@ -277,7 +281,7 @@ $border-gold: #2a2520;
       padding: 25px;
       height: 100%;
       min-height: 320px; /* Aumentado para igualar alturas */
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 15px $gold-glow;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 20px rgba(201, 168, 76, 0.2), 0 0 40px rgba(201, 168, 76, 0.08), inset 0 0 25px rgba(201, 168, 76, 0.06), inset 0 1px 0 rgba(255, 215, 0, 0.1);
 
       /* BET SNIPER watermark */
       &::before {
@@ -448,9 +452,9 @@ $border-gold: #2a2520;
     &.purple-card {
       background: linear-gradient(
         135deg,
-        rgba(139, 105, 20, 0.4) 0%,
-        rgba(18, 18, 16, 0.9) 50%,
-        rgba(10, 10, 8, 0.95) 100%
+        rgba(139, 105, 20, 0.35) 0%,
+        rgba(18, 18, 16, 0.92) 40%,
+        rgba(10, 10, 8, 0.97) 100%
       );
       border: none;
       border-radius: 0;
@@ -466,7 +470,7 @@ $border-gold: #2a2520;
       padding: 25px;
       height: 100%;
       min-height: 320px;
-      box-shadow: 0 4px 20px rgba(201, 168, 76, 0.2), 0 0 15px $gold-glow;
+      box-shadow: 0 4px 20px rgba(201, 168, 76, 0.2), 0 0 20px rgba(201, 168, 76, 0.2), 0 0 40px rgba(201, 168, 76, 0.08), inset 0 0 25px rgba(201, 168, 76, 0.06), inset 0 1px 0 rgba(255, 215, 0, 0.1);
 
       /* BET SNIPER watermark */
       &::before {
@@ -673,7 +677,7 @@ $border-gold: #2a2520;
         font-family: 'Montserrat', sans-serif;
       }
       min-height: 320px;
-      box-shadow: 0 4px 20px rgba(205, 127, 50, 0.2), 0 0 15px $gold-glow;
+      box-shadow: 0 4px 20px rgba(205, 127, 50, 0.2), 0 0 20px rgba(201, 168, 76, 0.2), 0 0 40px rgba(201, 168, 76, 0.08), inset 0 0 25px rgba(201, 168, 76, 0.06), inset 0 1px 0 rgba(255, 215, 0, 0.1);
 
       .card-content {
         margin-top: 40px;

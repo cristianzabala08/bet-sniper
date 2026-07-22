@@ -48,7 +48,7 @@ export class SessionStatsComponent implements OnInit {
     private userService: UserService,
     private tokenService: TokenService,
     private toast: ToastService,
-    private purchaseService: PurchaseService // Inject PurchaseService
+    private purchaseService: PurchaseService, // Inject PurchaseService
   ) {}
 
   ngOnInit() {
@@ -167,7 +167,7 @@ export class SessionStatsComponent implements OnInit {
       (err) => {
         console.error('Could not copy text: ', err);
         this.toast.error('Error al copiar el link');
-      }
+      },
     );
   }
 }

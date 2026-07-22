@@ -16,6 +16,7 @@ async function bootstrap() {
 
   // --- HABILITAR CORS ---
   const rawOrigins = [
+    'http://localhost:54891',
     'http://localhost:3000',
     'http://localhost:4200',
     'http://localhost:4000',
