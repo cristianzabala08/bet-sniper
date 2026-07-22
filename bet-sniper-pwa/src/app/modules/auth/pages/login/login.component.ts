@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -14,6 +14,7 @@ import { UserToken } from 'src/app/core/models/auth/token.model';
 import { ToastService } from 'src/app/core/services/toast.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { NotificationsService } from 'src/app/core/services/notifications.service';
+import { LangDropdownComponent } from 'src/app/shared/components/lang-dropdown/lang-dropdown.component';
 
 @Component({
   selector: 'app-login',
@@ -26,9 +27,10 @@ import { NotificationsService } from 'src/app/core/services/notifications.servic
     FormsModule,
     RouterModule,
     TranslateModule,
+    LangDropdownComponent,
   ],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   loginForm: FormGroup;
   showPassword = false;
   errorMessage: string = '';
@@ -37,6 +39,15 @@ export class LoginComponent implements OnInit {
   // 🔥 Nuevas variables de estado
   is2faRequired = false;
   tempToken: string = '';
+
+  // ── Luz de cursor sobre el panel (glow que sigue al mouse) ──
+  mouseX = 50;
+  mouseY = 50;
+
+  private reducedMotion = false;
+  private rafId: number | null = null;
+  private pendingEvent: MouseEvent | null = null;
+  private pendingBox: HTMLElement | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -62,6 +73,45 @@ export class LoginComponent implements OnInit {
         rememberMe: true,
       });
     }
+
+    this.reducedMotion =
+      typeof window !== 'undefined' &&
+      !!window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }
+
+  ngOnDestroy() {
+    if (this.rafId !== null) {
+      cancelAnimationFrame(this.rafId);
+      this.rafId = null;
+    }
+  }
+
+  onBoxMouseMove(event: MouseEvent, box: HTMLElement) {
+    if (this.reducedMotion) return;
+    this.pendingEvent = event;
+    this.pendingBox = box;
+    if (this.rafId !== null) return;
+    this.rafId = requestAnimationFrame(() => this.applyMouseMove());
+  }
+
+  private applyMouseMove() {
+    this.rafId = null;
+    const event = this.pendingEvent;
+    const box = this.pendingBox;
+    if (!event || !box) return;
+
+    const rect = box.getBoundingClientRect();
+    const ratioX = (event.clientX - rect.left) / rect.width;
+    const ratioY = (event.clientY - rect.top) / rect.height;
+
+    this.mouseX = Math.min(100, Math.max(0, ratioX * 100));
+    this.mouseY = Math.min(100, Math.max(0, ratioY * 100));
+  }
+
+  onBoxMouseLeave() {
+    this.mouseX = 50;
+    this.mouseY = 50;
   }
 
   onSubmit() {

@@ -23,6 +23,7 @@ import { ThirdPartySignalsModule } from './third-party-signals/third-party-signa
 import { PlansModule } from './plans/plans.module';
 import { LandingConfigModule } from './landing-config/landing-config.module';
 import { BlogModule } from './blog/blog.module';
+import { GpulseSsoModule } from './gpulse-sso/gpulse-sso.module';
 
 @Module({
   imports: [
@@ -53,6 +54,7 @@ import { BlogModule } from './blog/blog.module';
     PlansModule,
     LandingConfigModule,
     BlogModule,
+    GpulseSsoModule,
   ],
   controllers: [AppController],
   providers: [

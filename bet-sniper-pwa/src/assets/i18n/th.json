@@ -1,6 +1,8 @@
 {
   "LOGIN": {
-    "WELCOME": "สวัสดี ยินดีต้อนรับ",
+    "WELCOME_1": "สวัสดี,",
+    "WELCOME_2": "ยินดีต้อนรับ",
+    "SUBTITLE": "เข้าสู่ระบบเพื่อดำเนินการต่อ",
     "COPYRIGHT": "2025 สงวนลิขสิทธิ์",
     "USER_PLACEHOLDER": "ชื่อผู้ใช้ หรือ อีเมล...",
     "PASS_PLACEHOLDER": "รหัสผ่าน...",
@@ -14,7 +16,24 @@
     "BTN_CANCEL": "ยกเลิก",
     "BTN_REGISTER": "สร้างบัญชี",
     "REMEMBER_ME": "จดจำฉัน?",
-    "FORGOT_PASS": "ลืมรหัสผ่าน?"
+    "FORGOT_PASS": "ลืมรหัสผ่าน?",
+    "SIDEBAR": {
+      "FOCUS": "โฟกัส",
+      "ANALYZE": "วิเคราะห์",
+      "EXECUTE": "ดำเนินการ",
+      "WIN": "ชนะ"
+    },
+    "TAGLINE": "แม่นยำ กลยุทธ์ ผลลัพธ์",
+    "FEATURES": {
+      "SECURITY_TITLE": "ความปลอดภัยขั้นสูง",
+      "SECURITY_DESC": "เราปกป้องบัญชีของคุณ",
+      "SPEED_TITLE": "เข้าถึงรวดเร็ว",
+      "SPEED_DESC": "ไม่มีสะดุด",
+      "ANALYSIS_TITLE": "การวิเคราะห์อัจฉริยะ",
+      "ANALYSIS_DESC": "การตัดสินใจที่แม่นยำ",
+      "RESULTS_TITLE": "ผลลัพธ์ที่แท้จริง",
+      "RESULTS_DESC": "ความสำเร็จของคุณคือเป้าหมายของเรา"
+    }
   },
   "REGISTER": {
     "USER_LEADER": "ชื่อผู้ใช้ผู้นำ",
@@ -65,7 +84,8 @@
       "SIGNALS_TAKEN": "สัญญาณที่รับ:",
       "WIN_RATE": "อัตราการชนะ:",
       "PROFIT_TOTAL_TODAY": "กำไรรวมวันนี้",
-      "OF": "จาก"
+      "OF": "จาก",
+      "LOAD_ERROR": "ไม่สามารถโหลดสถิติได้"
     },
     "ACTIVE_SIGNALS": {
       "PLAN_REQUIRED_TITLE": "ACTIVE PLAN REQUIRED",
@@ -76,14 +96,15 @@
       "BTN_SIGNALS_LABEL": "โหลดสัญญาณเพิ่มเติม",
       "OPERATIVE_PANEL": "แผงควบคุมสัญญาณ",
       "BTN_START_SESSION": "เริ่มเซสชัน",
-      "BTN_PAUSE_SESSION": "หยุดชั่วคราว",
+      "BTN_PAUSE_SESSION": "หยุดสไนเปอร์ชั่วคราว",
       "SIGNALS_CONTROL": "การควบคุมสัญญาณ",
       "MODE_AUTOMATIC": "โหมดอัตโนมัติ",
       "MODE_MANUAL": "โหมดกำหนดเอง",
       "MODE_STATUS": "เปิดใช้งาน",
       "TAKE_SIGNAL": "รับสัญญาณนี้",
       "MARTIN_LABEL": "การควบคุม Martingale",
-      "AMOUNT_ASIGNED": "จำนวนเงินที่กำหนด"
+      "AMOUNT_ASIGNED": "จำนวนเงินที่กำหนด",
+      "AUTOMATIC_DESC": "ตั้งค่าระดับ จำนวนเงิน และสถานะของสไนเปอร์ของคุณ"
     },
     "CARDBAR": {
       "PLANS": {

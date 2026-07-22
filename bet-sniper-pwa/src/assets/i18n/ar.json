@@ -1,6 +1,8 @@
 {
   "LOGIN": {
-    "WELCOME": "مرحبًا، أهلاً بك",
+    "WELCOME_1": "مرحبًا،",
+    "WELCOME_2": "أهلاً بك",
+    "SUBTITLE": "سجل الدخول للمتابعة",
     "COPYRIGHT": "2025 جميع الحقوق محفوظة.",
     "USER_PLACEHOLDER": "اسم المستخدم أو البريد الإلكتروني...",
     "PASS_PLACEHOLDER": "كلمة المرور...",
@@ -14,7 +16,24 @@
     "BTN_CANCEL": "إلغاء",
     "BTN_REGISTER": "إنشاء حساب",
     "REMEMBER_ME": "تذكرني؟",
-    "FORGOT_PASS": "نسيت كلمة المرور؟"
+    "FORGOT_PASS": "نسيت كلمة المرور؟",
+    "SIDEBAR": {
+      "FOCUS": "التركيز",
+      "ANALYZE": "التحليل",
+      "EXECUTE": "التنفيذ",
+      "WIN": "الفوز"
+    },
+    "TAGLINE": "دقة. استراتيجية. نتائج.",
+    "FEATURES": {
+      "SECURITY_TITLE": "أمان متقدم",
+      "SECURITY_DESC": "نحمي حسابك",
+      "SPEED_TITLE": "وصول سريع",
+      "SPEED_DESC": "بدون انقطاع",
+      "ANALYSIS_TITLE": "تحليل ذكي",
+      "ANALYSIS_DESC": "قرارات دقيقة",
+      "RESULTS_TITLE": "نتائج حقيقية",
+      "RESULTS_DESC": "نجاحك هو هدفنا"
+    }
   },
   "REGISTER": {
     "USER_LEADER": "اسم مستخدم القائد",
@@ -65,7 +84,8 @@
       "SIGNALS_TAKEN": "الإشارات المأخوذة:",
       "WIN_RATE": "معدل الفوز:",
       "PROFIT_TOTAL_TODAY": "إجمالي الربح اليوم",
-      "OF": "من"
+      "OF": "من",
+      "LOAD_ERROR": "تعذر تحميل الإحصائيات"
     },
     "ACTIVE_SIGNALS": {
       "PLAN_REQUIRED_TITLE": "ACTIVE PLAN REQUIRED",
@@ -76,14 +96,15 @@
       "BTN_SIGNALS_LABEL": "تحميل المزيد من الإشارات",
       "OPERATIVE_PANEL": "لوحة تشغيل الإشارات",
       "BTN_START_SESSION": "بدء الجلسة",
-      "BTN_PAUSE_SESSION": "إيقاف الجلسة مؤقتًا",
+      "BTN_PAUSE_SESSION": "إيقاف القناص مؤقتًا",
       "SIGNALS_CONTROL": "التحكم في الإشارات",
       "MODE_AUTOMATIC": "الوضع التلقائي",
       "MODE_MANUAL": "الوضع اليدوي",
       "MODE_STATUS": "مفعل",
       "TAKE_SIGNAL": "أخذ هذه الإشارة",
       "MARTIN_LABEL": "تحكم مارتينجال",
-      "AMOUNT_ASIGNED": "المبلغ المخصص"
+      "AMOUNT_ASIGNED": "المبلغ المخصص",
+      "AUTOMATIC_DESC": "اضبط المستوى والمبلغ وحالة القناص الخاص بك"
     },
     "CARDBAR": {
       "PLANS": {

@@ -1,6 +1,8 @@
 {
   "LOGIN": {
-    "WELCOME": "Xin chào, chào mừng",
+    "WELCOME_1": "Xin chào,",
+    "WELCOME_2": "Chào mừng",
+    "SUBTITLE": "Đăng nhập để tiếp tục",
     "COPYRIGHT": "2025 bảo lưu mọi quyền.",
     "USER_PLACEHOLDER": "Tên đăng nhập hoặc Email...",
     "PASS_PLACEHOLDER": "Mật khẩu...",
@@ -14,7 +16,24 @@
     "BTN_CANCEL": "HỦY",
     "BTN_REGISTER": "TẠO TÀI KHOẢN",
     "REMEMBER_ME": "Ghi nhớ tôi?",
-    "FORGOT_PASS": "Quên mật khẩu?"
+    "FORGOT_PASS": "Quên mật khẩu?",
+    "SIDEBAR": {
+      "FOCUS": "Tập trung",
+      "ANALYZE": "Phân tích",
+      "EXECUTE": "Thực thi",
+      "WIN": "Chiến thắng"
+    },
+    "TAGLINE": "Chính xác. Chiến lược. Kết quả.",
+    "FEATURES": {
+      "SECURITY_TITLE": "Bảo mật nâng cao",
+      "SECURITY_DESC": "Chúng tôi bảo vệ tài khoản của bạn",
+      "SPEED_TITLE": "Truy cập nhanh",
+      "SPEED_DESC": "Không gián đoạn",
+      "ANALYSIS_TITLE": "Phân tích thông minh",
+      "ANALYSIS_DESC": "Quyết định chính xác",
+      "RESULTS_TITLE": "Kết quả thực tế",
+      "RESULTS_DESC": "Thành công của bạn là mục tiêu của chúng tôi"
+    }
   },
   "REGISTER": {
     "USER_LEADER": "Tên người giới thiệu",
@@ -65,7 +84,8 @@
       "SIGNALS_TAKEN": "TÍN HIỆU ĐÃ LẤY:",
       "WIN_RATE": "TỶ LỆ THẮNG:",
       "PROFIT_TOTAL_TODAY": "TỔNG LỢI NHUẬN HÔM NAY",
-      "OF": "của"
+      "OF": "của",
+      "LOAD_ERROR": "Không thể tải số liệu thống kê"
     },
     "ACTIVE_SIGNALS": {
       "PLAN_REQUIRED_TITLE": "ACTIVE PLAN REQUIRED",
@@ -76,14 +96,15 @@
       "BTN_SIGNALS_LABEL": "TẢI THÊM TÍN HIỆU",
       "OPERATIVE_PANEL": "BẢNG ĐIỀU KHIỂN TÍN HIỆU",
       "BTN_START_SESSION": "BẮT ĐẦU PHIÊN",
-      "BTN_PAUSE_SESSION": "TẠM DỪNG PHIÊN",
+      "BTN_PAUSE_SESSION": "TẠM DỪNG SNIPER",
       "SIGNALS_CONTROL": "KIỂM SOÁT TÍN HIỆU",
       "MODE_AUTOMATIC": "CHẾ ĐỘ TỰ ĐỘNG",
       "MODE_MANUAL": "CHẾ ĐỘ THỦ CÔNG",
       "MODE_STATUS": "ĐÃ KÍCH HOẠT",
       "TAKE_SIGNAL": "LẤY TÍN HIỆU NÀY",
       "MARTIN_LABEL": "KIỂM SOÁT MARTINGALE",
-      "AMOUNT_ASIGNED": "SỐ TIỀN ĐƯỢC GÁN"
+      "AMOUNT_ASIGNED": "SỐ TIỀN ĐƯỢC GÁN",
+      "AUTOMATIC_DESC": "Định cấu hình cấp độ, số tiền và trạng thái sniper của bạn"
     },
     "CARDBAR": {
       "PLANS": {

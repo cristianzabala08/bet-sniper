@@ -6,6 +6,8 @@ import {
   ChangeDetectorRef,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserService } from 'src/app/core/services/user.service';
 import { TokenService } from 'src/app/shared/services/jwt-token.service';
@@ -18,6 +20,7 @@ import {
 import { Subscription, interval } from 'rxjs';
 import Swal from 'sweetalert2';
 import { ToastService } from 'src/app/core/services/toast.service';
+import { getMartingaleDisplayStep as getMartingaleDisplayStepUtil } from 'src/app/core/utils/martingale-display.util';
 
 // View Model for Signal to avoid template calculations
 interface SignalViewModel extends PanelPrincipal {
@@ -29,7 +32,7 @@ interface SignalViewModel extends PanelPrincipal {
 
 @Component({
   standalone: true,
-  imports: [CommonModule, TranslateModule],
+  imports: [CommonModule, RouterModule, TranslateModule],
   selector: 'app-active-signals',
   templateUrl: './active-signals.component.html',
   styleUrls: ['./active-signals.component.scss'],
@@ -38,7 +41,11 @@ interface SignalViewModel extends PanelPrincipal {
 export class ActiveSignalsComponent implements OnInit, OnDestroy {
   isMembershipActive: boolean = false;
   isLoading: boolean = true;
+  statsLoadError: boolean = false;
   signalsData: SignalsResponse | null = null;
+
+  // Marcas decorativas de la mira de francotirador (puramente visual)
+  readonly scopeTicks = Array.from({ length: 24 }, (_, i) => i * 15);
 
   // Extended data for View
   processedSignalList: SignalViewModel[] = [];
@@ -64,6 +71,24 @@ export class ActiveSignalsComponent implements OnInit, OnDestroy {
   private sessionStartTime: number | null = null;
   visibleSignals: number = 5;
 
+  // Overlay de escaneo: mensajes reales del proceso, rotando
+  private readonly scanningMessages = [
+    'DASHBOARD.GAME.SCANNING_PATTERNS',
+    'DASHBOARD.GAME.DETECTING_TRENDS',
+    'DASHBOARD.GAME.ANALYZING_HISTORY',
+    'DASHBOARD.GAME.RECALCULATING',
+    'DASHBOARD.GAME.VALIDATING_SIGNAL',
+    'DASHBOARD.GAME.FINDING_MATCHES',
+    'DASHBOARD.GAME.SYNCING_AI',
+    'DASHBOARD.GAME.READING_BEHAVIOR',
+    'DASHBOARD.GAME.COMPARING_TABLES',
+    'DASHBOARD.GAME.CALCULATING_RISK',
+  ];
+  scanningTextIndex = 0;
+  private scanningTextSubscription: Subscription | null = null;
+
+  isGpulseSsoLoading = false;
+
   constructor(
     private userService: UserService,
     private tokenService: TokenService,
@@ -71,13 +96,106 @@ export class ActiveSignalsComponent implements OnInit, OnDestroy {
     private toastService: ToastService,
     private cdr: ChangeDetectorRef,
     private translate: TranslateService,
+    private http: HttpClient,
   ) {}
+
+  /**
+   * Entrega al usuario hacia GPulse (Modo Automático real) vía SSO —
+   * mismo flujo que el botón Automático de Winx: la app usa auth por
+   * Bearer token (no cookies), así que un <a href> plano no puede
+   * llevar el header; hay que pedir primero la URL firmada y luego
+   * navegar. Se abre la pestaña de forma síncrona dentro del gesto de
+   * click para evitar el bloqueo de pop-ups del navegador.
+   */
+  goToGpulseAutomatico(): void {
+    if (this.isGpulseSsoLoading) return;
+    this.isGpulseSsoLoading = true;
+    this.cdr.markForCheck();
+
+    const newTab = window.open('', '_blank');
+
+    this.http.get<{ data: { redirectUrl: string } }>('/gpulse-sso').subscribe({
+      next: (res) => {
+        this.isGpulseSsoLoading = false;
+        this.cdr.markForCheck();
+        const redirectUrl = res?.data?.redirectUrl;
+        if (redirectUrl && newTab) {
+          newTab.location.href = redirectUrl;
+        } else {
+          newTab?.close();
+          this.toastService.showError('No se pudo abrir el modo automático.');
+        }
+      },
+      error: (err) => {
+        this.isGpulseSsoLoading = false;
+        this.cdr.markForCheck();
+        newTab?.close();
+        if (err?.status === 422) {
+          this.toastService.showError('Necesitás una wallet vinculada a tu cuenta para usar el modo automático.');
+        } else if (err?.status === 401) {
+          this.toastService.showError('Tu sesión expiró, volvé a iniciar sesión.');
+        } else {
+          this.toastService.showError('No se pudo abrir el modo automático.');
+        }
+      },
+    });
+  }
 
   ngOnInit(): void {
     this.signalsService.syncTime(); // Sync time on init
     this.checkMembershipStatus();
     // Load data immediately so valid users see the list
     this.loadInitialSignals();
+
+    this.scanningTextSubscription = interval(2200).subscribe(() => {
+      this.scanningTextIndex =
+        (this.scanningTextIndex + 1) % this.scanningMessages.length;
+      this.cdr.markForCheck();
+    });
+  }
+
+  getScanningTextKey(): string {
+    return this.scanningMessages[this.scanningTextIndex];
+  }
+
+  /** Mesas distintas vistas recientemente (dato real, derivado de listaMesas). */
+  getRecentTablesCount(): number {
+    const mesas = this.signalsData?.listaMesas || [];
+    const unique = new Set(mesas.map((m: any) => m.mesa).filter(Boolean));
+    return unique.size;
+  }
+
+  /** Racha actual de victorias/derrotas consecutivas (dato real, derivado de listaMesas). */
+  getRecentStreak(): { count: number; isWin: boolean } {
+    const mesas = this.signalsData?.listaMesas || [];
+    let count = 0;
+    let isWin: boolean | null = null;
+    for (const m of mesas) {
+      if (m?.win !== true && m?.win !== false) continue; // ignora señales abiertas
+      if (isWin === null) {
+        isWin = m.win;
+        count = 1;
+      } else if (m.win === isWin) {
+        count++;
+      } else {
+        break;
+      }
+    }
+    return { count, isWin: isWin ?? true };
+  }
+
+  getFrequencyLabel(): string {
+    const taken = (this.signalsData?.barraSuperior?.wins || 0) + (this.signalsData?.barraSuperior?.losses || 0);
+    if (taken >= 10) return this.translate.instant('DASHBOARD.GAME.FREQUENCY_HIGH');
+    if (taken >= 4) return this.translate.instant('DASHBOARD.GAME.FREQUENCY_MEDIUM');
+    return this.translate.instant('DASHBOARD.GAME.FREQUENCY_LOW');
+  }
+
+  getPrecisionLabel(): string {
+    const pct = Number(this.signalsData?.barraSuperior?.winPercentage) || 0;
+    if (pct >= 60) return this.translate.instant('DASHBOARD.GAME.PRECISION_HIGH');
+    if (pct >= 40) return this.translate.instant('DASHBOARD.GAME.PRECISION_MEDIUM');
+    return this.translate.instant('DASHBOARD.GAME.PRECISION_LOW');
   }
 
   updateTimeActive() {
@@ -111,10 +229,14 @@ export class ActiveSignalsComponent implements OnInit, OnDestroy {
     if (this.dashboardSubscription) {
       this.dashboardSubscription.unsubscribe();
     }
+    if (this.scanningTextSubscription) {
+      this.scanningTextSubscription.unsubscribe();
+    }
     this.signalsService.disconnect();
   }
 
   loadInitialSignals() {
+    this.statsLoadError = false;
     this.signalsService.getSignals().subscribe({
       next: (data) => {
         this.signalsData = data;
@@ -124,6 +246,8 @@ export class ActiveSignalsComponent implements OnInit, OnDestroy {
       },
       error: (err) => {
         console.error('Error loading initial signals', err);
+        this.statsLoadError = true;
+        this.cdr.markForCheck();
       },
     });
   }
@@ -508,9 +632,12 @@ export class ActiveSignalsComponent implements OnInit, OnDestroy {
 
     return vector.map((val: string, index: number) => {
       let colorClass = '';
+      // Baccarat solo tiene Banquero (rojo) y Jugador (azul) como colores
+      // reales de decisión; el empate se muestra en neutro, no como un
+      // tercer color.
       if (val === 'B') colorClass = 'dot-red';
       else if (val === 'P') colorClass = 'dot-blue';
-      else if (val === 'T') colorClass = 'dot-green';
+      else if (val === 'T') colorClass = 'dot-neutral';
 
       const isCurrent = index === currentStepIndex;
       const isPast = index < currentStepIndex;
@@ -570,14 +697,51 @@ export class ActiveSignalsComponent implements OnInit, OnDestroy {
   }
 
   getMartingaleDisplayStep(item: any): string {
-    let step = item?.winStep;
-    if (step === undefined) step = item?.martingalaData?.contador_martingala;
-    if (step === undefined) step = item?.data?.results?.numero_martingala;
+    return getMartingaleDisplayStepUtil(item);
+  }
 
-    if (step !== undefined && step !== null) {
-      return (Number(step) + 1).toString();
+  // ---------------------------------------------------------------------
+  // Getters puros para el HUD de "Estación de Sniping" — todos derivan de
+  // datos ya reales (vector_forecast, barraSuperior, contador_martingala).
+  // No leen ni escriben ningún estado de negocio.
+  // ---------------------------------------------------------------------
+
+  private getForecastVector(item: any): string[] {
+    const data = item?.data?.results || item?.data?.signal;
+    return data?.vector_forecast || [];
+  }
+
+  /** % de P/B/T dentro del vector de pronóstico actual (dato real derivado). */
+  getForecastProbability(item: any, key: 'P' | 'B' | 'T'): number {
+    const vector = this.getForecastVector(item);
+    if (!vector.length) return 0;
+    const count = vector.filter((v: string) => v === key).length;
+    return Math.round((count / vector.length) * 100);
+  }
+
+  /** Profundidad real de martingala (pasos desde el inicio del patrón). */
+  getMartingaleDepth(item: any): number {
+    const data = item?.data?.results || item?.data?.signal;
+    const val = item?.contador_martingala ?? data?.numero_martingala;
+    return val !== undefined && val !== null ? Number(val) : 0;
+  }
+
+  getTrendLabel(): string {
+    const wins = this.signalsData?.barraSuperior?.wins || 0;
+    const losses = this.signalsData?.barraSuperior?.losses || 0;
+    if (wins === 0 && losses === 0) {
+      return this.translate.instant('DASHBOARD.GAME.TREND_NEUTRAL');
     }
-    return '1';
+    return wins >= losses
+      ? this.translate.instant('DASHBOARD.GAME.TREND_POSITIVE')
+      : this.translate.instant('DASHBOARD.GAME.TREND_NEGATIVE');
+  }
+
+  getBehaviorLabel(): string {
+    const pct = Number(this.signalsData?.barraSuperior?.winPercentage) || 0;
+    if (pct >= 60) return this.translate.instant('DASHBOARD.GAME.BEHAVIOR_FAVORABLE');
+    if (pct >= 40) return this.translate.instant('DASHBOARD.GAME.BEHAVIOR_NEUTRAL');
+    return this.translate.instant('DASHBOARD.GAME.BEHAVIOR_UNFAVORABLE');
   }
 
   getActiveStatus(item: any): string {

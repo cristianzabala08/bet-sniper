@@ -1,6 +1,8 @@
 {
   "LOGIN": {
-    "WELCOME": "こんにちは、ようこそ",
+    "WELCOME_1": "こんにちは、",
+    "WELCOME_2": "ようこそ",
+    "SUBTITLE": "続けるにはログインしてください",
     "COPYRIGHT": "2025 全著作権所有。",
     "USER_PLACEHOLDER": "ユーザー名またはメール...",
     "PASS_PLACEHOLDER": "パスワード...",
@@ -14,7 +16,24 @@
     "BTN_CANCEL": "キャンセル",
     "BTN_REGISTER": "アカウント作成",
     "REMEMBER_ME": "ログイン状態を保持",
-    "FORGOT_PASS": "パスワードをお忘れですか？"
+    "FORGOT_PASS": "パスワードをお忘れですか？",
+    "SIDEBAR": {
+      "FOCUS": "フォーカス",
+      "ANALYZE": "分析",
+      "EXECUTE": "実行",
+      "WIN": "勝利"
+    },
+    "TAGLINE": "精密。戦略。結果。",
+    "FEATURES": {
+      "SECURITY_TITLE": "高度なセキュリティ",
+      "SECURITY_DESC": "アカウントを保護します",
+      "SPEED_TITLE": "高速アクセス",
+      "SPEED_DESC": "中断なし",
+      "ANALYSIS_TITLE": "スマート分析",
+      "ANALYSIS_DESC": "的確な判断",
+      "RESULTS_TITLE": "確かな結果",
+      "RESULTS_DESC": "あなたの成功が私たちの目標です"
+    }
   },
   "REGISTER": {
     "USER_LEADER": "リーダーのユーザー名",
@@ -65,7 +84,8 @@
       "SIGNALS_TAKEN": "取得シグナル:",
       "WIN_RATE": "勝率:",
       "PROFIT_TOTAL_TODAY": "本日の総利益",
-      "OF": "/"
+      "OF": "/",
+      "LOAD_ERROR": "統計を読み込めませんでした"
     },
     "ACTIVE_SIGNALS": {
       "PLAN_REQUIRED_TITLE": "ACTIVE PLAN REQUIRED",
@@ -76,14 +96,15 @@
       "BTN_SIGNALS_LABEL": "さらにシグナルを読み込む",
       "OPERATIVE_PANEL": "シグナル運用パネル",
       "BTN_START_SESSION": "セッション開始",
-      "BTN_PAUSE_SESSION": "セッション一時停止",
+      "BTN_PAUSE_SESSION": "スナイパーを一時停止",
       "SIGNALS_CONTROL": "シグナル管理",
       "MODE_AUTOMATIC": "自動モード",
       "MODE_MANUAL": "手動モード",
       "MODE_STATUS": "有効",
       "TAKE_SIGNAL": "このシグナルを取得",
       "MARTIN_LABEL": "マーチンゲール制御",
-      "AMOUNT_ASIGNED": "割り当て金額"
+      "AMOUNT_ASIGNED": "割り当て金額",
+      "AUTOMATIC_DESC": "スナイパーのレベル・金額・状態を設定"
     },
     "CARDBAR": {
       "PLANS": {

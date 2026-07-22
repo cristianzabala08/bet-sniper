@@ -74,10 +74,10 @@ $border-gold: #2a2520;
 }
 
 .brand-wordmark {
-  font-family: 'Rajdhani', 'Montserrat', sans-serif;
-  font-size: 1.15rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  font-family: 'Black Ops One', 'Rajdhani', 'Montserrat', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: $text-main;
   strong {
@@ -204,6 +204,35 @@ $border-gold: #2a2520;
   text-align: center;
 }
 
+.live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  margin-bottom: 16px;
+  border: 1px solid rgba(#4caf50, 0.5);
+  border-radius: 20px;
+  color: #4caf50;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4caf50;
+  box-shadow: 0 0 8px 2px rgba(#4caf50, 0.8);
+  animation: liveDotPulse 1.6s ease-in-out infinite;
+}
+
+@keyframes liveDotPulse {
+  0%, 100% { opacity: 0.6; transform: scale(0.85); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+
 .section-title {
   font-size: 2.5rem;
   margin-bottom: 10px;
@@ -230,6 +259,7 @@ $border-gold: #2a2520;
   padding: 30px 15px;
   transition: all 0.3s;
   position: relative;
+  overflow: hidden;
   clip-path: polygon(
     0 0,
     calc(100% - 15px) 0,
@@ -270,6 +300,52 @@ $border-gold: #2a2520;
   &.wins .stat-icon { color: #4caf50; }
   &.losses .stat-icon { color: #f44336; }
   &.profit .stat-value { color: #4caf50; }
+
+  .stat-scan {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: repeating-linear-gradient(
+      90deg,
+      transparent 0%,
+      transparent 82%,
+      rgba($gold-primary, 0.9) 90%,
+      rgba($gold-primary, 0.9) 92%,
+      transparent 100%
+    );
+    background-size: 220% 100%;
+    animation: statScan 6s linear infinite;
+    pointer-events: none;
+  }
+
+  .stat-corner {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    pointer-events: none;
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      background: $gold-primary;
+    }
+    &::before { width: 100%; height: 2px; }
+    &::after { width: 2px; height: 100%; }
+    &.corner-tl { top: 4px; left: 4px; }
+    &.corner-br { bottom: 4px; right: 4px; transform: rotate(180deg); }
+  }
+
+  &:nth-child(2) .stat-scan { animation-delay: 1.2s; }
+  &:nth-child(3) .stat-scan { animation-delay: 2.4s; }
+  &:nth-child(4) .stat-scan { animation-delay: 3.6s; }
+  &:nth-child(5) .stat-scan { animation-delay: 4.8s; }
+}
+
+@keyframes statScan {
+  from { background-position: 0% 0; }
+  to { background-position: -220% 0; }
 }
 
 // Martingala Section
@@ -285,6 +361,10 @@ $border-gold: #2a2520;
   grid-template-columns: 1fr 1fr;
   gap: 60px;
   align-items: center;
+}
+
+.martingala-visual {
+  position: relative;
 }
 
 .algo-diagram {
@@ -312,17 +392,47 @@ $border-gold: #2a2520;
     align-items: center;
     justify-content: center;
     font-size: 1.3rem;
+    animation: stepPulse 3s ease-in-out infinite;
   }
   span { font-size: 0.85rem; font-weight: 600; }
-  &.loss .step-icon { background: rgba(244, 67, 54, 0.2); color: #f44336; }
-  &.calc .step-icon { background: rgba($gold-primary, 0.2); color: $gold-primary; }
-  &.win .step-icon { background: rgba(76, 175, 80, 0.2); color: #4caf50; }
+  &.loss .step-icon { background: rgba(244, 67, 54, 0.2); color: #f44336; animation-delay: 0s; }
+  &.calc .step-icon { background: rgba($gold-primary, 0.2); color: $gold-primary; animation-delay: 1s; }
+  &.win .step-icon { background: rgba(76, 175, 80, 0.2); color: #4caf50; animation-delay: 2s; }
+}
+
+@keyframes stepPulse {
+  0%, 12%, 100% { box-shadow: none; transform: scale(1); }
+  6% { box-shadow: 0 0 22px currentColor; transform: scale(1.12); }
 }
 
 .algo-arrow {
+  position: relative;
   color: $gold-primary;
   font-size: 1.2rem;
   opacity: 0.5;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: $gold-light;
+    box-shadow: 0 0 8px 2px rgba($gold-light, 0.9);
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    animation: arrowTravel 3s ease-in-out infinite;
+  }
+  &.arrow-2::after { animation-delay: 1s; }
+}
+
+@keyframes arrowTravel {
+  0% { left: 0; opacity: 0; }
+  10% { opacity: 1; }
+  45% { opacity: 1; }
+  50%, 100% { left: 100%; opacity: 0; }
 }
 
 .martingala-desc {
@@ -358,6 +468,11 @@ $border-gold: #2a2520;
   gap: 25px;
   max-width: 1200px;
   margin: 0 auto;
+  .pricing-card:nth-child(2) .stat-scan { animation-delay: 1s; }
+  .pricing-card:nth-child(3) .stat-scan { animation-delay: 2s; }
+  .pricing-card:nth-child(4) .stat-scan { animation-delay: 3s; }
+  .pricing-card:nth-child(5) .stat-scan { animation-delay: 4s; }
+  .pricing-card:nth-child(6) .stat-scan { animation-delay: 5s; }
 }
 
 .pricing-card {
@@ -366,7 +481,10 @@ $border-gold: #2a2520;
   border-radius: 0;
   padding: 40px 25px;
   position: relative;
+  overflow: hidden;
   transition: all 0.3s;
+  transform-style: preserve-3d;
+  perspective: 800px;
   clip-path: polygon(
     0 0,
     calc(100% - 20px) 0,
@@ -384,16 +502,21 @@ $border-gold: #2a2520;
     z-index: 0;
   }
   &:hover {
-    transform: translateY(-10px);
+    transform: perspective(800px) rotateX(2deg) translateY(-10px);
     box-shadow: 0 0 30px rgba($gold-primary, 0.2);
   }
   &.featured {
     border-color: $gold-primary;
-    box-shadow: 0 0 40px rgba($gold-primary, 0.25);
     background: rgba(22, 22, 20, 0.95);
     transform: scale(1.02);
-    &:hover { transform: scale(1.02) translateY(-10px); }
+    animation: featuredHalo 4s ease-in-out infinite;
+    &:hover { transform: scale(1.02) perspective(800px) rotateX(2deg) translateY(-10px); }
   }
+}
+
+@keyframes featuredHalo {
+  0%, 100% { box-shadow: 0 0 22px rgba($gold-primary, 0.2); }
+  50% { box-shadow: 0 0 46px rgba($gold-primary, 0.5); }
 }
 
 .pricing-header {
@@ -530,6 +653,51 @@ $border-gold: #2a2520;
   transform: translate(-50%, -50%);
 }
 
+.cta-frame {
+  position: absolute;
+  inset: 14px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.cta-edge {
+  position: absolute;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0%, transparent 82%,
+    rgba($gold-light, 0.9) 90%, rgba($gold-light, 0.9) 92%,
+    transparent 100%
+  );
+  background-size: 220% 100%;
+  filter: drop-shadow(0 0 6px rgba($gold-light, 0.6));
+
+  &.edge-top, &.edge-bottom { left: 30px; right: 30px; height: 2px; }
+  &.edge-top { top: 0; animation: ctaEdgeX 8s linear infinite; }
+  &.edge-bottom { bottom: 0; animation: ctaEdgeX 8s linear infinite reverse; }
+
+  &.edge-left, &.edge-right {
+    top: 30px; bottom: 30px; width: 2px;
+    background: repeating-linear-gradient(
+      180deg,
+      transparent 0%, transparent 82%,
+      rgba($gold-light, 0.9) 90%, rgba($gold-light, 0.9) 92%,
+      transparent 100%
+    );
+    background-size: 100% 220%;
+  }
+  &.edge-right { right: 0; animation: ctaEdgeY 8s linear infinite; }
+  &.edge-left { left: 0; animation: ctaEdgeY 8s linear infinite reverse; }
+}
+
+@keyframes ctaEdgeX {
+  from { background-position: 0% 0; }
+  to { background-position: -220% 0; }
+}
+@keyframes ctaEdgeY {
+  from { background-position: 0 0%; }
+  to { background-position: 0 -220%; }
+}
+
 .cta-title {
   font-size: 2.5rem;
   margin-bottom: 15px;
@@ -547,9 +715,31 @@ $border-gold: #2a2520;
 
 // Footer
 .landing-footer {
-  background: rgba(5, 5, 3, 0.8);
-  border-top: 1px solid rgba($gold-primary, 0.15);
+  position: relative;
+  background: linear-gradient(180deg, rgba(14, 14, 12, 0.95) 0%, rgba(5, 5, 3, 0.98) 100%);
   padding: 60px 20px 30px;
+  overflow: hidden;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: repeating-linear-gradient(
+      90deg,
+      transparent 0%, transparent 84%,
+      rgba($gold-light, 0.9) 92%, rgba($gold-light, 0.9) 94%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+    animation: footerShimmer 10s linear infinite;
+  }
+}
+
+@keyframes footerShimmer {
+  from { background-position: 0% 0; }
+  to { background-position: -200% 0; }
 }
 
 .footer-content {
@@ -659,4 +849,18 @@ $border-gold: #2a2520;
   .algo-diagram { flex-wrap: wrap; gap: 10px; }
   .algo-arrow { display: none; }
   .btn-hero-cta { padding: 14px 30px; font-size: 0.95rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .live-dot,
+  .stat-scan,
+  .step-icon,
+  .algo-arrow::after,
+  .pricing-card.featured,
+  .cta-edge,
+  .landing-footer::before,
+  .btn-outline-gold {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }

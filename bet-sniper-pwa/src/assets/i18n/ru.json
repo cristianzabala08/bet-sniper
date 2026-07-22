@@ -1,6 +1,8 @@
 {
   "LOGIN": {
-    "WELCOME": "Привет, добро пожаловать",
+    "WELCOME_1": "Привет,",
+    "WELCOME_2": "Добро пожаловать",
+    "SUBTITLE": "Войдите, чтобы продолжить",
     "COPYRIGHT": "2025 все права защищены.",
     "USER_PLACEHOLDER": "Имя пользователя или Email...",
     "PASS_PLACEHOLDER": "Пароль...",
@@ -14,7 +16,24 @@
     "BTN_CANCEL": "ОТМЕНА",
     "BTN_REGISTER": "СОЗДАТЬ АККАУНТ",
     "REMEMBER_ME": "Запомнить меня?",
-    "FORGOT_PASS": "Забыли пароль?"
+    "FORGOT_PASS": "Забыли пароль?",
+    "SIDEBAR": {
+      "FOCUS": "Фокус",
+      "ANALYZE": "Анализ",
+      "EXECUTE": "Действие",
+      "WIN": "Победа"
+    },
+    "TAGLINE": "Точность. Стратегия. Результаты.",
+    "FEATURES": {
+      "SECURITY_TITLE": "Продвинутая безопасность",
+      "SECURITY_DESC": "Мы защищаем ваш аккаунт",
+      "SPEED_TITLE": "Быстрый доступ",
+      "SPEED_DESC": "Без прерываний",
+      "ANALYSIS_TITLE": "Умный анализ",
+      "ANALYSIS_DESC": "Точные решения",
+      "RESULTS_TITLE": "Реальные результаты",
+      "RESULTS_DESC": "Ваш успех — наша цель"
+    }
   },
   "REGISTER": {
     "USER_LEADER": "Имя пользователя лидера",
@@ -65,7 +84,8 @@
       "SIGNALS_TAKEN": "ПРИНЯТЫЕ СИГНАЛЫ:",
       "WIN_RATE": "ВИНРЕЙТ:",
       "PROFIT_TOTAL_TODAY": "ОБЩАЯ ПРИБЫЛЬ СЕГОДНЯ",
-      "OF": "из"
+      "OF": "из",
+      "LOAD_ERROR": "Не удалось загрузить статистику"
     },
     "ACTIVE_SIGNALS": {
       "PLAN_REQUIRED_TITLE": "ACTIVE PLAN REQUIRED",
@@ -76,14 +96,15 @@
       "BTN_SIGNALS_LABEL": "ЗАГРУЗИТЬ ЕЩЕ СИГНАЛЫ",
       "OPERATIVE_PANEL": "ОПЕРАТИВНАЯ ПАНЕЛЬ",
       "BTN_START_SESSION": "НАЧАТЬ СЕССИЮ",
-      "BTN_PAUSE_SESSION": "ПАУЗА СЕССИИ",
+      "BTN_PAUSE_SESSION": "ПАУЗА СНАЙПЕРА",
       "SIGNALS_CONTROL": "КОНТРОЛЬ СИГНАЛОВ",
       "MODE_AUTOMATIC": "АВТОМАТИЧЕСКИЙ РЕЖИМ",
       "MODE_MANUAL": "РУЧНОЙ РЕЖИМ",
       "MODE_STATUS": "АКТИВИРОВАНО",
       "TAKE_SIGNAL": "ПРИНЯТЬ ЭТОТ СИГНАЛ",
       "MARTIN_LABEL": "КОНТРОЛЬ МАРТИНГЕЙЛА",
-      "AMOUNT_ASIGNED": "НАЗНАЧЕННАЯ СУММА"
+      "AMOUNT_ASIGNED": "НАЗНАЧЕННАЯ СУММА",
+      "AUTOMATIC_DESC": "Настройте уровень, сумму и статус вашего снайпера"
     },
     "CARDBAR": {
       "PLANS": {

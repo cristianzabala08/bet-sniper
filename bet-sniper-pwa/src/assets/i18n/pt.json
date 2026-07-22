@@ -1,6 +1,8 @@
 {
   "LOGIN": {
-    "WELCOME": "Olá, bem-vindo",
+    "WELCOME_1": "Olá,",
+    "WELCOME_2": "Bem-vindo",
+    "SUBTITLE": "Faça login para continuar",
     "COPYRIGHT": "2025 todos os direitos reservados.",
     "USER_PLACEHOLDER": "Usuário ou E-mail...",
     "PASS_PLACEHOLDER": "Senha...",
@@ -14,7 +16,24 @@
     "BTN_CANCEL": "CANCELAR",
     "BTN_REGISTER": "CRIAR UMA CONTA",
     "REMEMBER_ME": "Lembrar-me?",
-    "FORGOT_PASS": "Esqueceu sua senha?"
+    "FORGOT_PASS": "Esqueceu sua senha?",
+    "SIDEBAR": {
+      "FOCUS": "Foco",
+      "ANALYZE": "Analise",
+      "EXECUTE": "Execute",
+      "WIN": "Vença"
+    },
+    "TAGLINE": "Precisão. Estratégia. Resultados.",
+    "FEATURES": {
+      "SECURITY_TITLE": "Segurança avançada",
+      "SECURITY_DESC": "Protegemos sua conta",
+      "SPEED_TITLE": "Acesso rápido",
+      "SPEED_DESC": "Sem interrupções",
+      "ANALYSIS_TITLE": "Análise inteligente",
+      "ANALYSIS_DESC": "Decisões precisas",
+      "RESULTS_TITLE": "Resultados reais",
+      "RESULTS_DESC": "Seu sucesso é nosso objetivo"
+    }
   },
   "REGISTER": {
     "USER_LEADER": "Usuário do Líder",
@@ -65,7 +84,8 @@
       "SIGNALS TAKEN": "SINAIS TOMADOS:",
       "WIN RATE": "TAXA DE VITÓRIAS:",
       "PROFIT_TOTAL_TODAY": "LUCRO TOTAL HOJE",
-      "OF": "do"
+      "OF": "do",
+      "LOAD_ERROR": "Não foi possível carregar as estatísticas"
     },
     "ACTIVE_SIGNALS": {
       "PLAN_REQUIRED_TITLE": "ACTIVE PLAN REQUIRED",
@@ -76,14 +96,15 @@
       "BTN_SIGNALS_LABEL": "CARREGAR MAIS SINAIS",
       "OPERATIVE_PANEL": "PAINEL OPERATIVO DE SINAIS",
       "BTN_START_SESSION": "INICIAR SESSÃO",
-      "BTN_PAUSE_SESSION": "PAUSAR SESSÃO",
+      "BTN_PAUSE_SESSION": "PAUSAR FRANCO-ATIRADOR",
       "SIGNALS_CONTROL": "CONTROLE DE SINAIS",
       "MODE_AUTOMATIC": "MODO AUTOMÁTICO",
       "MODE_MANUAL": "MODO MANUAL",
       "MODE_STATUS": "ATIVADO",
       "TAKE_SIGNAL": "TOMAR ESTE SINAL",
       "MARTIN_LABEL": "CONTROLE MARTIN GALA",
-      "AMOUNT_ASIGNED": "VALOR ATRIBUÍDO"
+      "AMOUNT_ASIGNED": "VALOR ATRIBUÍDO",
+      "AUTOMATIC_DESC": "Configure o nível, valor e status do seu sniper"
     },
     "CARDBAR": {
       "PLANS": {

@@ -41,32 +41,48 @@
 
   <!-- Stats Section -->
   <section class="stats-section" id="stats">
+    <div class="live-badge"><span class="live-dot"></span> En Vivo</div>
     <h2 class="section-title gold-gradient-text">Estadísticas en Vivo</h2>
     <p class="section-subtitle">Resultados reales de nuestras señales hoy</p>
     <div class="stats-grid">
       <div class="stat-card wins">
+        <span class="stat-scan"></span>
+        <span class="stat-corner corner-tl"></span>
+        <span class="stat-corner corner-br"></span>
         <div class="stat-icon"><i class="fa fa-check-circle"></i></div>
-        <div class="stat-value">{{ config.statsWinsToday }}</div>
+        <div class="stat-value" [appCountUp]="config.statsWinsToday"></div>
         <div class="stat-label">Victorias Hoy</div>
       </div>
       <div class="stat-card losses">
+        <span class="stat-scan"></span>
+        <span class="stat-corner corner-tl"></span>
+        <span class="stat-corner corner-br"></span>
         <div class="stat-icon"><i class="fa fa-times-circle"></i></div>
-        <div class="stat-value">{{ config.statsLossesToday }}</div>
+        <div class="stat-value" [appCountUp]="config.statsLossesToday"></div>
         <div class="stat-label">Pérdidas Hoy</div>
       </div>
       <div class="stat-card profit">
+        <span class="stat-scan"></span>
+        <span class="stat-corner corner-tl"></span>
+        <span class="stat-corner corner-br"></span>
         <div class="stat-icon"><i class="fa fa-dollar-sign"></i></div>
-        <div class="stat-value">{{ config.statsProfitToday }}</div>
+        <div class="stat-value" [appCountUp]="config.statsProfitToday"></div>
         <div class="stat-label">Profit Total</div>
       </div>
       <div class="stat-card winrate">
+        <span class="stat-scan"></span>
+        <span class="stat-corner corner-tl"></span>
+        <span class="stat-corner corner-br"></span>
         <div class="stat-icon"><i class="fa fa-chart-line"></i></div>
-        <div class="stat-value">{{ config.statsWinRate }}</div>
+        <div class="stat-value" [appCountUp]="config.statsWinRate"></div>
         <div class="stat-label">Índice de Victoria</div>
       </div>
       <div class="stat-card users">
+        <span class="stat-scan"></span>
+        <span class="stat-corner corner-tl"></span>
+        <span class="stat-corner corner-br"></span>
         <div class="stat-icon"><i class="fa fa-users"></i></div>
-        <div class="stat-value">{{ config.statsActiveUsers }}</div>
+        <div class="stat-value" [appCountUp]="config.statsActiveUsers"></div>
         <div class="stat-label">Usuarios Activos</div>
       </div>
     </div>
@@ -76,17 +92,19 @@
   <section class="martingala-section" id="martingala">
     <div class="martingala-container">
       <div class="martingala-visual">
+        <span class="stat-corner corner-tl"></span>
+        <span class="stat-corner corner-br"></span>
         <div class="algo-diagram">
           <div class="algo-step loss">
             <div class="step-icon"><i class="fa fa-arrow-down"></i></div>
             <span>Pérdida</span>
           </div>
-          <div class="algo-arrow"><i class="fa fa-arrow-right"></i></div>
+          <div class="algo-arrow arrow-1"><i class="fa fa-arrow-right"></i></div>
           <div class="algo-step calc">
             <div class="step-icon"><i class="fa fa-calculator"></i></div>
             <span>Cálculo</span>
           </div>
-          <div class="algo-arrow"><i class="fa fa-arrow-right"></i></div>
+          <div class="algo-arrow arrow-2"><i class="fa fa-arrow-right"></i></div>
           <div class="algo-step win">
             <div class="step-icon"><i class="fa fa-arrow-up"></i></div>
             <span>Recuperación</span>
@@ -113,6 +131,9 @@
     <div class="pricing-grid">
       <!-- Weekly -->
       <div class="pricing-card">
+        <span class="stat-scan"></span>
+        <span class="stat-corner corner-tl"></span>
+        <span class="stat-corner corner-br"></span>
         <div class="pricing-header">
           <div class="plan-name">Membresía <strong>WEEKLY</strong></div>
           <div class="plan-duration">
@@ -136,6 +157,9 @@
 
       <!-- Basic -->
       <div class="pricing-card featured">
+        <span class="stat-scan"></span>
+        <span class="stat-corner corner-tl"></span>
+        <span class="stat-corner corner-br"></span>
         <div class="pricing-header">
           <div class="plan-name">Membresía <strong>BASIC</strong></div>
           <div class="plan-duration">
@@ -159,6 +183,9 @@
 
       <!-- Amateur -->
       <div class="pricing-card">
+        <span class="stat-scan"></span>
+        <span class="stat-corner corner-tl"></span>
+        <span class="stat-corner corner-br"></span>
         <div class="pricing-header">
           <div class="plan-name">Membresía <strong>AMATEUR</strong></div>
           <div class="plan-duration">
@@ -182,6 +209,9 @@
 
       <!-- Pro -->
       <div class="pricing-card">
+        <span class="stat-scan"></span>
+        <span class="stat-corner corner-tl"></span>
+        <span class="stat-corner corner-br"></span>
         <div class="pricing-header">
           <div class="plan-name">Membresía <strong>PRO</strong></div>
           <div class="plan-duration">
@@ -205,6 +235,9 @@
 
       <!-- Expert -->
       <div class="pricing-card">
+        <span class="stat-scan"></span>
+        <span class="stat-corner corner-tl"></span>
+        <span class="stat-corner corner-br"></span>
         <div class="pricing-header">
           <div class="plan-name">Membresía <strong>EXPERT</strong></div>
           <div class="plan-duration">
@@ -228,6 +261,9 @@
 
       <!-- Elite -->
       <div class="pricing-card">
+        <span class="stat-scan"></span>
+        <span class="stat-corner corner-tl"></span>
+        <span class="stat-corner corner-br"></span>
         <div class="pricing-header">
           <div class="plan-name">Membresía <strong>ELITE</strong></div>
           <div class="plan-duration">
@@ -253,6 +289,12 @@
 
   <!-- CTA Section -->
   <section class="cta-section">
+    <div class="cta-frame" aria-hidden="true">
+      <span class="cta-edge edge-top"></span>
+      <span class="cta-edge edge-right"></span>
+      <span class="cta-edge edge-bottom"></span>
+      <span class="cta-edge edge-left"></span>
+    </div>
     <div class="cta-glow"></div>
     <h2 class="cta-title gold-gradient-text">{{ config.ctaSectionTitle }}</h2>
     <p class="cta-subtitle">{{ config.ctaSectionSubtitle }}</p>

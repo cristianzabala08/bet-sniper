@@ -1,6 +1,8 @@
 {
   "LOGIN": {
-    "WELCOME": "Hello, welcome",
+    "WELCOME_1": "Hello,",
+    "WELCOME_2": "Welcome",
+    "SUBTITLE": "Sign in to continue",
     "COPYRIGHT": "2025 all rights reserved.",
     "USER_PLACEHOLDER": "Username or Email...",
     "PASS_PLACEHOLDER": "Password...",
@@ -14,7 +16,24 @@
     "BTN_CANCEL": "CANCEL",
     "BTN_REGISTER": "CREATE AN ACCOUNT",
     "REMEMBER_ME": "Remember me?",
-    "FORGOT_PASS": "Forgot your password?"
+    "FORGOT_PASS": "Forgot your password?",
+    "SIDEBAR": {
+      "FOCUS": "Focus",
+      "ANALYZE": "Analyze",
+      "EXECUTE": "Execute",
+      "WIN": "Win"
+    },
+    "TAGLINE": "Precision. Strategy. Results.",
+    "FEATURES": {
+      "SECURITY_TITLE": "Advanced Security",
+      "SECURITY_DESC": "We protect your account",
+      "SPEED_TITLE": "Fast Access",
+      "SPEED_DESC": "No interruptions",
+      "ANALYSIS_TITLE": "Smart Analysis",
+      "ANALYSIS_DESC": "Precise decisions",
+      "RESULTS_TITLE": "Real Results",
+      "RESULTS_DESC": "Your success is our goal"
+    }
   },
   "REGISTER": {
     "USER_LEADER": "Leader Username",
@@ -78,7 +97,8 @@
       "PROFIT_TOTAL_TODAY": "TOTAL PROFIT TODAY",
       "OF": "of",
       "WINS": "WINS",
-      "LOSS": "LOSS"
+      "LOSS": "LOSS",
+      "LOAD_ERROR": "Could not load statistics"
     },
     "ACTIVE_SIGNALS": {
       "PLAN_REQUIRED_TITLE": "ACTIVE PLAN",
@@ -143,21 +163,68 @@
       "PAUSED": "PAUSED",
       "TIE": "TIE",
       "LIVE_PLAY": "LIVE PLAY",
-      "LEVEL": "Level"
+      "LEVEL": "Level",
+      "TARGET_PLAYER": "PLAYER",
+      "TARGET_BANKER": "BANKER",
+      "TARGET_TIE": "TIE",
+      "AI_ANALYZING_PATTERNS": "AI ANALYZING PATTERNS",
+      "CONFIDENCE": "CONFIDENCE",
+      "DIAGNOSIS_TITLE": "AI DIAGNOSIS",
+      "PATTERNS_DETECTED": "PATTERNS DETECTED",
+      "FREQUENCY": "FREQUENCY",
+      "BEHAVIOR_LABEL": "BEHAVIOR",
+      "DEVIATION": "DEVIATION",
+      "TREND_LABEL": "TREND",
+      "TREND_POSITIVE": "POSITIVE",
+      "TREND_NEGATIVE": "NEGATIVE",
+      "TREND_NEUTRAL": "NEUTRAL",
+      "BEHAVIOR_FAVORABLE": "FAVORABLE",
+      "BEHAVIOR_NEUTRAL": "NEUTRAL",
+      "BEHAVIOR_UNFAVORABLE": "UNFAVORABLE",
+      "PROBABILITY_TITLE": "PROBABILITY",
+      "AI_ACCURACY": "AI ACCURACY",
+      "ALGORITHM_STATUS": "ALGORITHM STATUS",
+      "ALGORITHM_SCANNING": "SCANNING",
+      "ALGORITHM_PAUSED": "PAUSED",
+      "SYNC": "SYNC",
+      "SCANNING_PATTERNS": "Scanning patterns...",
+      "DETECTING_TRENDS": "Detecting trends...",
+      "RADAR_SWEEP": "360° radar sweep",
+      "CORE_LABEL": "BET SNIPER AI Core",
+      "TABLES_COUNT": "TABLES",
+      "ANALYZING_HISTORY": "Analyzing history...",
+      "VALIDATING_SIGNAL": "Validating signal...",
+      "FINDING_MATCHES": "Finding matches...",
+      "SYNCING_AI": "Syncing AI...",
+      "READING_BEHAVIOR": "Reading behavior...",
+      "COMPARING_TABLES": "Comparing tables...",
+      "CALCULATING_RISK": "Calculating risk...",
+      "FREQUENCY_HIGH": "HIGH",
+      "FREQUENCY_MEDIUM": "MEDIUM",
+      "FREQUENCY_LOW": "LOW",
+      "PRECISION_HIGH": "HIGH",
+      "PRECISION_MEDIUM": "MEDIUM",
+      "PRECISION_LOW": "LOW",
+      "STREAK": "STREAK",
+      "STREAK_WINS": "WINS",
+      "STREAK_LOSSES": "LOSSES",
+      "ANALYSIS_IN_PROGRESS": "ANALYSIS IN PROGRESS",
+      "ANALYSIS_IDLE": "WAITING FOR VALID PATTERN"
     },
     "HERO": {
       "SIGNALS_LIST": "SNIPING SEQUENCE",
       "BTN_SIGNALS_LABEL": "LOAD MORE SEQUENCES",
       "OPERATIVE_PANEL": "BACCARAT SNIPING STATION",
       "BTN_START_SESSION": "START SNIPING",
-      "BTN_PAUSE_SESSION": "PAUSE SNIPING",
+      "BTN_PAUSE_SESSION": "PAUSE SNIPER",
       "SIGNALS_CONTROL": "SNIPING CONTROL",
       "MODE_AUTOMATIC": "AUTOMATIC MODE",
       "MODE_MANUAL": "MANUAL MODE",
       "MODE_STATUS": "ACTIVATED",
       "TAKE_SIGNAL": "TAKE THIS SIGNAL",
       "MARTIN_LABEL": "MARTIN GALA CONTROL",
-      "AMOUNT_ASIGNED": "ASSIGNED AMOUNT"
+      "AMOUNT_ASIGNED": "ASSIGNED AMOUNT",
+      "AUTOMATIC_DESC": "Configure your sniper's level, amount and status"
     },
     "CARDBAR": {
       "PLANS": {

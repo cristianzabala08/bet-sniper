@@ -6,16 +6,28 @@ $gold-dark: #8b6914;
   0%, 100% {
     filter: drop-shadow(0 0 15px rgba(201, 168, 76, 0.45))
             drop-shadow(0 0 35px rgba(255, 215, 0, 0.15));
+    transform: scale(1);
   }
   50% {
     filter: drop-shadow(0 0 25px rgba(201, 168, 76, 0.7))
             drop-shadow(0 0 55px rgba(255, 215, 0, 0.3));
+    transform: scale(1.015);
   }
+}
+
+@keyframes logo-halo-breathe {
+  0%, 100% { opacity: 0.55; transform: translate(-50%, -50%) scale(0.92); }
+  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.08); }
+}
+
+@keyframes logo-sweep {
+  0%, 78%, 100% { background-position: -140% -140%; }
+  90% { background-position: 140% 140%; }
 }
 
 .betsniper-header {
   position: relative;
-  margin: 10px 15px 0 15px;
+  margin: 0 15px;
   padding: 0;
 
   .hex-border-top, .hex-border-bottom {
@@ -41,7 +53,7 @@ $gold-dark: #8b6914;
   .header-content {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     padding: 15px 20px;
     border-left: 1px solid rgba(201, 168, 76, 0.18);
     border-right: 1px solid rgba(201, 168, 76, 0.18);
@@ -51,48 +63,62 @@ $gold-dark: #8b6914;
       rgba(10, 10, 8, 0.92);
   }
 
-  .logo-side {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex: 1;
-
-    .brand-text {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 800;
-      letter-spacing: 4px;
-      color: $gold-primary;
-      text-shadow: 0 0 12px rgba(201, 168, 76, 0.4);
-    }
-
-    .brand-sub {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 0.55rem;
-      letter-spacing: 3px;
-      color: rgba(201, 168, 76, 0.5);
-      margin-top: 2px;
-    }
-  }
-
   .logo-center {
     display: flex;
     flex-direction: column;
     align-items: center;
     flex: 2;
 
+    .logo-mark {
+      position: relative;
+      width: 90px;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-halo {
+      position: absolute;
+      width: 150%;
+      height: 150%;
+      left: 50%;
+      top: 50%;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba($gold-light, 0.35) 0%, rgba($gold-primary, 0.12) 45%, transparent 72%);
+      animation: logo-halo-breathe 4s ease-in-out infinite;
+      z-index: 0;
+    }
+
     .main-logo {
+      position: relative;
+      z-index: 1;
       width: 90px;
       height: auto;
-      animation: pulse-glow 3.5s ease-in-out infinite;
-      margin-bottom: 6px;
+      animation: pulse-glow 4s ease-in-out infinite;
+    }
+
+    .logo-sweep {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background: linear-gradient(115deg, transparent 40%, rgba(255, 255, 255, 0.5) 50%, transparent 60%);
+      background-size: 260% 260%;
+      background-position: -140% -140%;
+      -webkit-mask-image: url('/assets/logo_bs_shield.png');
+      mask-image: url('/assets/logo_bs_shield.png');
+      -webkit-mask-size: 100% 100%;
+      mask-size: 100% 100%;
+      mix-blend-mode: screen;
+      animation: logo-sweep 8s ease-in-out infinite;
+      pointer-events: none;
     }
 
     .brand-title {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 2rem;
-      font-weight: 900;
-      letter-spacing: 9px;
+      font-family: 'Black Ops One', 'Montserrat', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 400;
+      letter-spacing: 4px;
       background: linear-gradient(135deg, $gold-light 0%, $gold-primary 40%, $gold-light 70%, $gold-primary 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -100,12 +126,6 @@ $gold-dark: #8b6914;
       margin: 0;
       line-height: 1.1;
       text-shadow: none;
-
-      .i-accent {
-        -webkit-text-fill-color: $gold-light;
-        font-style: italic;
-        text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-      }
     }
 
     .brand-tagline {
@@ -122,20 +142,20 @@ $gold-dark: #8b6914;
 /* Mobile responsive */
 @media (max-width: 768px) {
   .betsniper-header {
-    .logo-side {
-      .brand-text {
-        font-size: 0.6rem;
-        letter-spacing: 2px;
-      }
-      .brand-sub {
-        font-size: 0.45rem;
-        letter-spacing: 1px;
-      }
-    }
     .logo-center {
+      .logo-mark { width: 65px; }
       .main-logo { width: 65px; }
       .brand-title { font-size: 1.5rem; letter-spacing: 6px; }
       .brand-tagline { font-size: 0.6rem; letter-spacing: 4px; }
     }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .main-logo,
+  .logo-halo,
+  .logo-sweep {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
   }
 }
