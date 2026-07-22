@@ -39,15 +39,7 @@ $border-gold: #2a2520;
 
 // Header
 .landing-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  background: rgba(10, 10, 10, 0.95);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba($gold-primary, 0.2);
-  padding: 0 20px;
+  display: none;
 }
 
 .header-container {
@@ -195,6 +187,36 @@ $border-gold: #2a2520;
   &:hover {
     transform: translateY(-3px);
     box-shadow: 0 0 50px rgba($gold-primary, 0.6);
+  }
+}
+
+// Posicionado para calzar exactamente en el rectángulo vacío que trae
+// landing-chu-hero.png (centro del hueco al 65% del alto, 1493x1054px).
+.hero-cta-overlay {
+  position: absolute;
+  z-index: 3;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(135deg, #ffe066 0%, #ffc107 100%);
+  animation: ctaPulse 1.6s ease-in-out infinite;
+
+  &:hover {
+    animation-play-state: paused;
+    transform: translate(-50%, -50%) translateY(-3px);
+  }
+}
+
+@keyframes ctaPulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    background: linear-gradient(135deg, #ffe066 0%, #ffc107 100%);
+    box-shadow: 0 0 30px rgba(255, 214, 51, 0.5);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.06);
+    background: linear-gradient(135deg, #fff3b0 0%, #ffd400 100%);
+    box-shadow: 0 0 55px rgba(255, 214, 51, 0.9);
   }
 }
 

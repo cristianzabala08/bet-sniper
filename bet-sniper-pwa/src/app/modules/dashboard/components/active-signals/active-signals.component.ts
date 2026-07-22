@@ -7,7 +7,6 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserService } from 'src/app/core/services/user.service';
 import { TokenService } from 'src/app/shared/services/jwt-token.service';
@@ -32,7 +31,7 @@ interface SignalViewModel extends PanelPrincipal {
 
 @Component({
   standalone: true,
-  imports: [CommonModule, RouterModule, TranslateModule],
+  imports: [CommonModule, TranslateModule],
   selector: 'app-active-signals',
   templateUrl: './active-signals.component.html',
   styleUrls: ['./active-signals.component.scss'],
@@ -112,6 +111,12 @@ export class ActiveSignalsComponent implements OnInit, OnDestroy {
     this.isGpulseSsoLoading = true;
     this.cdr.markForCheck();
 
+    // Pestaña en blanco abierta YA, de forma sincrónica dentro del gesto de
+    // click: si esperáramos a que responda /gpulse-sso antes de abrirla, deja
+    // de contar como "gesto directo del usuario" y el navegador la bloquea
+    // como popup. Una vez llega la URL firmada, navegamos esa misma pestaña
+    // (navegación real, no fetch — necesaria para que GPulse pueda setear su
+    // cookie de sesión y aterrizar en el juego, no en un fetch inerte).
     const newTab = window.open('', '_blank');
 
     this.http.get<{ data: { redirectUrl: string } }>('/gpulse-sso').subscribe({

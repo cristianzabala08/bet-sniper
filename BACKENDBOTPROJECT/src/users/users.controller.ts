@@ -14,6 +14,7 @@ import {
   ValidationPipe,
   UsePipes,
 } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
 import { UpdateUserAdminDto } from './dto/update-user-admin.dto';
 import { ChangePasswordAdminDto } from './dto/change-password-admin.dto';
 import { UsersService } from './users.service';
@@ -39,7 +40,10 @@ const logger = new Logger('UsersController');
 @ApiBearerAuth() // <<<<<< 🚀 Esto agrega el botón de "Authorize" para este controlador
 @Controller('users')
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(
+    private readonly usersService: UsersService,
+    private readonly jwtService: JwtService,
+  ) {}
 
   @Post()
   @UseGuards(JwtAuthGuard)
@@ -121,9 +125,27 @@ export class UsersController {
       userId,
       body.wallet,
     );
+
+    // Re-firma el JWT con la wallet nueva: el token que tiene el cliente en
+    // localStorage es estático, así que sin esto la sesión seguiría viendo
+    // al usuario "sin wallet" (p.ej. para /gpulse-sso) hasta el próximo
+    // login. Reusa el MISMO sessionId del token actual — generar uno nuevo
+    // acá dispararía SESSION_EXPIRED_DUPLICATE_LOGIN en el próximo request,
+    // porque JwtStrategy.validate() lo compara contra user.loginSessionId
+    // en la base, que solo se actualiza en el login real.
+    const token = this.jwtService.sign({
+      username: updatedUser.username,
+      email: updatedUser.email,
+      wallet: updatedUser.wallet,
+      sub: (updatedUser as any)._id,
+      role: (updatedUser as any).usertype,
+      sessionId: user.sessionId,
+    });
+
     return {
       message: 'Wallet actualizada correctamente',
       user: updatedUser,
+      token,
     };
   }
   @Get('admin/list')
