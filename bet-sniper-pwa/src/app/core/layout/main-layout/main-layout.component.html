@@ -1,16 +1,77 @@
 <div class="app-layout">
+  <!-- Marco tecnológico perimetral -->
+  <div class="tech-frame" aria-hidden="true">
+    <span class="frame-edge edge-top"></span>
+    <span class="frame-edge edge-right"></span>
+    <span class="frame-edge edge-bottom"></span>
+    <span class="frame-edge edge-left"></span>
+  </div>
   <!-- Elaborate gold corner decorations -->
   <div class="corner-decor corner-tl"></div>
   <div class="corner-decor corner-tr"></div>
   <div class="corner-decor corner-bl"></div>
   <div class="corner-decor corner-br"></div>
   <header class="topbar">
-    <div class="brand-logo">
-      <!-- <span class="logo-text">BET SNIPER</span> -->
-    </div>
+    <div class="topbar-spacer" aria-hidden="true"></div>
+
+    <nav class="topbar-nav" role="navigation" aria-label="Navegación principal">
+      <a
+        [routerLink]="['/app/dashboard']"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+        ariaCurrentWhenActive="page"
+      >
+        {{ "MENU.DASHBOARD" | translate }}
+      </a>
+      <a
+        [routerLink]="['/app/dashboard/signals']"
+        routerLinkActive="active-link"
+        ariaCurrentWhenActive="page"
+      >
+        {{ "MENU.SIGNALS" | translate }}
+      </a>
+      <a
+        [routerLink]="['/app/plans']"
+        routerLinkActive="active-link"
+        ariaCurrentWhenActive="page"
+      >
+        {{ "MENU.PLANS" | translate }}
+      </a>
+      <a
+        [routerLink]="['/app/history']"
+        routerLinkActive="active-link"
+        ariaCurrentWhenActive="page"
+      >
+        {{ "MENU.HISTORY" | translate }}
+      </a>
+      <a
+        [routerLink]="['/app/referrals']"
+        routerLinkActive="active-link"
+        ariaCurrentWhenActive="page"
+      >
+        {{ "MENU.REFERRALS" | translate }}
+      </a>
+      <a
+        [routerLink]="['/app/support']"
+        routerLinkActive="active-link"
+        ariaCurrentWhenActive="page"
+      >
+        {{ "MENU.SUPPORT" | translate }}
+      </a>
+    </nav>
 
     <div class="profile-widget-container">
-      <div class="profile-trigger" (click)="toggleProfileMenu()">
+      <div
+        class="profile-trigger"
+        role="button"
+        tabindex="0"
+        aria-haspopup="true"
+        [attr.aria-expanded]="isProfileMenuOpen"
+        aria-label="Menú de perfil"
+        (click)="toggleProfileMenu()"
+        (keydown.enter)="toggleProfileMenu()"
+        (keydown.space)="toggleProfileMenu(); $event.preventDefault()"
+      >
         <span class="arrow-indicator">↓</span>
         <div class="avatar-box">
           <i class="fa-regular fa-user"></i>
@@ -97,13 +158,15 @@
       </div>
     </div>
 
-    <nav class="bottom-navbar">
+    <nav class="bottom-navbar" role="navigation" aria-label="Navegación inferior">
       <div class="nav-group left">
         <a
           [routerLink]="['/app/dashboard']"
           routerLinkActive="active-btn"
           [routerLinkActiveOptions]="{ exact: true }"
+          ariaCurrentWhenActive="page"
           class="nav-item btn-neon-purple"
+          aria-label="Escritorio"
         >
           <i class="icon fa-solid fa-table-columns"></i>
           <span class="label">{{ "MENU.DASHBOARD" | translate }}</span>
@@ -111,7 +174,9 @@
         <a
           [routerLink]="['/app/dashboard/signals']"
           routerLinkActive="active-btn"
+          ariaCurrentWhenActive="page"
           class="nav-item btn-neon-purple"
+          aria-label="Señales"
         >
           <i class="icon fa-solid fa-bolt"></i>
           <span class="label">{{ "MENU.SIGNALS" | translate }}</span>
@@ -119,14 +184,16 @@
         <a
           [routerLink]="['/app/plans']"
           routerLinkActive="active-btn"
+          ariaCurrentWhenActive="page"
           class="nav-item btn-neon-purple"
+          aria-label="Planes"
         >
           <i class="icon fa-solid fa-file-invoice-dollar"></i>
           <span class="label">{{ "MENU.PLANS" | translate }}</span>
         </a>
       </div>
 
-      <div class="oracle-orb-container">
+      <div class="oracle-orb-container" aria-hidden="true">
         <div class="orb-visual"></div>
       </div>
 
@@ -134,7 +201,9 @@
         <a
           [routerLink]="['/app/history']"
           routerLinkActive="active-btn"
+          ariaCurrentWhenActive="page"
           class="nav-item btn-neon-purple"
+          aria-label="Histórico"
         >
           <i class="icon fa-solid fa-clock-rotate-left"></i>
           <span class="label">{{ "MENU.HISTORY" | translate }}</span>
@@ -142,7 +211,9 @@
         <a
           [routerLink]="['/app/referrals']"
           routerLinkActive="active-btn"
+          ariaCurrentWhenActive="page"
           class="nav-item btn-neon-purple"
+          aria-label="Referidos"
         >
           <i class="icon fa-solid fa-users"></i>
           <span class="label">{{ "MENU.REFERRALS" | translate }}</span>
@@ -150,7 +221,9 @@
         <a
           [routerLink]="['/app/support']"
           routerLinkActive="active-btn"
+          ariaCurrentWhenActive="page"
           class="nav-item btn-neon-purple"
+          aria-label="Soporte"
         >
           <i class="icon fa-solid fa-headset"></i>
           <span class="label">{{ "MENU.SUPPORT" | translate }}</span>

@@ -1,6 +1,8 @@
 {
   "LOGIN": {
-    "WELCOME": "Hallo, willkommen",
+    "WELCOME_1": "Hallo,",
+    "WELCOME_2": "Willkommen",
+    "SUBTITLE": "Melde dich an, um fortzufahren",
     "COPYRIGHT": "2025 Alle Rechte vorbehalten.",
     "USER_PLACEHOLDER": "Benutzername oder E-Mail...",
     "PASS_PLACEHOLDER": "Passwort...",
@@ -14,7 +16,24 @@
     "BTN_CANCEL": "ABBRECHEN",
     "BTN_REGISTER": "KONTO ERSTELLEN",
     "REMEMBER_ME": "Angemeldet bleiben?",
-    "FORGOT_PASS": "Passwort vergessen?"
+    "FORGOT_PASS": "Passwort vergessen?",
+    "SIDEBAR": {
+      "FOCUS": "Fokus",
+      "ANALYZE": "Analysieren",
+      "EXECUTE": "Ausführen",
+      "WIN": "Gewinnen"
+    },
+    "TAGLINE": "Präzision. Strategie. Ergebnisse.",
+    "FEATURES": {
+      "SECURITY_TITLE": "Erweiterte Sicherheit",
+      "SECURITY_DESC": "Wir schützen dein Konto",
+      "SPEED_TITLE": "Schneller Zugriff",
+      "SPEED_DESC": "Keine Unterbrechungen",
+      "ANALYSIS_TITLE": "Intelligente Analyse",
+      "ANALYSIS_DESC": "Präzise Entscheidungen",
+      "RESULTS_TITLE": "Echte Ergebnisse",
+      "RESULTS_DESC": "Dein Erfolg ist unser Ziel"
+    }
   },
   "REGISTER": {
     "USER_LEADER": "Leader-Benutzername",
@@ -65,7 +84,8 @@
       "SIGNALS_TAKEN": "GENOMMENE SIGNALE:",
       "WIN_RATE": "GEWINNRATE:",
       "PROFIT_TOTAL_TODAY": "GESAMTGEWINN HEUTE",
-      "OF": "von"
+      "OF": "von",
+      "LOAD_ERROR": "Statistiken konnten nicht geladen werden"
     },
     "ACTIVE_SIGNALS": {
       "PLAN_REQUIRED_TITLE": "ACTIVE PLAN REQUIRED",
@@ -76,14 +96,15 @@
       "BTN_SIGNALS_LABEL": "MEHR SIGNALE LADEN",
       "OPERATIVE_PANEL": "OPERATIVES SIGNAL-PANEL",
       "BTN_START_SESSION": "SITZUNG STARTEN",
-      "BTN_PAUSE_SESSION": "SITZUNG PAUSIEREN",
+      "BTN_PAUSE_SESSION": "SCHARFSCHÜTZE PAUSIEREN",
       "SIGNALS_CONTROL": "SIGNALSTEUERUNG",
       "MODE_AUTOMATIC": "AUTOMATISCHER MODUS",
       "MODE_MANUAL": "MANUELLER MODUS",
       "MODE_STATUS": "AKTIVIERT",
       "TAKE_SIGNAL": "DIESES SIGNAL NEHMEN",
       "MARTIN_LABEL": "MARTINGALE-STEUERUNG",
-      "AMOUNT_ASIGNED": "ZUGEWIESENER BETRAG"
+      "AMOUNT_ASIGNED": "ZUGEWIESENER BETRAG",
+      "AUTOMATIC_DESC": "Level, Betrag und Status deines Snipers konfigurieren"
     },
     "CARDBAR": {
       "PLANS": {

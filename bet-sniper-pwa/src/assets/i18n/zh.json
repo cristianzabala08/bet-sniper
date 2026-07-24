@@ -1,6 +1,8 @@
 {
   "LOGIN": {
-    "WELCOME": "你好，欢迎",
+    "WELCOME_1": "你好，",
+    "WELCOME_2": "欢迎",
+    "SUBTITLE": "登录以继续",
     "COPYRIGHT": "2025 版权所有。",
     "USER_PLACEHOLDER": "用户名 or 邮箱...",
     "PASS_PLACEHOLDER": "密码...",
@@ -14,7 +16,24 @@
     "BTN_CANCEL": "取消",
     "BTN_REGISTER": "创建账户",
     "REMEMBER_ME": "记住我？",
-    "FORGOT_PASS": "忘记密码？"
+    "FORGOT_PASS": "忘记密码？",
+    "SIDEBAR": {
+      "FOCUS": "专注",
+      "ANALYZE": "分析",
+      "EXECUTE": "执行",
+      "WIN": "获胜"
+    },
+    "TAGLINE": "精准。策略。成果。",
+    "FEATURES": {
+      "SECURITY_TITLE": "高级安全",
+      "SECURITY_DESC": "我们保护您的账户",
+      "SPEED_TITLE": "快速访问",
+      "SPEED_DESC": "不间断",
+      "ANALYSIS_TITLE": "智能分析",
+      "ANALYSIS_DESC": "精准决策",
+      "RESULTS_TITLE": "真实成果",
+      "RESULTS_DESC": "您的成功是我们的目标"
+    }
   },
   "REGISTER": {
     "USER_LEADER": "领导人用户名",
@@ -65,7 +84,8 @@
       "SIGNALS_TAKEN": "已采纳信号:",
       "WIN_RATE": "胜率:",
       "PROFIT_TOTAL_TODAY": "今日总利润",
-      "OF": "/"
+      "OF": "/",
+      "LOAD_ERROR": "无法加载统计数据"
     },
     "ACTIVE_SIGNALS": {
       "PLAN_REQUIRED_TITLE": "ACTIVE PLAN REQUIRED",
@@ -76,14 +96,15 @@
       "BTN_SIGNALS_LABEL": "加载更多信号",
       "OPERATIVE_PANEL": "信号操作面板",
       "BTN_START_SESSION": "开始会话",
-      "BTN_PAUSE_SESSION": "暂停会话",
+      "BTN_PAUSE_SESSION": "暂停狙击手",
       "SIGNALS_CONTROL": "信号控制",
       "MODE_AUTOMATIC": "自动模式",
       "MODE_MANUAL": "手动模式",
       "MODE_STATUS": "已激活",
       "TAKE_SIGNAL": "采纳此信号",
       "MARTIN_LABEL": "马丁格尔控制",
-      "AMOUNT_ASIGNED": "分配金额"
+      "AMOUNT_ASIGNED": "分配金额",
+      "AUTOMATIC_DESC": "配置您的狙击手等级、金额和状态"
     },
     "CARDBAR": {
       "PLANS": {

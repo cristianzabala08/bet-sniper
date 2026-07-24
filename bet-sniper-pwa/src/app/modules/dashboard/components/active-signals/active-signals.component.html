@@ -1,8 +1,22 @@
 <!-- <app-logo></app-logo> -->
 <section class="stats-top-bar glass-panel mt-1 mb-4">
-  <div class="header-title">{{ "DASHBOARD.TOP_BAR.TITLE" | translate }}</div>
+  <div class="header-title">
+    <i class="fa-solid fa-crosshairs" aria-hidden="true"></i>
+    {{ "DASHBOARD.TOP_BAR.TITLE" | translate }}
+  </div>
 
-  <div class="stats-row">
+  <!-- Estado de carga -->
+  <div class="stats-row stats-loading" *ngIf="isLoading" aria-live="polite">
+    <div class="stat-skeleton" *ngFor="let s of [1, 2, 3, 4, 5]"></div>
+  </div>
+
+  <!-- Estado de error -->
+  <div class="stats-row stats-error" *ngIf="!isLoading && statsLoadError" role="alert">
+    <i class="fa-solid fa-triangle-exclamation"></i>
+    <span>{{ "DASHBOARD.TOP_BAR.LOAD_ERROR" | translate }}</span>
+  </div>
+
+  <div class="stats-row" *ngIf="!isLoading && !statsLoadError">
     <div class="stat-item">
       <i class="fa-regular fa-clock icon-stat"></i>
       <div class="stat-content">
@@ -255,18 +269,163 @@
         </div>
       </div>
 
-      <!-- SCANNING OVERLAY -->
+      <!-- SCANNING OVERLAY: núcleo IA -->
       <div
         class="result-panel-overlay panel-scanning"
         *ngIf="showScanningAlert"
       >
-        <div class="panel-header">
-          {{ "DASHBOARD.GAME.IA_ANALYZING" | translate }}
+        <div class="ai-hud" aria-hidden="true">
+          <span class="hud-mark tl"></span>
+          <span class="hud-mark tr"></span>
+          <span class="hud-mark bl"></span>
+          <span class="hud-mark br"></span>
         </div>
-        <div class="loader-ring"></div>
-        <p class="scanning-text">
-          {{ "DASHBOARD.GAME.RECALCULATING" | translate }}
-        </p>
+
+        <div class="ai-reactor" aria-hidden="true">
+          <span class="reactor-ring ring-1"></span>
+          <span class="reactor-ring ring-2"></span>
+          <span class="reactor-ring ring-3"></span>
+          <span class="reactor-ring ring-4"></span>
+          <span class="reactor-scanner"></span>
+
+          <svg class="reactor-circuits" viewBox="0 0 300 300">
+            <line class="circuit" x1="150" y1="150" x2="150" y2="6" />
+            <line class="circuit" x1="150" y1="150" x2="150" y2="294" />
+            <line class="circuit" x1="150" y1="150" x2="6" y2="150" />
+            <line class="circuit" x1="150" y1="150" x2="294" y2="150" />
+            <line class="circuit" x1="150" y1="150" x2="45" y2="45" />
+            <line class="circuit" x1="150" y1="150" x2="255" y2="45" />
+            <line class="circuit" x1="150" y1="150" x2="45" y2="255" />
+            <line class="circuit" x1="150" y1="150" x2="255" y2="255" />
+          </svg>
+
+          <span class="reactor-pulse p1"></span>
+          <span class="reactor-pulse p2"></span>
+          <span class="reactor-pulse p3"></span>
+
+          <div class="reactor-core">
+            <span class="core-percent"></span>
+            <span class="core-label">Probabilidad</span>
+          </div>
+        </div>
+
+        <div class="panel-header">
+          <span class="header-eyebrow">AI CORE &middot; Motor Neural Activo</span>
+          <span class="header-main">{{
+            "DASHBOARD.GAME.IA_ANALYZING" | translate
+          }}</span>
+        </div>
+
+        <div class="ai-phrases">
+          <span>Analizando patrones...</span>
+          <span>Calculando probabilidades...</span>
+          <span>Sincronizando IA...</span>
+          <span>Escaneando historial...</span>
+          <span>Evaluando tendencia...</span>
+          <span>Procesando redes neuronales...</span>
+          <span>Detectando anomalías...</span>
+        </div>
+
+        <div class="ai-stats-row">
+          <div class="ai-stat">
+            <span class="stat-value">{{
+              signalsData?.listaMesas?.length || 0
+            }}</span>
+            <span class="stat-label">Mesas Activas</span>
+          </div>
+          <div class="ai-stat-divider"></div>
+          <div class="ai-stat">
+            <span class="stat-value status-processing">Procesando</span>
+            <span class="stat-label">Estado</span>
+          </div>
+        </div>
+
+        <div class="ai-loadbar">
+          <div class="ai-loadbar-fill"></div>
+        </div>
+
+        <div class="scan-layout">
+          <!-- Panel izquierdo: diagnóstico real -->
+          <div class="scan-side-panel side-left">
+            <div class="side-stat">
+              <span class="side-label">{{ "DASHBOARD.GAME.PATTERNS_DETECTED" | translate }}</span>
+              <span class="side-value">{{ (signalsData?.barraSuperior?.wins || 0) + (signalsData?.barraSuperior?.losses || 0) }}</span>
+            </div>
+            <div class="side-stat">
+              <span class="side-label">{{ "DASHBOARD.GAME.FREQUENCY" | translate }}</span>
+              <span class="side-value">{{ getFrequencyLabel() }}</span>
+            </div>
+            <div class="side-stat">
+              <span class="side-label">{{ "DASHBOARD.GAME.STREAK" | translate }}</span>
+              <span class="side-value" [class.text-neon-green]="getRecentStreak().isWin" [class.text-red]="!getRecentStreak().isWin">
+                {{ getRecentStreak().count }}
+                {{ (getRecentStreak().isWin ? "DASHBOARD.GAME.STREAK_WINS" : "DASHBOARD.GAME.STREAK_LOSSES") | translate }}
+              </span>
+            </div>
+            <div class="side-stat">
+              <span class="side-label">{{ "DASHBOARD.GAME.TREND_LABEL" | translate }}</span>
+              <span class="side-value">{{ getTrendLabel() }}</span>
+            </div>
+          </div>
+
+          <!-- Centro: núcleo IA -->
+          <div class="scan-core-hud">
+            <div class="radar-loader" aria-hidden="true">
+              <div class="radar-ring outer"></div>
+              <div class="radar-ring mid"></div>
+              <div class="radar-ring inner"></div>
+              <div class="radar-sweep-visual"></div>
+              <div class="hud-scan-line hud-scan-h"></div>
+              <div class="hud-scan-line hud-scan-v"></div>
+              <span class="hud-coord coord-a">42.9</span>
+              <span class="hud-coord coord-b">N-06</span>
+              <div class="radar-core">
+                <i class="fa-solid fa-satellite-dish"></i>
+              </div>
+              <span class="scan-particle p1"></span>
+              <span class="scan-particle p2"></span>
+              <span class="scan-particle p3"></span>
+            </div>
+            <span class="radar-caption">{{ "DASHBOARD.GAME.RADAR_SWEEP" | translate }}</span>
+            <span class="radar-core-label">{{ "DASHBOARD.GAME.CORE_LABEL" | translate }}</span>
+
+            <div class="scan-status-badge">
+              {{ (sessionActive ? "DASHBOARD.GAME.ANALYSIS_IN_PROGRESS" : "DASHBOARD.GAME.ANALYSIS_IDLE") | translate }}
+            </div>
+
+            <p class="scanning-text">
+              {{ getScanningTextKey() | translate }}
+            </p>
+
+            <div class="scan-progress-bar" aria-hidden="true">
+              <div class="scan-progress-fill"></div>
+            </div>
+          </div>
+
+          <!-- Panel derecho: confianza y estado real -->
+          <div class="scan-side-panel side-right">
+            <div class="side-stat">
+              <span class="side-label">{{ "DASHBOARD.GAME.CONFIDENCE" | translate }}</span>
+              <span class="side-value text-neon-green">{{ signalsData?.barraSuperior?.winPercentage || 0 }}%</span>
+            </div>
+            <div class="side-stat">
+              <span class="side-label">{{ "DASHBOARD.GAME.TIME_ELAPSED" | translate }}</span>
+              <span class="side-value">{{ getRelativeTime(processedMainSignal?.createdAt || "") }}</span>
+            </div>
+            <div class="side-stat">
+              <span class="side-label">{{ "DASHBOARD.GAME.AI_ACCURACY" | translate }}</span>
+              <span class="side-value">{{ getPrecisionLabel() }}</span>
+            </div>
+            <div class="side-stat">
+              <span class="side-label">{{ "DASHBOARD.GAME.TABLES_COUNT" | translate }}</span>
+              <span class="side-value">{{ getRecentTablesCount() }}</span>
+            </div>
+            <div class="side-stat">
+              <span class="side-label">{{ "DASHBOARD.GAME.SYNC" | translate }}</span>
+              <span class="side-value text-neon-green">{{ sessionActive ? '100%' : '0%' }}</span>
+            </div>
+          </div>
+        </div>
 
         <div class="panel-footer">
           {{ "DASHBOARD.GAME.IA_ENGINE" | translate }}
@@ -316,59 +475,157 @@
         </div>
 
         <div class="game-visuals" style="width: 100%">
-          <!-- Columna Izquierda -->
-          <div class="info-left">
-            <!-- Removed Old Signal Name -->
+          <!-- Columna Izquierda: Diagnóstico IA -->
+          <div class="info-left diagnosis-panel">
+            <div class="panel-heading">{{ "DASHBOARD.GAME.DIAGNOSIS_TITLE" | translate }}</div>
 
-            <div
-              class="dots-container mt-3"
-              style="display: flex; flex-direction: column; gap: 5px"
-            >
-              <div style="display: flex; gap: 5px">
-                <span
-                  class="dot"
-                  *ngFor="let item of processedMainSignal?.forecastItems"
-                  [ngClass]="[item.colorClass]"
-                  [title]="item.label"
-                  style="
-                    width: 18px;
-                    height: 18px;
-                    border-radius: 50%;
-                    display: inline-block;
-                    border: 1px solid rgba(255, 255, 255, 0.2);
-                  "
-                >
-                </span>
+            <div class="diag-row">
+              <span class="diag-label">{{ "DASHBOARD.GAME.PATTERNS_DETECTED" | translate }}</span>
+              <div class="diag-bar"><div class="diag-bar-fill" [style.width.%]="(processedMainSignal?.forecastItems?.length || 0) * 100 / 6"></div></div>
+              <span class="diag-value">{{ processedMainSignal?.forecastItems?.length || 0 }}/6</span>
+            </div>
+
+            <div class="diag-row">
+              <span class="diag-label">{{ "DASHBOARD.GAME.FREQUENCY" | translate }}</span>
+              <div class="diag-bar"><div class="diag-bar-fill" [style.width.%]="((signalsData?.barraSuperior?.wins || 0) + (signalsData?.barraSuperior?.losses || 0)) * 5"></div></div>
+              <span class="diag-value">{{ (signalsData?.barraSuperior?.wins || 0) + (signalsData?.barraSuperior?.losses || 0) }}</span>
+            </div>
+
+            <div class="diag-row">
+              <span class="diag-label">{{ "DASHBOARD.GAME.DEVIATION" | translate }}</span>
+              <div class="diag-bar"><div class="diag-bar-fill" [style.width.%]="getMartingaleDepth(signalsData?.ultimoResult) * 100 / 6"></div></div>
+              <span class="diag-value">{{ getMartingaleDepth(signalsData?.ultimoResult) }}/6</span>
+            </div>
+
+            <div class="diag-chips">
+              <span class="diag-chip">{{ "DASHBOARD.GAME.BEHAVIOR_LABEL" | translate }}: <strong>{{ getBehaviorLabel() }}</strong></span>
+              <span class="diag-chip">{{ "DASHBOARD.GAME.TREND_LABEL" | translate }}: <strong>{{ getTrendLabel() }}</strong></span>
+            </div>
+
+            <div class="confidence-block">
+              <span class="confidence-label">{{ "DASHBOARD.GAME.CONFIDENCE" | translate }}</span>
+              <span class="confidence-value">{{ signalsData?.barraSuperior?.winPercentage || 0 }}%</span>
+            </div>
+          </div>
+
+          <!-- Columna Central: Mira táctica -->
+          <div
+            class="visual-center sniper-hud"
+            [class.scope-zoom]="showNewBetAlert || showWinAlert"
+          >
+            <svg class="sniper-hud-svg" viewBox="0 0 400 400">
+              <defs>
+                <linearGradient id="hudRadarGradient" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#ffd700" stop-opacity="0.6"></stop>
+                  <stop offset="100%" stop-color="#ffd700" stop-opacity="0"></stop>
+                </linearGradient>
+              </defs>
+              <circle class="scope-ring-outer" cx="200" cy="200" r="188"></circle>
+              <circle class="scope-ring-analysis" cx="200" cy="200" r="150"></circle>
+              <g class="scope-radar-sweep">
+                <path d="M 200 200 L 200 12 A 188 188 0 0 1 331 69 Z" fill="url(#hudRadarGradient)"></path>
+              </g>
+              <g class="scope-hud-spin">
+                <line *ngFor="let angle of scopeTicks"
+                      class="scope-tick"
+                      x1="200" y1="18" x2="200" y2="34"
+                      [attr.transform]="'rotate(' + angle + ' 200 200)'"></line>
+              </g>
+              <line class="scope-reticle" x1="200" y1="20" x2="200" y2="150"></line>
+              <line class="scope-reticle" x1="200" y1="250" x2="200" y2="380"></line>
+              <line class="scope-reticle" x1="20" y1="200" x2="150" y2="200"></line>
+              <line class="scope-reticle" x1="250" y1="200" x2="380" y2="200"></line>
+              <circle class="scope-center-dot" cx="200" cy="200" r="4"></circle>
+            </svg>
+
+            <span class="scope-coord coord-tl">{{ processedMainSignal?.mesa || 'MESA' }}</span>
+            <span class="scope-coord coord-tr">MG {{ getMartingaleDisplayStep(signalsData?.ultimoResult) }}/6</span>
+
+            <!-- Objetivo real: Jugador / Banquero / Empate -->
+            <div class="scope-target">
+              <span class="scope-scan-line" aria-hidden="true"></span>
+              <div class="target-box">
+                <span class="target-label text-blue">{{ "DASHBOARD.GAME.TARGET_PLAYER" | translate }}</span>
+                <span class="target-value">{{ getForecastProbability(processedMainSignal, 'P') }}%</span>
+              </div>
+              <span class="target-vs">VS</span>
+              <div class="target-box">
+                <span class="target-label text-red">{{ "DASHBOARD.GAME.TARGET_BANKER" | translate }}</span>
+                <span class="target-value">{{ getForecastProbability(processedMainSignal, 'B') }}%</span>
               </div>
             </div>
-          </div>
 
-          <!-- Columna Central (Imagen) -->
-          <div class="visual-center">
-            <img src="assets/cartas.png" alt="Cartas Baccara" />
-            <div
-              class="prediction-overlay text-center"
-              *ngIf="processedMainSignal?.prediction"
-            >
-              <h4 class="text-neon-pink">
-                {{ "DASHBOARD.GAME.PREDICTION" | translate }}
-              </h4>
-              <h3 class="text-white">
-                {{ processedMainSignal?.prediction }}
+            <div class="scope-analysis-text">
+              <h3>
+                {{ (showNewBetAlert || showWinAlert)
+                  ? ("DASHBOARD.GAME.NEW_SIGNAL_IDENTIFIED" | translate)
+                  : ("DASHBOARD.GAME.AI_ANALYZING_PATTERNS" | translate) }}
               </h3>
+              <p *ngIf="processedMainSignal?.prediction">
+                {{ "DASHBOARD.GAME.PREDICTION" | translate }}: {{ processedMainSignal?.prediction }}
+              </p>
             </div>
           </div>
 
-          <!-- Columna Derecha -->
-          <div class="info-right">
+          <!-- Columna Derecha: Probabilidad -->
+          <div class="info-right probability-panel">
+            <div class="panel-heading">{{ "DASHBOARD.GAME.PROBABILITY_TITLE" | translate }}</div>
+
+            <div class="diag-row">
+              <span class="diag-label text-blue">{{ "DASHBOARD.GAME.TARGET_PLAYER" | translate }}</span>
+              <div class="diag-bar"><div class="diag-bar-fill fill-blue" [style.width.%]="getForecastProbability(processedMainSignal, 'P')"></div></div>
+              <span class="diag-value">{{ getForecastProbability(processedMainSignal, 'P') }}%</span>
+            </div>
+            <div class="diag-row">
+              <span class="diag-label text-red">{{ "DASHBOARD.GAME.TARGET_BANKER" | translate }}</span>
+              <div class="diag-bar"><div class="diag-bar-fill fill-red" [style.width.%]="getForecastProbability(processedMainSignal, 'B')"></div></div>
+              <span class="diag-value">{{ getForecastProbability(processedMainSignal, 'B') }}%</span>
+            </div>
+            <div class="diag-row">
+              <span class="diag-label text-green">{{ "DASHBOARD.GAME.TARGET_TIE" | translate }}</span>
+              <div class="diag-bar"><div class="diag-bar-fill fill-green" [style.width.%]="getForecastProbability(processedMainSignal, 'T')"></div></div>
+              <span class="diag-value">{{ getForecastProbability(processedMainSignal, 'T') }}%</span>
+            </div>
+
+            <div class="diag-row">
+              <span class="diag-label">{{ "DASHBOARD.GAME.AI_ACCURACY" | translate }}</span>
+              <div class="diag-bar"><div class="diag-bar-fill" [style.width.%]="signalsData?.barraSuperior?.winPercentage || 0"></div></div>
+              <span class="diag-value">{{ signalsData?.barraSuperior?.winPercentage || 0 }}%</span>
+            </div>
+
+            <div class="diag-chips">
+              <span class="diag-chip">
+                {{ "DASHBOARD.GAME.ALGORITHM_STATUS" | translate }}:
+                <strong [class.text-neon-green]="sessionActive">{{ sessionActive ? ("DASHBOARD.GAME.ALGORITHM_SCANNING" | translate) : ("DASHBOARD.GAME.ALGORITHM_PAUSED" | translate) }}</strong>
+              </span>
+              <span class="diag-chip">
+                {{ "DASHBOARD.GAME.SYNC" | translate }}:
+                <strong [class.text-neon-green]="sessionActive">{{ sessionActive ? '100%' : '0%' }}</strong>
+              </span>
+            </div>
+
             <div class="game-timer">
               <span>{{ "DASHBOARD.GAME.TIME_ELAPSED" | translate }}</span>
               <strong class="text-neon-pink">{{
                 getRelativeTime(processedMainSignal?.createdAt || "")
               }}</strong>
             </div>
+          </div>
+        </div>
 
-            <!-- Removed Old Round Box -->
+        <!-- Historial LED (mismo dato real de siempre, re-vestido) -->
+        <div
+          class="dots-container led-history mt-3"
+          style="display: flex; flex-direction: column; gap: 5px"
+        >
+          <div style="display: flex; gap: 8px; justify-content: center">
+            <span
+              class="dot led-dot"
+              *ngFor="let item of processedMainSignal?.forecastItems"
+              [ngClass]="[item.colorClass]"
+              [title]="item.label"
+            >
+            </span>
           </div>
         </div>
       </div>
@@ -475,44 +732,28 @@
       </div>
     </div>
 
-    <!-- Auto Controls Section -->
-    <div class="auto-controls-section">
-      <div class="section-header">
-        {{ "DASHBOARD.HERO.MODE_AUTOMATIC" | translate }}
-      </div>
-
-      <div class="control-row">
-        <span class="label"
-          >{{ "DASHBOARD.HERO.MARTIN_LABEL" | translate }}:</span
-        >
-        <div class="value-badge">
-          {{ "DASHBOARD.GAME.LEVEL" | translate }}
-          {{ getMartingaleDisplayStep(signalsData?.ultimoResult) }}
-          <i class="fa-solid fa-caret-down ml-1"></i>
-        </div>
-      </div>
-
-      <div class="stats-row">
-        <!-- Amount / Chips -->
-        <div class="stat-pill">
-          <i class="fa-solid fa-coins"></i>
-          <span>{{ "DASHBOARD.HERO.AMOUNT_ASIGNED" | translate }}: 3</span>
-        </div>
-        <div class="stat-pill">
-          <i class="fa-solid fa-robot"></i>
-          <span
-            >{{ "DASHBOARD.HERO.MODE_STATUS" | translate }}:
-            <span class="text-neon-green">ACTIVO</span></span
-          >
-          <i class="fa-solid fa-shuffle ml-1"></i>
-        </div>
-      </div>
-
-      <button class="btn-pause-auto" (click)="requestPause()">
-        <i class="fa-solid fa-pause"></i>
-        {{ "DASHBOARD.HERO.BTN_PAUSE_SESSION" | translate }}
-      </button>
-    </div>
+    <!-- Botón Automático: SSO real hacia GPulse (mismo flujo que Winx) -->
+    <a
+      class="btn-automatic-card"
+      [class.is-loading]="isGpulseSsoLoading"
+      href="javascript:void(0)"
+      (click)="goToGpulseAutomatico()"
+      aria-label="Ir al Modo Automático"
+    >
+      <span class="btn-automatic-halo" aria-hidden="true"></span>
+      <i
+        class="fa-solid btn-automatic-icon"
+        [class.fa-crosshairs]="!isGpulseSsoLoading"
+        [class.fa-circle-notch]="isGpulseSsoLoading"
+        [class.fa-spin]="isGpulseSsoLoading"
+        aria-hidden="true"
+      ></i>
+      <span class="btn-automatic-text">
+        <span class="btn-automatic-title">{{ "DASHBOARD.HERO.MODE_AUTOMATIC" | translate }}</span>
+        <span class="btn-automatic-desc">{{ "DASHBOARD.HERO.AUTOMATIC_DESC" | translate }}</span>
+      </span>
+      <i class="fa-solid fa-arrow-right btn-automatic-arrow" aria-hidden="true"></i>
+    </a>
   </div>
 
   <!-- Overlay for Paused State -->

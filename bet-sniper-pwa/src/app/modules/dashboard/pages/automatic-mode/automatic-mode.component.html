@@ -1,0 +1,76 @@
+<div class="automatic-mode-page">
+  <header class="page-header">
+    <a routerLink="/app/dashboard" class="btn-back" aria-label="Volver al escritorio">
+      <i class="fa-solid fa-arrow-left"></i>
+    </a>
+    <h1 class="page-title">
+      <i class="fa-solid fa-crosshairs" aria-hidden="true"></i>
+      MODO AUTOMÁTICO
+    </h1>
+    <div
+      class="connection-badge"
+      [class.is-active]="sessionActive"
+      role="status"
+      aria-live="polite"
+    >
+      <span class="dot"></span>
+      {{ sessionActive ? 'CONECTADO' : 'DESCONECTADO' }}
+    </div>
+  </header>
+
+  <section class="automatic-panel glass-panel">
+    <div class="control-row">
+      <span class="label">{{ "DASHBOARD.HERO.MARTIN_LABEL" | translate }}:</span>
+      <div class="value-badge">
+        {{ "DASHBOARD.GAME.LEVEL" | translate }} {{ martingaleLevel }}
+      </div>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-pill">
+        <i class="fa-solid fa-coins"></i>
+        <span>{{ "DASHBOARD.HERO.AMOUNT_ASIGNED" | translate }}: 3</span>
+      </div>
+      <div class="stat-pill">
+        <i class="fa-solid fa-robot"></i>
+        <span
+          >{{ "DASHBOARD.HERO.MODE_STATUS" | translate }}:
+          <span class="text-neon-green">ACTIVO</span></span
+        >
+      </div>
+    </div>
+
+    <div class="action-row">
+      <button
+        class="btn-start"
+        type="button"
+        [disabled]="sessionActive"
+        (click)="start()"
+      >
+        <i class="fa-solid fa-play"></i>
+        INICIAR SNIPING
+      </button>
+      <button
+        class="btn-pause"
+        type="button"
+        [disabled]="!sessionActive"
+        (click)="requestPause()"
+      >
+        <i class="fa-solid fa-pause"></i>
+        {{ "DASHBOARD.HERO.BTN_PAUSE_SESSION" | translate }}
+      </button>
+    </div>
+  </section>
+
+  <!-- Confirmación de pausa -->
+  <div class="confirm-overlay" *ngIf="showPauseConfirmation">
+    <div class="confirm-modal">
+      <h3>¿Pausar el sniper automático?</h3>
+      <p>Se detendrá la conexión en vivo hasta que vuelvas a iniciar.</p>
+      <div class="confirm-actions">
+        <button class="btn-cancel" type="button" (click)="cancelPause()">Cancelar</button>
+        <button class="btn-confirm" type="button" (click)="confirmPause()">Pausar</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,8 @@
 {
   "LOGIN": {
-    "WELCOME": "Hola, bienvenido",
+    "WELCOME_1": "Hola,",
+    "WELCOME_2": "Bienvenido",
+    "SUBTITLE": "Inicia sesión para continuar",
     "COPYRIGHT": "2025 todos los derechos reservados.",
     "USER_PLACEHOLDER": "Nombre de usuario o Email...",
     "PASS_PLACEHOLDER": "Contraseña...",
@@ -14,7 +16,24 @@
     "BTN_CANCEL": "CANCELAR",
     "BTN_REGISTER": "CREAR UNA CUENTA",
     "REMEMBER_ME": "¿Recordarme?",
-    "FORGOT_PASS": "¿Olvidaste tu contraseña?"
+    "FORGOT_PASS": "¿Olvidaste tu contraseña?",
+    "SIDEBAR": {
+      "FOCUS": "Enfoque",
+      "ANALYZE": "Analiza",
+      "EXECUTE": "Ejecuta",
+      "WIN": "Gana"
+    },
+    "TAGLINE": "Precisión. Estrategia. Resultados.",
+    "FEATURES": {
+      "SECURITY_TITLE": "Seguridad avanzada",
+      "SECURITY_DESC": "Protegemos tu cuenta",
+      "SPEED_TITLE": "Acceso rápido",
+      "SPEED_DESC": "Sin interrupciones",
+      "ANALYSIS_TITLE": "Análisis inteligente",
+      "ANALYSIS_DESC": "Decisiones precisas",
+      "RESULTS_TITLE": "Resultados reales",
+      "RESULTS_DESC": "Tu éxito es nuestro objetivo"
+    }
   },
   "REGISTER": {
     "USER_LEADER": "Usuario del líder",
@@ -79,7 +98,8 @@
       "PROFIT_TOTAL_TODAY": "PROFIT TOTAL HOY",
       "OF": "de",
       "WINS": "VICTORIAS",
-      "LOSS": "DERROTAS"
+      "LOSS": "DERROTAS",
+      "LOAD_ERROR": "No se pudieron cargar las estadísticas"
     },
     "ACTIVE_SIGNALS": {
       "PLAN_REQUIRED_TITLE": "PLAN ACTIVO",
@@ -144,21 +164,68 @@
       "PAUSED": "PAUSADO",
       "TIE": "EMPATE",
       "LIVE_PLAY": "JUGADA EN VIVO",
-      "LEVEL": "Nivel"
+      "LEVEL": "Nivel",
+      "TARGET_PLAYER": "JUGADOR",
+      "TARGET_BANKER": "BANQUERO",
+      "TARGET_TIE": "EMPATE",
+      "AI_ANALYZING_PATTERNS": "IA ANALIZANDO PATRONES",
+      "CONFIDENCE": "CONFIANZA",
+      "DIAGNOSIS_TITLE": "DIAGNÓSTICO IA",
+      "PATTERNS_DETECTED": "PATRONES DETECTADOS",
+      "FREQUENCY": "FRECUENCIA",
+      "BEHAVIOR_LABEL": "COMPORTAMIENTO",
+      "DEVIATION": "DESVIACIÓN",
+      "TREND_LABEL": "TENDENCIA",
+      "TREND_POSITIVE": "POSITIVA",
+      "TREND_NEGATIVE": "NEGATIVA",
+      "TREND_NEUTRAL": "NEUTRAL",
+      "BEHAVIOR_FAVORABLE": "FAVORABLE",
+      "BEHAVIOR_NEUTRAL": "NEUTRAL",
+      "BEHAVIOR_UNFAVORABLE": "DESFAVORABLE",
+      "PROBABILITY_TITLE": "PROBABILIDAD",
+      "AI_ACCURACY": "PRECISIÓN IA",
+      "ALGORITHM_STATUS": "ESTADO DEL ALGORITMO",
+      "ALGORITHM_SCANNING": "ESCANEANDO",
+      "ALGORITHM_PAUSED": "PAUSADO",
+      "SYNC": "SINCRONIZACIÓN",
+      "SCANNING_PATTERNS": "Escaneando patrones...",
+      "DETECTING_TRENDS": "Detectando tendencias...",
+      "RADAR_SWEEP": "Barrido de radar 360°",
+      "CORE_LABEL": "Núcleo IA BET SNIPER",
+      "TABLES_COUNT": "MESAS",
+      "ANALYZING_HISTORY": "Analizando historial...",
+      "VALIDATING_SIGNAL": "Validando señal...",
+      "FINDING_MATCHES": "Buscando coincidencias...",
+      "SYNCING_AI": "Sincronizando IA...",
+      "READING_BEHAVIOR": "Leyendo comportamiento...",
+      "COMPARING_TABLES": "Comparando mesas...",
+      "CALCULATING_RISK": "Calculando riesgo...",
+      "FREQUENCY_HIGH": "ALTA",
+      "FREQUENCY_MEDIUM": "MEDIA",
+      "FREQUENCY_LOW": "BAJA",
+      "PRECISION_HIGH": "ALTA",
+      "PRECISION_MEDIUM": "MEDIA",
+      "PRECISION_LOW": "BAJA",
+      "STREAK": "RACHA",
+      "STREAK_WINS": "VICTORIAS",
+      "STREAK_LOSSES": "DERROTAS",
+      "ANALYSIS_IN_PROGRESS": "ANÁLISIS EN CURSO",
+      "ANALYSIS_IDLE": "ESPERANDO PATRÓN VÁLIDO"
     },
     "HERO": {
       "SIGNALS_LIST": "SECUENCIA DE SNIPING",
       "BTN_SIGNALS_LABEL": "CARGAR MÁS SECUENCIAS",
       "OPERATIVE_PANEL": "ESTACIÓN DE SNIPING BACCARAT",
       "BTN_START_SESSION": "INICIAR SNIPING",
-      "BTN_PAUSE_SESSION": "PAUSAR SNIPING",
+      "BTN_PAUSE_SESSION": "PAUSAR FRANCOTIRADOR",
       "SIGNALS_CONTROL": "CONTROL DE SNIPING",
       "MODE_AUTOMATIC": "MODO AUTOMÁTICO",
       "MODE_MANUAL": "MODO MANUAL",
       "MODE_STATUS": "ACTIVADO",
       "TAKE_SIGNAL": "TOMAR ESTA SEÑAL",
       "MARTIN_LABEL": "MARTIN GALA CONTROL",
-      "AMOUNT_ASIGNED": "MONTO ASIGNADO"
+      "AMOUNT_ASIGNED": "MONTO ASIGNADO",
+      "AUTOMATIC_DESC": "Configura nivel, monto y estado de tu sniper"
     },
     "CARDBAR": {
       "PLANS": {

@@ -1,6 +1,8 @@
 {
   "LOGIN": {
-    "WELCOME": "Bonjour, bienvenue",
+    "WELCOME_1": "Bonjour,",
+    "WELCOME_2": "Bienvenue",
+    "SUBTITLE": "Connectez-vous pour continuer",
     "COPYRIGHT": "2025 tous droits réservés.",
     "USER_PLACEHOLDER": "Nom d'utilisateur ou Email...",
     "PASS_PLACEHOLDER": "Mot de passe...",
@@ -14,7 +16,24 @@
     "BTN_CANCEL": "ANNULER",
     "BTN_REGISTER": "CRÉER UN COMPTE",
     "REMEMBER_ME": "Se souvenir de moi ?",
-    "FORGOT_PASS": "Mot de passe oublié ?"
+    "FORGOT_PASS": "Mot de passe oublié ?",
+    "SIDEBAR": {
+      "FOCUS": "Focus",
+      "ANALYZE": "Analyser",
+      "EXECUTE": "Exécuter",
+      "WIN": "Gagner"
+    },
+    "TAGLINE": "Précision. Stratégie. Résultats.",
+    "FEATURES": {
+      "SECURITY_TITLE": "Sécurité avancée",
+      "SECURITY_DESC": "Nous protégeons votre compte",
+      "SPEED_TITLE": "Accès rapide",
+      "SPEED_DESC": "Sans interruptions",
+      "ANALYSIS_TITLE": "Analyse intelligente",
+      "ANALYSIS_DESC": "Décisions précises",
+      "RESULTS_TITLE": "Résultats réels",
+      "RESULTS_DESC": "Votre succès est notre objectif"
+    }
   },
   "REGISTER": {
     "USER_LEADER": "Nom d'utilisateur du Leader",
@@ -65,7 +84,8 @@
       "SIGNALS_TAKEN": "SIGNAUX PRIS :",
       "WIN_RATE": "TAUX DE RÉUSSITE :",
       "PROFIT_TOTAL_TODAY": "PROFIT TOTAL AUJOURD'HUI",
-      "OF": "de"
+      "OF": "de",
+      "LOAD_ERROR": "Impossible de charger les statistiques"
     },
     "ACTIVE_SIGNALS": {
       "PLAN_REQUIRED_TITLE": "ACTIVE PLAN REQUIRED",
@@ -76,14 +96,15 @@
       "BTN_SIGNALS_LABEL": "CHARGER PLUS DE SIGNAUX",
       "OPERATIVE_PANEL": "PANNEAU OPÉRATIONNEL",
       "BTN_START_SESSION": "DÉMARRER LA SESSION",
-      "BTN_PAUSE_SESSION": "PAUSE SESSION",
+      "BTN_PAUSE_SESSION": "PAUSE SNIPER",
       "SIGNALS_CONTROL": "CONTRÔLE DES SIGNAUX",
       "MODE_AUTOMATIC": "MODE AUTOMATIQUE",
       "MODE_MANUAL": "MODE MANUEL",
       "MODE_STATUS": "ACTIVÉ",
       "TAKE_SIGNAL": "PRENDRE CE SIGNAL",
       "MARTIN_LABEL": "CONTRÔLE MARTINGALE",
-      "AMOUNT_ASIGNED": "MONTANT ASSIGNÉ"
+      "AMOUNT_ASIGNED": "MONTANT ASSIGNÉ",
+      "AUTOMATIC_DESC": "Configurez le niveau, le montant et l'état de votre sniper"
     },
     "CARDBAR": {
       "PLANS": {

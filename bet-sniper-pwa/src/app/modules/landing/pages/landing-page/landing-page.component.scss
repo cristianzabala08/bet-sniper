@@ -39,15 +39,7 @@ $border-gold: #2a2520;
 
 // Header
 .landing-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  background: rgba(10, 10, 10, 0.95);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba($gold-primary, 0.2);
-  padding: 0 20px;
+  display: none;
 }
 
 .header-container {
@@ -60,9 +52,33 @@ $border-gold: #2a2520;
 }
 
 .header-logo {
-  height: 50px;
+  height: 42px;
   width: auto;
+  border-radius: 6px;
   background: transparent;
+}
+
+.brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.brand-wordmark {
+  font-family: 'Black Ops One', 'Rajdhani', 'Montserrat', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: $text-main;
+  strong {
+    background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+  }
 }
 
 .header-nav {
@@ -93,24 +109,33 @@ $border-gold: #2a2520;
   font-weight: 600;
   font-size: 0.85rem;
   transition: all 0.3s;
+  animation: btnBlink 1.6s ease-in-out infinite;
   &:hover {
-    background: rgba($gold-primary, 0.1);
-    box-shadow: 0 0 15px rgba($gold-primary, 0.3);
+    background: rgba($gold-primary, 0.15);
+    box-shadow: 0 0 20px rgba($gold-primary, 0.6);
+    animation-play-state: paused;
   }
+}
+
+@keyframes btnBlink {
+  0%, 100% { box-shadow: 0 0 4px rgba($gold-primary, 0.15); border-color: rgba($gold-primary, 0.5); }
+  50% { box-shadow: 0 0 16px rgba($gold-primary, 0.8); border-color: $gold-light; }
 }
 
 .btn-gold {
   display: inline-block;
-  padding: 8px 20px;
-  background: linear-gradient(135deg, $gold-primary, $gold-dark);
-  color: #000;
+  padding: 8px 22px;
+  background: linear-gradient(135deg, #fff176 0%, #ffd600 55%, #ffb300 100%);
+  color: #1a1400;
   border-radius: 25px;
   text-decoration: none;
   font-weight: 700;
   font-size: 0.85rem;
+  letter-spacing: 0.02em;
   transition: all 0.3s;
+  box-shadow: 0 0 18px rgba(#ffd600, 0.55);
   &:hover {
-    box-shadow: 0 0 20px rgba($gold-primary, 0.5);
+    box-shadow: 0 0 28px rgba(#ffd600, 0.85);
     transform: translateY(-1px);
   }
 }
@@ -143,94 +168,7 @@ $border-gold: #2a2520;
   }
 }
 
-// Hero Section
-.hero-section {
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  padding: 100px 20px 60px;
-}
-
-.hero-particles {
-  position: absolute;
-  inset: 0;
-  .particle {
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    background: $gold-primary;
-    border-radius: 50%;
-    opacity: 0.3;
-    animation: floatParticle 8s infinite ease-in-out;
-    &:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
-    &:nth-child(2) { top: 60%; left: 80%; animation-delay: 1s; }
-    &:nth-child(3) { top: 40%; left: 30%; animation-delay: 2s; }
-    &:nth-child(4) { top: 80%; left: 60%; animation-delay: 3s; }
-    &:nth-child(5) { top: 15%; left: 70%; animation-delay: 4s; }
-    &:nth-child(6) { top: 70%; left: 20%; animation-delay: 5s; }
-    &:nth-child(7) { top: 50%; left: 90%; animation-delay: 6s; }
-    &:nth-child(8) { top: 30%; left: 50%; animation-delay: 7s; }
-  }
-}
-
-@keyframes floatParticle {
-  0%, 100% { transform: translateY(0) translateX(0); opacity: 0.2; }
-  50% { transform: translateY(-30px) translateX(15px); opacity: 0.6; }
-}
-
-.hero-glow {
-  position: absolute;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba($gold-primary, 0.15) 0%, transparent 70%);
-  border-radius: 50%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  animation: pulseGlow 4s infinite ease-in-out;
-}
-
-@keyframes pulseGlow {
-  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
-  50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; }
-}
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  max-width: 700px;
-}
-
-.hero-mascot {
-  width: 200px;
-  height: auto;
-  margin-bottom: 30px;
-  filter: drop-shadow(0 0 30px rgba($gold-primary, 0.4));
-  animation: floatMascot 3s ease-in-out infinite;
-  background: transparent;
-}
-
-@keyframes floatMascot {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
-}
-
-.hero-title {
-  font-size: 3.5rem;
-  margin-bottom: 20px;
-  line-height: 1.1;
-}
-
-.hero-subtitle {
-  font-size: 1.15rem;
-  color: $text-muted;
-  margin-bottom: 40px;
-  line-height: 1.6;
-}
+// Hero Section: ver app-hero-cinematic (modules/landing/components/hero-cinematic)
 
 .btn-hero-cta {
   display: inline-block;
@@ -252,10 +190,69 @@ $border-gold: #2a2520;
   }
 }
 
+// Posicionado para calzar exactamente en el rectángulo vacío que trae
+// landing-chu-hero.png (centro del hueco al 65% del alto, 1493x1054px).
+.hero-cta-overlay {
+  position: absolute;
+  z-index: 3;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(135deg, #ffe066 0%, #ffc107 100%);
+  animation: ctaPulse 1.6s ease-in-out infinite;
+
+  &:hover {
+    animation-play-state: paused;
+    transform: translate(-50%, -50%) translateY(-3px);
+  }
+}
+
+@keyframes ctaPulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    background: linear-gradient(135deg, #ffe066 0%, #ffc107 100%);
+    box-shadow: 0 0 30px rgba(255, 214, 51, 0.5);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.06);
+    background: linear-gradient(135deg, #fff3b0 0%, #ffd400 100%);
+    box-shadow: 0 0 55px rgba(255, 214, 51, 0.9);
+  }
+}
+
 // Stats Section
 .stats-section {
   padding: 80px 20px;
   text-align: center;
+}
+
+.live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  margin-bottom: 16px;
+  border: 1px solid rgba(#4caf50, 0.5);
+  border-radius: 20px;
+  color: #4caf50;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4caf50;
+  box-shadow: 0 0 8px 2px rgba(#4caf50, 0.8);
+  animation: liveDotPulse 1.6s ease-in-out infinite;
+}
+
+@keyframes liveDotPulse {
+  0%, 100% { opacity: 0.6; transform: scale(0.85); }
+  50% { opacity: 1; transform: scale(1.15); }
 }
 
 .section-title {
@@ -284,6 +281,7 @@ $border-gold: #2a2520;
   padding: 30px 15px;
   transition: all 0.3s;
   position: relative;
+  overflow: hidden;
   clip-path: polygon(
     0 0,
     calc(100% - 15px) 0,
@@ -324,6 +322,52 @@ $border-gold: #2a2520;
   &.wins .stat-icon { color: #4caf50; }
   &.losses .stat-icon { color: #f44336; }
   &.profit .stat-value { color: #4caf50; }
+
+  .stat-scan {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: repeating-linear-gradient(
+      90deg,
+      transparent 0%,
+      transparent 82%,
+      rgba($gold-primary, 0.9) 90%,
+      rgba($gold-primary, 0.9) 92%,
+      transparent 100%
+    );
+    background-size: 220% 100%;
+    animation: statScan 6s linear infinite;
+    pointer-events: none;
+  }
+
+  .stat-corner {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    pointer-events: none;
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      background: $gold-primary;
+    }
+    &::before { width: 100%; height: 2px; }
+    &::after { width: 2px; height: 100%; }
+    &.corner-tl { top: 4px; left: 4px; }
+    &.corner-br { bottom: 4px; right: 4px; transform: rotate(180deg); }
+  }
+
+  &:nth-child(2) .stat-scan { animation-delay: 1.2s; }
+  &:nth-child(3) .stat-scan { animation-delay: 2.4s; }
+  &:nth-child(4) .stat-scan { animation-delay: 3.6s; }
+  &:nth-child(5) .stat-scan { animation-delay: 4.8s; }
+}
+
+@keyframes statScan {
+  from { background-position: 0% 0; }
+  to { background-position: -220% 0; }
 }
 
 // Martingala Section
@@ -339,6 +383,10 @@ $border-gold: #2a2520;
   grid-template-columns: 1fr 1fr;
   gap: 60px;
   align-items: center;
+}
+
+.martingala-visual {
+  position: relative;
 }
 
 .algo-diagram {
@@ -366,17 +414,47 @@ $border-gold: #2a2520;
     align-items: center;
     justify-content: center;
     font-size: 1.3rem;
+    animation: stepPulse 3s ease-in-out infinite;
   }
   span { font-size: 0.85rem; font-weight: 600; }
-  &.loss .step-icon { background: rgba(244, 67, 54, 0.2); color: #f44336; }
-  &.calc .step-icon { background: rgba($gold-primary, 0.2); color: $gold-primary; }
-  &.win .step-icon { background: rgba(76, 175, 80, 0.2); color: #4caf50; }
+  &.loss .step-icon { background: rgba(244, 67, 54, 0.2); color: #f44336; animation-delay: 0s; }
+  &.calc .step-icon { background: rgba($gold-primary, 0.2); color: $gold-primary; animation-delay: 1s; }
+  &.win .step-icon { background: rgba(76, 175, 80, 0.2); color: #4caf50; animation-delay: 2s; }
+}
+
+@keyframes stepPulse {
+  0%, 12%, 100% { box-shadow: none; transform: scale(1); }
+  6% { box-shadow: 0 0 22px currentColor; transform: scale(1.12); }
 }
 
 .algo-arrow {
+  position: relative;
   color: $gold-primary;
   font-size: 1.2rem;
   opacity: 0.5;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: $gold-light;
+    box-shadow: 0 0 8px 2px rgba($gold-light, 0.9);
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    animation: arrowTravel 3s ease-in-out infinite;
+  }
+  &.arrow-2::after { animation-delay: 1s; }
+}
+
+@keyframes arrowTravel {
+  0% { left: 0; opacity: 0; }
+  10% { opacity: 1; }
+  45% { opacity: 1; }
+  50%, 100% { left: 100%; opacity: 0; }
 }
 
 .martingala-desc {
@@ -412,6 +490,11 @@ $border-gold: #2a2520;
   gap: 25px;
   max-width: 1200px;
   margin: 0 auto;
+  .pricing-card:nth-child(2) .stat-scan { animation-delay: 1s; }
+  .pricing-card:nth-child(3) .stat-scan { animation-delay: 2s; }
+  .pricing-card:nth-child(4) .stat-scan { animation-delay: 3s; }
+  .pricing-card:nth-child(5) .stat-scan { animation-delay: 4s; }
+  .pricing-card:nth-child(6) .stat-scan { animation-delay: 5s; }
 }
 
 .pricing-card {
@@ -420,7 +503,10 @@ $border-gold: #2a2520;
   border-radius: 0;
   padding: 40px 25px;
   position: relative;
+  overflow: hidden;
   transition: all 0.3s;
+  transform-style: preserve-3d;
+  perspective: 800px;
   clip-path: polygon(
     0 0,
     calc(100% - 20px) 0,
@@ -438,16 +524,21 @@ $border-gold: #2a2520;
     z-index: 0;
   }
   &:hover {
-    transform: translateY(-10px);
+    transform: perspective(800px) rotateX(2deg) translateY(-10px);
     box-shadow: 0 0 30px rgba($gold-primary, 0.2);
   }
   &.featured {
     border-color: $gold-primary;
-    box-shadow: 0 0 40px rgba($gold-primary, 0.25);
     background: rgba(22, 22, 20, 0.95);
     transform: scale(1.02);
-    &:hover { transform: scale(1.02) translateY(-10px); }
+    animation: featuredHalo 4s ease-in-out infinite;
+    &:hover { transform: scale(1.02) perspective(800px) rotateX(2deg) translateY(-10px); }
   }
+}
+
+@keyframes featuredHalo {
+  0%, 100% { box-shadow: 0 0 22px rgba($gold-primary, 0.2); }
+  50% { box-shadow: 0 0 46px rgba($gold-primary, 0.5); }
 }
 
 .pricing-header {
@@ -584,6 +675,51 @@ $border-gold: #2a2520;
   transform: translate(-50%, -50%);
 }
 
+.cta-frame {
+  position: absolute;
+  inset: 14px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.cta-edge {
+  position: absolute;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0%, transparent 82%,
+    rgba($gold-light, 0.9) 90%, rgba($gold-light, 0.9) 92%,
+    transparent 100%
+  );
+  background-size: 220% 100%;
+  filter: drop-shadow(0 0 6px rgba($gold-light, 0.6));
+
+  &.edge-top, &.edge-bottom { left: 30px; right: 30px; height: 2px; }
+  &.edge-top { top: 0; animation: ctaEdgeX 8s linear infinite; }
+  &.edge-bottom { bottom: 0; animation: ctaEdgeX 8s linear infinite reverse; }
+
+  &.edge-left, &.edge-right {
+    top: 30px; bottom: 30px; width: 2px;
+    background: repeating-linear-gradient(
+      180deg,
+      transparent 0%, transparent 82%,
+      rgba($gold-light, 0.9) 90%, rgba($gold-light, 0.9) 92%,
+      transparent 100%
+    );
+    background-size: 100% 220%;
+  }
+  &.edge-right { right: 0; animation: ctaEdgeY 8s linear infinite; }
+  &.edge-left { left: 0; animation: ctaEdgeY 8s linear infinite reverse; }
+}
+
+@keyframes ctaEdgeX {
+  from { background-position: 0% 0; }
+  to { background-position: -220% 0; }
+}
+@keyframes ctaEdgeY {
+  from { background-position: 0 0%; }
+  to { background-position: 0 -220%; }
+}
+
 .cta-title {
   font-size: 2.5rem;
   margin-bottom: 15px;
@@ -601,9 +737,31 @@ $border-gold: #2a2520;
 
 // Footer
 .landing-footer {
-  background: rgba(5, 5, 3, 0.8);
-  border-top: 1px solid rgba($gold-primary, 0.15);
+  position: relative;
+  background: linear-gradient(180deg, rgba(14, 14, 12, 0.95) 0%, rgba(5, 5, 3, 0.98) 100%);
   padding: 60px 20px 30px;
+  overflow: hidden;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: repeating-linear-gradient(
+      90deg,
+      transparent 0%, transparent 84%,
+      rgba($gold-light, 0.9) 92%, rgba($gold-light, 0.9) 94%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+    animation: footerShimmer 10s linear infinite;
+  }
+}
+
+@keyframes footerShimmer {
+  from { background-position: 0% 0; }
+  to { background-position: -200% 0; }
 }
 
 .footer-content {
@@ -615,10 +773,14 @@ $border-gold: #2a2520;
   margin-bottom: 30px;
 }
 
-.footer-logo {
-  height: 60px;
-  width: auto;
+.footer-brand-lockup {
   margin-bottom: 15px;
+}
+
+.footer-logo {
+  height: 48px;
+  width: auto;
+  border-radius: 6px;
   background: transparent;
 }
 
@@ -703,12 +865,24 @@ $border-gold: #2a2520;
 }
 
 @media (max-width: 600px) {
-  .hero-title { font-size: 2.2rem; }
-  .hero-mascot { width: 150px; }
   .section-title { font-size: 1.8rem; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
   .stat-card .stat-value { font-size: 1.5rem; }
   .algo-diagram { flex-wrap: wrap; gap: 10px; }
   .algo-arrow { display: none; }
   .btn-hero-cta { padding: 14px 30px; font-size: 0.95rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .live-dot,
+  .stat-scan,
+  .step-icon,
+  .algo-arrow::after,
+  .pricing-card.featured,
+  .cta-edge,
+  .landing-footer::before,
+  .btn-outline-gold {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }

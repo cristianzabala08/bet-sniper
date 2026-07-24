@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { TokenService } from 'src/app/shared/services/jwt-token.service';
 import { io, Socket } from 'socket.io-client';
@@ -78,6 +78,10 @@ export class SignalsService {
   private socket!: Socket;
   // Single source of truth for socket updates
   private dashboardUpdateSubject = new Subject<SocketUpdate>();
+  // Single source of truth for connection state, shared by any page that needs it
+  // (e.g. the dashboard and the automatic-mode page) without opening a second socket.
+  private sessionActiveSubject = new BehaviorSubject<boolean>(false);
+  sessionActive$ = this.sessionActiveSubject.asObservable();
 
   constructor(
     private http: HttpClient,
@@ -94,6 +98,7 @@ export class SignalsService {
 
     this.socket.on('connect', () => {
       console.log('Socket connected:', this.socket.id);
+      this.sessionActiveSubject.next(true);
     });
 
     // Listen to the single event source
@@ -103,6 +108,7 @@ export class SignalsService {
 
     this.socket.on('disconnect', () => {
       console.log('Socket disconnected');
+      this.sessionActiveSubject.next(false);
     });
   }
 
@@ -120,6 +126,7 @@ export class SignalsService {
     if (this.socket) {
       this.socket.disconnect();
     }
+    this.sessionActiveSubject.next(false);
   }
 
   getDailySignals(): Observable<any[]> {

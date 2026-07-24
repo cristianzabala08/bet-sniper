@@ -69,7 +69,13 @@ export class Web3Service {
 
         if (!isSameWallet) {
           this.userService.updateWallet(addr).subscribe({
-            next: (res) => {},
+            next: (res: any) => {
+              // El backend re-firma el JWT con la wallet nueva: sin guardar
+              // este token, el resto de la sesión (p.ej. /gpulse-sso) sigue
+              // viendo al usuario como "sin wallet" hasta el próximo login.
+              const newToken = res?.token;
+              if (newToken) this.tokenService.saveToken(newToken);
+            },
             error: (err) => console.error('Error syncing wallet', err),
           });
         } else {
